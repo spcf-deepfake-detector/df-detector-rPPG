@@ -19,5 +19,33 @@ class FaceTracker:
 
             denom = float(boxAArea + boxBArea - interArea)
             return interArea / denom if denom > 0 else 0.0
+
+        def track_faces(self, raw_detections: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+            """Track Faces across frames using intersection over union to maintain the consistency of the detected face bounding boxes."""
+            if not raw_detections:
+                return []
+            tracked = []
+            last_bbox = None
+
+            for detection in raw_detections:
+                current_bbox = detection["bbox"]
+                if last_bbox is not None or current_bbox == [0,0,0,0]:
+                    tracked.append(detection)
+                    if current_bbox != [0,0,0,0]:
+                        last_bbox = current_bbox
+                    else:
+                        iou = self.compute_iou(last_bbox, current_bbox)
+                        if iou < self.iou_threshold and detection["detected"]:
+                            tracked.append({
+                                "bbox": last_bbox,
+                                "confidence": detection["confidence"],
+                                "detected": False,
+                                "frame_idx": detection["frame_idx"]
+                            }) 
+                        else:
+                            tracked.append(detection)
+                            if detection["detected"]:
+                                last_bbox = current_bbox
+        return track_faces
         
 
