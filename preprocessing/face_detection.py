@@ -1,15 +1,15 @@
 import os
 import cv2
 import numpy as np
-import mediapipline as mp
+import mediapipe as mp
 from typing import List, Dict, Any, Tuple, Optional
 
 class FaceDetector:
     def __init__(self, min_detection_confidence: float = 0.5, model_selection: int = 0):
         self.min_confidence = min_detection_confidence
-        self.mp_face_detectioin = mp.solutions.face_detection
+        self.mp_face_detection = mp.solutions.face_detection
         self.detector = self.mp_face_detection.FaceDetection(
-            min_detection_donfidence=self.min_confidence,
+            min_detection_confidence=self.min_confidence,
             model_selection=model_selection
         )
 
@@ -23,9 +23,9 @@ class FaceDetector:
             for detection in result.detections:
                 score = float(detection.score[0])
                 bbox_data = detection.location_data.relative_bounding_box
-                xmin = max(0, int(bbox_data.xmin * w)),
-                ymin = max(0, int(bbox_data.ymin * h)),
-                bbox_w = min(int(bbox_data.width * w),w - xmin),
+                xmin = max(0, int(bbox_data.xmin * w))
+                ymin = max(0, int(bbox_data.ymin * h))
+                bbox_w = min(int(bbox_data.width * w),w - xmin)
                 bbox_h = min(int(bbox_data.height * h), h - ymin)
 
                 detections.append({
@@ -35,9 +35,10 @@ class FaceDetector:
                 })
         return detections
 
-    def process_video(self, video_path: str) -> List[Dict[str, Any]]:
+    def process_video(self, video_path: str) -> Dict[str, Any]:
         if not os.path.exists(video_path):
-            raise FileNotFoundError(f"Video file not found: {video_path})")
+            raise FileNotFoundError(f"Video file not found: {video_path}")
+        
         cap = cv2.VideoCapture(video_path)
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps <= 0 or np.isnan(fps):
@@ -74,18 +75,19 @@ class FaceDetector:
             })
             frame_idx += 1
 
-            cap. release()
-            return {
-                "fps": fps,
-                "total_frames": frame_idx,
-                "detections": frame_detections,
-                "detection_rate": (valid_count / frame_idx) if frame_idx > 0 else 0.0
+        cap.release()
+
+        return {
+            "fps": fps,
+            "total_frames": frame_idx,
+            "detections": frame_detections,
+            "detection_rate": (valid_count / frame_idx if frame_idx > 0 else 0.0)
 
 
             }
 
-        def close(self):
-            self.detector.close()
+    def close(self):
+        self.detector.close()
 
        
                 
