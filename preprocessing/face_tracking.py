@@ -17,7 +17,7 @@ class FaceTracker:
             boxAArea = boxA[2] * boxA[3]
             boxBArea = boxB[2] * boxB[3]
 
-            iou = interArea / float(boxAArea + boxBArea - interArea + 1e-8)
-            return iou
+            denom = float(boxAArea + boxBArea - interArea)
+            return interArea / denom if denom > 0 else 0.0
         
 
