@@ -3,53 +3,109 @@ import numpy as np
 from typing import Dict, List, Any
 from preprocessing.roi import ROIExtractor
 
+
 class RGBExtractor:
-    """Extracts spatial spatial-mean RGB temporal traces from region of interest clips."""
+    """Extract temporal RGB signals from facial regions."""
+
     def __init__(self):
         self.roi_extractor = ROIExtractor()
 
-    def process_video_frames(self, video_path: str, tracking_results: List[Dict[str, Any]]) -> np.ndarray:
+    def process_video_frames(
+        self,
+        video_path: str,
+        tracking_results: List[Dict[str, Any]]
+    ) -> np.ndarray:
+
         cap = cv2.VideoCapture(video_path)
+
+        if not cap.isOpened():
+            cap.release()
+            raise ValueError(f"Could not open video: {video_path}")
+
         rgb_signals = []
 
-        for info in tracking_results:
-            ret, frame = cap.read()
-            if not ret:
-                break
+        try:
+            for info in tracking_results:
 
-            bbox = info["bbox"]
-            rois = self.roi_extractor.extract_rois(frame, bbox)
+                ret, frame = cap.read()
 
-            r_vals, g_vals, b_vals = [], [], []
-            for roi in rois.values():
-                if roi.size > 0 and np.sum(roi) > 0:
-                    b_vals.append(np.mean(roi[:, :, 0]))
-                    g_vals.append(np.mean(roi[:, :, 1]))
-                    r_vals.append(np.mean(roi[:, :, 2]))
+                if not ret:
+                    break
 
-            if r_vals:
-                r_mean = float(np.mean(r_vals))
-                g_mean = float(np.mean(g_vals))
-                b_mean = float(np.mean(b_vals))
-            else:
-                r_mean, g_mean, b_mean = 0.0, 0.0, 0.0
+                # Preserve the frame's position in the signal.
+                # Do not measure a stale bounding box.
+                if not info.get("detected", True):
+                    rgb_signals.append([np.nan, np.nan, np.nan])
+                    continue
 
-            rgb_signals.append([r_mean, g_mean, b_mean])
+                bbox = info["bbox"]
 
-        cap.release()
+                # Each ROI is a (crop, mask) pair.
+                rois = self.roi_extractor.extract_rois(frame, bbox)
+
+                r_vals = []
+                g_vals = []
+                b_vals = []
+
+                for crop, mask in rois.values():
+
+                    # Ignore missing or invalid regions.
+                    if crop.size == 0 or mask.size == 0:
+                        continue
+
+                    if crop.shape[:2] != mask.shape:
+                        continue
+
+                    # Select only pixels inside the ROI polygon.
+                    skin_pixels = mask > 0
+
+                    if not np.any(skin_pixels):
+                        continue
+
+                    # OpenCV images use BGR channel order.
+                    b_channel = crop[:, :, 0]
+                    g_channel = crop[:, :, 1]
+                    r_channel = crop[:, :, 2]
+
+                    # Calculate the mean of masked pixels only.
+                    b_mean = float(np.mean(b_channel[skin_pixels]))
+                    g_mean = float(np.mean(g_channel[skin_pixels]))
+                    r_mean = float(np.mean(r_channel[skin_pixels]))
+
+                    b_vals.append(b_mean)
+                    g_vals.append(g_mean)
+                    r_vals.append(r_mean)
+
+                # Combine the valid facial regions.
+                if r_vals:
+                    r_mean = float(np.mean(r_vals))
+                    g_mean = float(np.mean(g_vals))
+                    b_mean = float(np.mean(b_vals))
+
+                    rgb_signals.append([
+                        r_mean,
+                        g_mean,
+                        b_mean
+                    ])
+
+                else:
+                    # Preserve the frame but mark its measurement missing.
+                    rgb_signals.append([
+                        np.nan,
+                        np.nan,
+                        np.nan
+                    ])
+
+        finally:
+            cap.release()
+
+        # Return shape (number_of_frames, 3).
+        # An empty video result becomes shape (0, 3).
+        if not rgb_signals:
+            return np.empty((0, 3), dtype=np.float32)
+
+        return np.asarray(rgb_signals, dtype=np.float32)
+
+    def close(self):
+        """Release the MediaPipe Face Mesh resources."""
         self.roi_extractor.close()
-        
-        rgb_arr = np.array(rgb_signals, dtype=np.float32)
-        
-        # Zero-pad or extrapolate single-frame/empty anomalies
-        if len(rgb_arr) == 0:
-            return np.zeros((10, 3), dtype=np.float32)
-            
-        for c in range(3):
-            if np.all(rgb_arr[:, c] == 0):
-                rgb_arr[:, c] = 1.0
-            else:
-                mask = rgb_arr[:, c] == 0
-                rgb_arr[mask, c] = np.mean(rgb_arr[~mask, c])
-                
-        return rgb_arr

@@ -14,7 +14,11 @@ class FaceDetector:
         )
 
     def detect_frame(self,frame:np.ndarray) -> List[Dict[str, Any]]:
-        h, w, _= frame.shape
+        if frame is None or frame.ndim != 3 or frame.shape[2] != 3:
+            return []
+
+        h, w, _ = frame.shape
+
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         result = self.detector.process(rgb_frame)
 
@@ -23,13 +27,24 @@ class FaceDetector:
             for detection in result.detections:
                 score = float(detection.score[0])
                 bbox_data = detection.location_data.relative_bounding_box
-                xmin = max(0, int(bbox_data.xmin * w))
-                ymin = max(0, int(bbox_data.ymin * h))
-                bbox_w = min(int(bbox_data.width * w),w - xmin)
-                bbox_h = min(int(bbox_data.height * h), h - ymin)
+                x1 = int(bbox_data.xmin * w)
+                y1 = int(bbox_data.ymin * h)
+                x2 = int((bbox_data.xmin + bbox_data.width) * w)
+                y2 = int((bbox_data.ymin + bbox_data.height) * h)
+
+                x1 = max(0, min(w, x1))
+                y1 = max(0, min(h, y1))
+                x2 = max(0, min(w, x2))
+                y2 = max(0, min(h, y2))
+
+                bbox_w = x2 - x1
+                bbox_h = y2 - y1
+
+                if bbox_w <= 0 or bbox_h <= 0:
+                    continue
 
                 detections.append({
-                    "bbox": [xmin, ymin, bbox_w, bbox_h],
+                    "bbox": [x1, y1, bbox_w, bbox_h],
                     "confidence": score,
                     "detected": True
                 })
@@ -40,10 +55,14 @@ class FaceDetector:
             raise FileNotFoundError(f"Video file not found: {video_path}")
         
         cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            cap.release()
+            raise ValueError(f"Could not open video: {video_path}")
+
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps <= 0 or np.isnan(fps):
             fps = 30.0
-
+            
         frame_detections = []
         last_valid_bbox = [0,0,0,0]
         valid_count = 0
