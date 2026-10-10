@@ -148,8 +148,11 @@ def green_method(
 ) -> np.ndarray:
     """Extract an rPPG signal using the green channel."""
 
+    if not np.isfinite(fps) or fps <= 0:
+        raise ValueError("fps must be finit or positive")
+    
     rgb = prepare_rgb_signal(rgb_signal)
-
+    
     g = rgb[:, 1]
 
     g_det = detrend_signal(g)
