@@ -95,6 +95,10 @@ def prepare_rgb_signal(
 
         rgb = np.asarray(rgb_signal, dtype=np.float64).copy()
 
+    if not np.isfinite(min_valid_fraction) or not 0.0 <= min_valid_fraction <= 1.0:
+        raise ValueError(
+            "min_valid_fraction must be between 0 and 1")
+
     if rgb.ndim != 2 or rgb.shape[1] != 3:
         raise ValueError(
             "rgb_signal must have shape (number_of_frames, 3)."
