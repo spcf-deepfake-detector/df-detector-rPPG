@@ -93,7 +93,7 @@ def prepare_rgb_signal(
     Channel order: R, G, B
     """
 
-    rgb = np.asarray(rgb_signal, dtype=np.float64)
+        rgb = np.asarray(rgb_signal, dtype=np.float64).copy()
 
     if rgb.ndim != 2 or rgb.shape[1] != 3:
         raise ValueError(
