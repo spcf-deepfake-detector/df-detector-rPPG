@@ -93,7 +93,7 @@ def prepare_rgb_signal(
     Channel order: R, G, B
     """
 
-        rgb = np.asarray(rgb_signal, dtype=np.float64).copy()
+    rgb = np.asarray(rgb_signal, dtype=np.float64).copy()
 
     if not np.isfinite(min_valid_fraction) or not 0.0 <= min_valid_fraction <= 1.0:
         raise ValueError(
