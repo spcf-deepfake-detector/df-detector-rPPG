@@ -209,8 +209,8 @@ def pos_method(
 
     rgb = prepare_rgb_signal(rgb_signal)
 
-    if fps <= 0:
-        raise ValueError("fps must be positive.")
+    if not np.isfinite(fps) or fps <= 0:
+        raise ValueError("fps must be finite and positive.")
 
     if window_seconds <= 0:
         raise ValueError("window_seconds must be positive.")
