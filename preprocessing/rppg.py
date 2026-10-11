@@ -167,7 +167,10 @@ def chrom_method(
     fps: float = 30.0
 ) -> np.ndarray:
     """Extract an rPPG signal using a CHROM-style method."""
-
+    
+    if not np.isfinite(fps) or fps <= 0:
+        raise ValueError("fps must be finite and positive")
+    
     rgb = prepare_rgb_signal(rgb_signal)
 
     r, g, b = rgb[:, 0], rgb[:, 1], rgb[:, 2]
