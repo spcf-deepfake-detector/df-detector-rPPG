@@ -149,7 +149,7 @@ def green_method(
     """Extract an rPPG signal using the green channel."""
 
     if not np.isfinite(fps) or fps <= 0:
-        raise ValueError("fps must be finit and positive")
+        raise ValueError("fps must be finite and positive")
     
     rgb = prepare_rgb_signal(rgb_signal)
     
@@ -188,7 +188,7 @@ def chrom_method(
         )
         
     if not np.all(np.isfinite([r_mean, g_mean, b_mean])):
-    raise ValueError("RGB channel means must be finite.")
+        raise ValueError("RGB channel means must be finite.")
 
     r_n = r / r_mean
     g_n = g / g_mean
@@ -253,7 +253,7 @@ def pos_method(
         # Normalize the RGB channels within this window.
         channel_means = np.mean(window, axis=0)
 
-        if np.any(channel_means <= eps):
+        if not np.all(np.isfinite(channel_means)) or np.any(channel_means <= eps):
             continue
 
         Cn = window / channel_means
