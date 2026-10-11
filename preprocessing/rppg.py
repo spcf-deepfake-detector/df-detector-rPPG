@@ -218,8 +218,8 @@ def pos_method(
     if not np.isfinite(fps) or fps <= 0:
         raise ValueError("fps must be finite and positive.")
 
-    if window_seconds <= 0:
-        raise ValueError("window_seconds must be positive.")
+    if not np.isfinite(window_seconds) or window_seconds <= 0:
+        raise ValueError("window_seconds must be finite and positive.")
 
     n_frames = len(rgb)
 
@@ -297,11 +297,11 @@ def ica_method(
     fps: float = 30.0
 ) -> np.ndarray:
     """Extract an rPPG candidate using Independent Component Analysis."""
-
+    
     rgb = prepare_rgb_signal(rgb_signal)
 
-    if fps <= 0:
-        raise ValueError("fps must be positive.")
+    if not np.isfinite(fps) or fps <= 0:
+        raise ValueError("fps must be finite and positive.")
 
     # Use the green method as a fallback for short recordings.
     if len(rgb) < max(30, int(fps)):
