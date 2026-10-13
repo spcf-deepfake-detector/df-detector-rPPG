@@ -48,4 +48,24 @@ def train_model(data_dir: str,
 
             total_train += len(y)
 
+            train_loss /= total_train
+            train_accuracy = train_correct / total_train
 
+            model.eval()
+            val_loss,val_correct = 0.0, 0
+            total_val = 0
+
+            with torch.no_grad():
+                for x, y in val_loader:
+                    x, y = x.to(device), y.to(device)
+                    outputs = model(x)
+                    loss = criterion(outputs, y)
+
+                    val_loss += loss.item() * len(y)
+                    preds = torch.sigmoid(outputs).round()
+                    val_correct += (preds == y).sum().item()
+
+                    total_val += len(y)
+
+
+            
