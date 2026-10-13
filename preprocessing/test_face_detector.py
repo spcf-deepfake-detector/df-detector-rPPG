@@ -1,6 +1,6 @@
 from face_detection import FaceDetector
 
-video_path = "face_video.mp4"  # Replace with your test video path
+video_path = "face_video.mp4"  
 
 detector = FaceDetector(min_detection_confidence=0.5, model_selection=0)
 
