@@ -28,4 +28,4 @@ def perform_error_analysis(samples_metadata: List[Dict[str, Any]], y_true: np.nd
 
     df = pd.DataFrame(records)
     print(f"[i] Error Analysis Complete. Total Errors: {df['is_error'].sum()} / {len(df)}")
-    return dfgit 
+    return df
