@@ -28,7 +28,7 @@ class RPPGDataset(Dataset):
             raise ValueError(
                 "target_length must  be a positive integer."
             )
-        if not np.isfinit(fps) or fps <= 0:
+        if not np.isfinite(fps) or fps <= 0:
             raise ValueError(
                 "fps must be finite and positive"
             )
