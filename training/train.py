@@ -257,7 +257,7 @@ if __name__ == "__main__":
     parser.add_argument("--lr", type=float, default=1e-3)
     args = parser.parse_args()
 
-    if args.epoch < 1:
+    if args.epochs < 1:
         parser.error("--epoch must be at least 1")
     if args.batch_size < 1:
         parser.error("--batch_size must be at least 1")
