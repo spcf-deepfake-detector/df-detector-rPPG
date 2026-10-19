@@ -74,7 +74,7 @@ class RPPGDataset(Dataset):
             # Step 2: Track the selected face.
             tracker = FaceTracker()
 
-            tracked_dets = tracker.track(
+            tracked_dets = tracker.track_faces(
                 summary["detections"]
             )
 
