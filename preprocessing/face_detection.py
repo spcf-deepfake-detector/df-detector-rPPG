@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 import mediapipe as mp
+
 from typing import List, Dict, Any, Tuple, Optional
 
 class FaceDetector:
@@ -64,11 +65,11 @@ class FaceDetector:
             fps = 30.0
             
         frame_detections = []
-        last_valid_bbox = [0,0,0,0]
+        
         valid_count = 0
         frame_idx = 0
 
-        while cap.isOpened():
+        while True:
             ret, frame = cap.read()
             if not ret:
                 break
@@ -79,10 +80,10 @@ class FaceDetector:
                 bbox = best_detection["bbox"]
                 confidence = best_detection["confidence"]
                 detected = True
-                last_valid_bbox = bbox
+                
                 valid_count += 1
             else:
-                bbox = last_valid_bbox
+                bbox = [0, 0, 0, 0]
                 confidence = 0.0
                 detected = False
 
@@ -96,17 +97,34 @@ class FaceDetector:
 
         cap.release()
 
+        detection_rate = (
+            valid_count /frame_idx
+            if frame_idx > 0
+            else 0.0
+        )
+
+        print("\n Face Detection Summary")
+        print(f"Video: {video_path}")
+        print(f"Total frames: {frame_idx}")
+        print(f"Detected frames: {valid_count}")
+        print(f"Missing detections: {frame_idx - valid_count}")
+        print(f"Detection rate: {detection_rate:.2%}")
+
         return {
             "fps": fps,
             "total_frames": frame_idx,
             "detections": frame_detections,
-            "detection_rate": (valid_count / frame_idx if frame_idx > 0 else 0.0)
-
+            "detection_rate": detection_rate
 
             }
+    
 
     def close(self):
         self.detector.close()
 
        
-                
+    # print(
+    #     f"Frame: {frame_idx}",
+    #     f"Face detected: {detected}",
+    #     f"Bounding Box: {bbox}"
+    # )
