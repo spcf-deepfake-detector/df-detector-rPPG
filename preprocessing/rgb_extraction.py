@@ -50,12 +50,21 @@ class RGBExtractor:
                     break
 
                 # Check whether a face was detected.
-                if not info.get("detected", True):
+                # Check whether a face was detected.
+                detected = info.get("detected", False)
+                bbox = info.get("bbox")
+
+                # Print details for the first 10 frames.
+                if frame_idx < 10:
+                    print(
+                        f"[RGB DEBUG] Frame {frame_idx}: "
+                        f"detected={detected}, bbox={bbox}"
+                    )
+
+                if not detected:
                     rgb_signals.append([np.nan, np.nan, np.nan])
                     stats["face_not_detected"] += 1
                     continue
-
-                bbox = info.get("bbox")
 
                 if (
                     not isinstance(bbox, (list, tuple))
@@ -68,20 +77,43 @@ class RGBExtractor:
                     continue
 
                 # Extract forehead and cheek regions.
+                # Extract forehead and cheek regions.
                 try:
                     rois = self.roi_extractor.extract_rois(frame, bbox)
+
                 except Exception as exc:
-                    print(
-                        f"[ROI ERROR] Frame {frame_idx}: {exc}"
-                    )
+                    print(f"[ROI ERROR] Frame {frame_idx}: {exc}")
+
                     rgb_signals.append([np.nan, np.nan, np.nan])
                     stats["roi_failure"] += 1
                     continue
 
-                if not isinstance(rois, dict) or not rois:
-                    rgb_signals.append([np.nan, np.nan, np.nan])
-                    stats["roi_failure"] += 1
-                    continue
+                # Debug the first 10 frames.
+                if frame_idx < 10:
+                    print(f"\n[ROI DEBUG] Frame: {frame_idx}")
+                    print(f"Bounding box: {bbox}")
+                    print(f"Frame dimensions: {frame.shape}")
+                    print(f"ROIs type: {type(rois)}")
+
+                    if isinstance(rois, dict):
+                        print(f"ROI names: {list(rois.keys())}")
+
+                        for name, roi_data in rois.items():
+                            if isinstance(roi_data, (tuple, list)) and len(roi_data) == 2:
+                                crop, mask = roi_data
+
+                                print(f"  ROI: {name}")
+
+                                if isinstance(crop, np.ndarray):
+                                    print(f"    Crop shape: {crop.shape}")
+                                else:
+                                    print(f"    Crop type: {type(crop)}")
+
+                                if isinstance(mask, np.ndarray):
+                                    print(f"    Mask shape: {mask.shape}")
+                                    print(f"    Nonzero mask pixels: {np.count_nonzero(mask)}")
+                                else:
+                                    print(f"    Mask type: {type(mask)}")
 
                 r_vals = []
                 g_vals = []
