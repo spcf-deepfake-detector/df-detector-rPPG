@@ -1,77 +1,4 @@
-'''import numpy as np
-from scipy import signal
-from sklearn.decomposition import FastICA
-from preprocessing.signal_processing import normalize_signal, detrend_signal, bandpass_filter
 
-def green_method(rgb_signal: np.ndarray, fps: float = 30.0) -> np.ndarray:
-    """Extracts rPPG using Green Channel baseline."""
-    g = rgb_signal[:, 1]
-    g_det = detrend_signal(g)
-    return bandpass_filter(normalize_signal(g_det), fps=fps)
-
-def chrom_method(rgb_signal: np.ndarray, fps: float = 30.0) -> np.ndarray:
-    """Extracts rPPG using Chrominance-based method (CHROM)."""
-    X = rgb_signal
-    r, g, b = X[:, 0], X[:, 1], X[:, 2]
-
-    # Normalize channels
-    r_n = r / (np.mean(r) + 1e-8)
-    g_n = g / (np.mean(g) + 1e-8)
-    b_n = b / (np.mean(b) + 1e-8)
-
-    Xs = 3.0 * r_n - 2.0 * g_n
-    Ys = 1.5 * r_n + 1.0 * g_n - 1.5 * b_n
-
-    Xf = bandpass_filter(Xs, fps=fps)
-    Yf = bandpass_filter(Ys, fps=fps)
-
-    alpha = np.std(Xf) / (np.std(Yf) + 1e-8)
-    S = Xf - alpha * Yf
-    return normalize_signal(S)
-
-def pos_method(rgb_signal: np.ndarray, fps: float = 30.0) -> np.ndarray:
-    """Extracts rPPG using Plane-Orthogonal-to-Skin (POS) algorithm."""
-    X = rgb_signal
-    T = X.shape[0]
-    e = np.zeros(T)
-
-    for i in range(T):
-        m = np.mean(X[max(0, i - 30):i + 1, :], axis=0) + 1e-8
-        Cn = X[i, :] / m
-        S1 = Cn[1] - Cn[2]
-        S2 = Cn[1] + Cn[2] - 2.0 * Cn[0]
-        h = S1 + (np.std(S1) / (np.std(S2) + 1e-8)) * S2
-        e[i] = h
-
-    return bandpass_filter(normalize_signal(e), fps=fps)
-
-def ica_method(rgb_signal: np.ndarray, fps: float = 30.0) -> np.ndarray:
-    """Extracts rPPG using Independent Component Analysis (ICA)."""
-    if len(rgb_signal) < 10:
-        return green_method(rgb_signal, fps)
-
-    ica = FastICA(n_components=3, random_state=42, max_iter=500)
-    try:
-        components = ica.fit_transform(rgb_signal)
-    except Exception:
-        return green_method(rgb_signal, fps)
-
-    # Select component with max power in physiological band [0.7, 2.5] Hz
-    best_comp = components[:, 0]
-    max_power = -1.0
-
-    for c in range(3):
-        comp = components[:, c]
-        fft_vals = np.abs(np.fft.rfft(comp))
-        freqs = np.fft.rfftfreq(len(comp), d=1.0 / fps)
-        mask = (freqs >= 0.7) & (freqs <= 2.5)
-        p_band = np.sum(fft_vals[mask] ** 2)
-        if p_band > max_power:
-            max_power = p_band
-            best_comp = comp
-
-    return bandpass_filter(normalize_signal(best_comp), fps=fps)'''
-    
 import numpy as np
 from sklearn.decomposition import FastICA
 
@@ -95,9 +22,13 @@ def prepare_rgb_signal(
 
     rgb = np.asarray(rgb_signal, dtype=np.float64).copy()
 
-    if not np.isfinite(min_valid_fraction) or not 0.0 <= min_valid_fraction <= 1.0:
+    if (
+        not np.isfinite(min_valid_fraction)
+        or not 0.0 <= min_valid_fraction <= 1.0
+    ):
         raise ValueError(
-            "min_valid_fraction must be between 0 and 1")
+            "min_valid_fraction must be between 0 and 1."
+        )
 
     if rgb.ndim != 2 or rgb.shape[1] != 3:
         raise ValueError(
@@ -106,21 +37,31 @@ def prepare_rgb_signal(
 
     if len(rgb) < 10:
         raise ValueError(
-            "Not enough frames for rPPG processing."
+            f"Not enough frames for rPPG processing: {len(rgb)}."
         )
 
-    # A row is valid only when all three channels are finite.
+    # A frame is valid when all RGB channels are finite.
     valid_rows = np.all(np.isfinite(rgb), axis=1)
 
-    if np.mean(valid_rows) < min_valid_fraction:
+    valid_count = int(np.sum(valid_rows))
+    total_count = len(rgb)
+    missing_count = total_count - valid_count
+    valid_fraction = valid_count / total_count
+
+    # Provide diagnostic information when too many frames are missing.
+    if valid_fraction < min_valid_fraction:
         raise ValueError(
-            "Too many missing RGB measurements."
+            f"Too many missing RGB measurements: "
+            f"{missing_count}/{total_count} frames missing, "
+            f"{valid_fraction:.1%} valid. "
+            f"Required: {min_valid_fraction:.1%} valid."
         )
 
     frame_indices = np.arange(len(rgb))
 
     # Interpolate missing values independently for each channel.
     for channel in range(3):
+
         valid = np.isfinite(rgb[:, channel])
 
         if np.sum(valid) < 2:
