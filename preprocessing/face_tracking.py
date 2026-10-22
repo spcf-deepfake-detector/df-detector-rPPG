@@ -1,9 +1,5 @@
-import os
-import cv2
-import numpy as np
-import mediapipe as mp
-
 from typing import List, Dict, Any, Optional
+
 
 
 class FaceTracker:
