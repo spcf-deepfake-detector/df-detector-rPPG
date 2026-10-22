@@ -52,79 +52,101 @@ class FaceDetector:
         return detections
 
     def process_video(self, video_path: str) -> Dict[str, Any]:
+    # 1. Check whether the video exists.
         if not os.path.exists(video_path):
-            raise FileNotFoundError(f"Video file not found: {video_path}")
-        
+            raise FileNotFoundError(
+                f"Video file not found: {video_path}"
+            )
+
+        # 2. Open the video.
         cap = cv2.VideoCapture(video_path)
+
         if not cap.isOpened():
             cap.release()
-            raise ValueError(f"Could not open video: {video_path}")
+            raise ValueError(
+                f"Could not open video: {video_path}"
+            )
 
+        # 3. Read the video's FPS.
         fps = cap.get(cv2.CAP_PROP_FPS)
+
         if fps <= 0 or np.isnan(fps):
             fps = 30.0
-            
+
+        # 4. Initialize our counters and result list.
         frame_detections = []
-        
         valid_count = 0
         frame_idx = 0
 
+        # 5. Process every frame.
         while True:
             ret, frame = cap.read()
+
             if not ret:
                 break
-            
+
+            # Detect faces in the current frame.
             detections = self.detect_frame(frame)
+
+            # 6. Select the highest-confidence detection.
             if detections:
-                best_detection = max(detections, key=lambda x: x["confidence"])
+                best_detection = max(
+                    detections,
+                    key=lambda x: x["confidence"]
+                )
+
                 bbox = best_detection["bbox"]
                 confidence = best_detection["confidence"]
                 detected = True
-                
+
                 valid_count += 1
+
             else:
+                # No valid face was found in this frame.
                 bbox = [0, 0, 0, 0]
                 confidence = 0.0
                 detected = False
 
+            # 7. Save this frame's result.
             frame_detections.append({
                 "frame_idx": frame_idx,
                 "bbox": bbox,
                 "confidence": confidence,
                 "detected": detected
             })
+
             frame_idx += 1
 
+        # 8. Release the video.
         cap.release()
 
-        total_frames = len(detections)
-
-        detected_frames = sum(1 for item in detections if item.get("detected", False))
+        # 9. Calculate the correct statistics.
+        total_frames = len(frame_detections)
+        detected_frames = valid_count
+        missing_frames = total_frames - detected_frames
 
         detection_rate = (
-            detected_frames/total_frames + 100
+            detected_frames / total_frames * 100
             if total_frames > 0
             else 0.0
         )
 
+        # 10. Print the summary.
+        print("\n========== FACE DETECTION SUMMARY ==========")
+        print(f"Video: {video_path}")
+        print(f"FPS: {fps:.2f}")
         print(f"Total frames: {total_frames}")
-        print(f"Detected faces: {detected_frames}")
+        print(f"Frames with detected faces: {detected_frames}")
+        print(f"Frames without detected faces: {missing_frames}")
         print(f"Detection rate: {detection_rate:.2f}%")
 
-        print("\n Face Detection Summary")
-        print(f"Video: {video_path}")
-        print(f"Total frames: {frame_idx}")
-        print(f"Detected frames: {valid_count}")
-        print(f"Missing detections: {frame_idx - valid_count}")
-        print(f"Detection rate: {detection_rate:.2%}")
-
+        # 11. Return the results.
         return {
             "fps": fps,
-            "total_frames": frame_idx,
+            "total_frames": total_frames,
             "detections": frame_detections,
             "detection_rate": detection_rate
-
-            }
+        }
 
     
 
