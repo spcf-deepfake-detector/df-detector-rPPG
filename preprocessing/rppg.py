@@ -233,8 +233,13 @@ def pos_method(
 
     pulse_signal = normalize_signal(pulse_signal)
 
-    return bandpass_filter(pulse_signal, fps=fps)
+    pulse_signal = pos_method(rgb_signal, fps=30.0)
 
+    print("Pulse signal shape:", pulse_signal.shape)
+    print("All finite:", np.isfinite(pulse_signal).all())
+    print("Standard deviation:", np.std(pulse_signal))
+
+    return bandpass_filter(pulse_signal, fps=fps)
 
 def ica_method(
     rgb_signal: np.ndarray,

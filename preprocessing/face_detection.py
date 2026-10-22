@@ -97,11 +97,19 @@ class FaceDetector:
 
         cap.release()
 
+        total_frames = len(detections)
+
+        detected_frames = sum(1 for item in detections if item.get("detected", False))
+
         detection_rate = (
-            valid_count /frame_idx
-            if frame_idx > 0
+            detected_frames/total_frames + 100
+            if total_frames > 0
             else 0.0
         )
+
+        print(f"Total frames: {total_frames}")
+        print(f"Detected faces: {detected_frames}")
+        print(f"Detection rate: {detection_rate:.2f}%")
 
         print("\n Face Detection Summary")
         print(f"Video: {video_path}")
@@ -117,11 +125,14 @@ class FaceDetector:
             "detection_rate": detection_rate
 
             }
+
     
 
     def close(self):
         self.detector.close()
 
+    
+    
        
     # print(
     #     f"Frame: {frame_idx}",

@@ -249,6 +249,8 @@ def train_model(data_dir: str,
     print(f"Test F1-Score: {test_f1:.4f}")
     print("==========================================")
 
+    
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="FALSE FACET - Model Training Script")
     parser.add_argument("--data_dir", type=str, default="dataset", help="Root dataset folder")

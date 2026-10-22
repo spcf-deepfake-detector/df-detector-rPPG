@@ -1,11 +1,23 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-from typing import Dict, List, Tuple
+
+from typing import Dict, List, Optional, Tuple, Any
 
 
 class ROIExtractor:
-    """Extract forehead and cheek regions using MediaPipe Face Mesh."""
+    """
+    Extract forehead and cheek regions using MediaPipe Face Mesh.
+
+    The input frame is a full BGR video frame.
+    The bounding box format is [x, y, width, height].
+
+    Each ROI is returned as a dictionary:
+        {
+            "crop": BGR image crop or None,
+            "mask": single-channel mask or None
+        }
+    """
 
     FOREHEAD_INDICES = [10, 67, 109, 151, 337, 297, 9]
     LEFT_CHEEK_INDICES = [117, 118, 100, 126, 209, 198]
@@ -13,156 +25,187 @@ class ROIExtractor:
 
     def __init__(self):
         self.mp_mesh = mp.solutions.face_mesh
-
         self.face_mesh = self.mp_mesh.FaceMesh(
             static_image_mode=False,
             max_num_faces=1,
             refine_landmarks=True,
             min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
+            min_tracking_confidence=0.5,
         )
+
+    @staticmethod
+    def _empty_roi() -> Dict[str, Optional[np.ndarray]]:
+        """Return one consistently shaped empty ROI record."""
+        return {"crop": None, "mask": None}
+
+    def _empty_results(self) -> Dict[str, Dict[str, Optional[np.ndarray]]]:
+        """Return all expected ROI keys, even when extraction fails."""
+        return {
+            "forehead": self._empty_roi(),
+            "left_cheek": self._empty_roi(),
+            "right_cheek": self._empty_roi(),
+        }
 
     def extract_rois(
         self,
         frame: np.ndarray,
-        bbox: List[int]
-    ) -> Dict[str, Tuple[np.ndarray, np.ndarray]]:
+        bbox: List[int],
+    ) -> Dict[str, Dict[str, Optional[np.ndarray]]]:
+        """
+        Detect face landmarks and extract masked forehead and cheek crops.
 
-        empty_roi = (
-            np.empty((0, 0, 3), dtype=np.uint8),
-            np.empty((0, 0), dtype=np.uint8)
-        )
+        Args:
+            frame: Full BGR video frame (height, width, 3).
+            bbox: Face box [x, y, width, height].
 
-        empty_results = {
-            "forehead": empty_roi,
-            "left_cheek": empty_roi,
-            "right_cheek": empty_roi
-        }
+        Returns:
+            Dictionary with forehead, left_cheek, right_cheek.
+            Each value contains "crop" and "mask". Invalid regions
+            return {"crop": None, "mask": None}.
+        """
+        empty_results = self._empty_results()
 
-        # 1. Validate the frame.
-        if (
-            frame is None
-            or not isinstance(frame, np.ndarray)
-            or frame.ndim != 3
-            or frame.shape[2] != 3
-        ):
+        # 1. Validate the frame before reading its dimensions.
+        if not isinstance(frame, np.ndarray):
+            return empty_results
+        if frame.size == 0 or frame.ndim != 3 or frame.shape[2] != 3:
             return empty_results
 
-        h, w = frame.shape[:2]
+        frame_h, frame_w = frame.shape[:2]
 
-        # 2. Validate the bounding box.
-        if (
-            bbox is None
-            or len(bbox) != 4
-        ):
+        # 2. Validate and normalize the bounding box.
+        if bbox is None or len(bbox) != 4:
             return empty_results
 
         try:
-            x, y, bw, bh = map(int, bbox)
-        except (TypeError, ValueError, OverflowError):
+            values = np.asarray(bbox, dtype=np.float64)
+        except (TypeError, ValueError):
             return empty_results
 
-        if bw <= 0 or bh <= 0:
+        if not np.isfinite(values).all():
             return empty_results
 
-        # 3. Add padding around the detected face.
-        pad_x = int(bw * 0.20)
-        pad_y = int(bh * 0.20)
+        x, y, box_w, box_h = np.round(values).astype(int).tolist()
 
-        x1 = max(0, x - pad_x)
-        y1 = max(0, y - pad_y)
-        x2 = min(w, x + bw + pad_x)
-        y2 = min(h, y + bh + pad_y)
+        if box_w <= 0 or box_h <= 0:
+            return empty_results
+
+        # Clip the box to the frame and reject boxes outside the image.
+        x1 = max(0, x)
+        y1 = max(0, y)
+        x2 = min(frame_w, x + box_w)
+        y2 = min(frame_h, y + box_h)
 
         if x2 <= x1 or y2 <= y1:
             return empty_results
 
-        # 4. Crop the face region.
-        face_crop = frame[y1:y2, x1:x2]
+        # 3. MediaPipe Face Mesh expects RGB, while OpenCV frames are BGR.
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        if face_crop.size == 0:
-            return empty_results
-
-        # 5. Convert the crop from BGR to RGB.
-        rgb_crop = cv2.cvtColor(
-            face_crop,
-            cv2.COLOR_BGR2RGB
-        )
-
-        # 6. Detect facial landmarks within the crop.
-        results = self.face_mesh.process(rgb_crop)
-
+        # 4. Process the frame exactly once.
+        results = self.face_mesh.process(rgb_frame)
         if not results.multi_face_landmarks:
             return empty_results
 
         landmarks = results.multi_face_landmarks[0].landmark
 
+        # 5. Confirm the landmarks are near the expected face box.
+        pad_x = int(box_w * 0.30)
+        pad_y = int(box_h * 0.30)
+
+        box_x1 = max(0, x - pad_x)
+        box_y1 = max(0, y - pad_y)
+        box_x2 = min(frame_w, x + box_w + pad_x)
+        box_y2 = min(frame_h, y + box_h + pad_y)
+
+        landmark_x = np.asarray(
+            [point.x for point in landmarks], dtype=np.float64
+        )
+        landmark_y = np.asarray(
+            [point.y for point in landmarks], dtype=np.float64
+        )
+
+        if not np.isfinite(landmark_x).all() or not np.isfinite(landmark_y).all():
+            return empty_results
+
+        face_center_x = float(np.mean(landmark_x) * frame_w)
+        face_center_y = float(np.mean(landmark_y) * frame_h)
+
+        if not (
+            box_x1 <= face_center_x < box_x2
+            and box_y1 <= face_center_y < box_y2
+        ):
+            return empty_results
+
         def get_mask_crop(
-            indices: List[int]
-        ) -> Tuple[np.ndarray, np.ndarray]:
+            indices: List[int],
+        ) -> Dict[str, Optional[np.ndarray]]:
+            """Return a BGR crop and its polygon mask, or an empty ROI."""
+            if (
+                not indices
+                or min(indices) < 0
+                or max(indices) >= len(landmarks)
+            ):
+                return self._empty_roi()
 
-            # 7. Convert crop-relative landmarks to original
-            # frame coordinates.
-            pts = np.array(
-                [
-                    [
-                        int(landmarks[idx].x * (x2 - x1)) + x1,
-                        int(landmarks[idx].y * (y2 - y1)) + y1
-                    ]
-                    for idx in indices
-                ],
-                dtype=np.int32
-            )
+            points = []
+            for idx in indices:
+                landmark = landmarks[idx]
 
-            # 8. Keep coordinates inside the original frame.
-            pts[:, 0] = np.clip(pts[:, 0], 0, w - 1)
-            pts[:, 1] = np.clip(pts[:, 1], 0, h - 1)
+                if not (
+                    np.isfinite(landmark.x)
+                    and np.isfinite(landmark.y)
+                ):
+                    return self._empty_roi()
 
-            # 9. Find the smallest rectangle around the polygon.
-            rx, ry, rw, rh = cv2.boundingRect(pts)
+                px = int(round(landmark.x * frame_w))
+                py = int(round(landmark.y * frame_h))
+                points.append([px, py])
 
+            points = np.asarray(points, dtype=np.int32)
+
+            # 6. Clip polygon points to image boundaries.
+            points[:, 0] = np.clip(points[:, 0], 0, frame_w - 1)
+            points[:, 1] = np.clip(points[:, 1], 0, frame_h - 1)
+
+            # 7. Reject polygons that cannot define a useful region.
+            if len(np.unique(points, axis=0)) < 3:
+                return self._empty_roi()
+
+            if abs(cv2.contourArea(points)) < 4:
+                return self._empty_roi()
+
+            # 8. Crop the smallest rectangle around the polygon.
+            rx, ry, rw, rh = cv2.boundingRect(points)
             cx1 = max(0, rx)
             cy1 = max(0, ry)
-            cx2 = min(w, rx + rw)
-            cy2 = min(h, ry + rh)
+            cx2 = min(frame_w, rx + rw)
+            cy2 = min(frame_h, ry + rh)
 
             if cx2 <= cx1 or cy2 <= cy1:
-                return empty_roi
+                return self._empty_roi()
 
-            # 10. Extract the image region.
             crop = frame[cy1:cy2, cx1:cx2]
+            if crop.size == 0 or crop.ndim != 3 or crop.shape[2] != 3:
+                return self._empty_roi()
 
-            if crop.size == 0:
-                return empty_roi
+            # 9. Draw the polygon in crop-relative coordinates.
+            mask = np.zeros(crop.shape[:2], dtype=np.uint8)
+            local_points = points - np.array([cx1, cy1], dtype=np.int32)
+            cv2.fillPoly(mask, [local_points], 255)
 
-            # 11. Build a mask for the facial polygon.
-            mask = np.zeros(
-                (cy2 - cy1, cx2 - cx1),
-                dtype=np.uint8
-            )
+            if mask.shape != crop.shape[:2] or cv2.countNonZero(mask) == 0:
+                return self._empty_roi()
 
-            local_pts = pts - np.array([cx1, cy1])
+            return {"crop": crop, "mask": mask}
 
-            cv2.fillPoly(
-                mask,
-                [local_pts],
-                255
-            )
-
-            if not np.any(mask):
-                return empty_roi
-
-            return crop, mask
-
-        # 12. Extract the forehead and cheeks.
-        rois = {
+        # 10. Extract the three regions.
+        return {
             "forehead": get_mask_crop(self.FOREHEAD_INDICES),
             "left_cheek": get_mask_crop(self.LEFT_CHEEK_INDICES),
-            "right_cheek": get_mask_crop(self.RIGHT_CHEEK_INDICES)
+            "right_cheek": get_mask_crop(self.RIGHT_CHEEK_INDICES),
         }
 
-        return rois
-
     def close(self):
-        """Release MediaPipe resources."""
+        """Release MediaPipe Face Mesh resources."""
         self.face_mesh.close()
