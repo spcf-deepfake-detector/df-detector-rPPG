@@ -165,18 +165,20 @@ class RGBExtractor:
 
                     roi_stats["total_checked"] += 1
 
-                    # Validate the ROI tuple.
-                    if (
-                        not isinstance(roi_data, (tuple, list))
-                        or len(roi_data) != 2
-                    ):
+                    
+# Validate the ROI dictionary returned by roi.py.
+                    if not isinstance(roi_data, dict):
                         roi_stats["invalid_data"] += 1
-
                         roi_failure_reasons.append(
-                            f"{roi_name}: invalid ROI tuple"
+                            f"{roi_name}: expected a dictionary"
                         )
                         continue
-
+                    
+                    # Extract the actual image crop and mask from the dictionary.
+                    crop = roi_data.get("crop")
+                    mask = roi_data.get("mask")
+                    
+                    
                     crop, mask = roi_data
 
                     # Check that crop and mask are NumPy arrays.
