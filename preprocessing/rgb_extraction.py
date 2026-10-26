@@ -25,6 +25,17 @@ class RGBExtractor:
 
         rgb_signals = []
 
-        
+        stats = {
+            "valid": 0,
+            "face_not_detected": 0,
+            "invalid_bbox": 0,
+            "roi_exception": 0,
+            "invalid_roi_structure": 0,
+            "no_valid_roi": 0,
+            "empty_mask_only": 0,
+            "no_rgb_values": 0,
+        }
+
+
 
 
