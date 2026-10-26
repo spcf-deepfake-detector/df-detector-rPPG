@@ -55,4 +55,10 @@ class RGBExtractor:
 
                 ret, frame = cap.read()
 
-                
+                if not ret:
+                    print(
+                        f"Warning! video ended at frame {frame_idx},"
+                        f"but tracking results contain "
+                        f"{len(tracking_results)} entries."
+                    )
+                    break
