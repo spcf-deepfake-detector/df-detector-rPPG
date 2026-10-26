@@ -49,5 +49,10 @@ class RGBExtractor:
 
         max_faliure_examples = 20
 
+        
+        try:
+            for frame_idx, info in enumerate(tracking_results):
 
+                ret, frame = cap.read()
 
+                
