@@ -187,5 +187,100 @@ class RGBExtractor:
                         b_vals.append(g_mean)
 
                         roi_stats["usable"] += 1
+                        
+                        if r_vals:
+                            rgb_signals.append([
+                                float(np.mean(r_vals)),
+                                float(np.mean(g_vals)),
+                                float(np.mean(b_vals)),
+                                ])
+                            stats["valid"] += 1
+                            
+                        else:
+                            rgb_signals.append(
+                            [np.nan, np.nan, np.nan])
+                            
+                        if not roi_failure_reasons:
+                            stats["no_rgb_values"] += 1
+                            
+                        elif all(
+                            "empty mask" in reason
+                            for reason in roi_failure_reasons):
+                            stats["empty_masks_only"] += 1
+                            
+                        elif all(
+                            "empty or invalid crop/mask" in reason
+                            or "incompatible dimentions" in reason 
+                            for reason in roi_failure_reasons):
+                            
+                            stats["no_valid_roi"] += 1
+                            
+                        else:
+                            stats["no_rgb_values"] += 1
+                            
+                        if len(failure_examples) < max_failure_example:
+                            failure_examples.append(
+                                (frame_idx, roi_failure_reasons))
+                        
+                    finally:
+                        cap.release()
+                        
+                    total = len(rgb_signals)
+                    valid = stats["valid"]
+                    missing = total - valid
+                    
+                    print("---------- RGB EXTRACTION ----------")
+                    print(f"Video: {video_path}")
+                    print(f"Frames processed: {total}")
+                    print(f"Valid RGB measurements: {valid}")
+                    print(f"Missing RGB measurements: {missing}")
+                    
+                    if total:
+                        print(f"Valid Percentage: {valid/total:.2f}")
+                    else:
+                        print("Valid percentage: N/A)
+                    
+                    if failure_examples:
+                        print("\nExamples of frames with no usble RGB:")
+                        
+                        for frame_idx, reason in failure_examples:
+                            print(f"Frame {frame_idx}:")
+                            
+                            for reason in reasons:
+                                print(f" - {reason}")
+                                
+                    if not rgb_signals:
+                        return np.empty((0,3), dtype=np.float32)
+                        
+                    return np.asarray(rgb_signals, dtype=np.float32)
+                    
+                    if not rgb_signals: 
+                        return np.empty((0.3), dtype=np.float32)
+                        
+                    return np.asarray(rgb_signals, dtype=np.float32)
+                    
+                    
+                def close(self):
+                    self.roi_extractor.close()
+                    
+                    extractor = RGBExtractor()
+                    
+                    try:
+                        rgb_signals = extractor.process_video_frames(
+                            video_path,
+                            tracked_dets
+                            )
+                    finally:
+                        extractor.close()
+                        
+                        
+        
+                    
+                    
+                    
+            
+                    
+                    
+    
 
                         #part22 and on going still
