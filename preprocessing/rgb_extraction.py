@@ -23,6 +23,8 @@ class RGBExtractor:
             cap.release()
             raise ValueError(f"Couldnot find or open the video in this path: {video_path}")
 
+        rgb_signals = []
+
         
 
 
