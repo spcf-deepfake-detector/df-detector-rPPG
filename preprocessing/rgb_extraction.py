@@ -166,7 +166,7 @@ class RGBExtractor:
                     roi_stats["total_checked"] += 1
 
                     
-# Validate the ROI dictionary returned by roi.py.
+                # Validate the ROI dictionary returned by roi.py.
                     if not isinstance(roi_data, dict):
                         roi_stats["invalid_data"] += 1
                         roi_failure_reasons.append(
