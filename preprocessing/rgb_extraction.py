@@ -36,6 +36,15 @@ class RGBExtractor:
             "no_rgb_values": 0,
         }
 
+        roi_stats = {
+            "total_checked": 0,
+            "invalid_data": 0,
+            "invalid_dimensions": 0,
+            "empty_mask": 0,
+            "small_crop": 0,
+            "usable": 0,
+        }
+
 
 
 
