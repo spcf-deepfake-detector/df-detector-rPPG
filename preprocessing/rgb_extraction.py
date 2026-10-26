@@ -45,6 +45,9 @@ class RGBExtractor:
             "usable": 0,
         }
 
+        failure_examples = []
+
+        max_faliure_examples = 20
 
 
 
