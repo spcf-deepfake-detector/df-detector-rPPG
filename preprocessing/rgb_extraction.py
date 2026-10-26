@@ -61,4 +61,15 @@ class RGBExtractor:
                         f"but tracking results contain "
                         f"{len(tracking_results)} entries."
                     )
-                    break
+                break
+
+
+            detected = info.get("detected", False)
+            bbox = info.get("bbox")
+
+            if not detected:
+                rgb_signals.append(
+                    [np.nan, np.nan, np.nan]
+                )
+                stats["face_not_detected"] +=1
+                continue
