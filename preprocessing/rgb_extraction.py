@@ -32,7 +32,7 @@ class RGBExtractor:
             "roi_exception": 0,
             "invalid_roi_structure": 0,
             "no_valid_roi": 0,
-            "empty_mask_only": 0,
+            "empty_masks_only": 0,
             "no_rgb_values": 0,
         }
 
