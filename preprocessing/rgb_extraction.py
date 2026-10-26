@@ -61,15 +61,73 @@ class RGBExtractor:
                         f"but tracking results contain "
                         f"{len(tracking_results)} entries."
                     )
-                break
+                    break
 
 
-            detected = info.get("detected", False)
-            bbox = info.get("bbox")
+                detected = info.get("detected", False)
+                bbox = info.get("bbox")
 
-            if not detected:
-                rgb_signals.append(
-                    [np.nan, np.nan, np.nan]
-                )
-                stats["face_not_detected"] +=1
-                continue
+                if not detected:
+                    rgb_signals.append(
+                        [np.nan, np.nan, np.nan]
+                    )
+                    stats["face_not_detected"] += 1
+                    continue
+
+                if (
+                    not isinstance(bbox, (list, tuple, np.ndarray))
+                    or len(bbox) !=4
+                ):
+                    rgb_signals.append(np.nan, np.nan, np.nan)
+                    stats["invalid_bbox"] +=1
+                    continue
+
+                try:
+                    x,y, box_w, box_h = map(int, bbox)
+                except (TypeError, ValueError, OverflowError):
+                    rgb_signals.append(
+                        [np.nan,np.nan,np.nan]
+                    )
+                    stats["invalid_bbox"] +=1
+                    continue
+                
+                if box_w <= 0 or box_h <= 0:
+
+                    try:
+                        rois = self.roi_extractor.extract_rois(
+                            frame,
+                            [x,y, box_w, box_h]
+                        )
+                        print(f"ROI DEBUG! Frame {frame_idx}")
+
+                        for name, roi in rois.items():
+                            print(f"{name}: {type(roi)}")
+                    except Exception as exc:
+                        print(f"ROI ERROR! Frame {frame_idx}: {exc}")
+                        rgb_signals.append([np.nan, np.nan, np.nan])
+                        stats["roi_exception"] += 1
+                        continue
+
+                    if not isinstance(rois, dict) or not rois:
+                        rgb_signals.append([np.nan, np.nan, np.nan])
+                        stats["invalid_roi_structure"] += 1
+                        continue
+
+                    r_vals = []
+                    g_vals = []
+                    b_vals = []
+
+                    roi_failure_reasons = []
+
+                    for roi_name, roi_data in rois.items():
+                        if not isinstance(roi_data, dict):
+                            roi_stats["invalid_data"] +=1
+                            roi_failure_reasons.append(
+                                f"{roi_name}: expected a dectionary"
+                            )
+                            continue
+                        crop = roi_data.get("crop")
+                        mask = roi_data.get('mask')
+
+                        crop, mask = roi_data
+                        
