@@ -120,14 +120,72 @@ class RGBExtractor:
                     roi_failure_reasons = []
 
                     for roi_name, roi_data in rois.items():
+                       
                         if not isinstance(roi_data, dict):
                             roi_stats["invalid_data"] +=1
                             roi_failure_reasons.append(
                                 f"{roi_name}: expected a dectionary"
                             )
                             continue
+
                         crop = roi_data.get("crop")
                         mask = roi_data.get('mask')
 
-                        crop, mask = roi_data
-                        
+                        if (crop is None or mask is None or not isinstance(crop, np.ndarray) or not isinstance(mask, np.ndarray) or crop.size == 0 or mask.size == 0):
+                            roi_stats["invalid_data"] += 1
+                            roi_failure_reasons.append(
+                                f"{roi_name}: empty or invalid crop/mask"
+                            )
+                            continue
+                        if (crop.ndim !=3 or crop.shape[2] !=3 or mask.ndim !=2 or mask.shape != crop.shape[:2]):
+                            roi_stats["invalid_dimensions"] += 1
+
+                            roi_failure_reasons.append(
+                                f"{roi_name}: incompatible dimensions "
+                                f"crop={crop.shape}, mask={mask.shape}"
+                            )
+                            continue
+
+                        crop_h, crop_w = crop.shape[:2]
+
+                        if(
+                            crop_w < self.min_roi_width
+                            or crop_h < self.min_roi_height
+                        ):
+                            roi_stats["small_crop"] += 1
+
+                            roi_failure_reasons.append(
+                                f"{roi_name}: small crop "
+                                f"{crop_w}x{crop_h}"
+                            )
+
+                        skin_pixels = mask > 0
+
+                        if not np.any(skin_pixels):
+                            roi_stats["empty_mask"] += 1
+                            roi_failure_reasons.append(
+                                f"{roi_name}: empty mask"
+                            )
+                            continue
+                        b_channel = crop[:, :, 0]
+                        g_channel = crop[:, :, 2]
+                        r_channel = crop[:, :, 2]
+
+                        r_mean = float(
+                            np.mean(r_channel[skin_pixels])
+                        )
+                        g_mean = float(
+                            np.mean(g_channel[skin_pixels])
+                        )
+                        r_mean = float(
+                            np.mean(r_channel[skin_pixels])
+
+                        )
+
+                        r_vals.append(r_mean)
+                        g_vals.append(g_mean)
+                        b_vals.append(g_mean)
+
+                        roi_stats["usable"] += 1
+
+                        #part22 and on going still
