@@ -1,0 +1,18 @@
+FALSEFACET rPPG DATASET DIAGNOSTIC SUMMARY
+==============================================
+Videos scanned: 59
+Passed: 15
+Failed: 44
+
+Results by split and class:
+- train/real: total=21, passed=0, failed=21
+  Failure stages: insufficient_rgb_validity=21
+- train/fake: total=25, passed=11, failed=14
+  Failure stages: insufficient_rgb_validity=14
+- test/real: total=6, passed=0, failed=6
+  Failure stages: insufficient_rgb_validity=6
+- test/fake: total=7, passed=4, failed=3
+  Failure stages: insufficient_rgb_validity=3
+
+Overall failure stages:
+- insufficient_rgb_validity: 44

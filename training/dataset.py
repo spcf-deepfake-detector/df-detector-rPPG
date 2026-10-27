@@ -79,7 +79,11 @@ class RPPGDataset(Dataset):
         # STEP 1: Detect faces in the video.
         # --------------------------------------------------
         try:
-            detector = FaceDetector()
+            detector = FaceDetector(
+                min_detection_confidence=0.3,
+                model_selection=1
+            )
+            
 
             try:
                 summary = detector.process_video(video_path)

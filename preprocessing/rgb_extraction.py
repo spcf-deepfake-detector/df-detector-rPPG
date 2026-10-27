@@ -28,6 +28,7 @@ class RGBExtractor:
         stats = {
             "valid": 0,
             "face_not_detected": 0,
+            "tracking_rejected": 0,
             "invalid_bbox": 0,
             "roi_exception": 0,
             "invalid_roi_structure": 0,
@@ -62,16 +63,31 @@ class RGBExtractor:
                     )
                     break
 
-
                 detected = info.get("detected", False)
                 bbox = info.get("bbox")
+                track_valid = info.get("track_valid", True)
 
+                # Case 1: The face detector did not detect a face.
                 if not detected:
-                    rgb_signals.append(
-                        [np.nan, np.nan, np.nan]
-                    )
+                    rgb_signals.append([np.nan, np.nan, np.nan])
                     stats["face_not_detected"] += 1
                     continue
+
+                # Case 2: A face was detected, but the tracker rejected it.
+                if not track_valid:
+                    print(
+                        f"TRACKING DEBUG! Frame {frame_idx}: "
+                        f"face detected, but tracker marked it invalid. "
+                        f"Status: {info.get('tracking_status', 'unknown')}, "
+                        f"IoU: {info.get('tracking_iou', 'unknown')}"
+                    )
+
+                    rgb_signals.append([np.nan, np.nan, np.nan])
+                    stats["tracking_rejected"] += 1
+                    continue
+
+                # Case 3: A face was detected and accepted by the tracker.
+                # Continue to the existing bounding-box validation and ROI extraction.
 
                 if (
                     not isinstance(bbox, (list, tuple, np.ndarray))
@@ -116,12 +132,12 @@ class RGBExtractor:
                         crop = roi.get("crop")
                         mask = roi.get("mask")
 
-                    print(
-                        f"ROI DEBUG! {frame_idx}, {name}: "
-                        f"crop_shape={crop.shape if isinstance(crop, np.ndarray) else None},"
-                        f"mask_shape={mask.shape if isinstance(mask, np.ndarray) else None}"
-                    )
-                    
+                        print(
+                            f"ROI DEBUG! {frame_idx}, {name}: "
+                            f"crop_shape={crop.shape if isinstance(crop, np.ndarray) else None},"
+                            f"mask_shape={mask.shape if isinstance(mask, np.ndarray) else None}"
+                        )
+                        
                 except Exception as exc:
                     print(f"ROI ERROR! Frame {frame_idx}: {exc}")
                     rgb_signals.append([np.nan, np.nan, np.nan])
@@ -164,6 +180,14 @@ class RGBExtractor:
                         or crop.size == 0
                         or mask.size == 0
                     ):
+                        print(
+                            f"[ROI FAILURE] Frame {frame_idx}, region {roi_name}: "
+                            f"crop_type={type(crop).__name__}, "
+                            f"mask_type={type(mask).__name__}, "
+                            f"crop_is_none={crop is None}, "
+                            f"mask_is_none={mask is None}"
+                        )
+                        
                         roi_stats["invalid_data"] += 1
                         roi_failure_reasons.append(
                             f"{roi_name}: empty or invalid crop/mask"
@@ -295,6 +319,7 @@ class RGBExtractor:
 
         print("\nFrame-level failure categories:")
         print(f"Face not detected: {stats['face_not_detected']}")
+        print(f"Tracking rejected: {stats['tracking_rejected']}")
         print(f"Invalid bounding box: {stats['invalid_bbox']}")
         print(f"ROI exceptions: {stats['roi_exception']}")
         print(f"Invalid ROI structure: {stats['invalid_roi_structure']}")
