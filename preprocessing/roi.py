@@ -120,10 +120,17 @@ class ROIExtractor:
 
             score = self._box_iou(face_box, target_box)
 
+            print(
+                f"[FACE MATCH DEBUG] "
+                f"Target box: {target_box}, "
+                f"Face Mesh box: {face_box}, "
+                f"IoU: {score:.4f}"
+            )
+
             if score > best_iou:
                 best_iou = score
                 best_landmarks = landmarks
-
+                
         if best_landmarks is None:
             return None
 
