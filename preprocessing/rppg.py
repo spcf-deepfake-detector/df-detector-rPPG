@@ -123,13 +123,13 @@ def chrom_method(
     g_mean = np.mean(g)
     b_mean = np.mean(b)
 
+    if not np.all(np.isfinite([r_mean, g_mean, b_mean])):
+        raise ValueError("RGB channel means must be finite.")
+
     if min(r_mean, g_mean, b_mean) <= eps:
         raise ValueError(
             "RGB channels have invalid or near-zero means."
         )
-        
-    if not np.all(np.isfinite([r_mean, g_mean, b_mean])):
-        raise ValueError("RGB channel means must be finite.")
 
     r_n = r / r_mean
     g_n = g / g_mean
@@ -233,7 +233,6 @@ def pos_method(
 
     pulse_signal = normalize_signal(pulse_signal)
 
-    pulse_signal = pos_method(rgb_signal, fps=30.0)
 
     print("Pulse signal shape:", pulse_signal.shape)
     print("All finite:", np.isfinite(pulse_signal).all())

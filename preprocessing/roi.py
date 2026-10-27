@@ -25,7 +25,7 @@ class ROIExtractor:
     LEFT_CHEEK_INDICES = [117, 118, 100, 126, 209, 198]
     RIGHT_CHEEK_INDICES = [346, 347, 329, 355, 429, 419]
 
-    def __init__(self, max_num_faces: int = 5):#usually number of faces each video
+    def __init__(self, max_num_faces: int = 1):#usually number of faces each video
         self.face_mesh = mp.solutions.face_mesh.FaceMesh(
             static_image_mode=False,
             max_num_faces=max_num_faces,

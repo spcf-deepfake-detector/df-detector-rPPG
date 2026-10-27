@@ -306,7 +306,10 @@ class RGBExtractor:
         print(f"ROI-level diagnostics:")
         print(f"ROIs checked: {roi_stats['total_checked']}")
         print(f"Invalid ROI data: {roi_stats['invalid_data']}")
-        print(f"Incompatible crop/mask dimensions: {roi_stats['invalid_dimentions']}")
+        print(
+            "Incompatible crop/mask dimensions: "
+            f"{roi_stats.get('invalid_dimensions', 0)}"
+        )
 
         print(f"Empty masks: {roi_stats['empty_mask']}")
         print(f"Small crops: {roi_stats['small_crop']}")
