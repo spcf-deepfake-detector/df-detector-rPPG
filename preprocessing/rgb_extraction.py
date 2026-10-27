@@ -262,7 +262,7 @@ class RGBExtractor:
             print("Valid percentage: N/A")
 
         print("\nFrame-level failure categories:")
-        print(f"Face not detected: {stats['face_not_detected']}")
+        print(f"Face not detected: {stats['face_not_detect']}")
         print(f"Invalid bounding box: {stats['invalid_bbox']}")
         print(f"ROI exceptions: {stats['roi_exception']}")
         print(f"Invalid ROI structure: {stats['invalid_roi_structure']}")
@@ -296,17 +296,3 @@ class RGBExtractor:
         
     def close(self):
         self.roi_extractor.close()
-
-        
-        
-                        
-        
-                    
-                    
-                    
-            
-                    
-                    
-    
-
-                        #part22 and on going still
