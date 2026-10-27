@@ -102,14 +102,22 @@ class RGBExtractor:
                         frame,
                         [x,y, box_w, box_h]
                     )
-                    print(f"ROI DEBUG! Frame {frame_idx}")
+                    if not isinstance(rois, dict) or not rois:
+                        rgb_signals.append([np.nan, np.nan, np.nan])
+                        stats["invalid_roi_structure"] += 1
+                        continue
+                    
 
                     for name, roi in rois.items():
+                        if not isinstance(roi, dict):
+                            print(f"ROI DEBUG! {name}: invalid ROI structure")
+                            continue
+
                         crop = roi.get("crop")
                         mask = roi.get("mask")
 
                     print(
-                        f"ROI DEBUG! {name}: "
+                        f"ROI DEBUG! {frame_idx}, {name}: "
                         f"crop_shape={crop.shape if isinstance(crop, np.ndarray) else None},"
                         f"mask_shape={mask.shape if isinstance(mask, np.ndarray) else None}"
                     )
@@ -253,6 +261,7 @@ class RGBExtractor:
                     elif all(
                         "empty or invalid crop/mask" in reason
                         or "incompatible dimensions" in reason
+                        or "small crop " in reason
                         for reason in roi_failure_reasons
                     ):
                         stats["no_valid_roi"] += 1
@@ -297,7 +306,7 @@ class RGBExtractor:
         print(f"ROI-level diagnostics:")
         print(f"ROIs checked: {roi_stats['total_checked']}")
         print(f"Invalid ROI data: {roi_stats['invalid_data']}")
-        print(f"Incompatible crop/mask dimentions: {roi_stats['invalid_dimentions']}")
+        print(f"Incompatible crop/mask dimensions: {roi_stats['invalid_dimentions']}")
 
         print(f"Empty masks: {roi_stats['empty_mask']}")
         print(f"Small crops: {roi_stats['small_crop']}")
