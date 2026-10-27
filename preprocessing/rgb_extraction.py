@@ -6,7 +6,7 @@ from typing import List, Dict, Any
 
 class RGBExtractor:
     def __init__(self):
-        self.roi_extractor = RGBExtractor()
+        self.roi_extractor = ROIExtractor()
 
         self.min_roi_width = 5
         self.min_roi_height = 5
@@ -77,7 +77,7 @@ class RGBExtractor:
                     not isinstance(bbox, (list, tuple, np.ndarray))
                     or len(bbox) !=4
                 ):
-                    rgb_signals.append(np.nan, np.nan, np.nan)
+                    rgb_signals.append([np.nan, np.nan, np.nan])
                     stats["invalid_bbox"] +=1
                     continue
 
@@ -131,46 +131,65 @@ class RGBExtractor:
 
                 roi_failure_reasons = []
 
+# Process every facial region in the current frame.
                 for roi_name, roi_data in rois.items():
-                       
+
+                    roi_stats["total_checked"] += 1
+
+                    # Validate the ROI dictionary.
                     if not isinstance(roi_data, dict):
-                        roi_stats["invalid_data"] +=1
+                        roi_stats["invalid_data"] += 1
                         roi_failure_reasons.append(
-                            f"{roi_name}: expected a dectionary"
+                            f"{roi_name}: expected a dictionary"
                         )
                         continue
 
                     crop = roi_data.get("crop")
-                    mask = roi_data.get('mask')
+                    mask = roi_data.get("mask")
 
-                    if (crop is None or mask is None or not isinstance(crop, np.ndarray) or not isinstance(mask, np.ndarray) or crop.size == 0 or mask.size == 0):
+                    # Validate the crop and mask.
+                    if (
+                        crop is None
+                        or mask is None
+                        or not isinstance(crop, np.ndarray)
+                        or not isinstance(mask, np.ndarray)
+                        or crop.size == 0
+                        or mask.size == 0
+                    ):
                         roi_stats["invalid_data"] += 1
                         roi_failure_reasons.append(
                             f"{roi_name}: empty or invalid crop/mask"
                         )
                         continue
-                    if (crop.ndim !=3 or crop.shape[2] !=3 or mask.ndim !=2 or mask.shape != crop.shape[:2]):
-                        roi_stats["invalid_dimensions"] += 1
 
+                    # Check crop and mask dimensions.
+                    if (
+                        crop.ndim != 3
+                        or crop.shape[2] != 3
+                        or mask.ndim != 2
+                        or mask.shape != crop.shape[:2]
+                    ):
+                        roi_stats["invalid_dimensions"] += 1
                         roi_failure_reasons.append(
                             f"{roi_name}: incompatible dimensions "
                             f"crop={crop.shape}, mask={mask.shape}"
                         )
                         continue
 
+                    # Reject crops that are too small.
                     crop_h, crop_w = crop.shape[:2]
 
-                    if(
+                    if (
                         crop_w < self.min_roi_width
                         or crop_h < self.min_roi_height
                     ):
                         roi_stats["small_crop"] += 1
-
                         roi_failure_reasons.append(
-                            f"{roi_name}: small crop "
-                            f"{crop_w}x{crop_h}"
+                            f"{roi_name}: small crop {crop_w}x{crop_h}"
                         )
+                        continue
 
+                    # Select the usable pixels identified by the mask.
                     skin_pixels = mask > 0
 
                     if not np.any(skin_pixels):
@@ -179,69 +198,73 @@ class RGBExtractor:
                             f"{roi_name}: empty mask"
                         )
                         continue
+
+                    # OpenCV stores color channels in BGR order.
                     b_channel = crop[:, :, 0]
-                    g_channel = crop[:, :, 2]
+                    g_channel = crop[:, :, 1]
                     r_channel = crop[:, :, 2]
 
-                    r_mean = float(
-                        np.mean(r_channel[skin_pixels])
-                    )
-                    g_mean = float(
-                        np.mean(g_channel[skin_pixels])
-                    )
-                    b_mean = float(
-                        np.mean(b_channel[skin_pixels])
+                    # Calculate the average color for this region.
+                    r_mean = float(np.mean(r_channel[skin_pixels]))
+                    g_mean = float(np.mean(g_channel[skin_pixels]))
+                    b_mean = float(np.mean(b_channel[skin_pixels]))
 
-                    )
-
-                    if not np.all(
-                        [r_mean, g_mean, b_mean]
-                    ):
+                    # Reject invalid numerical values.
+                    if not np.all(np.isfinite([r_mean, g_mean, b_mean])):
                         roi_stats["invalid_data"] += 1
                         roi_failure_reasons.append(
                             f"{roi_name}: non-finite RGB values"
                         )
                         continue
 
+                    # Store this region's measurements.
                     r_vals.append(r_mean)
                     g_vals.append(g_mean)
                     b_vals.append(b_mean)
 
                     roi_stats["usable"] += 1
-                        
-                    if r_vals:
-                        rgb_signals.append([
-                            float(np.mean(r_vals)),
-                            float(np.mean(g_vals)),
-                            float(np.mean(b_vals)),
-                            ])
-                        stats["valid"] += 1
-                        
+
+
+                # IMPORTANT: This block is OUTSIDE the facial-region loop.
+                # Append exactly one measurement for the current video frame.
+
+                if r_vals:
+                    rgb_signals.append([
+                        float(np.mean(r_vals)),
+                        float(np.mean(g_vals)),
+                        float(np.mean(b_vals))
+                    ])
+
+                    stats["valid"] += 1
+
+                else:
+                    # No facial region provided usable RGB values.
+                    rgb_signals.append([np.nan, np.nan, np.nan])
+
+                    if not roi_failure_reasons:
+                        stats["no_rgb_values"] += 1
+
+                    elif all(
+                        "empty mask" in reason
+                        for reason in roi_failure_reasons
+                    ):
+                        stats["empty_masks_only"] += 1
+
+                    elif all(
+                        "empty or invalid crop/mask" in reason
+                        or "incompatible dimensions" in reason
+                        for reason in roi_failure_reasons
+                    ):
+                        stats["no_valid_roi"] += 1
+
                     else:
-                        rgb_signals.append(
-                        [np.nan, np.nan, np.nan])
-                            
-                        if not roi_failure_reasons:
-                            stats["no_rgb_values"] += 1
-                            
-                        elif all(
-                            "empty mask" in reason
-                            for reason in roi_failure_reasons):
-                            stats["empty_masks_only"] += 1
-                            
-                        elif all(
-                            "empty or invalid crop/mask" in reason
-                            or "incompatible dimentions" in reason 
-                            for reason in roi_failure_reasons):
-                            
-                            stats["no_valid_roi"] += 1
-                            
-                        else:
-                            stats["no_rgb_values"] += 1
-                            
-                        if len(failure_examples) < max_faliure_examples:
-                            failure_examples.append(
-                                (frame_idx, roi_failure_reasons))
+                        stats["no_rgb_values"] += 1
+
+                    # Save a limited number of examples for debugging.
+                    if len(failure_examples) < max_faliure_examples:
+                        failure_examples.append(
+                            (frame_idx, roi_failure_reasons)
+                        )
                         
         finally:
             cap.release()
@@ -262,7 +285,7 @@ class RGBExtractor:
             print("Valid percentage: N/A")
 
         print("\nFrame-level failure categories:")
-        print(f"Face not detected: {stats['face_not_detect']}")
+        print(f"Face not detected: {stats['face_not_detected']}")
         print(f"Invalid bounding box: {stats['invalid_bbox']}")
         print(f"ROI exceptions: {stats['roi_exception']}")
         print(f"Invalid ROI structure: {stats['invalid_roi_structure']}")
@@ -274,7 +297,7 @@ class RGBExtractor:
         print(f"ROI-level diagnostics:")
         print(f"ROIs checked: {roi_stats['total_checked']}")
         print(f"Invalid ROI data: {roi_stats['invalid_data']}")
-        print(f"Incompatible crop/mask dimentions: {roi_stats['invalid dimentions']}")
+        print(f"Incompatible crop/mask dimentions: {roi_stats['invalid_dimentions']}")
 
         print(f"Empty masks: {roi_stats['empty_mask']}")
         print(f"Small crops: {roi_stats['small_crop']}")
