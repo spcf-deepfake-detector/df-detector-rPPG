@@ -56,7 +56,7 @@ def main():
             min_roi_width=5,
             min_roi_height=5,
             min_skin_pixels=1,
-            debug=False,
+            debug=True,
         )
 
         # ------------------------------------------
