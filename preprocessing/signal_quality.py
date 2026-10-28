@@ -1,98 +1,89 @@
-'''import numpy as np
-from scipy import signal
-
-def calculate_snr(rppg_signal: np.ndarray, fps: float = 30.0, hr_hz: float = 1.2) -> float:
-    """Calculates Signal-to-Noise Ratio (SNR) in dB around estimated fundamental frequency."""
-    N = len(rppg_signal)
-    if N == 0:
-        return -20.0
-
-    fft_vals = np.abs(np.fft.rfft(rppg_signal)) ** 2
-    freqs = np.fft.rfftfreq(N, d=1.0 / fps)
-
-    # Fundamental & first harmonic windows (+/- 0.15 Hz)
-    sig_mask = ((freqs >= hr_hz - 0.15) & (freqs <= hr_hz + 0.15)) | \
-               ((freqs >= 2 * hr_hz - 0.15) & (freqs <= 2 * hr_hz + 0.15))
-    noise_mask = (freqs >= 0.7) & (freqs <= 2.5) & (~sig_mask)
-
-    p_sig = np.sum(fft_vals[sig_mask])
-    p_noise = np.sum(fft_vals[noise_mask])
-
-    if p_noise <= 0:
-        return 20.0
-    return float(10.0 * np.log10(p_sig / p_noise))
-
-def calculate_spectral_concentration(rppg_signal: np.ndarray, fps: float = 30.0) -> float:
-    """Calculates proportion of power centered around peak frequency."""
-    N = len(rppg_signal)
-    if N == 0:
-        return 0.0
-
-    fft_vals = np.abs(np.fft.rfft(rppg_signal)) ** 2
-    freqs = np.fft.rfftfreq(N, d=1.0 / fps)
-
-    phys_mask = (freqs >= 0.7) & (freqs <= 2.5)
-    if not np.any(phys_mask):
-        return 0.0
-
-    phys_freqs = freqs[phys_mask]
-    phys_fft = fft_vals[phys_mask]
-
-    peak_idx = np.argmax(phys_fft)
-    peak_freq = phys_freqs[peak_idx]
-
-    peak_mask = (freqs >= peak_freq - 0.1) & (freqs <= peak_freq + 0.1)
-    return float(np.sum(fft_vals[peak_mask]) / (np.sum(phys_fft) + 1e-8))
-
-def evaluate_signal_quality(rppg_signal: np.ndarray, fps: float = 30.0) -> float:
-    """Returns composite quality index Q in range [0.0, 1.0]."""
-    if len(rppg_signal) == 0:
-        return 0.0
-
-    freqs = np.fft.rfftfreq(len(rppg_signal), d=1.0 / fps)
-    fft_vals = np.abs(np.fft.rfft(rppg_signal))
-    phys_mask = (freqs >= 0.7) & (freqs <= 2.5)
-
-    if not np.any(phys_mask):
-        return 0.0
-
-    peak_freq = freqs[phys_mask][np.argmax(fft_vals[phys_mask])]
-    snr = calculate_snr(rppg_signal, fps=fps, hr_hz=peak_freq)
-    spec_conc = calculate_spectral_concentration(rppg_signal, fps=fps)
-
-    # Map SNR [-10, 10] dB to [0, 1]
-    snr_norm = np.clip((snr + 10.0) / 20.0, 0.0, 1.0)
-    quality_score = float(0.6 * snr_norm + 0.4 * spec_conc)
-    return float(np.clip(quality_score, 0.0, 1.0))'''
-    
-
 import numpy as np
 
 
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
 LOW_HZ = 0.7
 HIGH_HZ = 2.5
+
 MIN_SIGNAL_SECONDS = 3.0
 
+# Frequency tolerance around the estimated pulse frequency.
+FUNDAMENTAL_TOLERANCE_HZ = 0.15
+
+# Width around the strongest frequency for spectral concentration.
+CONCENTRATION_TOLERANCE_HZ = 0.1
+
+# Numerical stability threshold.
+EPSILON = 1e-12
+
+
+# ============================================================
+# 1. VALIDATE THE SIGNAL
+# ============================================================
 
 def _prepare_signal(
     rppg_signal: np.ndarray,
     fps: float
 ) -> np.ndarray:
-    """Validate an rPPG signal before frequency analysis."""
+    """
+    Validate an rPPG signal before frequency analysis.
+
+    Parameters
+    ----------
+    rppg_signal:
+        One-dimensional extracted rPPG signal.
+
+    fps:
+        Sampling rate in frames per second.
+
+    Returns
+    -------
+    np.ndarray
+        Validated signal represented as float64.
+    """
+
+    # Validate FPS.
+    try:
+        fps = float(fps)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            "fps must be a finite positive number."
+        ) from exc
 
     if not np.isfinite(fps) or fps <= 0:
-        raise ValueError("fps must be a positive finite number.")
-
-    if HIGH_HZ >= fps / 2.0:
         raise ValueError(
-            f"FPS is too low for the {HIGH_HZ} Hz upper cutoff. "
-            "The upper cutoff must be below the Nyquist frequency (fps / 2)."
+            "fps must be a finite positive number."
         )
 
-    s = np.asarray(rppg_signal, dtype=np.float64)
+    # The upper frequency must be below the Nyquist frequency.
+    nyquist = fps / 2.0
+
+    if HIGH_HZ >= nyquist:
+        raise ValueError(
+            f"FPS is too low for the configured "
+            f"{HIGH_HZ} Hz upper frequency. "
+            f"The upper frequency must be below the "
+            f"Nyquist frequency ({nyquist:.3f} Hz)."
+        )
+
+    # Convert the input to a numerical array.
+    try:
+        s = np.asarray(
+            rppg_signal,
+            dtype=np.float64
+        )
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            "rppg_signal must contain numeric values."
+        ) from exc
 
     if s.ndim != 1:
-        raise ValueError("rppg_signal must be a one-dimensional array.")
+        raise ValueError(
+            "rppg_signal must be a one-dimensional array."
+        )
 
     if not np.all(np.isfinite(s)):
         raise ValueError(
@@ -103,18 +94,79 @@ def _prepare_signal(
     return s
 
 
-def _get_power_spectrum(s: np.ndarray, fps: float):
-    """Calculate a windowed power spectrum."""
+# ============================================================
+# 2. CHECK RECORDING DURATION
+# ============================================================
 
-    window = np.hanning(len(s))
+def _has_sufficient_duration(
+    s: np.ndarray,
+    fps: float
+) -> bool:
+    """
+    Check whether the signal meets the minimum duration.
+
+    A recording shorter than MIN_SIGNAL_SECONDS is not
+    considered long enough for this quality evaluation.
+    """
+
+    required_samples = int(
+        np.ceil(MIN_SIGNAL_SECONDS * fps)
+    )
+
+    return len(s) >= required_samples
+
+
+# ============================================================
+# 3. CALCULATE THE POWER SPECTRUM
+# ============================================================
+
+def _get_power_spectrum(
+    s: np.ndarray,
+    fps: float
+):
+    """
+    Calculate a Hann-windowed power spectrum.
+
+    Returns
+    -------
+    frequencies:
+        Frequencies corresponding to the FFT bins.
+
+    power:
+        Squared magnitude of the FFT.
+    """
+
+    if len(s) == 0:
+        return (
+            np.array([], dtype=np.float64),
+            np.array([], dtype=np.float64)
+        )
+
+    # Remove the signal's mean before spectral analysis.
     centered = s - np.mean(s)
 
-    fft_values = np.fft.rfft(centered * window)
+    # The Hann window reduces spectral leakage.
+    window = np.hanning(len(centered))
+
+    windowed_signal = centered * window
+
+    fft_values = np.fft.rfft(
+        windowed_signal
+    )
+
     power = np.abs(fft_values) ** 2
-    frequencies = np.fft.rfftfreq(len(s), d=1.0 / fps)
+
+    frequencies = np.fft.rfftfreq(
+        len(s),
+        d=1.0 / fps
+    )
 
     return frequencies, power
 
+
+# ============================================================
+# 4. CALCULATE SIGNAL-TO-NOISE RATIO
+# ============================================================
 
 def calculate_snr(
     rppg_signal: np.ndarray,
@@ -122,58 +174,128 @@ def calculate_snr(
     hr_hz: float = 1.2
 ) -> float:
     """
-    Estimate SNR in dB around the fundamental and first harmonic.
-    Evaluates signal and noise power within the same physiological band.
+    Estimate signal-to-noise ratio (SNR) in decibels.
+
+    Signal power is measured around:
+        - The estimated fundamental frequency.
+        - Its first harmonic, when it falls inside the
+          configured physiological frequency band.
+
+    Noise power is measured in the remaining part of the
+    physiological frequency band.
+
+    Returns
+    -------
+    float
+        Estimated SNR in decibels.
+
+    Notes
+    -----
+    This is a heuristic spectral SNR estimate, not a
+    direct measurement of physiological accuracy.
     """
 
-    s = _prepare_signal(rppg_signal, fps)
+    s = _prepare_signal(
+        rppg_signal,
+        fps
+    )
 
-    if len(s) < int(MIN_SIGNAL_SECONDS * fps):
+    # A short recording cannot provide sufficient frequency
+    # resolution for this quality calculation.
+    if not _has_sufficient_duration(s, fps):
         return -20.0
 
-    if not np.isfinite(hr_hz) or hr_hz <= 0:
+    # Validate the estimated fundamental frequency.
+    try:
+        hr_hz = float(hr_hz)
+    except (TypeError, ValueError):
         return -20.0
 
-    frequencies, power = _get_power_spectrum(s, fps)
+    if (
+        not np.isfinite(hr_hz)
+        or hr_hz < LOW_HZ
+        or hr_hz > HIGH_HZ
+    ):
+        return -20.0
 
+    frequencies, power = _get_power_spectrum(
+        s,
+        fps
+    )
+
+    # Restrict evaluation to the configured physiological band.
     physiological_mask = (
-        (frequencies >= LOW_HZ) &
-        (frequencies <= HIGH_HZ)
+        (frequencies >= LOW_HZ)
+        & (frequencies <= HIGH_HZ)
     )
 
+    if not np.any(physiological_mask):
+        return -20.0
+
+    # Frequency band around the fundamental.
     fundamental_mask = (
-        (frequencies >= hr_hz - 0.15) &
-        (frequencies <= hr_hz + 0.15)
+        (frequencies >= hr_hz - FUNDAMENTAL_TOLERANCE_HZ)
+        & (frequencies <= hr_hz + FUNDAMENTAL_TOLERANCE_HZ)
     )
+
+    # Frequency band around the first harmonic.
+    harmonic_hz = 2.0 * hr_hz
 
     harmonic_mask = (
-        (frequencies >= 2.0 * hr_hz - 0.15) &
-        (frequencies <= 2.0 * hr_hz + 0.15)
+        (frequencies >= harmonic_hz - FUNDAMENTAL_TOLERANCE_HZ)
+        & (frequencies <= harmonic_hz + FUNDAMENTAL_TOLERANCE_HZ)
     )
 
+    # Only count frequencies inside the configured band.
     signal_mask = (
-        (fundamental_mask | harmonic_mask) &
-        physiological_mask
+        (fundamental_mask | harmonic_mask)
+        & physiological_mask
     )
 
-    noise_mask = physiological_mask & ~signal_mask
+    noise_mask = (
+        physiological_mask
+        & ~signal_mask
+    )
 
     if not np.any(signal_mask) or not np.any(noise_mask):
         return -20.0
 
-    signal_power = float(np.sum(power[signal_mask]))
-    noise_power = float(np.sum(power[noise_mask]))
+    signal_power = float(
+        np.sum(power[signal_mask])
+    )
 
-    if signal_power <= 1e-12:
+    noise_power = float(
+        np.sum(power[noise_mask])
+    )
+
+    if (
+        not np.isfinite(signal_power)
+        or not np.isfinite(noise_power)
+    ):
         return -20.0
 
-    if noise_power <= 1e-12:
+    # No meaningful signal power.
+    if signal_power <= EPSILON:
+        return -20.0
+
+    # Avoid division by zero.
+    # This value is a capped estimate, not proof of a perfect signal.
+    if noise_power <= EPSILON:
         return 20.0
 
-    snr_db = 10.0 * np.log10(signal_power / noise_power)
+    snr_db = 10.0 * np.log10(
+        signal_power / noise_power
+    )
+
+    if not np.isfinite(snr_db):
+        return -20.0
 
     return float(snr_db)
 
+
+# ============================================================
+# 5. CALCULATE SPECTRAL CONCENTRATION
+# ============================================================
 
 def calculate_spectral_concentration(
     rppg_signal: np.ndarray,
@@ -181,86 +303,184 @@ def calculate_spectral_concentration(
 ) -> float:
     """
     Calculate the proportion of physiological-band power
-    concentrated within +/- 0.1 Hz of the peak.
+    concentrated within +/- 0.1 Hz of the strongest frequency.
+
+    Returns
+    -------
+    float
+        Score between 0.0 and 1.0.
+
+    Interpretation
+    --------------
+    A higher score means more power is concentrated near
+    one dominant frequency.
+
+    It does not prove that the frequency originates from
+    a genuine heartbeat.
     """
 
-    s = _prepare_signal(rppg_signal, fps)
+    s = _prepare_signal(
+        rppg_signal,
+        fps
+    )
 
-    if len(s) < int(MIN_SIGNAL_SECONDS * fps):
+    if not _has_sufficient_duration(s, fps):
         return 0.0
 
-    frequencies, power = _get_power_spectrum(s, fps)
+    # A constant signal has no meaningful spectral concentration.
+    if np.std(s) < 1e-8:
+        return 0.0
+
+    frequencies, power = _get_power_spectrum(
+        s,
+        fps
+    )
 
     physiological_mask = (
-        (frequencies >= LOW_HZ) &
-        (frequencies <= HIGH_HZ)
+        (frequencies >= LOW_HZ)
+        & (frequencies <= HIGH_HZ)
     )
 
     if not np.any(physiological_mask):
         return 0.0
 
-    physiological_frequencies = frequencies[physiological_mask]
-    physiological_power = power[physiological_mask]
-
-    total_power = float(np.sum(physiological_power))
-
-    if total_power <= 1e-12:
-        return 0.0
-
-    peak_index = int(np.argmax(physiological_power))
-    peak_frequency = physiological_frequencies[peak_index]
-
-    peak_mask = (
-        (frequencies >= peak_frequency - 0.1) &
-        (frequencies <= peak_frequency + 0.1) &
+    physiological_frequencies = frequencies[
         physiological_mask
+    ]
+
+    physiological_power = power[
+        physiological_mask
+    ]
+
+    total_power = float(
+        np.sum(physiological_power)
     )
 
-    concentration = np.sum(power[peak_mask]) / total_power
+    if (
+        not np.isfinite(total_power)
+        or total_power <= EPSILON
+    ):
+        return 0.0
 
-    return float(np.clip(concentration, 0.0, 1.0))
+    # Find the strongest frequency within the physiological band.
+    peak_index = int(
+        np.argmax(physiological_power)
+    )
 
+    peak_frequency = float(
+        physiological_frequencies[peak_index]
+    )
+
+    # Select the bins near the strongest frequency.
+    peak_mask = (
+        (frequencies >= peak_frequency - CONCENTRATION_TOLERANCE_HZ)
+        & (frequencies <= peak_frequency + CONCENTRATION_TOLERANCE_HZ)
+        & physiological_mask
+    )
+
+    peak_power = float(
+        np.sum(power[peak_mask])
+    )
+
+    concentration = peak_power / total_power
+
+    if not np.isfinite(concentration):
+        return 0.0
+
+    return float(
+        np.clip(concentration, 0.0, 1.0)
+    )
+
+
+# ============================================================
+# 6. EVALUATE OVERALL SIGNAL QUALITY
+# ============================================================
 
 def evaluate_signal_quality(
     rppg_signal: np.ndarray,
     fps: float = 30.0
 ) -> float:
     """
-    Return a heuristic signal-quality score in [0, 1].
-    This score does not directly determine whether a video is real or fake.
+    Calculate a heuristic rPPG signal-quality score.
+
+    Returns
+    -------
+    float
+        Composite quality score between 0.0 and 1.0.
+
+    Formula
+    -------
+    60% normalized SNR
+    40% spectral concentration
+
+    Important
+    ---------
+    This score estimates spectral signal quality only.
+
+    It is not:
+        - A probability that a video is real.
+        - A probability that a video is fake.
+        - Proof that a physiological signal is genuine.
     """
 
-    s = _prepare_signal(rppg_signal, fps)
+    s = _prepare_signal(
+        rppg_signal,
+        fps
+    )
 
-    if len(s) < int(MIN_SIGNAL_SECONDS * fps):
+    # Reject recordings that are too short for this evaluation.
+    if not _has_sufficient_duration(s, fps):
         return 0.0
 
+    # Reject constant or nearly constant signals.
     if np.std(s) < 1e-8:
         return 0.0
 
-    frequencies, power = _get_power_spectrum(s, fps)
+    frequencies, power = _get_power_spectrum(
+        s,
+        fps
+    )
 
     physiological_mask = (
-        (frequencies >= LOW_HZ) &
-        (frequencies <= HIGH_HZ)
+        (frequencies >= LOW_HZ)
+        & (frequencies <= HIGH_HZ)
     )
 
     if not np.any(physiological_mask):
         return 0.0
 
-    physiological_power = power[physiological_mask]
-
-    if np.sum(physiological_power) <= 1e-12:
-        return 0.0
-
-    peak_frequency = frequencies[physiological_mask][
-        np.argmax(physiological_power)
+    physiological_power = power[
+        physiological_mask
     ]
 
+    total_physiological_power = float(
+        np.sum(physiological_power)
+    )
+
+    if (
+        not np.isfinite(total_physiological_power)
+        or total_physiological_power <= EPSILON
+    ):
+        return 0.0
+
+    # Estimate the dominant frequency in the physiological band.
+    physiological_frequencies = frequencies[
+        physiological_mask
+    ]
+
+    peak_index = int(
+        np.argmax(physiological_power)
+    )
+
+    peak_frequency = float(
+        physiological_frequencies[peak_index]
+    )
+
+    # Calculate the two quality indicators.
     snr = calculate_snr(
         s,
         fps=fps,
-        hr_hz=float(peak_frequency)
+        hr_hz=peak_frequency
     )
 
     spectral_concentration = calculate_spectral_concentration(
@@ -268,13 +488,19 @@ def evaluate_signal_quality(
         fps=fps
     )
 
-    # Map SNR from [-10, 10] dB to [0, 1].
-    snr_normalized = np.clip((snr + 10.0) / 20.0, 0.0, 1.0)
-
-    quality_score = (
-        0.6 * snr_normalized +
-        0.4 * spectral_concentration
+    # Map SNR from [-10, 10] dB into [0, 1].
+    snr_normalized = np.clip(
+        (snr + 10.0) / 20.0,
+        0.0,
+        1.0
     )
 
-    return float(np.clip(quality_score, 0.0, 1.0))
+    # Preserve the original weighting.
+    quality_score = (
+        0.6 * snr_normalized
+        + 0.4 * spectral_concentration
+    )
 
+    return float(
+        np.clip(quality_score, 0.0, 1.0)
+    )
