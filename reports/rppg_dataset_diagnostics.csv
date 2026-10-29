@@ -1,0 +1,3 @@
+split,class,label,video_path,status,failure_stage,failure_reason,fps,total_frames,detected_frames,detection_rate_pct,tracking_valid_frames,tracking_rejected_frames,rgb_valid_frames,rgb_missing_frames,rgb_valid_pct,missing_run_count,missing_runs,pos_signal_length
+train,real,0,dataset/train/real/11.mp4,PASSED,,,29.927536161220583,341,340,99.71,340,0,340,1,99.71,1,164-164,341
+test,real,0,dataset/test/real/1.mp4,PASSED,,,29.64426877470356,283,277,97.88,277,0,277,6,97.88,4,193-193; 195-195; 197-199; 209-209,283

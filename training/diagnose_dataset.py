@@ -277,9 +277,25 @@ def diagnose_video(video_path, split, class_name, label):
 def main():
     os.makedirs(REPORT_DIR, exist_ok=True)
 
+    videos = find_videos(DATASET_ROOTS["train"])
+
+    if not videos:
+        print("No training videos found.")
+        return
+
+    video_path, class_name, label = videos[0]
+
+    print(f"Testing one video: {video_path}", flush=True)
+
+    row = diagnose_video(video_path, "train", class_name, label)
+
+    print("\nDiagnostic result:", flush=True)
+    print(row, flush=True)
+
     all_rows = []
     for split, root_dir in DATASET_ROOTS.items():
         videos = find_videos(root_dir)
+        videos = videos[:1]
 
         if not videos:
             print(f"[INFO] No videos found under: {root_dir}")
