@@ -290,16 +290,22 @@ class ROIExtractor:
                 print(f"[ROI ERROR] Face Mesh processing failed: {exc}")
             return empty
 
+    
         if not results.multi_face_landmarks:
             self.stats["no_landmarks"] += 1
+            self.stats["frames_without_valid_roi"] += 1
+
             if self.debug:
                 print(
                     "[NO LANDMARKS DEBUG] "
-                    f"Frame={frame_w}x{frame_h}, bbox={valid_bbox}, "
+                    f"Frame={frame_w}x{frame_h}, "
+                    f"bbox={valid_bbox}, "
                     f"clipped face-box={x2 - x1}x{y2 - y1}, "
                     f"target_box={target_box}"
                 )
+
             return empty
+
 
         landmarks, match_iou = self._select_face_landmarks(
             results, frame_w, frame_h, target_box

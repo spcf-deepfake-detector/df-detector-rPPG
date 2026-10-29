@@ -62,7 +62,7 @@ class RGBExtractor:
                 "min_skin_pixels must be a positive integer."
             )
 
-        self.roi_extractor = ROIExtractor()
+        self.roi_extractor = ROIExtractor(debug=debug)
 
         self.min_roi_width = min_roi_width
         self.min_roi_height = min_roi_height
@@ -362,6 +362,7 @@ class RGBExtractor:
             raise ValueError(
                 f"Could not open video: {video_path}"
             )
+        cap.set(cv2.CAP_PROP_ORIENTATION_AUTO, 1)
 
         rgb_signals = []
 

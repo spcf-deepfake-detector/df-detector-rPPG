@@ -353,12 +353,15 @@ class FaceDetector:
             )
 
         cap = cv2.VideoCapture(video_path)
+        
 
         if not cap.isOpened():
             cap.release()
             raise ValueError(
                 f"Could not open video: {video_path}"
             )
+
+        cap.set(cv2.CAP_PROP_ORIENTATION_AUTO, 1)
 
         fps = cap.get(cv2.CAP_PROP_FPS)
 
