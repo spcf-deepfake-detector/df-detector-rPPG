@@ -15,7 +15,7 @@ from model.efficientnet_model import create_efficientnet_b3
 # ==========================================
 
 DATASET_DIR = Path("extracted_faces")
-CHECKPOINT_DIR = Path("models/checkpoints/efficientnet")
+CHECKPOINT_DIR = Path("models/checkpoints/efficientnet_v2")
 
 IMAGE_SIZE = 300
 BATCH_SIZE = 8
@@ -89,18 +89,63 @@ test_dataset = datasets.ImageFolder(
 
 
 # ==========================================
+# STANDARDIZE DATASET LABELS
+# ==========================================
+
+# Standard label convention:
+# Real = 0
+# Fake = 1
+
+class_mapping = {
+    "real": 0,
+    "fake": 1
+}
+
+for dataset in [train_dataset, val_dataset, test_dataset]:
+
+    dataset.samples = [
+        (
+            path,
+            class_mapping[
+                Path(path).relative_to(dataset.root).parts[0].lower()
+            ]
+        )
+        for path, _ in dataset.samples
+    ]
+
+    dataset.targets = [
+        label for _, label in dataset.samples
+    ]
+
+    dataset.class_to_idx = class_mapping.copy()
+
+
+print("\nUpdated Class Mapping:", train_dataset.class_to_idx)
+
+
+# ==========================================
 # CHECK DATASET
 # ==========================================
 
-print("\nClass mapping:", train_dataset.class_to_idx)
+print("\nUpdated Class Mapping:", train_dataset.class_to_idx)
 
 assert train_dataset.class_to_idx == val_dataset.class_to_idx
 assert train_dataset.class_to_idx == test_dataset.class_to_idx
 
 print("\nDataset summary:")
-print("Training images:", len(train_dataset))
-print("Validation images:", len(val_dataset))
-print("Testing images:", len(test_dataset))
+
+for name, dataset in [
+    ("Training", train_dataset),
+    ("Validation", val_dataset),
+    ("Testing", test_dataset)
+]:
+
+    real_count = dataset.targets.count(0)
+    fake_count = dataset.targets.count(1)
+
+    print(f"\n{name} images: {len(dataset)}")
+    print(f"Real images (0): {real_count}")
+    print(f"Fake images (1): {fake_count}")
 
 
 # ==========================================
@@ -255,7 +300,7 @@ for epoch in range(EPOCHS):
         torch.save(
             {
                 "model_state_dict": model.state_dict(),
-                "class_to_idx": train_dataset.class_to_idx,
+                "class_to_idx": class_mapping,
                 "image_size": IMAGE_SIZE,
                 "best_val_accuracy": best_val_accuracy
             },
