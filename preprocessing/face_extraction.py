@@ -3,7 +3,7 @@ import json
 import numpy as np
 
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 from preprocessing.face_detection import FaceDetector
 
@@ -13,18 +13,24 @@ class FaceExtractor:
     Extract and save cropped face images from video frames.
 
     Workflow:
-        1. Open video.
-        2. Read frames sequentially.
-        3. Detect faces using the existing FaceDetector.
-        4. Select the face with the highest confidence.
-        5. Crop the detected face with optional padding.
-        6. Save the cropped face image.
-        7. Save frame metadata, including frame number and timestamp.
+        1. Scan dataset folders.
+        2. Open each video.
+        3. Read frames sequentially.
+        4. Detect faces using FaceDetector.
+        5. Select the face with the highest confidence.
+        6. Crop the detected face with optional padding.
+        7. Save the cropped face image.
+        8. Save frame metadata.
 
-    Bounding boxes use:
-        [x, y, width, height]
+    The original dataset folder structure is preserved.
 
-    All bounding boxes refer to the original video frame.
+    Example:
+
+        dataset/train/real/video1.mp4
+
+        becomes:
+
+        extracted_faces/train/real/video1/
     """
 
     def __init__(
@@ -78,6 +84,14 @@ class FaceExtractor:
         self.image_format = image_format
         self.debug = debug
 
+        # Supported video formats.
+        self.video_extensions = {
+            ".mp4",
+            ".avi",
+            ".mov",
+            ".mkv",
+        }
+
     # ---------------------------------------------------------
     # 1. Validate bounding box
     # ---------------------------------------------------------
@@ -116,11 +130,6 @@ class FaceExtractor:
         frame: np.ndarray,
         bbox,
     ) -> Optional[np.ndarray]:
-        """
-        Crop a face from the original video frame.
-
-        Padding gives additional space around the detected face.
-        """
 
         valid_bbox = self._validate_bbox(bbox)
 
@@ -159,7 +168,7 @@ class FaceExtractor:
         return face_crop
 
     # ---------------------------------------------------------
-    # 3. Extract faces from video
+    # 3. Extract faces from one video
     # ---------------------------------------------------------
 
     def extract_video(
@@ -178,7 +187,7 @@ class FaceExtractor:
         if output_name is None:
             output_name = video_path.stem
 
-        # Create output folder.
+        # Create output folder for this video.
         video_output_dir = self.output_dir / output_name
 
         video_output_dir.mkdir(
@@ -190,6 +199,8 @@ class FaceExtractor:
         cap = cv2.VideoCapture(str(video_path))
 
         if not cap.isOpened():
+            cap.release()
+
             raise RuntimeError(
                 f"Could not open video: {video_path}"
             )
@@ -204,7 +215,7 @@ class FaceExtractor:
             cap.get(cv2.CAP_PROP_FRAME_COUNT)
         )
 
-        # Initialize your existing FaceDetector.
+        # Initialize FaceDetector.
         detector = FaceDetector(
             min_detection_confidence=self.detection_confidence,
             model_selection=self.model_selection,
@@ -231,7 +242,7 @@ class FaceExtractor:
                 timestamp = frame_index / fps
 
                 # ---------------------------------------------
-                # Detect faces in current frame.
+                # Detect faces.
                 # ---------------------------------------------
 
                 detections = detector.detect_frame(frame)
@@ -311,27 +322,22 @@ class FaceExtractor:
 
                     saved_faces += 1
 
-                    metadata.append({
-                        "frame_index": frame_index,
-                        "timestamp": timestamp,
-                        "detected": True,
-                        "bbox": bbox,
-                        "confidence": confidence,
-                        "image_path": str(save_path),
-                    })
+                    image_path = str(save_path)
 
                 else:
 
                     failed_saves += 1
 
-                    metadata.append({
-                        "frame_index": frame_index,
-                        "timestamp": timestamp,
-                        "detected": True,
-                        "bbox": bbox,
-                        "confidence": confidence,
-                        "image_path": None,
-                    })
+                    image_path = None
+
+                metadata.append({
+                    "frame_index": frame_index,
+                    "timestamp": timestamp,
+                    "detected": True,
+                    "bbox": bbox,
+                    "confidence": confidence,
+                    "image_path": image_path,
+                })
 
                 frame_index += 1
 
@@ -376,7 +382,7 @@ class FaceExtractor:
 
         if self.debug:
 
-            detection_rate = (
+            extraction_rate = (
                 saved_faces / frame_index * 100
                 if frame_index > 0
                 else 0.0
@@ -392,7 +398,10 @@ class FaceExtractor:
             print(f"Faces saved: {saved_faces}")
             print(f"Missing faces: {missing_faces}")
             print(f"Failed saves: {failed_saves}")
-            print(f"Successful extraction rate: {detection_rate:.2f}%")
+            print(
+                f"Successful extraction rate: "
+                f"{extraction_rate:.2f}%"
+            )
             print(f"Output folder: {video_output_dir}")
             print(f"Metadata: {metadata_path}")
 
@@ -403,13 +412,13 @@ class FaceExtractor:
         return summary
 
     # ---------------------------------------------------------
-    # 6. Extract multiple videos
+    # 6. Extract multiple videos manually
     # ---------------------------------------------------------
 
     def extract_multiple_videos(
         self,
-        video_paths: list,
-    ) -> list:
+        video_paths: List[str],
+    ) -> List[Dict[str, Any]]:
 
         results = []
 
@@ -420,6 +429,131 @@ class FaceExtractor:
             result = self.extract_video(video_path)
 
             results.append(result)
+
+        return results
+
+    # ---------------------------------------------------------
+    # 7. Extract the entire dataset automatically
+    # ---------------------------------------------------------
+
+    def extract_dataset(
+        self,
+        dataset_dir: str = "extracted_face/dataset",
+    ) -> List[Dict[str, Any]]:
+        """
+        Automatically extract faces from every video
+        inside the dataset.
+
+        Preserves the original directory structure.
+
+        Example:
+
+            extracted_face/dataset/train/real/video1.mp4
+
+            becomes:
+
+            extracted_faces/train/real/video1/
+
+        """
+
+        dataset_path = Path(dataset_dir)
+
+        if not dataset_path.exists():
+            raise FileNotFoundError(
+                f"Dataset directory not found: {dataset_path}"
+            )
+
+        if not dataset_path.is_dir():
+            raise NotADirectoryError(
+                f"Not a directory: {dataset_path}"
+            )
+
+        # Find every supported video recursively.
+        video_files = sorted(
+            path
+            for path in dataset_path.rglob("*")
+            if (
+                path.is_file()
+                and path.suffix.lower() in self.video_extensions
+            )
+        )
+
+        if not video_files:
+            print("No video files found in the dataset.")
+            return []
+
+        print("\n========== DATASET EXTRACTION ==========")
+        print(f"Dataset: {dataset_path}")
+        print(f"Videos found: {len(video_files)}")
+        print(f"Output directory: {self.output_dir}")
+        print("========================================")
+
+        results = []
+
+        successful_videos = 0
+        failed_videos = 0
+
+        for index, video_path in enumerate(video_files, start=1):
+
+            print(
+                f"\n[{index}/{len(video_files)}] "
+                f"Processing: {video_path}"
+            )
+
+            # Get the video's original relative path.
+            relative_path = video_path.relative_to(dataset_path)
+
+            # Remove the video extension.
+            # Example: train/real/video1.mp4
+            # becomes: train/real/video1
+            output_name = str(
+                relative_path.with_suffix("")
+            )
+
+            try:
+
+                result = self.extract_video(
+                    video_path=str(video_path),
+                    output_name=output_name,
+                )
+
+                results.append(result)
+
+                successful_videos += 1
+
+            except Exception as error:
+
+                failed_videos += 1
+
+                print(
+                    f"ERROR processing {video_path}: {error}"
+                )
+
+                results.append({
+                    "video": str(video_path),
+                    "error": str(error),
+                })
+
+        # -----------------------------------------------------
+        # Dataset summary
+        # -----------------------------------------------------
+
+        total_saved_faces = sum(
+            result.get("saved_faces", 0)
+            for result in results
+        )
+
+        print("\n========== DATASET EXTRACTION SUMMARY ==========")
+
+        print(f"Videos found: {len(video_files)}")
+        print(f"Successfully processed: {successful_videos}")
+        print(f"Failed videos: {failed_videos}")
+        print(f"Total faces saved: {total_saved_faces}")
+        print(f"Output directory: {self.output_dir}")
+
+        print(
+            "================================================"
+        )
 
         return results
 
@@ -440,6 +574,7 @@ if __name__ == "__main__":
         debug=True,
     )
 
-    video_path = "dataset/train/real/3213.mp4"
-
-    extractor.extract_video(video_path)
+    # Extract every video in the dataset.
+    extractor.extract_dataset(
+        dataset_dir="extracted_face/dataset"
+    )
