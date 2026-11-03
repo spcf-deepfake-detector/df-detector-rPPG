@@ -1,0 +1,5949 @@
+[
+    {
+        "frame_index": 0,
+        "timestamp": 0.0,
+        "detected": true,
+        "bbox": [
+            256,
+            97,
+            67,
+            67
+        ],
+        "confidence": 0.7532594203948975,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000000.jpg"
+    },
+    {
+        "frame_index": 1,
+        "timestamp": 0.03333333333333333,
+        "detected": true,
+        "bbox": [
+            252,
+            88,
+            75,
+            75
+        ],
+        "confidence": 0.7209697961807251,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000001.jpg"
+    },
+    {
+        "frame_index": 2,
+        "timestamp": 0.06666666666666667,
+        "detected": true,
+        "bbox": [
+            259,
+            99,
+            62,
+            62
+        ],
+        "confidence": 0.6055172681808472,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000002.jpg"
+    },
+    {
+        "frame_index": 3,
+        "timestamp": 0.1,
+        "detected": true,
+        "bbox": [
+            259,
+            99,
+            62,
+            62
+        ],
+        "confidence": 0.6061417460441589,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000003.jpg"
+    },
+    {
+        "frame_index": 4,
+        "timestamp": 0.13333333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 5,
+        "timestamp": 0.16666666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 6,
+        "timestamp": 0.2,
+        "detected": true,
+        "bbox": [
+            257,
+            83,
+            72,
+            72
+        ],
+        "confidence": 0.6552903652191162,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000006.jpg"
+    },
+    {
+        "frame_index": 7,
+        "timestamp": 0.23333333333333334,
+        "detected": true,
+        "bbox": [
+            257,
+            83,
+            72,
+            72
+        ],
+        "confidence": 0.652455747127533,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000007.jpg"
+    },
+    {
+        "frame_index": 8,
+        "timestamp": 0.26666666666666666,
+        "detected": true,
+        "bbox": [
+            255,
+            80,
+            77,
+            77
+        ],
+        "confidence": 0.6538864374160767,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000008.jpg"
+    },
+    {
+        "frame_index": 9,
+        "timestamp": 0.3,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 10,
+        "timestamp": 0.3333333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 11,
+        "timestamp": 0.36666666666666664,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 12,
+        "timestamp": 0.4,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 13,
+        "timestamp": 0.43333333333333335,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 14,
+        "timestamp": 0.4666666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 15,
+        "timestamp": 0.5,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 16,
+        "timestamp": 0.5333333333333333,
+        "detected": true,
+        "bbox": [
+            266,
+            103,
+            55,
+            55
+        ],
+        "confidence": 0.6239713430404663,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000016.jpg"
+    },
+    {
+        "frame_index": 17,
+        "timestamp": 0.5666666666666667,
+        "detected": true,
+        "bbox": [
+            266,
+            103,
+            55,
+            55
+        ],
+        "confidence": 0.6299514770507812,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000017.jpg"
+    },
+    {
+        "frame_index": 18,
+        "timestamp": 0.6,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            105
+        ],
+        "confidence": 0.8505632877349854,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000018.jpg"
+    },
+    {
+        "frame_index": 19,
+        "timestamp": 0.6333333333333333,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            105
+        ],
+        "confidence": 0.850097119808197,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000019.jpg"
+    },
+    {
+        "frame_index": 20,
+        "timestamp": 0.6666666666666666,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            105,
+            105
+        ],
+        "confidence": 0.8585079908370972,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000020.jpg"
+    },
+    {
+        "frame_index": 21,
+        "timestamp": 0.7,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            105,
+            105
+        ],
+        "confidence": 0.8600932955741882,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000021.jpg"
+    },
+    {
+        "frame_index": 22,
+        "timestamp": 0.7333333333333333,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.8931209444999695,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000022.jpg"
+    },
+    {
+        "frame_index": 23,
+        "timestamp": 0.7666666666666667,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.8939282298088074,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000023.jpg"
+    },
+    {
+        "frame_index": 24,
+        "timestamp": 0.8,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8501865863800049,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000024.jpg"
+    },
+    {
+        "frame_index": 25,
+        "timestamp": 0.8333333333333334,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8486648201942444,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000025.jpg"
+    },
+    {
+        "frame_index": 26,
+        "timestamp": 0.8666666666666667,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8511348366737366,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000026.jpg"
+    },
+    {
+        "frame_index": 27,
+        "timestamp": 0.9,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8485203385353088,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000027.jpg"
+    },
+    {
+        "frame_index": 28,
+        "timestamp": 0.9333333333333333,
+        "detected": true,
+        "bbox": [
+            278,
+            66,
+            72,
+            71
+        ],
+        "confidence": 0.857796847820282,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000028.jpg"
+    },
+    {
+        "frame_index": 29,
+        "timestamp": 0.9666666666666667,
+        "detected": true,
+        "bbox": [
+            278,
+            66,
+            72,
+            71
+        ],
+        "confidence": 0.8587499856948853,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000029.jpg"
+    },
+    {
+        "frame_index": 30,
+        "timestamp": 1.0,
+        "detected": true,
+        "bbox": [
+            278,
+            66,
+            71,
+            71
+        ],
+        "confidence": 0.8476560115814209,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000030.jpg"
+    },
+    {
+        "frame_index": 31,
+        "timestamp": 1.0333333333333334,
+        "detected": true,
+        "bbox": [
+            278,
+            66,
+            71,
+            71
+        ],
+        "confidence": 0.8466756343841553,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000031.jpg"
+    },
+    {
+        "frame_index": 32,
+        "timestamp": 1.0666666666666667,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            71,
+            72
+        ],
+        "confidence": 0.8435694575309753,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000032.jpg"
+    },
+    {
+        "frame_index": 33,
+        "timestamp": 1.1,
+        "detected": true,
+        "bbox": [
+            276,
+            62,
+            72,
+            72
+        ],
+        "confidence": 0.7900874614715576,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000033.jpg"
+    },
+    {
+        "frame_index": 34,
+        "timestamp": 1.1333333333333333,
+        "detected": true,
+        "bbox": [
+            276,
+            62,
+            72,
+            72
+        ],
+        "confidence": 0.792421817779541,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000034.jpg"
+    },
+    {
+        "frame_index": 35,
+        "timestamp": 1.1666666666666667,
+        "detected": true,
+        "bbox": [
+            278,
+            59,
+            72,
+            72
+        ],
+        "confidence": 0.8277490139007568,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000035.jpg"
+    },
+    {
+        "frame_index": 36,
+        "timestamp": 1.2,
+        "detected": true,
+        "bbox": [
+            278,
+            59,
+            72,
+            72
+        ],
+        "confidence": 0.8285161256790161,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000036.jpg"
+    },
+    {
+        "frame_index": 37,
+        "timestamp": 1.2333333333333334,
+        "detected": true,
+        "bbox": [
+            277,
+            55,
+            75,
+            74
+        ],
+        "confidence": 0.8843308091163635,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000037.jpg"
+    },
+    {
+        "frame_index": 38,
+        "timestamp": 1.2666666666666666,
+        "detected": true,
+        "bbox": [
+            277,
+            55,
+            75,
+            74
+        ],
+        "confidence": 0.8843860626220703,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000038.jpg"
+    },
+    {
+        "frame_index": 39,
+        "timestamp": 1.3,
+        "detected": true,
+        "bbox": [
+            276,
+            52,
+            75,
+            76
+        ],
+        "confidence": 0.85107421875,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000039.jpg"
+    },
+    {
+        "frame_index": 40,
+        "timestamp": 1.3333333333333333,
+        "detected": true,
+        "bbox": [
+            276,
+            52,
+            75,
+            76
+        ],
+        "confidence": 0.8497640490531921,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000040.jpg"
+    },
+    {
+        "frame_index": 41,
+        "timestamp": 1.3666666666666667,
+        "detected": true,
+        "bbox": [
+            277,
+            52,
+            75,
+            75
+        ],
+        "confidence": 0.8955036401748657,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000041.jpg"
+    },
+    {
+        "frame_index": 42,
+        "timestamp": 1.4,
+        "detected": true,
+        "bbox": [
+            279,
+            52,
+            73,
+            73
+        ],
+        "confidence": 0.919461727142334,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000042.jpg"
+    },
+    {
+        "frame_index": 43,
+        "timestamp": 1.4333333333333333,
+        "detected": true,
+        "bbox": [
+            278,
+            46,
+            74,
+            73
+        ],
+        "confidence": 0.8369774222373962,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000043.jpg"
+    },
+    {
+        "frame_index": 44,
+        "timestamp": 1.4666666666666666,
+        "detected": true,
+        "bbox": [
+            278,
+            46,
+            74,
+            73
+        ],
+        "confidence": 0.8385011553764343,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000044.jpg"
+    },
+    {
+        "frame_index": 45,
+        "timestamp": 1.5,
+        "detected": true,
+        "bbox": [
+            280,
+            48,
+            69,
+            69
+        ],
+        "confidence": 0.8442535400390625,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000045.jpg"
+    },
+    {
+        "frame_index": 46,
+        "timestamp": 1.5333333333333334,
+        "detected": true,
+        "bbox": [
+            280,
+            49,
+            68,
+            68
+        ],
+        "confidence": 0.8421149253845215,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000046.jpg"
+    },
+    {
+        "frame_index": 47,
+        "timestamp": 1.5666666666666667,
+        "detected": true,
+        "bbox": [
+            280,
+            49,
+            68,
+            68
+        ],
+        "confidence": 0.8425114154815674,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000047.jpg"
+    },
+    {
+        "frame_index": 48,
+        "timestamp": 1.6,
+        "detected": true,
+        "bbox": [
+            276,
+            49,
+            68,
+            69
+        ],
+        "confidence": 0.8054397106170654,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000048.jpg"
+    },
+    {
+        "frame_index": 49,
+        "timestamp": 1.6333333333333333,
+        "detected": true,
+        "bbox": [
+            276,
+            49,
+            69,
+            69
+        ],
+        "confidence": 0.8045721650123596,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000049.jpg"
+    },
+    {
+        "frame_index": 50,
+        "timestamp": 1.6666666666666667,
+        "detected": true,
+        "bbox": [
+            272,
+            48,
+            71,
+            71
+        ],
+        "confidence": 0.859947681427002,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000050.jpg"
+    },
+    {
+        "frame_index": 51,
+        "timestamp": 1.7,
+        "detected": true,
+        "bbox": [
+            269,
+            49,
+            71,
+            70
+        ],
+        "confidence": 0.8644254207611084,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000051.jpg"
+    },
+    {
+        "frame_index": 52,
+        "timestamp": 1.7333333333333334,
+        "detected": true,
+        "bbox": [
+            269,
+            49,
+            71,
+            70
+        ],
+        "confidence": 0.8623303174972534,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000052.jpg"
+    },
+    {
+        "frame_index": 53,
+        "timestamp": 1.7666666666666666,
+        "detected": true,
+        "bbox": [
+            264,
+            50,
+            70,
+            69
+        ],
+        "confidence": 0.8135483860969543,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000053.jpg"
+    },
+    {
+        "frame_index": 54,
+        "timestamp": 1.8,
+        "detected": true,
+        "bbox": [
+            255,
+            48,
+            72,
+            72
+        ],
+        "confidence": 0.899961531162262,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000054.jpg"
+    },
+    {
+        "frame_index": 55,
+        "timestamp": 1.8333333333333333,
+        "detected": true,
+        "bbox": [
+            255,
+            48,
+            72,
+            72
+        ],
+        "confidence": 0.8997930884361267,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000055.jpg"
+    },
+    {
+        "frame_index": 56,
+        "timestamp": 1.8666666666666667,
+        "detected": true,
+        "bbox": [
+            252,
+            52,
+            68,
+            69
+        ],
+        "confidence": 0.8815198540687561,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000056.jpg"
+    },
+    {
+        "frame_index": 57,
+        "timestamp": 1.9,
+        "detected": true,
+        "bbox": [
+            242,
+            47,
+            74,
+            74
+        ],
+        "confidence": 0.8768795132637024,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000057.jpg"
+    },
+    {
+        "frame_index": 58,
+        "timestamp": 1.9333333333333333,
+        "detected": true,
+        "bbox": [
+            242,
+            47,
+            74,
+            74
+        ],
+        "confidence": 0.8774275779724121,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000058.jpg"
+    },
+    {
+        "frame_index": 59,
+        "timestamp": 1.9666666666666666,
+        "detected": true,
+        "bbox": [
+            242,
+            53,
+            70,
+            69
+        ],
+        "confidence": 0.9062775373458862,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000059.jpg"
+    },
+    {
+        "frame_index": 60,
+        "timestamp": 2.0,
+        "detected": true,
+        "bbox": [
+            242,
+            53,
+            70,
+            69
+        ],
+        "confidence": 0.9069651961326599,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000060.jpg"
+    },
+    {
+        "frame_index": 61,
+        "timestamp": 2.033333333333333,
+        "detected": true,
+        "bbox": [
+            236,
+            52,
+            67,
+            67
+        ],
+        "confidence": 0.8286234140396118,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000061.jpg"
+    },
+    {
+        "frame_index": 62,
+        "timestamp": 2.066666666666667,
+        "detected": true,
+        "bbox": [
+            236,
+            52,
+            67,
+            67
+        ],
+        "confidence": 0.8284261226654053,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000062.jpg"
+    },
+    {
+        "frame_index": 63,
+        "timestamp": 2.1,
+        "detected": true,
+        "bbox": [
+            229,
+            49,
+            71,
+            70
+        ],
+        "confidence": 0.8924292325973511,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000063.jpg"
+    },
+    {
+        "frame_index": 64,
+        "timestamp": 2.1333333333333333,
+        "detected": true,
+        "bbox": [
+            229,
+            49,
+            71,
+            70
+        ],
+        "confidence": 0.8921108841896057,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000064.jpg"
+    },
+    {
+        "frame_index": 65,
+        "timestamp": 2.1666666666666665,
+        "detected": true,
+        "bbox": [
+            228,
+            48,
+            69,
+            69
+        ],
+        "confidence": 0.8875014781951904,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000065.jpg"
+    },
+    {
+        "frame_index": 66,
+        "timestamp": 2.2,
+        "detected": true,
+        "bbox": [
+            228,
+            48,
+            69,
+            69
+        ],
+        "confidence": 0.8863646388053894,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000066.jpg"
+    },
+    {
+        "frame_index": 67,
+        "timestamp": 2.2333333333333334,
+        "detected": true,
+        "bbox": [
+            224,
+            45,
+            72,
+            72
+        ],
+        "confidence": 0.892926812171936,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000067.jpg"
+    },
+    {
+        "frame_index": 68,
+        "timestamp": 2.2666666666666666,
+        "detected": true,
+        "bbox": [
+            220,
+            45,
+            75,
+            74
+        ],
+        "confidence": 0.8559773564338684,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000068.jpg"
+    },
+    {
+        "frame_index": 69,
+        "timestamp": 2.3,
+        "detected": true,
+        "bbox": [
+            220,
+            45,
+            75,
+            74
+        ],
+        "confidence": 0.854640543460846,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000069.jpg"
+    },
+    {
+        "frame_index": 70,
+        "timestamp": 2.3333333333333335,
+        "detected": true,
+        "bbox": [
+            220,
+            45,
+            75,
+            75
+        ],
+        "confidence": 0.86217200756073,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000070.jpg"
+    },
+    {
+        "frame_index": 71,
+        "timestamp": 2.3666666666666667,
+        "detected": true,
+        "bbox": [
+            220,
+            45,
+            75,
+            75
+        ],
+        "confidence": 0.859404981136322,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000071.jpg"
+    },
+    {
+        "frame_index": 72,
+        "timestamp": 2.4,
+        "detected": true,
+        "bbox": [
+            220,
+            45,
+            75,
+            75
+        ],
+        "confidence": 0.859102189540863,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000072.jpg"
+    },
+    {
+        "frame_index": 73,
+        "timestamp": 2.433333333333333,
+        "detected": true,
+        "bbox": [
+            220,
+            47,
+            73,
+            73
+        ],
+        "confidence": 0.8914317488670349,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000073.jpg"
+    },
+    {
+        "frame_index": 74,
+        "timestamp": 2.466666666666667,
+        "detected": true,
+        "bbox": [
+            222,
+            44,
+            75,
+            74
+        ],
+        "confidence": 0.9105699062347412,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000074.jpg"
+    },
+    {
+        "frame_index": 75,
+        "timestamp": 2.5,
+        "detected": true,
+        "bbox": [
+            222,
+            44,
+            75,
+            74
+        ],
+        "confidence": 0.9100263118743896,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000075.jpg"
+    },
+    {
+        "frame_index": 76,
+        "timestamp": 2.533333333333333,
+        "detected": true,
+        "bbox": [
+            225,
+            43,
+            73,
+            73
+        ],
+        "confidence": 0.9348364472389221,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000076.jpg"
+    },
+    {
+        "frame_index": 77,
+        "timestamp": 2.566666666666667,
+        "detected": true,
+        "bbox": [
+            225,
+            43,
+            73,
+            73
+        ],
+        "confidence": 0.9342250823974609,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000077.jpg"
+    },
+    {
+        "frame_index": 78,
+        "timestamp": 2.6,
+        "detected": true,
+        "bbox": [
+            228,
+            47,
+            72,
+            72
+        ],
+        "confidence": 0.851813793182373,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000078.jpg"
+    },
+    {
+        "frame_index": 79,
+        "timestamp": 2.6333333333333333,
+        "detected": true,
+        "bbox": [
+            228,
+            47,
+            72,
+            72
+        ],
+        "confidence": 0.8514372110366821,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000079.jpg"
+    },
+    {
+        "frame_index": 80,
+        "timestamp": 2.6666666666666665,
+        "detected": true,
+        "bbox": [
+            229,
+            46,
+            71,
+            72
+        ],
+        "confidence": 0.9073941111564636,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000080.jpg"
+    },
+    {
+        "frame_index": 81,
+        "timestamp": 2.7,
+        "detected": true,
+        "bbox": [
+            227,
+            43,
+            74,
+            74
+        ],
+        "confidence": 0.8827416896820068,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000081.jpg"
+    },
+    {
+        "frame_index": 82,
+        "timestamp": 2.7333333333333334,
+        "detected": true,
+        "bbox": [
+            234,
+            42,
+            70,
+            70
+        ],
+        "confidence": 0.9188681244850159,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000082.jpg"
+    },
+    {
+        "frame_index": 83,
+        "timestamp": 2.7666666666666666,
+        "detected": true,
+        "bbox": [
+            234,
+            42,
+            71,
+            70
+        ],
+        "confidence": 0.9188834428787231,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000083.jpg"
+    },
+    {
+        "frame_index": 84,
+        "timestamp": 2.8,
+        "detected": true,
+        "bbox": [
+            232,
+            33,
+            73,
+            74
+        ],
+        "confidence": 0.8000617027282715,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000084.jpg"
+    },
+    {
+        "frame_index": 85,
+        "timestamp": 2.8333333333333335,
+        "detected": true,
+        "bbox": [
+            232,
+            23,
+            78,
+            78
+        ],
+        "confidence": 0.9104868173599243,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000085.jpg"
+    },
+    {
+        "frame_index": 86,
+        "timestamp": 2.8666666666666667,
+        "detected": true,
+        "bbox": [
+            231,
+            23,
+            79,
+            78
+        ],
+        "confidence": 0.9112733006477356,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000086.jpg"
+    },
+    {
+        "frame_index": 87,
+        "timestamp": 2.9,
+        "detected": true,
+        "bbox": [
+            233,
+            26,
+            75,
+            76
+        ],
+        "confidence": 0.9395236372947693,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000087.jpg"
+    },
+    {
+        "frame_index": 88,
+        "timestamp": 2.933333333333333,
+        "detected": true,
+        "bbox": [
+            233,
+            26,
+            75,
+            76
+        ],
+        "confidence": 0.9411652684211731,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000088.jpg"
+    },
+    {
+        "frame_index": 89,
+        "timestamp": 2.966666666666667,
+        "detected": true,
+        "bbox": [
+            234,
+            29,
+            73,
+            72
+        ],
+        "confidence": 0.9340153932571411,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000089.jpg"
+    },
+    {
+        "frame_index": 90,
+        "timestamp": 3.0,
+        "detected": true,
+        "bbox": [
+            235,
+            30,
+            71,
+            71
+        ],
+        "confidence": 0.9241299033164978,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000090.jpg"
+    },
+    {
+        "frame_index": 91,
+        "timestamp": 3.033333333333333,
+        "detected": true,
+        "bbox": [
+            235,
+            30,
+            71,
+            71
+        ],
+        "confidence": 0.9282866716384888,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000091.jpg"
+    },
+    {
+        "frame_index": 92,
+        "timestamp": 3.066666666666667,
+        "detected": true,
+        "bbox": [
+            234,
+            29,
+            72,
+            73
+        ],
+        "confidence": 0.9338677525520325,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000092.jpg"
+    },
+    {
+        "frame_index": 93,
+        "timestamp": 3.1,
+        "detected": true,
+        "bbox": [
+            234,
+            29,
+            72,
+            73
+        ],
+        "confidence": 0.939461350440979,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000093.jpg"
+    },
+    {
+        "frame_index": 94,
+        "timestamp": 3.1333333333333333,
+        "detected": true,
+        "bbox": [
+            233,
+            29,
+            73,
+            73
+        ],
+        "confidence": 0.9405638575553894,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000094.jpg"
+    },
+    {
+        "frame_index": 95,
+        "timestamp": 3.1666666666666665,
+        "detected": true,
+        "bbox": [
+            233,
+            29,
+            73,
+            73
+        ],
+        "confidence": 0.9375078082084656,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000095.jpg"
+    },
+    {
+        "frame_index": 96,
+        "timestamp": 3.2,
+        "detected": true,
+        "bbox": [
+            233,
+            30,
+            72,
+            72
+        ],
+        "confidence": 0.9321628212928772,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000096.jpg"
+    },
+    {
+        "frame_index": 97,
+        "timestamp": 3.2333333333333334,
+        "detected": true,
+        "bbox": [
+            232,
+            31,
+            72,
+            73
+        ],
+        "confidence": 0.9288330674171448,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000097.jpg"
+    },
+    {
+        "frame_index": 98,
+        "timestamp": 3.2666666666666666,
+        "detected": true,
+        "bbox": [
+            231,
+            31,
+            74,
+            73
+        ],
+        "confidence": 0.9279016852378845,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000098.jpg"
+    },
+    {
+        "frame_index": 99,
+        "timestamp": 3.3,
+        "detected": true,
+        "bbox": [
+            231,
+            30,
+            74,
+            74
+        ],
+        "confidence": 0.9314723610877991,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000099.jpg"
+    },
+    {
+        "frame_index": 100,
+        "timestamp": 3.3333333333333335,
+        "detected": true,
+        "bbox": [
+            231,
+            30,
+            74,
+            74
+        ],
+        "confidence": 0.931726336479187,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000100.jpg"
+    },
+    {
+        "frame_index": 101,
+        "timestamp": 3.3666666666666667,
+        "detected": true,
+        "bbox": [
+            230,
+            29,
+            76,
+            76
+        ],
+        "confidence": 0.9308027029037476,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000101.jpg"
+    },
+    {
+        "frame_index": 102,
+        "timestamp": 3.4,
+        "detected": true,
+        "bbox": [
+            230,
+            29,
+            76,
+            76
+        ],
+        "confidence": 0.9314578771591187,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000102.jpg"
+    },
+    {
+        "frame_index": 103,
+        "timestamp": 3.433333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            29,
+            76,
+            76
+        ],
+        "confidence": 0.936056911945343,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000103.jpg"
+    },
+    {
+        "frame_index": 104,
+        "timestamp": 3.466666666666667,
+        "detected": true,
+        "bbox": [
+            230,
+            29,
+            76,
+            76
+        ],
+        "confidence": 0.9361245036125183,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000104.jpg"
+    },
+    {
+        "frame_index": 105,
+        "timestamp": 3.5,
+        "detected": true,
+        "bbox": [
+            230,
+            29,
+            76,
+            76
+        ],
+        "confidence": 0.9301458597183228,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000105.jpg"
+    },
+    {
+        "frame_index": 106,
+        "timestamp": 3.533333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            28,
+            78,
+            78
+        ],
+        "confidence": 0.8969383835792542,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000106.jpg"
+    },
+    {
+        "frame_index": 107,
+        "timestamp": 3.566666666666667,
+        "detected": true,
+        "bbox": [
+            230,
+            28,
+            78,
+            78
+        ],
+        "confidence": 0.8992697596549988,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000107.jpg"
+    },
+    {
+        "frame_index": 108,
+        "timestamp": 3.6,
+        "detected": true,
+        "bbox": [
+            230,
+            30,
+            76,
+            76
+        ],
+        "confidence": 0.886987030506134,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000108.jpg"
+    },
+    {
+        "frame_index": 109,
+        "timestamp": 3.6333333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            30,
+            76,
+            76
+        ],
+        "confidence": 0.8857653737068176,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000109.jpg"
+    },
+    {
+        "frame_index": 110,
+        "timestamp": 3.6666666666666665,
+        "detected": true,
+        "bbox": [
+            231,
+            29,
+            77,
+            77
+        ],
+        "confidence": 0.8778254389762878,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000110.jpg"
+    },
+    {
+        "frame_index": 111,
+        "timestamp": 3.7,
+        "detected": true,
+        "bbox": [
+            231,
+            29,
+            77,
+            77
+        ],
+        "confidence": 0.8770681619644165,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000111.jpg"
+    },
+    {
+        "frame_index": 112,
+        "timestamp": 3.7333333333333334,
+        "detected": true,
+        "bbox": [
+            231,
+            29,
+            77,
+            77
+        ],
+        "confidence": 0.8828718662261963,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000112.jpg"
+    },
+    {
+        "frame_index": 113,
+        "timestamp": 3.7666666666666666,
+        "detected": true,
+        "bbox": [
+            231,
+            29,
+            77,
+            77
+        ],
+        "confidence": 0.8803504705429077,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000113.jpg"
+    },
+    {
+        "frame_index": 114,
+        "timestamp": 3.8,
+        "detected": true,
+        "bbox": [
+            231,
+            29,
+            77,
+            77
+        ],
+        "confidence": 0.8814200162887573,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000114.jpg"
+    },
+    {
+        "frame_index": 115,
+        "timestamp": 3.8333333333333335,
+        "detected": true,
+        "bbox": [
+            231,
+            28,
+            77,
+            78
+        ],
+        "confidence": 0.8809106945991516,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000115.jpg"
+    },
+    {
+        "frame_index": 116,
+        "timestamp": 3.8666666666666667,
+        "detected": true,
+        "bbox": [
+            231,
+            28,
+            77,
+            78
+        ],
+        "confidence": 0.883007287979126,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000116.jpg"
+    },
+    {
+        "frame_index": 117,
+        "timestamp": 3.9,
+        "detected": true,
+        "bbox": [
+            230,
+            28,
+            79,
+            78
+        ],
+        "confidence": 0.8806413412094116,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000117.jpg"
+    },
+    {
+        "frame_index": 118,
+        "timestamp": 3.933333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            28,
+            79,
+            79
+        ],
+        "confidence": 0.8569236993789673,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000118.jpg"
+    },
+    {
+        "frame_index": 119,
+        "timestamp": 3.966666666666667,
+        "detected": true,
+        "bbox": [
+            230,
+            28,
+            79,
+            78
+        ],
+        "confidence": 0.859721839427948,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000119.jpg"
+    },
+    {
+        "frame_index": 120,
+        "timestamp": 4.0,
+        "detected": true,
+        "bbox": [
+            230,
+            27,
+            79,
+            79
+        ],
+        "confidence": 0.871263861656189,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000120.jpg"
+    },
+    {
+        "frame_index": 121,
+        "timestamp": 4.033333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            27,
+            79,
+            80
+        ],
+        "confidence": 0.8664588332176208,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000121.jpg"
+    },
+    {
+        "frame_index": 122,
+        "timestamp": 4.066666666666666,
+        "detected": true,
+        "bbox": [
+            230,
+            27,
+            79,
+            80
+        ],
+        "confidence": 0.8665217161178589,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000122.jpg"
+    },
+    {
+        "frame_index": 123,
+        "timestamp": 4.1,
+        "detected": true,
+        "bbox": [
+            231,
+            25,
+            77,
+            77
+        ],
+        "confidence": 0.947790801525116,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000123.jpg"
+    },
+    {
+        "frame_index": 124,
+        "timestamp": 4.133333333333334,
+        "detected": true,
+        "bbox": [
+            231,
+            25,
+            77,
+            77
+        ],
+        "confidence": 0.9471951127052307,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000124.jpg"
+    },
+    {
+        "frame_index": 125,
+        "timestamp": 4.166666666666667,
+        "detected": true,
+        "bbox": [
+            232,
+            12,
+            79,
+            80
+        ],
+        "confidence": 0.7289189696311951,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000125.jpg"
+    },
+    {
+        "frame_index": 126,
+        "timestamp": 4.2,
+        "detected": true,
+        "bbox": [
+            232,
+            12,
+            79,
+            79
+        ],
+        "confidence": 0.7289973497390747,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000126.jpg"
+    },
+    {
+        "frame_index": 127,
+        "timestamp": 4.233333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 128,
+        "timestamp": 4.266666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 129,
+        "timestamp": 4.3,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 130,
+        "timestamp": 4.333333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 131,
+        "timestamp": 4.366666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 132,
+        "timestamp": 4.4,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 133,
+        "timestamp": 4.433333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 134,
+        "timestamp": 4.466666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 135,
+        "timestamp": 4.5,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 136,
+        "timestamp": 4.533333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 137,
+        "timestamp": 4.566666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 138,
+        "timestamp": 4.6,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 139,
+        "timestamp": 4.633333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 140,
+        "timestamp": 4.666666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 141,
+        "timestamp": 4.7,
+        "detected": true,
+        "bbox": [
+            247,
+            31,
+            57,
+            57
+        ],
+        "confidence": 0.651841402053833,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000141.jpg"
+    },
+    {
+        "frame_index": 142,
+        "timestamp": 4.733333333333333,
+        "detected": true,
+        "bbox": [
+            247,
+            31,
+            57,
+            57
+        ],
+        "confidence": 0.6293491721153259,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000142.jpg"
+    },
+    {
+        "frame_index": 143,
+        "timestamp": 4.766666666666667,
+        "detected": true,
+        "bbox": [
+            247,
+            33,
+            57,
+            57
+        ],
+        "confidence": 0.738489031791687,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000143.jpg"
+    },
+    {
+        "frame_index": 144,
+        "timestamp": 4.8,
+        "detected": true,
+        "bbox": [
+            247,
+            39,
+            60,
+            59
+        ],
+        "confidence": 0.7852602005004883,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000144.jpg"
+    },
+    {
+        "frame_index": 145,
+        "timestamp": 4.833333333333333,
+        "detected": true,
+        "bbox": [
+            242,
+            42,
+            63,
+            63
+        ],
+        "confidence": 0.8838551044464111,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000145.jpg"
+    },
+    {
+        "frame_index": 146,
+        "timestamp": 4.866666666666666,
+        "detected": true,
+        "bbox": [
+            242,
+            42,
+            63,
+            63
+        ],
+        "confidence": 0.8847215175628662,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000146.jpg"
+    },
+    {
+        "frame_index": 147,
+        "timestamp": 4.9,
+        "detected": true,
+        "bbox": [
+            244,
+            43,
+            63,
+            63
+        ],
+        "confidence": 0.8663610219955444,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000147.jpg"
+    },
+    {
+        "frame_index": 148,
+        "timestamp": 4.933333333333334,
+        "detected": true,
+        "bbox": [
+            244,
+            43,
+            63,
+            63
+        ],
+        "confidence": 0.8662585020065308,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000148.jpg"
+    },
+    {
+        "frame_index": 149,
+        "timestamp": 4.966666666666667,
+        "detected": true,
+        "bbox": [
+            246,
+            49,
+            63,
+            63
+        ],
+        "confidence": 0.9042786955833435,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000149.jpg"
+    },
+    {
+        "frame_index": 150,
+        "timestamp": 5.0,
+        "detected": true,
+        "bbox": [
+            246,
+            49,
+            63,
+            63
+        ],
+        "confidence": 0.9042969942092896,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000150.jpg"
+    },
+    {
+        "frame_index": 151,
+        "timestamp": 5.033333333333333,
+        "detected": true,
+        "bbox": [
+            245,
+            52,
+            63,
+            63
+        ],
+        "confidence": 0.8172594308853149,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000151.jpg"
+    },
+    {
+        "frame_index": 152,
+        "timestamp": 5.066666666666666,
+        "detected": true,
+        "bbox": [
+            245,
+            51,
+            64,
+            64
+        ],
+        "confidence": 0.8099418878555298,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000152.jpg"
+    },
+    {
+        "frame_index": 153,
+        "timestamp": 5.1,
+        "detected": true,
+        "bbox": [
+            245,
+            55,
+            66,
+            66
+        ],
+        "confidence": 0.8968585133552551,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000153.jpg"
+    },
+    {
+        "frame_index": 154,
+        "timestamp": 5.133333333333334,
+        "detected": true,
+        "bbox": [
+            245,
+            55,
+            66,
+            66
+        ],
+        "confidence": 0.89706951379776,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000154.jpg"
+    },
+    {
+        "frame_index": 155,
+        "timestamp": 5.166666666666667,
+        "detected": true,
+        "bbox": [
+            246,
+            57,
+            65,
+            65
+        ],
+        "confidence": 0.9270581603050232,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000155.jpg"
+    },
+    {
+        "frame_index": 156,
+        "timestamp": 5.2,
+        "detected": true,
+        "bbox": [
+            246,
+            57,
+            65,
+            65
+        ],
+        "confidence": 0.9275021553039551,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000156.jpg"
+    },
+    {
+        "frame_index": 157,
+        "timestamp": 5.233333333333333,
+        "detected": true,
+        "bbox": [
+            247,
+            63,
+            65,
+            65
+        ],
+        "confidence": 0.894468367099762,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000157.jpg"
+    },
+    {
+        "frame_index": 158,
+        "timestamp": 5.266666666666667,
+        "detected": true,
+        "bbox": [
+            247,
+            63,
+            65,
+            65
+        ],
+        "confidence": 0.8995498418807983,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000158.jpg"
+    },
+    {
+        "frame_index": 159,
+        "timestamp": 5.3,
+        "detected": true,
+        "bbox": [
+            243,
+            66,
+            73,
+            72
+        ],
+        "confidence": 0.9368281960487366,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000159.jpg"
+    },
+    {
+        "frame_index": 160,
+        "timestamp": 5.333333333333333,
+        "detected": true,
+        "bbox": [
+            242,
+            66,
+            73,
+            73
+        ],
+        "confidence": 0.9379597306251526,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000160.jpg"
+    },
+    {
+        "frame_index": 161,
+        "timestamp": 5.366666666666666,
+        "detected": true,
+        "bbox": [
+            242,
+            67,
+            73,
+            72
+        ],
+        "confidence": 0.9379477500915527,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000161.jpg"
+    },
+    {
+        "frame_index": 162,
+        "timestamp": 5.4,
+        "detected": true,
+        "bbox": [
+            243,
+            74,
+            70,
+            69
+        ],
+        "confidence": 0.9199391603469849,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000162.jpg"
+    },
+    {
+        "frame_index": 163,
+        "timestamp": 5.433333333333334,
+        "detected": true,
+        "bbox": [
+            243,
+            74,
+            70,
+            69
+        ],
+        "confidence": 0.9198147058486938,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000163.jpg"
+    },
+    {
+        "frame_index": 164,
+        "timestamp": 5.466666666666667,
+        "detected": true,
+        "bbox": [
+            240,
+            77,
+            72,
+            73
+        ],
+        "confidence": 0.8701626658439636,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000164.jpg"
+    },
+    {
+        "frame_index": 165,
+        "timestamp": 5.5,
+        "detected": true,
+        "bbox": [
+            240,
+            77,
+            72,
+            72
+        ],
+        "confidence": 0.8691301941871643,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000165.jpg"
+    },
+    {
+        "frame_index": 166,
+        "timestamp": 5.533333333333333,
+        "detected": true,
+        "bbox": [
+            236,
+            81,
+            75,
+            75
+        ],
+        "confidence": 0.9244084358215332,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000166.jpg"
+    },
+    {
+        "frame_index": 167,
+        "timestamp": 5.566666666666666,
+        "detected": true,
+        "bbox": [
+            235,
+            82,
+            74,
+            74
+        ],
+        "confidence": 0.8912144899368286,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000167.jpg"
+    },
+    {
+        "frame_index": 168,
+        "timestamp": 5.6,
+        "detected": true,
+        "bbox": [
+            235,
+            82,
+            74,
+            74
+        ],
+        "confidence": 0.8910371661186218,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000168.jpg"
+    },
+    {
+        "frame_index": 169,
+        "timestamp": 5.633333333333334,
+        "detected": true,
+        "bbox": [
+            234,
+            84,
+            78,
+            77
+        ],
+        "confidence": 0.9110874533653259,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000169.jpg"
+    },
+    {
+        "frame_index": 170,
+        "timestamp": 5.666666666666667,
+        "detected": true,
+        "bbox": [
+            234,
+            84,
+            77,
+            77
+        ],
+        "confidence": 0.9002629518508911,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000170.jpg"
+    },
+    {
+        "frame_index": 171,
+        "timestamp": 5.7,
+        "detected": true,
+        "bbox": [
+            234,
+            84,
+            77,
+            77
+        ],
+        "confidence": 0.8999956250190735,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000171.jpg"
+    },
+    {
+        "frame_index": 172,
+        "timestamp": 5.733333333333333,
+        "detected": true,
+        "bbox": [
+            233,
+            84,
+            76,
+            76
+        ],
+        "confidence": 0.9225531816482544,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000172.jpg"
+    },
+    {
+        "frame_index": 173,
+        "timestamp": 5.766666666666667,
+        "detected": true,
+        "bbox": [
+            232,
+            83,
+            77,
+            77
+        ],
+        "confidence": 0.9238716959953308,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000173.jpg"
+    },
+    {
+        "frame_index": 174,
+        "timestamp": 5.8,
+        "detected": true,
+        "bbox": [
+            233,
+            81,
+            72,
+            73
+        ],
+        "confidence": 0.9020441174507141,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000174.jpg"
+    },
+    {
+        "frame_index": 175,
+        "timestamp": 5.833333333333333,
+        "detected": true,
+        "bbox": [
+            233,
+            81,
+            72,
+            73
+        ],
+        "confidence": 0.9052388668060303,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000175.jpg"
+    },
+    {
+        "frame_index": 176,
+        "timestamp": 5.866666666666666,
+        "detected": true,
+        "bbox": [
+            231,
+            75,
+            76,
+            76
+        ],
+        "confidence": 0.8114980459213257,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000176.jpg"
+    },
+    {
+        "frame_index": 177,
+        "timestamp": 5.9,
+        "detected": true,
+        "bbox": [
+            232,
+            75,
+            76,
+            76
+        ],
+        "confidence": 0.8172993659973145,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000177.jpg"
+    },
+    {
+        "frame_index": 178,
+        "timestamp": 5.933333333333334,
+        "detected": true,
+        "bbox": [
+            232,
+            75,
+            75,
+            75
+        ],
+        "confidence": 0.7870162129402161,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000178.jpg"
+    },
+    {
+        "frame_index": 179,
+        "timestamp": 5.966666666666667,
+        "detected": true,
+        "bbox": [
+            232,
+            75,
+            75,
+            75
+        ],
+        "confidence": 0.7855075001716614,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000179.jpg"
+    },
+    {
+        "frame_index": 180,
+        "timestamp": 6.0,
+        "detected": true,
+        "bbox": [
+            231,
+            74,
+            76,
+            77
+        ],
+        "confidence": 0.8221154808998108,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000180.jpg"
+    },
+    {
+        "frame_index": 181,
+        "timestamp": 6.033333333333333,
+        "detected": true,
+        "bbox": [
+            231,
+            74,
+            76,
+            77
+        ],
+        "confidence": 0.827666699886322,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000181.jpg"
+    },
+    {
+        "frame_index": 182,
+        "timestamp": 6.066666666666666,
+        "detected": true,
+        "bbox": [
+            233,
+            76,
+            71,
+            71
+        ],
+        "confidence": 0.8142642974853516,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000182.jpg"
+    },
+    {
+        "frame_index": 183,
+        "timestamp": 6.1,
+        "detected": true,
+        "bbox": [
+            233,
+            76,
+            71,
+            71
+        ],
+        "confidence": 0.813387393951416,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000183.jpg"
+    },
+    {
+        "frame_index": 184,
+        "timestamp": 6.133333333333334,
+        "detected": true,
+        "bbox": [
+            233,
+            74,
+            73,
+            74
+        ],
+        "confidence": 0.881382942199707,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000184.jpg"
+    },
+    {
+        "frame_index": 185,
+        "timestamp": 6.166666666666667,
+        "detected": true,
+        "bbox": [
+            232,
+            74,
+            74,
+            74
+        ],
+        "confidence": 0.8767958283424377,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000185.jpg"
+    },
+    {
+        "frame_index": 186,
+        "timestamp": 6.2,
+        "detected": true,
+        "bbox": [
+            234,
+            70,
+            72,
+            72
+        ],
+        "confidence": 0.91065514087677,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000186.jpg"
+    },
+    {
+        "frame_index": 187,
+        "timestamp": 6.233333333333333,
+        "detected": true,
+        "bbox": [
+            234,
+            70,
+            72,
+            72
+        ],
+        "confidence": 0.9109001755714417,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000187.jpg"
+    },
+    {
+        "frame_index": 188,
+        "timestamp": 6.266666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 189,
+        "timestamp": 6.3,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 190,
+        "timestamp": 6.333333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 191,
+        "timestamp": 6.366666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 192,
+        "timestamp": 6.4,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 193,
+        "timestamp": 6.433333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 194,
+        "timestamp": 6.466666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 195,
+        "timestamp": 6.5,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 196,
+        "timestamp": 6.533333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 197,
+        "timestamp": 6.566666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 198,
+        "timestamp": 6.6,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 199,
+        "timestamp": 6.633333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 200,
+        "timestamp": 6.666666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 201,
+        "timestamp": 6.7,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 202,
+        "timestamp": 6.733333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 203,
+        "timestamp": 6.766666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 204,
+        "timestamp": 6.8,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 205,
+        "timestamp": 6.833333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 206,
+        "timestamp": 6.866666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 207,
+        "timestamp": 6.9,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 208,
+        "timestamp": 6.933333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 209,
+        "timestamp": 6.966666666666667,
+        "detected": true,
+        "bbox": [
+            243,
+            11,
+            68,
+            67
+        ],
+        "confidence": 0.7013556957244873,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000209.jpg"
+    },
+    {
+        "frame_index": 210,
+        "timestamp": 7.0,
+        "detected": true,
+        "bbox": [
+            243,
+            11,
+            68,
+            67
+        ],
+        "confidence": 0.7013303637504578,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000210.jpg"
+    },
+    {
+        "frame_index": 211,
+        "timestamp": 7.033333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 212,
+        "timestamp": 7.066666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 213,
+        "timestamp": 7.1,
+        "detected": true,
+        "bbox": [
+            216,
+            59,
+            63,
+            63
+        ],
+        "confidence": 0.7169504761695862,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000213.jpg"
+    },
+    {
+        "frame_index": 214,
+        "timestamp": 7.133333333333334,
+        "detected": true,
+        "bbox": [
+            216,
+            59,
+            63,
+            63
+        ],
+        "confidence": 0.71742844581604,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000214.jpg"
+    },
+    {
+        "frame_index": 215,
+        "timestamp": 7.166666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 216,
+        "timestamp": 7.2,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 217,
+        "timestamp": 7.233333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 218,
+        "timestamp": 7.266666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 219,
+        "timestamp": 7.3,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 220,
+        "timestamp": 7.333333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 221,
+        "timestamp": 7.366666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 222,
+        "timestamp": 7.4,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 223,
+        "timestamp": 7.433333333333334,
+        "detected": true,
+        "bbox": [
+            231,
+            71,
+            58,
+            59
+        ],
+        "confidence": 0.6342211365699768,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000223.jpg"
+    },
+    {
+        "frame_index": 224,
+        "timestamp": 7.466666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 225,
+        "timestamp": 7.5,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 226,
+        "timestamp": 7.533333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 227,
+        "timestamp": 7.566666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 228,
+        "timestamp": 7.6,
+        "detected": true,
+        "bbox": [
+            219,
+            58,
+            65,
+            65
+        ],
+        "confidence": 0.7479386925697327,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000228.jpg"
+    },
+    {
+        "frame_index": 229,
+        "timestamp": 7.633333333333334,
+        "detected": true,
+        "bbox": [
+            219,
+            58,
+            65,
+            65
+        ],
+        "confidence": 0.7481883764266968,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000229.jpg"
+    },
+    {
+        "frame_index": 230,
+        "timestamp": 7.666666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 231,
+        "timestamp": 7.7,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 232,
+        "timestamp": 7.733333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 233,
+        "timestamp": 7.766666666666667,
+        "detected": true,
+        "bbox": [
+            222,
+            44,
+            71,
+            71
+        ],
+        "confidence": 0.7755643129348755,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000233.jpg"
+    },
+    {
+        "frame_index": 234,
+        "timestamp": 7.8,
+        "detected": true,
+        "bbox": [
+            222,
+            44,
+            71,
+            71
+        ],
+        "confidence": 0.7759491801261902,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000234.jpg"
+    },
+    {
+        "frame_index": 235,
+        "timestamp": 7.833333333333333,
+        "detected": true,
+        "bbox": [
+            216,
+            39,
+            69,
+            68
+        ],
+        "confidence": 0.8822471499443054,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000235.jpg"
+    },
+    {
+        "frame_index": 236,
+        "timestamp": 7.866666666666666,
+        "detected": true,
+        "bbox": [
+            216,
+            39,
+            69,
+            68
+        ],
+        "confidence": 0.8808243274688721,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000236.jpg"
+    },
+    {
+        "frame_index": 237,
+        "timestamp": 7.9,
+        "detected": true,
+        "bbox": [
+            211,
+            31,
+            69,
+            69
+        ],
+        "confidence": 0.8587851524353027,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000237.jpg"
+    },
+    {
+        "frame_index": 238,
+        "timestamp": 7.933333333333334,
+        "detected": true,
+        "bbox": [
+            211,
+            31,
+            69,
+            69
+        ],
+        "confidence": 0.8589960336685181,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000238.jpg"
+    },
+    {
+        "frame_index": 239,
+        "timestamp": 7.966666666666667,
+        "detected": true,
+        "bbox": [
+            212,
+            17,
+            76,
+            77
+        ],
+        "confidence": 0.8943660259246826,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000239.jpg"
+    },
+    {
+        "frame_index": 240,
+        "timestamp": 8.0,
+        "detected": true,
+        "bbox": [
+            212,
+            17,
+            76,
+            77
+        ],
+        "confidence": 0.8949423432350159,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000240.jpg"
+    },
+    {
+        "frame_index": 241,
+        "timestamp": 8.033333333333333,
+        "detected": true,
+        "bbox": [
+            219,
+            18,
+            72,
+            73
+        ],
+        "confidence": 0.8206902146339417,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000241.jpg"
+    },
+    {
+        "frame_index": 242,
+        "timestamp": 8.066666666666666,
+        "detected": true,
+        "bbox": [
+            219,
+            18,
+            72,
+            73
+        ],
+        "confidence": 0.8202927112579346,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000242.jpg"
+    },
+    {
+        "frame_index": 243,
+        "timestamp": 8.1,
+        "detected": true,
+        "bbox": [
+            233,
+            14,
+            80,
+            80
+        ],
+        "confidence": 0.8342717885971069,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000243.jpg"
+    },
+    {
+        "frame_index": 244,
+        "timestamp": 8.133333333333333,
+        "detected": true,
+        "bbox": [
+            239,
+            16,
+            79,
+            79
+        ],
+        "confidence": 0.8460437059402466,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000244.jpg"
+    },
+    {
+        "frame_index": 245,
+        "timestamp": 8.166666666666666,
+        "detected": true,
+        "bbox": [
+            239,
+            16,
+            79,
+            79
+        ],
+        "confidence": 0.8444422483444214,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000245.jpg"
+    },
+    {
+        "frame_index": 246,
+        "timestamp": 8.2,
+        "detected": true,
+        "bbox": [
+            243,
+            17,
+            83,
+            84
+        ],
+        "confidence": 0.8360598087310791,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000246.jpg"
+    },
+    {
+        "frame_index": 247,
+        "timestamp": 8.233333333333333,
+        "detected": true,
+        "bbox": [
+            243,
+            17,
+            83,
+            83
+        ],
+        "confidence": 0.8364329934120178,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000247.jpg"
+    },
+    {
+        "frame_index": 248,
+        "timestamp": 8.266666666666667,
+        "detected": true,
+        "bbox": [
+            247,
+            22,
+            92,
+            92
+        ],
+        "confidence": 0.7944754958152771,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000248.jpg"
+    },
+    {
+        "frame_index": 249,
+        "timestamp": 8.3,
+        "detected": true,
+        "bbox": [
+            247,
+            22,
+            92,
+            92
+        ],
+        "confidence": 0.7944900393486023,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000249.jpg"
+    },
+    {
+        "frame_index": 250,
+        "timestamp": 8.333333333333334,
+        "detected": true,
+        "bbox": [
+            251,
+            26,
+            89,
+            89
+        ],
+        "confidence": 0.7827035188674927,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000250.jpg"
+    },
+    {
+        "frame_index": 251,
+        "timestamp": 8.366666666666667,
+        "detected": true,
+        "bbox": [
+            251,
+            26,
+            89,
+            89
+        ],
+        "confidence": 0.7831064462661743,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000251.jpg"
+    },
+    {
+        "frame_index": 252,
+        "timestamp": 8.4,
+        "detected": true,
+        "bbox": [
+            247,
+            21,
+            94,
+            93
+        ],
+        "confidence": 0.8349210023880005,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000252.jpg"
+    },
+    {
+        "frame_index": 253,
+        "timestamp": 8.433333333333334,
+        "detected": true,
+        "bbox": [
+            247,
+            21,
+            94,
+            93
+        ],
+        "confidence": 0.83808833360672,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000253.jpg"
+    },
+    {
+        "frame_index": 254,
+        "timestamp": 8.466666666666667,
+        "detected": true,
+        "bbox": [
+            248,
+            14,
+            89,
+            89
+        ],
+        "confidence": 0.9292299747467041,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000254.jpg"
+    },
+    {
+        "frame_index": 255,
+        "timestamp": 8.5,
+        "detected": true,
+        "bbox": [
+            248,
+            14,
+            89,
+            89
+        ],
+        "confidence": 0.9291680455207825,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000255.jpg"
+    },
+    {
+        "frame_index": 256,
+        "timestamp": 8.533333333333333,
+        "detected": true,
+        "bbox": [
+            243,
+            12,
+            91,
+            91
+        ],
+        "confidence": 0.8471606969833374,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000256.jpg"
+    },
+    {
+        "frame_index": 257,
+        "timestamp": 8.566666666666666,
+        "detected": true,
+        "bbox": [
+            243,
+            11,
+            91,
+            92
+        ],
+        "confidence": 0.8468673229217529,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000257.jpg"
+    },
+    {
+        "frame_index": 258,
+        "timestamp": 8.6,
+        "detected": true,
+        "bbox": [
+            236,
+            12,
+            94,
+            94
+        ],
+        "confidence": 0.7907865643501282,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000258.jpg"
+    },
+    {
+        "frame_index": 259,
+        "timestamp": 8.633333333333333,
+        "detected": true,
+        "bbox": [
+            235,
+            16,
+            91,
+            91
+        ],
+        "confidence": 0.9165566563606262,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000259.jpg"
+    },
+    {
+        "frame_index": 260,
+        "timestamp": 8.666666666666666,
+        "detected": true,
+        "bbox": [
+            230,
+            18,
+            94,
+            94
+        ],
+        "confidence": 0.8966885805130005,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000260.jpg"
+    },
+    {
+        "frame_index": 261,
+        "timestamp": 8.7,
+        "detected": true,
+        "bbox": [
+            230,
+            18,
+            94,
+            94
+        ],
+        "confidence": 0.8965333700180054,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000261.jpg"
+    },
+    {
+        "frame_index": 262,
+        "timestamp": 8.733333333333333,
+        "detected": true,
+        "bbox": [
+            221,
+            16,
+            96,
+            96
+        ],
+        "confidence": 0.8952398896217346,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000262.jpg"
+    },
+    {
+        "frame_index": 263,
+        "timestamp": 8.766666666666667,
+        "detected": true,
+        "bbox": [
+            221,
+            16,
+            96,
+            96
+        ],
+        "confidence": 0.8950081467628479,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000263.jpg"
+    },
+    {
+        "frame_index": 264,
+        "timestamp": 8.8,
+        "detected": true,
+        "bbox": [
+            220,
+            20,
+            92,
+            92
+        ],
+        "confidence": 0.9359576106071472,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000264.jpg"
+    },
+    {
+        "frame_index": 265,
+        "timestamp": 8.833333333333334,
+        "detected": true,
+        "bbox": [
+            220,
+            20,
+            92,
+            92
+        ],
+        "confidence": 0.9359681606292725,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000265.jpg"
+    },
+    {
+        "frame_index": 266,
+        "timestamp": 8.866666666666667,
+        "detected": true,
+        "bbox": [
+            219,
+            11,
+            85,
+            85
+        ],
+        "confidence": 0.8505634665489197,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000266.jpg"
+    },
+    {
+        "frame_index": 267,
+        "timestamp": 8.9,
+        "detected": true,
+        "bbox": [
+            219,
+            11,
+            85,
+            85
+        ],
+        "confidence": 0.8516235947608948,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000267.jpg"
+    },
+    {
+        "frame_index": 268,
+        "timestamp": 8.933333333333334,
+        "detected": true,
+        "bbox": [
+            214,
+            7,
+            81,
+            81
+        ],
+        "confidence": 0.9198846220970154,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000268.jpg"
+    },
+    {
+        "frame_index": 269,
+        "timestamp": 8.966666666666667,
+        "detected": true,
+        "bbox": [
+            214,
+            7,
+            81,
+            81
+        ],
+        "confidence": 0.9200257658958435,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000269.jpg"
+    },
+    {
+        "frame_index": 270,
+        "timestamp": 9.0,
+        "detected": true,
+        "bbox": [
+            214,
+            10,
+            82,
+            83
+        ],
+        "confidence": 0.8850066661834717,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000270.jpg"
+    },
+    {
+        "frame_index": 271,
+        "timestamp": 9.033333333333333,
+        "detected": true,
+        "bbox": [
+            214,
+            10,
+            83,
+            83
+        ],
+        "confidence": 0.8853046894073486,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000271.jpg"
+    },
+    {
+        "frame_index": 272,
+        "timestamp": 9.066666666666666,
+        "detected": true,
+        "bbox": [
+            222,
+            46,
+            70,
+            71
+        ],
+        "confidence": 0.7661578059196472,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000272.jpg"
+    },
+    {
+        "frame_index": 273,
+        "timestamp": 9.1,
+        "detected": true,
+        "bbox": [
+            222,
+            68,
+            66,
+            66
+        ],
+        "confidence": 0.752499520778656,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000273.jpg"
+    },
+    {
+        "frame_index": 274,
+        "timestamp": 9.133333333333333,
+        "detected": true,
+        "bbox": [
+            222,
+            68,
+            66,
+            66
+        ],
+        "confidence": 0.7496398091316223,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000274.jpg"
+    },
+    {
+        "frame_index": 275,
+        "timestamp": 9.166666666666666,
+        "detected": true,
+        "bbox": [
+            218,
+            86,
+            64,
+            64
+        ],
+        "confidence": 0.9117000699043274,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000275.jpg"
+    },
+    {
+        "frame_index": 276,
+        "timestamp": 9.2,
+        "detected": true,
+        "bbox": [
+            214,
+            91,
+            60,
+            59
+        ],
+        "confidence": 0.8491517305374146,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000276.jpg"
+    },
+    {
+        "frame_index": 277,
+        "timestamp": 9.233333333333333,
+        "detected": true,
+        "bbox": [
+            214,
+            96,
+            64,
+            64
+        ],
+        "confidence": 0.7546560764312744,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000277.jpg"
+    },
+    {
+        "frame_index": 278,
+        "timestamp": 9.266666666666667,
+        "detected": true,
+        "bbox": [
+            214,
+            96,
+            64,
+            64
+        ],
+        "confidence": 0.7528977990150452,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000278.jpg"
+    },
+    {
+        "frame_index": 279,
+        "timestamp": 9.3,
+        "detected": true,
+        "bbox": [
+            204,
+            84,
+            66,
+            67
+        ],
+        "confidence": 0.7927691340446472,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000279.jpg"
+    },
+    {
+        "frame_index": 280,
+        "timestamp": 9.333333333333334,
+        "detected": true,
+        "bbox": [
+            204,
+            84,
+            66,
+            67
+        ],
+        "confidence": 0.792864978313446,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000280.jpg"
+    },
+    {
+        "frame_index": 281,
+        "timestamp": 9.366666666666667,
+        "detected": true,
+        "bbox": [
+            203,
+            80,
+            71,
+            70
+        ],
+        "confidence": 0.7829781174659729,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000281.jpg"
+    },
+    {
+        "frame_index": 282,
+        "timestamp": 9.4,
+        "detected": true,
+        "bbox": [
+            203,
+            80,
+            71,
+            70
+        ],
+        "confidence": 0.783467173576355,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000282.jpg"
+    },
+    {
+        "frame_index": 283,
+        "timestamp": 9.433333333333334,
+        "detected": true,
+        "bbox": [
+            204,
+            73,
+            67,
+            67
+        ],
+        "confidence": 0.8471905589103699,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000283.jpg"
+    },
+    {
+        "frame_index": 284,
+        "timestamp": 9.466666666666667,
+        "detected": true,
+        "bbox": [
+            204,
+            73,
+            67,
+            67
+        ],
+        "confidence": 0.8470575213432312,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000284.jpg"
+    },
+    {
+        "frame_index": 285,
+        "timestamp": 9.5,
+        "detected": true,
+        "bbox": [
+            204,
+            68,
+            66,
+            66
+        ],
+        "confidence": 0.7464612722396851,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000285.jpg"
+    },
+    {
+        "frame_index": 286,
+        "timestamp": 9.533333333333333,
+        "detected": true,
+        "bbox": [
+            204,
+            68,
+            66,
+            66
+        ],
+        "confidence": 0.7470296025276184,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000286.jpg"
+    },
+    {
+        "frame_index": 287,
+        "timestamp": 9.566666666666666,
+        "detected": true,
+        "bbox": [
+            203,
+            64,
+            64,
+            64
+        ],
+        "confidence": 0.6786108016967773,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000287.jpg"
+    },
+    {
+        "frame_index": 288,
+        "timestamp": 9.6,
+        "detected": true,
+        "bbox": [
+            203,
+            57,
+            68,
+            68
+        ],
+        "confidence": 0.8639394044876099,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000288.jpg"
+    },
+    {
+        "frame_index": 289,
+        "timestamp": 9.633333333333333,
+        "detected": true,
+        "bbox": [
+            204,
+            57,
+            67,
+            67
+        ],
+        "confidence": 0.8416323661804199,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000289.jpg"
+    },
+    {
+        "frame_index": 290,
+        "timestamp": 9.666666666666666,
+        "detected": true,
+        "bbox": [
+            204,
+            57,
+            68,
+            67
+        ],
+        "confidence": 0.8424431085586548,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000290.jpg"
+    },
+    {
+        "frame_index": 291,
+        "timestamp": 9.7,
+        "detected": true,
+        "bbox": [
+            207,
+            58,
+            69,
+            68
+        ],
+        "confidence": 0.8201220631599426,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000291.jpg"
+    },
+    {
+        "frame_index": 292,
+        "timestamp": 9.733333333333333,
+        "detected": true,
+        "bbox": [
+            207,
+            58,
+            69,
+            68
+        ],
+        "confidence": 0.8204041719436646,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000292.jpg"
+    },
+    {
+        "frame_index": 293,
+        "timestamp": 9.766666666666667,
+        "detected": true,
+        "bbox": [
+            212,
+            62,
+            63,
+            63
+        ],
+        "confidence": 0.761559009552002,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000293.jpg"
+    },
+    {
+        "frame_index": 294,
+        "timestamp": 9.8,
+        "detected": true,
+        "bbox": [
+            212,
+            62,
+            63,
+            63
+        ],
+        "confidence": 0.7599300742149353,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000294.jpg"
+    },
+    {
+        "frame_index": 295,
+        "timestamp": 9.833333333333334,
+        "detected": true,
+        "bbox": [
+            212,
+            53,
+            67,
+            67
+        ],
+        "confidence": 0.8037576675415039,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000295.jpg"
+    },
+    {
+        "frame_index": 296,
+        "timestamp": 9.866666666666667,
+        "detected": true,
+        "bbox": [
+            212,
+            53,
+            67,
+            67
+        ],
+        "confidence": 0.8032292127609253,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000296.jpg"
+    },
+    {
+        "frame_index": 297,
+        "timestamp": 9.9,
+        "detected": true,
+        "bbox": [
+            210,
+            45,
+            68,
+            68
+        ],
+        "confidence": 0.8251793384552002,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000297.jpg"
+    },
+    {
+        "frame_index": 298,
+        "timestamp": 9.933333333333334,
+        "detected": true,
+        "bbox": [
+            210,
+            45,
+            68,
+            68
+        ],
+        "confidence": 0.8262079358100891,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000298.jpg"
+    },
+    {
+        "frame_index": 299,
+        "timestamp": 9.966666666666667,
+        "detected": true,
+        "bbox": [
+            214,
+            42,
+            66,
+            66
+        ],
+        "confidence": 0.8925584554672241,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000299.jpg"
+    },
+    {
+        "frame_index": 300,
+        "timestamp": 10.0,
+        "detected": true,
+        "bbox": [
+            214,
+            42,
+            66,
+            66
+        ],
+        "confidence": 0.8914105892181396,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000300.jpg"
+    },
+    {
+        "frame_index": 301,
+        "timestamp": 10.033333333333333,
+        "detected": true,
+        "bbox": [
+            216,
+            33,
+            68,
+            68
+        ],
+        "confidence": 0.8481913208961487,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000301.jpg"
+    },
+    {
+        "frame_index": 302,
+        "timestamp": 10.066666666666666,
+        "detected": true,
+        "bbox": [
+            221,
+            19,
+            69,
+            70
+        ],
+        "confidence": 0.8193573355674744,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000302.jpg"
+    },
+    {
+        "frame_index": 303,
+        "timestamp": 10.1,
+        "detected": true,
+        "bbox": [
+            221,
+            19,
+            69,
+            70
+        ],
+        "confidence": 0.81938236951828,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000303.jpg"
+    },
+    {
+        "frame_index": 304,
+        "timestamp": 10.133333333333333,
+        "detected": true,
+        "bbox": [
+            222,
+            11,
+            71,
+            72
+        ],
+        "confidence": 0.8964574933052063,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000304.jpg"
+    },
+    {
+        "frame_index": 305,
+        "timestamp": 10.166666666666666,
+        "detected": true,
+        "bbox": [
+            222,
+            11,
+            71,
+            72
+        ],
+        "confidence": 0.8957247138023376,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000305.jpg"
+    },
+    {
+        "frame_index": 306,
+        "timestamp": 10.2,
+        "detected": true,
+        "bbox": [
+            227,
+            16,
+            69,
+            70
+        ],
+        "confidence": 0.9204050898551941,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000306.jpg"
+    },
+    {
+        "frame_index": 307,
+        "timestamp": 10.233333333333333,
+        "detected": true,
+        "bbox": [
+            227,
+            16,
+            69,
+            70
+        ],
+        "confidence": 0.920532763004303,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000307.jpg"
+    },
+    {
+        "frame_index": 308,
+        "timestamp": 10.266666666666667,
+        "detected": true,
+        "bbox": [
+            240,
+            22,
+            76,
+            76
+        ],
+        "confidence": 0.9253130555152893,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000308.jpg"
+    },
+    {
+        "frame_index": 309,
+        "timestamp": 10.3,
+        "detected": true,
+        "bbox": [
+            240,
+            22,
+            76,
+            76
+        ],
+        "confidence": 0.9254149794578552,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000309.jpg"
+    },
+    {
+        "frame_index": 310,
+        "timestamp": 10.333333333333334,
+        "detected": true,
+        "bbox": [
+            243,
+            25,
+            81,
+            81
+        ],
+        "confidence": 0.8571666479110718,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000310.jpg"
+    },
+    {
+        "frame_index": 311,
+        "timestamp": 10.366666666666667,
+        "detected": true,
+        "bbox": [
+            243,
+            25,
+            81,
+            81
+        ],
+        "confidence": 0.8564947247505188,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000311.jpg"
+    },
+    {
+        "frame_index": 312,
+        "timestamp": 10.4,
+        "detected": true,
+        "bbox": [
+            245,
+            36,
+            79,
+            79
+        ],
+        "confidence": 0.8478484749794006,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000312.jpg"
+    },
+    {
+        "frame_index": 313,
+        "timestamp": 10.433333333333334,
+        "detected": true,
+        "bbox": [
+            245,
+            36,
+            79,
+            79
+        ],
+        "confidence": 0.847915768623352,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000313.jpg"
+    },
+    {
+        "frame_index": 314,
+        "timestamp": 10.466666666666667,
+        "detected": true,
+        "bbox": [
+            245,
+            39,
+            80,
+            80
+        ],
+        "confidence": 0.8695985078811646,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000314.jpg"
+    },
+    {
+        "frame_index": 315,
+        "timestamp": 10.5,
+        "detected": true,
+        "bbox": [
+            245,
+            39,
+            80,
+            80
+        ],
+        "confidence": 0.8696084022521973,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000315.jpg"
+    },
+    {
+        "frame_index": 316,
+        "timestamp": 10.533333333333333,
+        "detected": true,
+        "bbox": [
+            239,
+            39,
+            79,
+            79
+        ],
+        "confidence": 0.9014841914176941,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000316.jpg"
+    },
+    {
+        "frame_index": 317,
+        "timestamp": 10.566666666666666,
+        "detected": true,
+        "bbox": [
+            239,
+            39,
+            79,
+            79
+        ],
+        "confidence": 0.9012883305549622,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000317.jpg"
+    },
+    {
+        "frame_index": 318,
+        "timestamp": 10.6,
+        "detected": true,
+        "bbox": [
+            237,
+            37,
+            80,
+            81
+        ],
+        "confidence": 0.9169291853904724,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000318.jpg"
+    },
+    {
+        "frame_index": 319,
+        "timestamp": 10.633333333333333,
+        "detected": true,
+        "bbox": [
+            237,
+            25,
+            77,
+            77
+        ],
+        "confidence": 0.9384632110595703,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000319.jpg"
+    },
+    {
+        "frame_index": 320,
+        "timestamp": 10.666666666666666,
+        "detected": true,
+        "bbox": [
+            238,
+            25,
+            74,
+            74
+        ],
+        "confidence": 0.939351499080658,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000320.jpg"
+    },
+    {
+        "frame_index": 321,
+        "timestamp": 10.7,
+        "detected": true,
+        "bbox": [
+            238,
+            25,
+            74,
+            74
+        ],
+        "confidence": 0.9379758834838867,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000321.jpg"
+    },
+    {
+        "frame_index": 322,
+        "timestamp": 10.733333333333333,
+        "detected": true,
+        "bbox": [
+            246,
+            30,
+            72,
+            72
+        ],
+        "confidence": 0.882118821144104,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000322.jpg"
+    },
+    {
+        "frame_index": 323,
+        "timestamp": 10.766666666666667,
+        "detected": true,
+        "bbox": [
+            246,
+            30,
+            72,
+            72
+        ],
+        "confidence": 0.8826391696929932,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000323.jpg"
+    },
+    {
+        "frame_index": 324,
+        "timestamp": 10.8,
+        "detected": true,
+        "bbox": [
+            250,
+            29,
+            73,
+            73
+        ],
+        "confidence": 0.8382418155670166,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000324.jpg"
+    },
+    {
+        "frame_index": 325,
+        "timestamp": 10.833333333333334,
+        "detected": true,
+        "bbox": [
+            250,
+            29,
+            73,
+            73
+        ],
+        "confidence": 0.8366620540618896,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000325.jpg"
+    },
+    {
+        "frame_index": 326,
+        "timestamp": 10.866666666666667,
+        "detected": true,
+        "bbox": [
+            249,
+            26,
+            75,
+            76
+        ],
+        "confidence": 0.8556534051895142,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000326.jpg"
+    },
+    {
+        "frame_index": 327,
+        "timestamp": 10.9,
+        "detected": true,
+        "bbox": [
+            249,
+            26,
+            76,
+            76
+        ],
+        "confidence": 0.8608347177505493,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000327.jpg"
+    },
+    {
+        "frame_index": 328,
+        "timestamp": 10.933333333333334,
+        "detected": true,
+        "bbox": [
+            254,
+            29,
+            70,
+            69
+        ],
+        "confidence": 0.9185636639595032,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000328.jpg"
+    },
+    {
+        "frame_index": 329,
+        "timestamp": 10.966666666666667,
+        "detected": true,
+        "bbox": [
+            254,
+            29,
+            70,
+            69
+        ],
+        "confidence": 0.918746829032898,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000329.jpg"
+    },
+    {
+        "frame_index": 330,
+        "timestamp": 11.0,
+        "detected": true,
+        "bbox": [
+            255,
+            29,
+            70,
+            70
+        ],
+        "confidence": 0.9324502944946289,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000330.jpg"
+    },
+    {
+        "frame_index": 331,
+        "timestamp": 11.033333333333333,
+        "detected": true,
+        "bbox": [
+            255,
+            29,
+            70,
+            70
+        ],
+        "confidence": 0.9320739507675171,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000331.jpg"
+    },
+    {
+        "frame_index": 332,
+        "timestamp": 11.066666666666666,
+        "detected": true,
+        "bbox": [
+            256,
+            29,
+            68,
+            69
+        ],
+        "confidence": 0.9376817941665649,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000332.jpg"
+    },
+    {
+        "frame_index": 333,
+        "timestamp": 11.1,
+        "detected": true,
+        "bbox": [
+            242,
+            23,
+            74,
+            73
+        ],
+        "confidence": 0.8958930969238281,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000333.jpg"
+    },
+    {
+        "frame_index": 334,
+        "timestamp": 11.133333333333333,
+        "detected": true,
+        "bbox": [
+            244,
+            29,
+            70,
+            70
+        ],
+        "confidence": 0.9229482412338257,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000334.jpg"
+    },
+    {
+        "frame_index": 335,
+        "timestamp": 11.166666666666666,
+        "detected": true,
+        "bbox": [
+            232,
+            22,
+            78,
+            77
+        ],
+        "confidence": 0.8202700614929199,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000335.jpg"
+    },
+    {
+        "frame_index": 336,
+        "timestamp": 11.2,
+        "detected": true,
+        "bbox": [
+            232,
+            22,
+            78,
+            78
+        ],
+        "confidence": 0.8212632536888123,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000336.jpg"
+    },
+    {
+        "frame_index": 337,
+        "timestamp": 11.233333333333333,
+        "detected": true,
+        "bbox": [
+            230,
+            22,
+            79,
+            79
+        ],
+        "confidence": 0.867917537689209,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000337.jpg"
+    },
+    {
+        "frame_index": 338,
+        "timestamp": 11.266666666666667,
+        "detected": true,
+        "bbox": [
+            227,
+            26,
+            77,
+            78
+        ],
+        "confidence": 0.8602017164230347,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000338.jpg"
+    },
+    {
+        "frame_index": 339,
+        "timestamp": 11.3,
+        "detected": true,
+        "bbox": [
+            224,
+            30,
+            79,
+            78
+        ],
+        "confidence": 0.8324822187423706,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000339.jpg"
+    },
+    {
+        "frame_index": 340,
+        "timestamp": 11.333333333333334,
+        "detected": true,
+        "bbox": [
+            227,
+            37,
+            75,
+            75
+        ],
+        "confidence": 0.8306206464767456,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000340.jpg"
+    },
+    {
+        "frame_index": 341,
+        "timestamp": 11.366666666666667,
+        "detected": true,
+        "bbox": [
+            228,
+            46,
+            70,
+            70
+        ],
+        "confidence": 0.7595441341400146,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000341.jpg"
+    },
+    {
+        "frame_index": 342,
+        "timestamp": 11.4,
+        "detected": true,
+        "bbox": [
+            229,
+            47,
+            67,
+            68
+        ],
+        "confidence": 0.7166658639907837,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000342.jpg"
+    },
+    {
+        "frame_index": 343,
+        "timestamp": 11.433333333333334,
+        "detected": true,
+        "bbox": [
+            228,
+            55,
+            66,
+            65
+        ],
+        "confidence": 0.6394152045249939,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000343.jpg"
+    },
+    {
+        "frame_index": 344,
+        "timestamp": 11.466666666666667,
+        "detected": true,
+        "bbox": [
+            215,
+            45,
+            70,
+            70
+        ],
+        "confidence": 0.7852039933204651,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000344.jpg"
+    },
+    {
+        "frame_index": 345,
+        "timestamp": 11.5,
+        "detected": true,
+        "bbox": [
+            209,
+            26,
+            79,
+            79
+        ],
+        "confidence": 0.7899019718170166,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000345.jpg"
+    },
+    {
+        "frame_index": 346,
+        "timestamp": 11.533333333333333,
+        "detected": true,
+        "bbox": [
+            213,
+            30,
+            71,
+            70
+        ],
+        "confidence": 0.8343851566314697,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000346.jpg"
+    },
+    {
+        "frame_index": 347,
+        "timestamp": 11.566666666666666,
+        "detected": true,
+        "bbox": [
+            216,
+            27,
+            70,
+            71
+        ],
+        "confidence": 0.9590173363685608,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000347.jpg"
+    },
+    {
+        "frame_index": 348,
+        "timestamp": 11.6,
+        "detected": true,
+        "bbox": [
+            218,
+            28,
+            66,
+            66
+        ],
+        "confidence": 0.9455345869064331,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000348.jpg"
+    },
+    {
+        "frame_index": 349,
+        "timestamp": 11.633333333333333,
+        "detected": true,
+        "bbox": [
+            217,
+            33,
+            67,
+            66
+        ],
+        "confidence": 0.9220382571220398,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000349.jpg"
+    },
+    {
+        "frame_index": 350,
+        "timestamp": 11.666666666666666,
+        "detected": true,
+        "bbox": [
+            213,
+            32,
+            68,
+            68
+        ],
+        "confidence": 0.849794328212738,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000350.jpg"
+    },
+    {
+        "frame_index": 351,
+        "timestamp": 11.7,
+        "detected": true,
+        "bbox": [
+            215,
+            33,
+            70,
+            70
+        ],
+        "confidence": 0.8393173217773438,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000351.jpg"
+    },
+    {
+        "frame_index": 352,
+        "timestamp": 11.733333333333333,
+        "detected": true,
+        "bbox": [
+            214,
+            34,
+            70,
+            69
+        ],
+        "confidence": 0.8601190447807312,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000352.jpg"
+    },
+    {
+        "frame_index": 353,
+        "timestamp": 11.766666666666667,
+        "detected": true,
+        "bbox": [
+            214,
+            34,
+            70,
+            69
+        ],
+        "confidence": 0.8595572113990784,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000353.jpg"
+    },
+    {
+        "frame_index": 354,
+        "timestamp": 11.8,
+        "detected": true,
+        "bbox": [
+            216,
+            39,
+            67,
+            67
+        ],
+        "confidence": 0.8511173129081726,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000354.jpg"
+    },
+    {
+        "frame_index": 355,
+        "timestamp": 11.833333333333334,
+        "detected": true,
+        "bbox": [
+            211,
+            39,
+            73,
+            73
+        ],
+        "confidence": 0.8810757994651794,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000355.jpg"
+    },
+    {
+        "frame_index": 356,
+        "timestamp": 11.866666666666667,
+        "detected": true,
+        "bbox": [
+            207,
+            49,
+            73,
+            73
+        ],
+        "confidence": 0.8638904094696045,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000356.jpg"
+    },
+    {
+        "frame_index": 357,
+        "timestamp": 11.9,
+        "detected": true,
+        "bbox": [
+            202,
+            47,
+            81,
+            81
+        ],
+        "confidence": 0.8675982356071472,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000357.jpg"
+    },
+    {
+        "frame_index": 358,
+        "timestamp": 11.933333333333334,
+        "detected": true,
+        "bbox": [
+            203,
+            49,
+            79,
+            80
+        ],
+        "confidence": 0.886297881603241,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000358.jpg"
+    },
+    {
+        "frame_index": 359,
+        "timestamp": 11.966666666666667,
+        "detected": true,
+        "bbox": [
+            203,
+            48,
+            80,
+            81
+        ],
+        "confidence": 0.8770068287849426,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000359.jpg"
+    },
+    {
+        "frame_index": 360,
+        "timestamp": 12.0,
+        "detected": true,
+        "bbox": [
+            204,
+            43,
+            80,
+            80
+        ],
+        "confidence": 0.8147562146186829,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000360.jpg"
+    },
+    {
+        "frame_index": 361,
+        "timestamp": 12.033333333333333,
+        "detected": true,
+        "bbox": [
+            206,
+            44,
+            76,
+            77
+        ],
+        "confidence": 0.8053559064865112,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000361.jpg"
+    },
+    {
+        "frame_index": 362,
+        "timestamp": 12.066666666666666,
+        "detected": true,
+        "bbox": [
+            208,
+            46,
+            78,
+            78
+        ],
+        "confidence": 0.8801541328430176,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000362.jpg"
+    },
+    {
+        "frame_index": 363,
+        "timestamp": 12.1,
+        "detected": true,
+        "bbox": [
+            208,
+            44,
+            81,
+            81
+        ],
+        "confidence": 0.8624290227890015,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000363.jpg"
+    },
+    {
+        "frame_index": 364,
+        "timestamp": 12.133333333333333,
+        "detected": true,
+        "bbox": [
+            208,
+            44,
+            79,
+            79
+        ],
+        "confidence": 0.8588096499443054,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000364.jpg"
+    },
+    {
+        "frame_index": 365,
+        "timestamp": 12.166666666666666,
+        "detected": true,
+        "bbox": [
+            212,
+            53,
+            69,
+            69
+        ],
+        "confidence": 0.7193729281425476,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000365.jpg"
+    },
+    {
+        "frame_index": 366,
+        "timestamp": 12.2,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 367,
+        "timestamp": 12.233333333333333,
+        "detected": true,
+        "bbox": [
+            211,
+            48,
+            75,
+            75
+        ],
+        "confidence": 0.6446696519851685,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000367.jpg"
+    },
+    {
+        "frame_index": 368,
+        "timestamp": 12.266666666666667,
+        "detected": true,
+        "bbox": [
+            203,
+            38,
+            88,
+            87
+        ],
+        "confidence": 0.7529388070106506,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000368.jpg"
+    },
+    {
+        "frame_index": 369,
+        "timestamp": 12.3,
+        "detected": true,
+        "bbox": [
+            204,
+            45,
+            83,
+            84
+        ],
+        "confidence": 0.7309343218803406,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000369.jpg"
+    },
+    {
+        "frame_index": 370,
+        "timestamp": 12.333333333333334,
+        "detected": true,
+        "bbox": [
+            205,
+            48,
+            81,
+            81
+        ],
+        "confidence": 0.7592222094535828,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000370.jpg"
+    },
+    {
+        "frame_index": 371,
+        "timestamp": 12.366666666666667,
+        "detected": true,
+        "bbox": [
+            207,
+            57,
+            71,
+            71
+        ],
+        "confidence": 0.7719998955726624,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000371.jpg"
+    },
+    {
+        "frame_index": 372,
+        "timestamp": 12.4,
+        "detected": true,
+        "bbox": [
+            211,
+            65,
+            69,
+            69
+        ],
+        "confidence": 0.6102856993675232,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000372.jpg"
+    },
+    {
+        "frame_index": 373,
+        "timestamp": 12.433333333333334,
+        "detected": true,
+        "bbox": [
+            212,
+            67,
+            69,
+            68
+        ],
+        "confidence": 0.6159481406211853,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000373.jpg"
+    },
+    {
+        "frame_index": 374,
+        "timestamp": 12.466666666666667,
+        "detected": true,
+        "bbox": [
+            207,
+            57,
+            77,
+            77
+        ],
+        "confidence": 0.7204216122627258,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000374.jpg"
+    },
+    {
+        "frame_index": 375,
+        "timestamp": 12.5,
+        "detected": true,
+        "bbox": [
+            212,
+            55,
+            71,
+            72
+        ],
+        "confidence": 0.7968335747718811,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000375.jpg"
+    },
+    {
+        "frame_index": 376,
+        "timestamp": 12.533333333333333,
+        "detected": true,
+        "bbox": [
+            208,
+            48,
+            81,
+            80
+        ],
+        "confidence": 0.805436372756958,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000376.jpg"
+    },
+    {
+        "frame_index": 377,
+        "timestamp": 12.566666666666666,
+        "detected": true,
+        "bbox": [
+            208,
+            41,
+            81,
+            82
+        ],
+        "confidence": 0.8129298090934753,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000377.jpg"
+    },
+    {
+        "frame_index": 378,
+        "timestamp": 12.6,
+        "detected": true,
+        "bbox": [
+            206,
+            37,
+            80,
+            80
+        ],
+        "confidence": 0.8895748257637024,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000378.jpg"
+    },
+    {
+        "frame_index": 379,
+        "timestamp": 12.633333333333333,
+        "detected": true,
+        "bbox": [
+            210,
+            37,
+            71,
+            71
+        ],
+        "confidence": 0.7567117214202881,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000379.jpg"
+    },
+    {
+        "frame_index": 380,
+        "timestamp": 12.666666666666666,
+        "detected": true,
+        "bbox": [
+            211,
+            33,
+            71,
+            72
+        ],
+        "confidence": 0.8787664771080017,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000380.jpg"
+    },
+    {
+        "frame_index": 381,
+        "timestamp": 12.7,
+        "detected": true,
+        "bbox": [
+            212,
+            31,
+            69,
+            69
+        ],
+        "confidence": 0.920001208782196,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000381.jpg"
+    },
+    {
+        "frame_index": 382,
+        "timestamp": 12.733333333333333,
+        "detected": true,
+        "bbox": [
+            212,
+            31,
+            70,
+            69
+        ],
+        "confidence": 0.9246309399604797,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000382.jpg"
+    },
+    {
+        "frame_index": 383,
+        "timestamp": 12.766666666666667,
+        "detected": true,
+        "bbox": [
+            213,
+            30,
+            69,
+            69
+        ],
+        "confidence": 0.9461372494697571,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000383.jpg"
+    },
+    {
+        "frame_index": 384,
+        "timestamp": 12.8,
+        "detected": true,
+        "bbox": [
+            216,
+            36,
+            65,
+            65
+        ],
+        "confidence": 0.8432127833366394,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000384.jpg"
+    },
+    {
+        "frame_index": 385,
+        "timestamp": 12.833333333333334,
+        "detected": true,
+        "bbox": [
+            218,
+            40,
+            66,
+            65
+        ],
+        "confidence": 0.9058013558387756,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000385.jpg"
+    },
+    {
+        "frame_index": 386,
+        "timestamp": 12.866666666666667,
+        "detected": true,
+        "bbox": [
+            214,
+            40,
+            69,
+            69
+        ],
+        "confidence": 0.8863572478294373,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000386.jpg"
+    },
+    {
+        "frame_index": 387,
+        "timestamp": 12.9,
+        "detected": true,
+        "bbox": [
+            213,
+            40,
+            69,
+            69
+        ],
+        "confidence": 0.8507466912269592,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000387.jpg"
+    },
+    {
+        "frame_index": 388,
+        "timestamp": 12.933333333333334,
+        "detected": true,
+        "bbox": [
+            214,
+            40,
+            67,
+            66
+        ],
+        "confidence": 0.8300119638442993,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000388.jpg"
+    },
+    {
+        "frame_index": 389,
+        "timestamp": 12.966666666666667,
+        "detected": true,
+        "bbox": [
+            216,
+            40,
+            64,
+            65
+        ],
+        "confidence": 0.8850738406181335,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000389.jpg"
+    },
+    {
+        "frame_index": 390,
+        "timestamp": 13.0,
+        "detected": true,
+        "bbox": [
+            217,
+            40,
+            64,
+            64
+        ],
+        "confidence": 0.9047866463661194,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000390.jpg"
+    },
+    {
+        "frame_index": 391,
+        "timestamp": 13.033333333333333,
+        "detected": true,
+        "bbox": [
+            217,
+            40,
+            64,
+            64
+        ],
+        "confidence": 0.9067304134368896,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000391.jpg"
+    },
+    {
+        "frame_index": 392,
+        "timestamp": 13.066666666666666,
+        "detected": true,
+        "bbox": [
+            216,
+            40,
+            63,
+            64
+        ],
+        "confidence": 0.8913216590881348,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000392.jpg"
+    },
+    {
+        "frame_index": 393,
+        "timestamp": 13.1,
+        "detected": true,
+        "bbox": [
+            215,
+            39,
+            65,
+            65
+        ],
+        "confidence": 0.9087730646133423,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000393.jpg"
+    },
+    {
+        "frame_index": 394,
+        "timestamp": 13.133333333333333,
+        "detected": true,
+        "bbox": [
+            215,
+            40,
+            66,
+            66
+        ],
+        "confidence": 0.9065328240394592,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000394.jpg"
+    },
+    {
+        "frame_index": 395,
+        "timestamp": 13.166666666666666,
+        "detected": true,
+        "bbox": [
+            215,
+            40,
+            65,
+            65
+        ],
+        "confidence": 0.9090939164161682,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000395.jpg"
+    },
+    {
+        "frame_index": 396,
+        "timestamp": 13.2,
+        "detected": true,
+        "bbox": [
+            216,
+            41,
+            64,
+            63
+        ],
+        "confidence": 0.9088295102119446,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000396.jpg"
+    },
+    {
+        "frame_index": 397,
+        "timestamp": 13.233333333333333,
+        "detected": true,
+        "bbox": [
+            223,
+            41,
+            64,
+            64
+        ],
+        "confidence": 0.8901374340057373,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000397.jpg"
+    },
+    {
+        "frame_index": 398,
+        "timestamp": 13.266666666666667,
+        "detected": true,
+        "bbox": [
+            231,
+            27,
+            78,
+            78
+        ],
+        "confidence": 0.731235921382904,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000398.jpg"
+    },
+    {
+        "frame_index": 399,
+        "timestamp": 13.3,
+        "detected": true,
+        "bbox": [
+            242,
+            38,
+            72,
+            72
+        ],
+        "confidence": 0.8482187986373901,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000399.jpg"
+    },
+    {
+        "frame_index": 400,
+        "timestamp": 13.333333333333334,
+        "detected": true,
+        "bbox": [
+            246,
+            47,
+            66,
+            66
+        ],
+        "confidence": 0.798702597618103,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000400.jpg"
+    },
+    {
+        "frame_index": 401,
+        "timestamp": 13.366666666666667,
+        "detected": true,
+        "bbox": [
+            251,
+            48,
+            55,
+            55
+        ],
+        "confidence": 0.8676601648330688,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000401.jpg"
+    },
+    {
+        "frame_index": 402,
+        "timestamp": 13.4,
+        "detected": true,
+        "bbox": [
+            251,
+            54,
+            54,
+            53
+        ],
+        "confidence": 0.7083777189254761,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000402.jpg"
+    },
+    {
+        "frame_index": 403,
+        "timestamp": 13.433333333333334,
+        "detected": true,
+        "bbox": [
+            248,
+            59,
+            59,
+            59
+        ],
+        "confidence": 0.6949506998062134,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000403.jpg"
+    },
+    {
+        "frame_index": 404,
+        "timestamp": 13.466666666666667,
+        "detected": true,
+        "bbox": [
+            251,
+            63,
+            53,
+            53
+        ],
+        "confidence": 0.634864866733551,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000404.jpg"
+    },
+    {
+        "frame_index": 405,
+        "timestamp": 13.5,
+        "detected": true,
+        "bbox": [
+            249,
+            66,
+            58,
+            58
+        ],
+        "confidence": 0.712443470954895,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000405.jpg"
+    },
+    {
+        "frame_index": 406,
+        "timestamp": 13.533333333333333,
+        "detected": true,
+        "bbox": [
+            251,
+            67,
+            55,
+            55
+        ],
+        "confidence": 0.7807376980781555,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000406.jpg"
+    },
+    {
+        "frame_index": 407,
+        "timestamp": 13.566666666666666,
+        "detected": true,
+        "bbox": [
+            248,
+            60,
+            59,
+            59
+        ],
+        "confidence": 0.7308821678161621,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000407.jpg"
+    },
+    {
+        "frame_index": 408,
+        "timestamp": 13.6,
+        "detected": true,
+        "bbox": [
+            248,
+            61,
+            57,
+            57
+        ],
+        "confidence": 0.6411478519439697,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000408.jpg"
+    },
+    {
+        "frame_index": 409,
+        "timestamp": 13.633333333333333,
+        "detected": true,
+        "bbox": [
+            252,
+            57,
+            62,
+            62
+        ],
+        "confidence": 0.7742038369178772,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000409.jpg"
+    },
+    {
+        "frame_index": 410,
+        "timestamp": 13.666666666666666,
+        "detected": true,
+        "bbox": [
+            250,
+            42,
+            73,
+            74
+        ],
+        "confidence": 0.6957689523696899,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000410.jpg"
+    },
+    {
+        "frame_index": 411,
+        "timestamp": 13.7,
+        "detected": true,
+        "bbox": [
+            250,
+            42,
+            73,
+            74
+        ],
+        "confidence": 0.6947051882743835,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000411.jpg"
+    },
+    {
+        "frame_index": 412,
+        "timestamp": 13.733333333333333,
+        "detected": true,
+        "bbox": [
+            250,
+            28,
+            75,
+            75
+        ],
+        "confidence": 0.7544522285461426,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000412.jpg"
+    },
+    {
+        "frame_index": 413,
+        "timestamp": 13.766666666666667,
+        "detected": true,
+        "bbox": [
+            250,
+            28,
+            75,
+            75
+        ],
+        "confidence": 0.7621263265609741,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000413.jpg"
+    },
+    {
+        "frame_index": 414,
+        "timestamp": 13.8,
+        "detected": true,
+        "bbox": [
+            242,
+            35,
+            68,
+            68
+        ],
+        "confidence": 0.8870833516120911,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000414.jpg"
+    },
+    {
+        "frame_index": 415,
+        "timestamp": 13.833333333333334,
+        "detected": true,
+        "bbox": [
+            242,
+            35,
+            69,
+            68
+        ],
+        "confidence": 0.8867039084434509,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000415.jpg"
+    },
+    {
+        "frame_index": 416,
+        "timestamp": 13.866666666666667,
+        "detected": true,
+        "bbox": [
+            240,
+            44,
+            77,
+            77
+        ],
+        "confidence": 0.8795875310897827,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000416.jpg"
+    },
+    {
+        "frame_index": 417,
+        "timestamp": 13.9,
+        "detected": true,
+        "bbox": [
+            239,
+            44,
+            81,
+            81
+        ],
+        "confidence": 0.8409362435340881,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000417.jpg"
+    },
+    {
+        "frame_index": 418,
+        "timestamp": 13.933333333333334,
+        "detected": true,
+        "bbox": [
+            239,
+            44,
+            81,
+            81
+        ],
+        "confidence": 0.8408509492874146,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000418.jpg"
+    },
+    {
+        "frame_index": 419,
+        "timestamp": 13.966666666666667,
+        "detected": true,
+        "bbox": [
+            242,
+            49,
+            80,
+            80
+        ],
+        "confidence": 0.8847578763961792,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000419.jpg"
+    },
+    {
+        "frame_index": 420,
+        "timestamp": 14.0,
+        "detected": true,
+        "bbox": [
+            242,
+            49,
+            80,
+            80
+        ],
+        "confidence": 0.8856720924377441,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000420.jpg"
+    },
+    {
+        "frame_index": 421,
+        "timestamp": 14.033333333333333,
+        "detected": true,
+        "bbox": [
+            245,
+            51,
+            78,
+            78
+        ],
+        "confidence": 0.853477954864502,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000421.jpg"
+    },
+    {
+        "frame_index": 422,
+        "timestamp": 14.066666666666666,
+        "detected": true,
+        "bbox": [
+            245,
+            51,
+            78,
+            78
+        ],
+        "confidence": 0.8530911207199097,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000422.jpg"
+    },
+    {
+        "frame_index": 423,
+        "timestamp": 14.1,
+        "detected": true,
+        "bbox": [
+            247,
+            51,
+            78,
+            79
+        ],
+        "confidence": 0.9094570279121399,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000423.jpg"
+    },
+    {
+        "frame_index": 424,
+        "timestamp": 14.133333333333333,
+        "detected": true,
+        "bbox": [
+            247,
+            51,
+            78,
+            79
+        ],
+        "confidence": 0.9092129468917847,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000424.jpg"
+    },
+    {
+        "frame_index": 425,
+        "timestamp": 14.166666666666666,
+        "detected": true,
+        "bbox": [
+            247,
+            52,
+            78,
+            78
+        ],
+        "confidence": 0.90824294090271,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000425.jpg"
+    },
+    {
+        "frame_index": 426,
+        "timestamp": 14.2,
+        "detected": true,
+        "bbox": [
+            247,
+            51,
+            81,
+            81
+        ],
+        "confidence": 0.9425306916236877,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000426.jpg"
+    },
+    {
+        "frame_index": 427,
+        "timestamp": 14.233333333333333,
+        "detected": true,
+        "bbox": [
+            250,
+            56,
+            77,
+            77
+        ],
+        "confidence": 0.917056143283844,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000427.jpg"
+    },
+    {
+        "frame_index": 428,
+        "timestamp": 14.266666666666667,
+        "detected": true,
+        "bbox": [
+            249,
+            57,
+            77,
+            77
+        ],
+        "confidence": 0.8562624454498291,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000428.jpg"
+    },
+    {
+        "frame_index": 429,
+        "timestamp": 14.3,
+        "detected": true,
+        "bbox": [
+            249,
+            57,
+            77,
+            77
+        ],
+        "confidence": 0.8588664531707764,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000429.jpg"
+    },
+    {
+        "frame_index": 430,
+        "timestamp": 14.333333333333334,
+        "detected": true,
+        "bbox": [
+            250,
+            62,
+            82,
+            81
+        ],
+        "confidence": 0.9283525943756104,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000430.jpg"
+    },
+    {
+        "frame_index": 431,
+        "timestamp": 14.366666666666667,
+        "detected": true,
+        "bbox": [
+            250,
+            62,
+            82,
+            81
+        ],
+        "confidence": 0.9283913373947144,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000431.jpg"
+    },
+    {
+        "frame_index": 432,
+        "timestamp": 14.4,
+        "detected": true,
+        "bbox": [
+            249,
+            63,
+            83,
+            82
+        ],
+        "confidence": 0.9304191470146179,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000432.jpg"
+    },
+    {
+        "frame_index": 433,
+        "timestamp": 14.433333333333334,
+        "detected": true,
+        "bbox": [
+            248,
+            65,
+            78,
+            78
+        ],
+        "confidence": 0.9326031804084778,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000433.jpg"
+    },
+    {
+        "frame_index": 434,
+        "timestamp": 14.466666666666667,
+        "detected": true,
+        "bbox": [
+            250,
+            66,
+            76,
+            77
+        ],
+        "confidence": 0.9401951432228088,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000434.jpg"
+    },
+    {
+        "frame_index": 435,
+        "timestamp": 14.5,
+        "detected": true,
+        "bbox": [
+            249,
+            66,
+            78,
+            77
+        ],
+        "confidence": 0.9401956796646118,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000435.jpg"
+    },
+    {
+        "frame_index": 436,
+        "timestamp": 14.533333333333333,
+        "detected": true,
+        "bbox": [
+            252,
+            71,
+            75,
+            75
+        ],
+        "confidence": 0.9311972260475159,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000436.jpg"
+    },
+    {
+        "frame_index": 437,
+        "timestamp": 14.566666666666666,
+        "detected": true,
+        "bbox": [
+            254,
+            73,
+            75,
+            75
+        ],
+        "confidence": 0.8690632581710815,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000437.jpg"
+    },
+    {
+        "frame_index": 438,
+        "timestamp": 14.6,
+        "detected": true,
+        "bbox": [
+            254,
+            73,
+            75,
+            75
+        ],
+        "confidence": 0.8798473477363586,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000438.jpg"
+    },
+    {
+        "frame_index": 439,
+        "timestamp": 14.633333333333333,
+        "detected": true,
+        "bbox": [
+            257,
+            74,
+            74,
+            75
+        ],
+        "confidence": 0.8594297766685486,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000439.jpg"
+    },
+    {
+        "frame_index": 440,
+        "timestamp": 14.666666666666666,
+        "detected": true,
+        "bbox": [
+            255,
+            72,
+            78,
+            78
+        ],
+        "confidence": 0.8551567792892456,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000440.jpg"
+    },
+    {
+        "frame_index": 441,
+        "timestamp": 14.7,
+        "detected": true,
+        "bbox": [
+            254,
+            73,
+            79,
+            78
+        ],
+        "confidence": 0.8600829839706421,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000441.jpg"
+    },
+    {
+        "frame_index": 442,
+        "timestamp": 14.733333333333333,
+        "detected": true,
+        "bbox": [
+            254,
+            73,
+            79,
+            78
+        ],
+        "confidence": 0.8593782186508179,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000442.jpg"
+    },
+    {
+        "frame_index": 443,
+        "timestamp": 14.766666666666667,
+        "detected": true,
+        "bbox": [
+            260,
+            84,
+            64,
+            64
+        ],
+        "confidence": 0.7674229145050049,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000443.jpg"
+    },
+    {
+        "frame_index": 444,
+        "timestamp": 14.8,
+        "detected": true,
+        "bbox": [
+            260,
+            85,
+            64,
+            63
+        ],
+        "confidence": 0.7659357786178589,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000444.jpg"
+    },
+    {
+        "frame_index": 445,
+        "timestamp": 14.833333333333334,
+        "detected": true,
+        "bbox": [
+            256,
+            83,
+            72,
+            72
+        ],
+        "confidence": 0.920230507850647,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000445.jpg"
+    },
+    {
+        "frame_index": 446,
+        "timestamp": 14.866666666666667,
+        "detected": true,
+        "bbox": [
+            258,
+            85,
+            69,
+            69
+        ],
+        "confidence": 0.9055076837539673,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000446.jpg"
+    },
+    {
+        "frame_index": 447,
+        "timestamp": 14.9,
+        "detected": true,
+        "bbox": [
+            258,
+            88,
+            67,
+            68
+        ],
+        "confidence": 0.9266665577888489,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000447.jpg"
+    },
+    {
+        "frame_index": 448,
+        "timestamp": 14.933333333333334,
+        "detected": true,
+        "bbox": [
+            258,
+            88,
+            67,
+            68
+        ],
+        "confidence": 0.9267226457595825,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000448.jpg"
+    },
+    {
+        "frame_index": 449,
+        "timestamp": 14.966666666666667,
+        "detected": true,
+        "bbox": [
+            258,
+            93,
+            63,
+            62
+        ],
+        "confidence": 0.8340190649032593,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000449.jpg"
+    },
+    {
+        "frame_index": 450,
+        "timestamp": 15.0,
+        "detected": true,
+        "bbox": [
+            259,
+            94,
+            63,
+            64
+        ],
+        "confidence": 0.8305037021636963,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000450.jpg"
+    },
+    {
+        "frame_index": 451,
+        "timestamp": 15.033333333333333,
+        "detected": true,
+        "bbox": [
+            257,
+            94,
+            66,
+            65
+        ],
+        "confidence": 0.8260228633880615,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000451.jpg"
+    },
+    {
+        "frame_index": 452,
+        "timestamp": 15.066666666666666,
+        "detected": true,
+        "bbox": [
+            257,
+            94,
+            66,
+            65
+        ],
+        "confidence": 0.8244609236717224,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000452.jpg"
+    },
+    {
+        "frame_index": 453,
+        "timestamp": 15.1,
+        "detected": true,
+        "bbox": [
+            257,
+            93,
+            67,
+            67
+        ],
+        "confidence": 0.8104230761528015,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000453.jpg"
+    },
+    {
+        "frame_index": 454,
+        "timestamp": 15.133333333333333,
+        "detected": true,
+        "bbox": [
+            253,
+            91,
+            72,
+            72
+        ],
+        "confidence": 0.8086318969726562,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000454.jpg"
+    },
+    {
+        "frame_index": 455,
+        "timestamp": 15.166666666666666,
+        "detected": true,
+        "bbox": [
+            253,
+            91,
+            72,
+            72
+        ],
+        "confidence": 0.8083226680755615,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000455.jpg"
+    },
+    {
+        "frame_index": 456,
+        "timestamp": 15.2,
+        "detected": true,
+        "bbox": [
+            251,
+            88,
+            75,
+            75
+        ],
+        "confidence": 0.7287189960479736,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000456.jpg"
+    },
+    {
+        "frame_index": 457,
+        "timestamp": 15.233333333333333,
+        "detected": true,
+        "bbox": [
+            259,
+            99,
+            62,
+            62
+        ],
+        "confidence": 0.6214119791984558,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000457.jpg"
+    },
+    {
+        "frame_index": 458,
+        "timestamp": 15.266666666666667,
+        "detected": true,
+        "bbox": [
+            259,
+            99,
+            62,
+            62
+        ],
+        "confidence": 0.6116489171981812,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000458.jpg"
+    },
+    {
+        "frame_index": 459,
+        "timestamp": 15.3,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 460,
+        "timestamp": 15.333333333333334,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 461,
+        "timestamp": 15.366666666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 462,
+        "timestamp": 15.4,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 463,
+        "timestamp": 15.433333333333334,
+        "detected": true,
+        "bbox": [
+            255,
+            80,
+            77,
+            77
+        ],
+        "confidence": 0.6379063129425049,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000463.jpg"
+    },
+    {
+        "frame_index": 464,
+        "timestamp": 15.466666666666667,
+        "detected": true,
+        "bbox": [
+            254,
+            79,
+            78,
+            78
+        ],
+        "confidence": 0.6318501234054565,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000464.jpg"
+    },
+    {
+        "frame_index": 465,
+        "timestamp": 15.5,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 466,
+        "timestamp": 15.533333333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 467,
+        "timestamp": 15.566666666666666,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 468,
+        "timestamp": 15.6,
+        "detected": true,
+        "bbox": [
+            270,
+            84,
+            68,
+            67
+        ],
+        "confidence": 0.6158809065818787,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000468.jpg"
+    },
+    {
+        "frame_index": 469,
+        "timestamp": 15.633333333333333,
+        "detected": true,
+        "bbox": [
+            270,
+            84,
+            67,
+            67
+        ],
+        "confidence": 0.6091263294219971,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000469.jpg"
+    },
+    {
+        "frame_index": 470,
+        "timestamp": 15.666666666666666,
+        "detected": true,
+        "bbox": [
+            271,
+            103,
+            53,
+            53
+        ],
+        "confidence": 0.636559247970581,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000470.jpg"
+    },
+    {
+        "frame_index": 471,
+        "timestamp": 15.7,
+        "detected": true,
+        "bbox": [
+            269,
+            100,
+            58,
+            58
+        ],
+        "confidence": 0.6291108131408691,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000471.jpg"
+    },
+    {
+        "frame_index": 472,
+        "timestamp": 15.733333333333333,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.866572916507721,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000472.jpg"
+    },
+    {
+        "frame_index": 473,
+        "timestamp": 15.766666666666667,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            105
+        ],
+        "confidence": 0.8686277270317078,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000473.jpg"
+    },
+    {
+        "frame_index": 474,
+        "timestamp": 15.8,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            105
+        ],
+        "confidence": 0.8628202080726624,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000474.jpg"
+    },
+    {
+        "frame_index": 475,
+        "timestamp": 15.833333333333334,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.8647032976150513,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000475.jpg"
+    },
+    {
+        "frame_index": 476,
+        "timestamp": 15.866666666666667,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            105,
+            104
+        ],
+        "confidence": 0.8639724850654602,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000476.jpg"
+    },
+    {
+        "frame_index": 477,
+        "timestamp": 15.9,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.9012813568115234,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000477.jpg"
+    },
+    {
+        "frame_index": 478,
+        "timestamp": 15.933333333333334,
+        "detected": true,
+        "bbox": [
+            198,
+            117,
+            104,
+            104
+        ],
+        "confidence": 0.9012112021446228,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000478.jpg"
+    },
+    {
+        "frame_index": 479,
+        "timestamp": 15.966666666666667,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8453841209411621,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000479.jpg"
+    },
+    {
+        "frame_index": 480,
+        "timestamp": 16.0,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8453851342201233,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000480.jpg"
+    },
+    {
+        "frame_index": 481,
+        "timestamp": 16.033333333333335,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8466655611991882,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000481.jpg"
+    },
+    {
+        "frame_index": 482,
+        "timestamp": 16.066666666666666,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8472436666488647,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000482.jpg"
+    },
+    {
+        "frame_index": 483,
+        "timestamp": 16.1,
+        "detected": true,
+        "bbox": [
+            278,
+            65,
+            72,
+            72
+        ],
+        "confidence": 0.8404864072799683,
+        "image_path": "extracted_faces/test/fake/Screen Recording 2026-01-23 092047/frame_000483.jpg"
+    }
+]

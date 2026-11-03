@@ -1,0 +1,3651 @@
+[
+    {
+        "frame_index": 0,
+        "timestamp": 0.0,
+        "detected": true,
+        "bbox": [
+            91,
+            139,
+            360,
+            360
+        ],
+        "confidence": 0.8887653350830078,
+        "image_path": "extracted_faces/test/real/1/frame_000000.jpg"
+    },
+    {
+        "frame_index": 1,
+        "timestamp": 0.03373333333333333,
+        "detected": true,
+        "bbox": [
+            89,
+            143,
+            362,
+            362
+        ],
+        "confidence": 0.8705502152442932,
+        "image_path": "extracted_faces/test/real/1/frame_000001.jpg"
+    },
+    {
+        "frame_index": 2,
+        "timestamp": 0.06746666666666666,
+        "detected": true,
+        "bbox": [
+            89,
+            150,
+            352,
+            352
+        ],
+        "confidence": 0.8455999493598938,
+        "image_path": "extracted_faces/test/real/1/frame_000002.jpg"
+    },
+    {
+        "frame_index": 3,
+        "timestamp": 0.1012,
+        "detected": true,
+        "bbox": [
+            84,
+            144,
+            350,
+            350
+        ],
+        "confidence": 0.8765870928764343,
+        "image_path": "extracted_faces/test/real/1/frame_000003.jpg"
+    },
+    {
+        "frame_index": 4,
+        "timestamp": 0.13493333333333332,
+        "detected": true,
+        "bbox": [
+            76,
+            145,
+            357,
+            357
+        ],
+        "confidence": 0.8763927817344666,
+        "image_path": "extracted_faces/test/real/1/frame_000004.jpg"
+    },
+    {
+        "frame_index": 5,
+        "timestamp": 0.16866666666666666,
+        "detected": true,
+        "bbox": [
+            66,
+            140,
+            374,
+            374
+        ],
+        "confidence": 0.829502522945404,
+        "image_path": "extracted_faces/test/real/1/frame_000005.jpg"
+    },
+    {
+        "frame_index": 6,
+        "timestamp": 0.2024,
+        "detected": true,
+        "bbox": [
+            62,
+            142,
+            373,
+            373
+        ],
+        "confidence": 0.8217772841453552,
+        "image_path": "extracted_faces/test/real/1/frame_000006.jpg"
+    },
+    {
+        "frame_index": 7,
+        "timestamp": 0.23613333333333333,
+        "detected": true,
+        "bbox": [
+            52,
+            137,
+            384,
+            384
+        ],
+        "confidence": 0.8767148852348328,
+        "image_path": "extracted_faces/test/real/1/frame_000007.jpg"
+    },
+    {
+        "frame_index": 8,
+        "timestamp": 0.26986666666666664,
+        "detected": true,
+        "bbox": [
+            54,
+            142,
+            372,
+            373
+        ],
+        "confidence": 0.828596830368042,
+        "image_path": "extracted_faces/test/real/1/frame_000008.jpg"
+    },
+    {
+        "frame_index": 9,
+        "timestamp": 0.3036,
+        "detected": true,
+        "bbox": [
+            46,
+            136,
+            380,
+            380
+        ],
+        "confidence": 0.8417390584945679,
+        "image_path": "extracted_faces/test/real/1/frame_000009.jpg"
+    },
+    {
+        "frame_index": 10,
+        "timestamp": 0.3373333333333333,
+        "detected": true,
+        "bbox": [
+            47,
+            142,
+            375,
+            375
+        ],
+        "confidence": 0.836527407169342,
+        "image_path": "extracted_faces/test/real/1/frame_000010.jpg"
+    },
+    {
+        "frame_index": 11,
+        "timestamp": 0.37106666666666666,
+        "detected": true,
+        "bbox": [
+            50,
+            143,
+            370,
+            370
+        ],
+        "confidence": 0.839583694934845,
+        "image_path": "extracted_faces/test/real/1/frame_000011.jpg"
+    },
+    {
+        "frame_index": 12,
+        "timestamp": 0.4048,
+        "detected": true,
+        "bbox": [
+            47,
+            140,
+            366,
+            367
+        ],
+        "confidence": 0.8600027561187744,
+        "image_path": "extracted_faces/test/real/1/frame_000012.jpg"
+    },
+    {
+        "frame_index": 13,
+        "timestamp": 0.43853333333333333,
+        "detected": true,
+        "bbox": [
+            37,
+            141,
+            371,
+            371
+        ],
+        "confidence": 0.833602249622345,
+        "image_path": "extracted_faces/test/real/1/frame_000013.jpg"
+    },
+    {
+        "frame_index": 14,
+        "timestamp": 0.47226666666666667,
+        "detected": true,
+        "bbox": [
+            32,
+            139,
+            372,
+            371
+        ],
+        "confidence": 0.8992373943328857,
+        "image_path": "extracted_faces/test/real/1/frame_000014.jpg"
+    },
+    {
+        "frame_index": 15,
+        "timestamp": 0.506,
+        "detected": true,
+        "bbox": [
+            31,
+            138,
+            372,
+            372
+        ],
+        "confidence": 0.8960915803909302,
+        "image_path": "extracted_faces/test/real/1/frame_000015.jpg"
+    },
+    {
+        "frame_index": 16,
+        "timestamp": 0.5397333333333333,
+        "detected": true,
+        "bbox": [
+            31,
+            137,
+            374,
+            374
+        ],
+        "confidence": 0.8844786882400513,
+        "image_path": "extracted_faces/test/real/1/frame_000016.jpg"
+    },
+    {
+        "frame_index": 17,
+        "timestamp": 0.5734666666666667,
+        "detected": true,
+        "bbox": [
+            32,
+            139,
+            371,
+            370
+        ],
+        "confidence": 0.9042338132858276,
+        "image_path": "extracted_faces/test/real/1/frame_000017.jpg"
+    },
+    {
+        "frame_index": 18,
+        "timestamp": 0.6072,
+        "detected": true,
+        "bbox": [
+            34,
+            141,
+            367,
+            367
+        ],
+        "confidence": 0.8937336206436157,
+        "image_path": "extracted_faces/test/real/1/frame_000018.jpg"
+    },
+    {
+        "frame_index": 19,
+        "timestamp": 0.6409333333333334,
+        "detected": true,
+        "bbox": [
+            33,
+            143,
+            368,
+            368
+        ],
+        "confidence": 0.9012303352355957,
+        "image_path": "extracted_faces/test/real/1/frame_000019.jpg"
+    },
+    {
+        "frame_index": 20,
+        "timestamp": 0.6746666666666666,
+        "detected": true,
+        "bbox": [
+            34,
+            142,
+            365,
+            365
+        ],
+        "confidence": 0.9034935832023621,
+        "image_path": "extracted_faces/test/real/1/frame_000020.jpg"
+    },
+    {
+        "frame_index": 21,
+        "timestamp": 0.7083999999999999,
+        "detected": true,
+        "bbox": [
+            32,
+            143,
+            369,
+            369
+        ],
+        "confidence": 0.9091238975524902,
+        "image_path": "extracted_faces/test/real/1/frame_000021.jpg"
+    },
+    {
+        "frame_index": 22,
+        "timestamp": 0.7421333333333333,
+        "detected": true,
+        "bbox": [
+            30,
+            143,
+            371,
+            371
+        ],
+        "confidence": 0.9018965363502502,
+        "image_path": "extracted_faces/test/real/1/frame_000022.jpg"
+    },
+    {
+        "frame_index": 23,
+        "timestamp": 0.7758666666666666,
+        "detected": true,
+        "bbox": [
+            27,
+            140,
+            375,
+            376
+        ],
+        "confidence": 0.8888088464736938,
+        "image_path": "extracted_faces/test/real/1/frame_000023.jpg"
+    },
+    {
+        "frame_index": 24,
+        "timestamp": 0.8096,
+        "detected": true,
+        "bbox": [
+            23,
+            137,
+            383,
+            382
+        ],
+        "confidence": 0.8888996243476868,
+        "image_path": "extracted_faces/test/real/1/frame_000024.jpg"
+    },
+    {
+        "frame_index": 25,
+        "timestamp": 0.8433333333333333,
+        "detected": true,
+        "bbox": [
+            22,
+            136,
+            382,
+            382
+        ],
+        "confidence": 0.8585893511772156,
+        "image_path": "extracted_faces/test/real/1/frame_000025.jpg"
+    },
+    {
+        "frame_index": 26,
+        "timestamp": 0.8770666666666667,
+        "detected": true,
+        "bbox": [
+            19,
+            135,
+            387,
+            387
+        ],
+        "confidence": 0.8235645890235901,
+        "image_path": "extracted_faces/test/real/1/frame_000026.jpg"
+    },
+    {
+        "frame_index": 27,
+        "timestamp": 0.9107999999999999,
+        "detected": true,
+        "bbox": [
+            22,
+            136,
+            384,
+            384
+        ],
+        "confidence": 0.8713708519935608,
+        "image_path": "extracted_faces/test/real/1/frame_000027.jpg"
+    },
+    {
+        "frame_index": 28,
+        "timestamp": 0.9445333333333333,
+        "detected": true,
+        "bbox": [
+            25,
+            137,
+            381,
+            381
+        ],
+        "confidence": 0.8963789939880371,
+        "image_path": "extracted_faces/test/real/1/frame_000028.jpg"
+    },
+    {
+        "frame_index": 29,
+        "timestamp": 0.9782666666666666,
+        "detected": true,
+        "bbox": [
+            25,
+            136,
+            383,
+            383
+        ],
+        "confidence": 0.8992021083831787,
+        "image_path": "extracted_faces/test/real/1/frame_000029.jpg"
+    },
+    {
+        "frame_index": 30,
+        "timestamp": 1.012,
+        "detected": true,
+        "bbox": [
+            27,
+            139,
+            380,
+            380
+        ],
+        "confidence": 0.8667435050010681,
+        "image_path": "extracted_faces/test/real/1/frame_000030.jpg"
+    },
+    {
+        "frame_index": 31,
+        "timestamp": 1.0457333333333332,
+        "detected": true,
+        "bbox": [
+            22,
+            135,
+            390,
+            390
+        ],
+        "confidence": 0.8127399682998657,
+        "image_path": "extracted_faces/test/real/1/frame_000031.jpg"
+    },
+    {
+        "frame_index": 32,
+        "timestamp": 1.0794666666666666,
+        "detected": true,
+        "bbox": [
+            22,
+            134,
+            392,
+            391
+        ],
+        "confidence": 0.7838459610939026,
+        "image_path": "extracted_faces/test/real/1/frame_000032.jpg"
+    },
+    {
+        "frame_index": 33,
+        "timestamp": 1.1132,
+        "detected": true,
+        "bbox": [
+            38,
+            145,
+            378,
+            378
+        ],
+        "confidence": 0.8231478929519653,
+        "image_path": "extracted_faces/test/real/1/frame_000033.jpg"
+    },
+    {
+        "frame_index": 34,
+        "timestamp": 1.1469333333333334,
+        "detected": true,
+        "bbox": [
+            45,
+            141,
+            374,
+            375
+        ],
+        "confidence": 0.8300552368164062,
+        "image_path": "extracted_faces/test/real/1/frame_000034.jpg"
+    },
+    {
+        "frame_index": 35,
+        "timestamp": 1.1806666666666665,
+        "detected": true,
+        "bbox": [
+            55,
+            144,
+            371,
+            372
+        ],
+        "confidence": 0.8442803025245667,
+        "image_path": "extracted_faces/test/real/1/frame_000035.jpg"
+    },
+    {
+        "frame_index": 36,
+        "timestamp": 1.2144,
+        "detected": true,
+        "bbox": [
+            63,
+            146,
+            368,
+            367
+        ],
+        "confidence": 0.8547530770301819,
+        "image_path": "extracted_faces/test/real/1/frame_000036.jpg"
+    },
+    {
+        "frame_index": 37,
+        "timestamp": 1.2481333333333333,
+        "detected": true,
+        "bbox": [
+            64,
+            139,
+            375,
+            375
+        ],
+        "confidence": 0.7614474892616272,
+        "image_path": "extracted_faces/test/real/1/frame_000037.jpg"
+    },
+    {
+        "frame_index": 38,
+        "timestamp": 1.2818666666666667,
+        "detected": true,
+        "bbox": [
+            81,
+            139,
+            357,
+            358
+        ],
+        "confidence": 0.8214853405952454,
+        "image_path": "extracted_faces/test/real/1/frame_000038.jpg"
+    },
+    {
+        "frame_index": 39,
+        "timestamp": 1.3155999999999999,
+        "detected": true,
+        "bbox": [
+            90,
+            138,
+            354,
+            354
+        ],
+        "confidence": 0.8732722401618958,
+        "image_path": "extracted_faces/test/real/1/frame_000039.jpg"
+    },
+    {
+        "frame_index": 40,
+        "timestamp": 1.3493333333333333,
+        "detected": true,
+        "bbox": [
+            93,
+            131,
+            364,
+            364
+        ],
+        "confidence": 0.8237305283546448,
+        "image_path": "extracted_faces/test/real/1/frame_000040.jpg"
+    },
+    {
+        "frame_index": 41,
+        "timestamp": 1.3830666666666667,
+        "detected": true,
+        "bbox": [
+            100,
+            133,
+            364,
+            364
+        ],
+        "confidence": 0.8428523540496826,
+        "image_path": "extracted_faces/test/real/1/frame_000041.jpg"
+    },
+    {
+        "frame_index": 42,
+        "timestamp": 1.4167999999999998,
+        "detected": true,
+        "bbox": [
+            92,
+            119,
+            388,
+            393
+        ],
+        "confidence": 0.7125791311264038,
+        "image_path": "extracted_faces/test/real/1/frame_000042.jpg"
+    },
+    {
+        "frame_index": 43,
+        "timestamp": 1.4505333333333332,
+        "detected": true,
+        "bbox": [
+            102,
+            124,
+            378,
+            386
+        ],
+        "confidence": 0.8258017897605896,
+        "image_path": "extracted_faces/test/real/1/frame_000043.jpg"
+    },
+    {
+        "frame_index": 44,
+        "timestamp": 1.4842666666666666,
+        "detected": true,
+        "bbox": [
+            104,
+            119,
+            376,
+            388
+        ],
+        "confidence": 0.8308133482933044,
+        "image_path": "extracted_faces/test/real/1/frame_000044.jpg"
+    },
+    {
+        "frame_index": 45,
+        "timestamp": 1.518,
+        "detected": true,
+        "bbox": [
+            108,
+            117,
+            372,
+            390
+        ],
+        "confidence": 0.7578169703483582,
+        "image_path": "extracted_faces/test/real/1/frame_000045.jpg"
+    },
+    {
+        "frame_index": 46,
+        "timestamp": 1.5517333333333332,
+        "detected": true,
+        "bbox": [
+            113,
+            115,
+            367,
+            385
+        ],
+        "confidence": 0.8344383835792542,
+        "image_path": "extracted_faces/test/real/1/frame_000046.jpg"
+    },
+    {
+        "frame_index": 47,
+        "timestamp": 1.5854666666666666,
+        "detected": true,
+        "bbox": [
+            115,
+            117,
+            365,
+            383
+        ],
+        "confidence": 0.8686459064483643,
+        "image_path": "extracted_faces/test/real/1/frame_000047.jpg"
+    },
+    {
+        "frame_index": 48,
+        "timestamp": 1.6192,
+        "detected": true,
+        "bbox": [
+            120,
+            116,
+            360,
+            377
+        ],
+        "confidence": 0.8798218965530396,
+        "image_path": "extracted_faces/test/real/1/frame_000048.jpg"
+    },
+    {
+        "frame_index": 49,
+        "timestamp": 1.6529333333333334,
+        "detected": true,
+        "bbox": [
+            116,
+            115,
+            364,
+            386
+        ],
+        "confidence": 0.8766378164291382,
+        "image_path": "extracted_faces/test/real/1/frame_000049.jpg"
+    },
+    {
+        "frame_index": 50,
+        "timestamp": 1.6866666666666665,
+        "detected": true,
+        "bbox": [
+            118,
+            112,
+            362,
+            384
+        ],
+        "confidence": 0.8822978138923645,
+        "image_path": "extracted_faces/test/real/1/frame_000050.jpg"
+    },
+    {
+        "frame_index": 51,
+        "timestamp": 1.7204,
+        "detected": true,
+        "bbox": [
+            121,
+            113,
+            359,
+            381
+        ],
+        "confidence": 0.8619850277900696,
+        "image_path": "extracted_faces/test/real/1/frame_000051.jpg"
+    },
+    {
+        "frame_index": 52,
+        "timestamp": 1.7541333333333333,
+        "detected": true,
+        "bbox": [
+            121,
+            113,
+            359,
+            381
+        ],
+        "confidence": 0.8810548782348633,
+        "image_path": "extracted_faces/test/real/1/frame_000052.jpg"
+    },
+    {
+        "frame_index": 53,
+        "timestamp": 1.7878666666666665,
+        "detected": true,
+        "bbox": [
+            125,
+            117,
+            355,
+            376
+        ],
+        "confidence": 0.8745801448822021,
+        "image_path": "extracted_faces/test/real/1/frame_000053.jpg"
+    },
+    {
+        "frame_index": 54,
+        "timestamp": 1.8215999999999999,
+        "detected": true,
+        "bbox": [
+            127,
+            118,
+            353,
+            374
+        ],
+        "confidence": 0.8402323722839355,
+        "image_path": "extracted_faces/test/real/1/frame_000054.jpg"
+    },
+    {
+        "frame_index": 55,
+        "timestamp": 1.8553333333333333,
+        "detected": true,
+        "bbox": [
+            127,
+            119,
+            353,
+            374
+        ],
+        "confidence": 0.8763152956962585,
+        "image_path": "extracted_faces/test/real/1/frame_000055.jpg"
+    },
+    {
+        "frame_index": 56,
+        "timestamp": 1.8890666666666667,
+        "detected": true,
+        "bbox": [
+            129,
+            119,
+            351,
+            373
+        ],
+        "confidence": 0.8149923086166382,
+        "image_path": "extracted_faces/test/real/1/frame_000056.jpg"
+    },
+    {
+        "frame_index": 57,
+        "timestamp": 1.9227999999999998,
+        "detected": true,
+        "bbox": [
+            129,
+            119,
+            351,
+            373
+        ],
+        "confidence": 0.8408600091934204,
+        "image_path": "extracted_faces/test/real/1/frame_000057.jpg"
+    },
+    {
+        "frame_index": 58,
+        "timestamp": 1.9565333333333332,
+        "detected": true,
+        "bbox": [
+            132,
+            128,
+            348,
+            368
+        ],
+        "confidence": 0.8472768068313599,
+        "image_path": "extracted_faces/test/real/1/frame_000058.jpg"
+    },
+    {
+        "frame_index": 59,
+        "timestamp": 1.9902666666666666,
+        "detected": true,
+        "bbox": [
+            134,
+            125,
+            346,
+            368
+        ],
+        "confidence": 0.8709335327148438,
+        "image_path": "extracted_faces/test/real/1/frame_000059.jpg"
+    },
+    {
+        "frame_index": 60,
+        "timestamp": 2.024,
+        "detected": true,
+        "bbox": [
+            134,
+            126,
+            346,
+            366
+        ],
+        "confidence": 0.8920345306396484,
+        "image_path": "extracted_faces/test/real/1/frame_000060.jpg"
+    },
+    {
+        "frame_index": 61,
+        "timestamp": 2.057733333333333,
+        "detected": true,
+        "bbox": [
+            137,
+            126,
+            343,
+            365
+        ],
+        "confidence": 0.9007864594459534,
+        "image_path": "extracted_faces/test/real/1/frame_000061.jpg"
+    },
+    {
+        "frame_index": 62,
+        "timestamp": 2.0914666666666664,
+        "detected": true,
+        "bbox": [
+            138,
+            123,
+            342,
+            364
+        ],
+        "confidence": 0.8996335864067078,
+        "image_path": "extracted_faces/test/real/1/frame_000062.jpg"
+    },
+    {
+        "frame_index": 63,
+        "timestamp": 2.1252,
+        "detected": true,
+        "bbox": [
+            140,
+            125,
+            340,
+            361
+        ],
+        "confidence": 0.9171598553657532,
+        "image_path": "extracted_faces/test/real/1/frame_000063.jpg"
+    },
+    {
+        "frame_index": 64,
+        "timestamp": 2.158933333333333,
+        "detected": true,
+        "bbox": [
+            138,
+            131,
+            342,
+            363
+        ],
+        "confidence": 0.9022510647773743,
+        "image_path": "extracted_faces/test/real/1/frame_000064.jpg"
+    },
+    {
+        "frame_index": 65,
+        "timestamp": 2.1926666666666668,
+        "detected": true,
+        "bbox": [
+            139,
+            133,
+            341,
+            361
+        ],
+        "confidence": 0.8968506455421448,
+        "image_path": "extracted_faces/test/real/1/frame_000065.jpg"
+    },
+    {
+        "frame_index": 66,
+        "timestamp": 2.2264,
+        "detected": true,
+        "bbox": [
+            137,
+            132,
+            343,
+            363
+        ],
+        "confidence": 0.869742751121521,
+        "image_path": "extracted_faces/test/real/1/frame_000066.jpg"
+    },
+    {
+        "frame_index": 67,
+        "timestamp": 2.260133333333333,
+        "detected": true,
+        "bbox": [
+            137,
+            132,
+            343,
+            361
+        ],
+        "confidence": 0.869126558303833,
+        "image_path": "extracted_faces/test/real/1/frame_000067.jpg"
+    },
+    {
+        "frame_index": 68,
+        "timestamp": 2.2938666666666667,
+        "detected": true,
+        "bbox": [
+            135,
+            130,
+            345,
+            364
+        ],
+        "confidence": 0.8491207361221313,
+        "image_path": "extracted_faces/test/real/1/frame_000068.jpg"
+    },
+    {
+        "frame_index": 69,
+        "timestamp": 2.3276,
+        "detected": true,
+        "bbox": [
+            135,
+            128,
+            345,
+            363
+        ],
+        "confidence": 0.8574569225311279,
+        "image_path": "extracted_faces/test/real/1/frame_000069.jpg"
+    },
+    {
+        "frame_index": 70,
+        "timestamp": 2.361333333333333,
+        "detected": true,
+        "bbox": [
+            137,
+            132,
+            343,
+            359
+        ],
+        "confidence": 0.836206316947937,
+        "image_path": "extracted_faces/test/real/1/frame_000070.jpg"
+    },
+    {
+        "frame_index": 71,
+        "timestamp": 2.3950666666666667,
+        "detected": true,
+        "bbox": [
+            137,
+            133,
+            343,
+            358
+        ],
+        "confidence": 0.8316184282302856,
+        "image_path": "extracted_faces/test/real/1/frame_000071.jpg"
+    },
+    {
+        "frame_index": 72,
+        "timestamp": 2.4288,
+        "detected": true,
+        "bbox": [
+            137,
+            133,
+            343,
+            357
+        ],
+        "confidence": 0.8174182176589966,
+        "image_path": "extracted_faces/test/real/1/frame_000072.jpg"
+    },
+    {
+        "frame_index": 73,
+        "timestamp": 2.462533333333333,
+        "detected": true,
+        "bbox": [
+            130,
+            123,
+            350,
+            366
+        ],
+        "confidence": 0.8907976746559143,
+        "image_path": "extracted_faces/test/real/1/frame_000073.jpg"
+    },
+    {
+        "frame_index": 74,
+        "timestamp": 2.4962666666666666,
+        "detected": true,
+        "bbox": [
+            126,
+            120,
+            354,
+            369
+        ],
+        "confidence": 0.8912950754165649,
+        "image_path": "extracted_faces/test/real/1/frame_000074.jpg"
+    },
+    {
+        "frame_index": 75,
+        "timestamp": 2.53,
+        "detected": true,
+        "bbox": [
+            127,
+            127,
+            353,
+            365
+        ],
+        "confidence": 0.9180869460105896,
+        "image_path": "extracted_faces/test/real/1/frame_000075.jpg"
+    },
+    {
+        "frame_index": 76,
+        "timestamp": 2.5637333333333334,
+        "detected": true,
+        "bbox": [
+            127,
+            134,
+            353,
+            359
+        ],
+        "confidence": 0.8853883743286133,
+        "image_path": "extracted_faces/test/real/1/frame_000076.jpg"
+    },
+    {
+        "frame_index": 77,
+        "timestamp": 2.5974666666666666,
+        "detected": true,
+        "bbox": [
+            120,
+            130,
+            360,
+            367
+        ],
+        "confidence": 0.7226888537406921,
+        "image_path": "extracted_faces/test/real/1/frame_000077.jpg"
+    },
+    {
+        "frame_index": 78,
+        "timestamp": 2.6311999999999998,
+        "detected": true,
+        "bbox": [
+            116,
+            128,
+            364,
+            376
+        ],
+        "confidence": 0.8204594254493713,
+        "image_path": "extracted_faces/test/real/1/frame_000078.jpg"
+    },
+    {
+        "frame_index": 79,
+        "timestamp": 2.6649333333333334,
+        "detected": true,
+        "bbox": [
+            112,
+            132,
+            368,
+            370
+        ],
+        "confidence": 0.8766728639602661,
+        "image_path": "extracted_faces/test/real/1/frame_000079.jpg"
+    },
+    {
+        "frame_index": 80,
+        "timestamp": 2.6986666666666665,
+        "detected": true,
+        "bbox": [
+            107,
+            140,
+            373,
+            375
+        ],
+        "confidence": 0.9098785519599915,
+        "image_path": "extracted_faces/test/real/1/frame_000080.jpg"
+    },
+    {
+        "frame_index": 81,
+        "timestamp": 2.7323999999999997,
+        "detected": true,
+        "bbox": [
+            104,
+            139,
+            367,
+            368
+        ],
+        "confidence": 0.8509958982467651,
+        "image_path": "extracted_faces/test/real/1/frame_000081.jpg"
+    },
+    {
+        "frame_index": 82,
+        "timestamp": 2.7661333333333333,
+        "detected": true,
+        "bbox": [
+            98,
+            135,
+            368,
+            368
+        ],
+        "confidence": 0.8946054577827454,
+        "image_path": "extracted_faces/test/real/1/frame_000082.jpg"
+    },
+    {
+        "frame_index": 83,
+        "timestamp": 2.7998666666666665,
+        "detected": true,
+        "bbox": [
+            95,
+            141,
+            365,
+            365
+        ],
+        "confidence": 0.8101626634597778,
+        "image_path": "extracted_faces/test/real/1/frame_000083.jpg"
+    },
+    {
+        "frame_index": 84,
+        "timestamp": 2.8335999999999997,
+        "detected": true,
+        "bbox": [
+            96,
+            147,
+            354,
+            354
+        ],
+        "confidence": 0.9129700660705566,
+        "image_path": "extracted_faces/test/real/1/frame_000084.jpg"
+    },
+    {
+        "frame_index": 85,
+        "timestamp": 2.8673333333333333,
+        "detected": true,
+        "bbox": [
+            90,
+            147,
+            363,
+            363
+        ],
+        "confidence": 0.9197724461555481,
+        "image_path": "extracted_faces/test/real/1/frame_000085.jpg"
+    },
+    {
+        "frame_index": 86,
+        "timestamp": 2.9010666666666665,
+        "detected": true,
+        "bbox": [
+            86,
+            147,
+            366,
+            366
+        ],
+        "confidence": 0.8977934718132019,
+        "image_path": "extracted_faces/test/real/1/frame_000086.jpg"
+    },
+    {
+        "frame_index": 87,
+        "timestamp": 2.9348,
+        "detected": true,
+        "bbox": [
+            83,
+            146,
+            371,
+            370
+        ],
+        "confidence": 0.8968850374221802,
+        "image_path": "extracted_faces/test/real/1/frame_000087.jpg"
+    },
+    {
+        "frame_index": 88,
+        "timestamp": 2.9685333333333332,
+        "detected": true,
+        "bbox": [
+            81,
+            146,
+            372,
+            372
+        ],
+        "confidence": 0.9152931571006775,
+        "image_path": "extracted_faces/test/real/1/frame_000088.jpg"
+    },
+    {
+        "frame_index": 89,
+        "timestamp": 3.0022666666666664,
+        "detected": true,
+        "bbox": [
+            81,
+            151,
+            371,
+            371
+        ],
+        "confidence": 0.9265083074569702,
+        "image_path": "extracted_faces/test/real/1/frame_000089.jpg"
+    },
+    {
+        "frame_index": 90,
+        "timestamp": 3.036,
+        "detected": true,
+        "bbox": [
+            79,
+            149,
+            373,
+            374
+        ],
+        "confidence": 0.90310138463974,
+        "image_path": "extracted_faces/test/real/1/frame_000090.jpg"
+    },
+    {
+        "frame_index": 91,
+        "timestamp": 3.069733333333333,
+        "detected": true,
+        "bbox": [
+            78,
+            152,
+            377,
+            376
+        ],
+        "confidence": 0.8978639245033264,
+        "image_path": "extracted_faces/test/real/1/frame_000091.jpg"
+    },
+    {
+        "frame_index": 92,
+        "timestamp": 3.1034666666666664,
+        "detected": true,
+        "bbox": [
+            76,
+            151,
+            381,
+            381
+        ],
+        "confidence": 0.9008262753486633,
+        "image_path": "extracted_faces/test/real/1/frame_000092.jpg"
+    },
+    {
+        "frame_index": 93,
+        "timestamp": 3.1372,
+        "detected": true,
+        "bbox": [
+            79,
+            153,
+            378,
+            377
+        ],
+        "confidence": 0.9139792919158936,
+        "image_path": "extracted_faces/test/real/1/frame_000093.jpg"
+    },
+    {
+        "frame_index": 94,
+        "timestamp": 3.170933333333333,
+        "detected": true,
+        "bbox": [
+            81,
+            155,
+            373,
+            373
+        ],
+        "confidence": 0.9090876579284668,
+        "image_path": "extracted_faces/test/real/1/frame_000094.jpg"
+    },
+    {
+        "frame_index": 95,
+        "timestamp": 3.2046666666666663,
+        "detected": true,
+        "bbox": [
+            79,
+            154,
+            377,
+            377
+        ],
+        "confidence": 0.921934962272644,
+        "image_path": "extracted_faces/test/real/1/frame_000095.jpg"
+    },
+    {
+        "frame_index": 96,
+        "timestamp": 3.2384,
+        "detected": true,
+        "bbox": [
+            82,
+            154,
+            374,
+            374
+        ],
+        "confidence": 0.9219810962677002,
+        "image_path": "extracted_faces/test/real/1/frame_000096.jpg"
+    },
+    {
+        "frame_index": 97,
+        "timestamp": 3.272133333333333,
+        "detected": true,
+        "bbox": [
+            83,
+            155,
+            372,
+            372
+        ],
+        "confidence": 0.9270873665809631,
+        "image_path": "extracted_faces/test/real/1/frame_000097.jpg"
+    },
+    {
+        "frame_index": 98,
+        "timestamp": 3.3058666666666667,
+        "detected": true,
+        "bbox": [
+            83,
+            153,
+            374,
+            374
+        ],
+        "confidence": 0.9305238127708435,
+        "image_path": "extracted_faces/test/real/1/frame_000098.jpg"
+    },
+    {
+        "frame_index": 99,
+        "timestamp": 3.3396,
+        "detected": true,
+        "bbox": [
+            85,
+            153,
+            374,
+            374
+        ],
+        "confidence": 0.9224936962127686,
+        "image_path": "extracted_faces/test/real/1/frame_000099.jpg"
+    },
+    {
+        "frame_index": 100,
+        "timestamp": 3.373333333333333,
+        "detected": true,
+        "bbox": [
+            86,
+            154,
+            372,
+            372
+        ],
+        "confidence": 0.918196976184845,
+        "image_path": "extracted_faces/test/real/1/frame_000100.jpg"
+    },
+    {
+        "frame_index": 101,
+        "timestamp": 3.4070666666666667,
+        "detected": true,
+        "bbox": [
+            87,
+            155,
+            371,
+            370
+        ],
+        "confidence": 0.9095973968505859,
+        "image_path": "extracted_faces/test/real/1/frame_000101.jpg"
+    },
+    {
+        "frame_index": 102,
+        "timestamp": 3.4408,
+        "detected": true,
+        "bbox": [
+            87,
+            153,
+            376,
+            375
+        ],
+        "confidence": 0.8298928141593933,
+        "image_path": "extracted_faces/test/real/1/frame_000102.jpg"
+    },
+    {
+        "frame_index": 103,
+        "timestamp": 3.474533333333333,
+        "detected": true,
+        "bbox": [
+            91,
+            153,
+            373,
+            372
+        ],
+        "confidence": 0.8099478483200073,
+        "image_path": "extracted_faces/test/real/1/frame_000103.jpg"
+    },
+    {
+        "frame_index": 104,
+        "timestamp": 3.5082666666666666,
+        "detected": true,
+        "bbox": [
+            87,
+            151,
+            384,
+            384
+        ],
+        "confidence": 0.8083372712135315,
+        "image_path": "extracted_faces/test/real/1/frame_000104.jpg"
+    },
+    {
+        "frame_index": 105,
+        "timestamp": 3.542,
+        "detected": true,
+        "bbox": [
+            86,
+            146,
+            392,
+            392
+        ],
+        "confidence": 0.8937691450119019,
+        "image_path": "extracted_faces/test/real/1/frame_000105.jpg"
+    },
+    {
+        "frame_index": 106,
+        "timestamp": 3.575733333333333,
+        "detected": true,
+        "bbox": [
+            96,
+            145,
+            384,
+            388
+        ],
+        "confidence": 0.8667738437652588,
+        "image_path": "extracted_faces/test/real/1/frame_000106.jpg"
+    },
+    {
+        "frame_index": 107,
+        "timestamp": 3.6094666666666666,
+        "detected": true,
+        "bbox": [
+            106,
+            139,
+            374,
+            383
+        ],
+        "confidence": 0.8640913963317871,
+        "image_path": "extracted_faces/test/real/1/frame_000107.jpg"
+    },
+    {
+        "frame_index": 108,
+        "timestamp": 3.6431999999999998,
+        "detected": true,
+        "bbox": [
+            120,
+            142,
+            360,
+            376
+        ],
+        "confidence": 0.8880476951599121,
+        "image_path": "extracted_faces/test/real/1/frame_000108.jpg"
+    },
+    {
+        "frame_index": 109,
+        "timestamp": 3.6769333333333334,
+        "detected": true,
+        "bbox": [
+            135,
+            145,
+            345,
+            369
+        ],
+        "confidence": 0.9059127569198608,
+        "image_path": "extracted_faces/test/real/1/frame_000109.jpg"
+    },
+    {
+        "frame_index": 110,
+        "timestamp": 3.7106666666666666,
+        "detected": true,
+        "bbox": [
+            144,
+            141,
+            336,
+            367
+        ],
+        "confidence": 0.8535383343696594,
+        "image_path": "extracted_faces/test/real/1/frame_000110.jpg"
+    },
+    {
+        "frame_index": 111,
+        "timestamp": 3.7443999999999997,
+        "detected": true,
+        "bbox": [
+            152,
+            143,
+            328,
+            374
+        ],
+        "confidence": 0.8687575459480286,
+        "image_path": "extracted_faces/test/real/1/frame_000111.jpg"
+    },
+    {
+        "frame_index": 112,
+        "timestamp": 3.7781333333333333,
+        "detected": true,
+        "bbox": [
+            152,
+            135,
+            328,
+            386
+        ],
+        "confidence": 0.8755429983139038,
+        "image_path": "extracted_faces/test/real/1/frame_000112.jpg"
+    },
+    {
+        "frame_index": 113,
+        "timestamp": 3.8118666666666665,
+        "detected": true,
+        "bbox": [
+            167,
+            144,
+            313,
+            372
+        ],
+        "confidence": 0.8988664150238037,
+        "image_path": "extracted_faces/test/real/1/frame_000113.jpg"
+    },
+    {
+        "frame_index": 114,
+        "timestamp": 3.8455999999999997,
+        "detected": true,
+        "bbox": [
+            172,
+            141,
+            308,
+            375
+        ],
+        "confidence": 0.7955214381217957,
+        "image_path": "extracted_faces/test/real/1/frame_000114.jpg"
+    },
+    {
+        "frame_index": 115,
+        "timestamp": 3.8793333333333333,
+        "detected": true,
+        "bbox": [
+            181,
+            141,
+            299,
+            373
+        ],
+        "confidence": 0.8634028434753418,
+        "image_path": "extracted_faces/test/real/1/frame_000115.jpg"
+    },
+    {
+        "frame_index": 116,
+        "timestamp": 3.9130666666666665,
+        "detected": true,
+        "bbox": [
+            182,
+            140,
+            298,
+            377
+        ],
+        "confidence": 0.737938404083252,
+        "image_path": "extracted_faces/test/real/1/frame_000116.jpg"
+    },
+    {
+        "frame_index": 117,
+        "timestamp": 3.9467999999999996,
+        "detected": true,
+        "bbox": [
+            187,
+            148,
+            293,
+            372
+        ],
+        "confidence": 0.8121185302734375,
+        "image_path": "extracted_faces/test/real/1/frame_000117.jpg"
+    },
+    {
+        "frame_index": 118,
+        "timestamp": 3.9805333333333333,
+        "detected": true,
+        "bbox": [
+            196,
+            148,
+            284,
+            360
+        ],
+        "confidence": 0.89078688621521,
+        "image_path": "extracted_faces/test/real/1/frame_000118.jpg"
+    },
+    {
+        "frame_index": 119,
+        "timestamp": 4.014266666666667,
+        "detected": true,
+        "bbox": [
+            198,
+            148,
+            282,
+            359
+        ],
+        "confidence": 0.8768279552459717,
+        "image_path": "extracted_faces/test/real/1/frame_000119.jpg"
+    },
+    {
+        "frame_index": 120,
+        "timestamp": 4.048,
+        "detected": true,
+        "bbox": [
+            194,
+            143,
+            286,
+            370
+        ],
+        "confidence": 0.8636889457702637,
+        "image_path": "extracted_faces/test/real/1/frame_000120.jpg"
+    },
+    {
+        "frame_index": 121,
+        "timestamp": 4.081733333333333,
+        "detected": true,
+        "bbox": [
+            198,
+            147,
+            282,
+            363
+        ],
+        "confidence": 0.8160699009895325,
+        "image_path": "extracted_faces/test/real/1/frame_000121.jpg"
+    },
+    {
+        "frame_index": 122,
+        "timestamp": 4.115466666666666,
+        "detected": true,
+        "bbox": [
+            200,
+            142,
+            280,
+            364
+        ],
+        "confidence": 0.7819271087646484,
+        "image_path": "extracted_faces/test/real/1/frame_000122.jpg"
+    },
+    {
+        "frame_index": 123,
+        "timestamp": 4.1491999999999996,
+        "detected": true,
+        "bbox": [
+            201,
+            143,
+            279,
+            362
+        ],
+        "confidence": 0.7696447968482971,
+        "image_path": "extracted_faces/test/real/1/frame_000123.jpg"
+    },
+    {
+        "frame_index": 124,
+        "timestamp": 4.182933333333333,
+        "detected": true,
+        "bbox": [
+            201,
+            143,
+            279,
+            361
+        ],
+        "confidence": 0.7926256656646729,
+        "image_path": "extracted_faces/test/real/1/frame_000124.jpg"
+    },
+    {
+        "frame_index": 125,
+        "timestamp": 4.216666666666667,
+        "detected": true,
+        "bbox": [
+            201,
+            144,
+            279,
+            365
+        ],
+        "confidence": 0.7521828413009644,
+        "image_path": "extracted_faces/test/real/1/frame_000125.jpg"
+    },
+    {
+        "frame_index": 126,
+        "timestamp": 4.2504,
+        "detected": true,
+        "bbox": [
+            200,
+            143,
+            280,
+            367
+        ],
+        "confidence": 0.7424619793891907,
+        "image_path": "extracted_faces/test/real/1/frame_000126.jpg"
+    },
+    {
+        "frame_index": 127,
+        "timestamp": 4.284133333333333,
+        "detected": true,
+        "bbox": [
+            200,
+            142,
+            280,
+            364
+        ],
+        "confidence": 0.7221598029136658,
+        "image_path": "extracted_faces/test/real/1/frame_000127.jpg"
+    },
+    {
+        "frame_index": 128,
+        "timestamp": 4.317866666666666,
+        "detected": true,
+        "bbox": [
+            199,
+            142,
+            281,
+            369
+        ],
+        "confidence": 0.7475194334983826,
+        "image_path": "extracted_faces/test/real/1/frame_000128.jpg"
+    },
+    {
+        "frame_index": 129,
+        "timestamp": 4.3515999999999995,
+        "detected": true,
+        "bbox": [
+            202,
+            144,
+            278,
+            365
+        ],
+        "confidence": 0.7260332107543945,
+        "image_path": "extracted_faces/test/real/1/frame_000129.jpg"
+    },
+    {
+        "frame_index": 130,
+        "timestamp": 4.3853333333333335,
+        "detected": true,
+        "bbox": [
+            203,
+            143,
+            277,
+            368
+        ],
+        "confidence": 0.7370063662528992,
+        "image_path": "extracted_faces/test/real/1/frame_000130.jpg"
+    },
+    {
+        "frame_index": 131,
+        "timestamp": 4.419066666666667,
+        "detected": true,
+        "bbox": [
+            200,
+            143,
+            280,
+            367
+        ],
+        "confidence": 0.684222400188446,
+        "image_path": "extracted_faces/test/real/1/frame_000131.jpg"
+    },
+    {
+        "frame_index": 132,
+        "timestamp": 4.4528,
+        "detected": true,
+        "bbox": [
+            201,
+            143,
+            279,
+            366
+        ],
+        "confidence": 0.7386431694030762,
+        "image_path": "extracted_faces/test/real/1/frame_000132.jpg"
+    },
+    {
+        "frame_index": 133,
+        "timestamp": 4.486533333333333,
+        "detected": true,
+        "bbox": [
+            200,
+            142,
+            280,
+            369
+        ],
+        "confidence": 0.7454460263252258,
+        "image_path": "extracted_faces/test/real/1/frame_000133.jpg"
+    },
+    {
+        "frame_index": 134,
+        "timestamp": 4.520266666666666,
+        "detected": true,
+        "bbox": [
+            201,
+            144,
+            279,
+            366
+        ],
+        "confidence": 0.7540574073791504,
+        "image_path": "extracted_faces/test/real/1/frame_000134.jpg"
+    },
+    {
+        "frame_index": 135,
+        "timestamp": 4.553999999999999,
+        "detected": true,
+        "bbox": [
+            201,
+            144,
+            279,
+            365
+        ],
+        "confidence": 0.7098156809806824,
+        "image_path": "extracted_faces/test/real/1/frame_000135.jpg"
+    },
+    {
+        "frame_index": 136,
+        "timestamp": 4.587733333333333,
+        "detected": true,
+        "bbox": [
+            202,
+            145,
+            278,
+            364
+        ],
+        "confidence": 0.6900593042373657,
+        "image_path": "extracted_faces/test/real/1/frame_000136.jpg"
+    },
+    {
+        "frame_index": 137,
+        "timestamp": 4.621466666666667,
+        "detected": true,
+        "bbox": [
+            204,
+            151,
+            276,
+            364
+        ],
+        "confidence": 0.7309659123420715,
+        "image_path": "extracted_faces/test/real/1/frame_000137.jpg"
+    },
+    {
+        "frame_index": 138,
+        "timestamp": 4.6552,
+        "detected": true,
+        "bbox": [
+            202,
+            150,
+            278,
+            367
+        ],
+        "confidence": 0.7038519382476807,
+        "image_path": "extracted_faces/test/real/1/frame_000138.jpg"
+    },
+    {
+        "frame_index": 139,
+        "timestamp": 4.688933333333333,
+        "detected": true,
+        "bbox": [
+            199,
+            141,
+            281,
+            370
+        ],
+        "confidence": 0.728233277797699,
+        "image_path": "extracted_faces/test/real/1/frame_000139.jpg"
+    },
+    {
+        "frame_index": 140,
+        "timestamp": 4.722666666666666,
+        "detected": true,
+        "bbox": [
+            196,
+            146,
+            284,
+            369
+        ],
+        "confidence": 0.6962237358093262,
+        "image_path": "extracted_faces/test/real/1/frame_000140.jpg"
+    },
+    {
+        "frame_index": 141,
+        "timestamp": 4.7564,
+        "detected": true,
+        "bbox": [
+            199,
+            145,
+            281,
+            360
+        ],
+        "confidence": 0.8121607899665833,
+        "image_path": "extracted_faces/test/real/1/frame_000141.jpg"
+    },
+    {
+        "frame_index": 142,
+        "timestamp": 4.790133333333333,
+        "detected": true,
+        "bbox": [
+            201,
+            151,
+            279,
+            353
+        ],
+        "confidence": 0.8716356754302979,
+        "image_path": "extracted_faces/test/real/1/frame_000142.jpg"
+    },
+    {
+        "frame_index": 143,
+        "timestamp": 4.8238666666666665,
+        "detected": true,
+        "bbox": [
+            201,
+            149,
+            279,
+            355
+        ],
+        "confidence": 0.8774722218513489,
+        "image_path": "extracted_faces/test/real/1/frame_000143.jpg"
+    },
+    {
+        "frame_index": 144,
+        "timestamp": 4.8576,
+        "detected": true,
+        "bbox": [
+            194,
+            146,
+            286,
+            366
+        ],
+        "confidence": 0.8299526572227478,
+        "image_path": "extracted_faces/test/real/1/frame_000144.jpg"
+    },
+    {
+        "frame_index": 145,
+        "timestamp": 4.891333333333333,
+        "detected": true,
+        "bbox": [
+            194,
+            146,
+            286,
+            365
+        ],
+        "confidence": 0.8789770603179932,
+        "image_path": "extracted_faces/test/real/1/frame_000145.jpg"
+    },
+    {
+        "frame_index": 146,
+        "timestamp": 4.925066666666666,
+        "detected": true,
+        "bbox": [
+            194,
+            146,
+            286,
+            364
+        ],
+        "confidence": 0.8932197690010071,
+        "image_path": "extracted_faces/test/real/1/frame_000146.jpg"
+    },
+    {
+        "frame_index": 147,
+        "timestamp": 4.9588,
+        "detected": true,
+        "bbox": [
+            191,
+            145,
+            289,
+            368
+        ],
+        "confidence": 0.814985454082489,
+        "image_path": "extracted_faces/test/real/1/frame_000147.jpg"
+    },
+    {
+        "frame_index": 148,
+        "timestamp": 4.992533333333333,
+        "detected": true,
+        "bbox": [
+            196,
+            148,
+            284,
+            357
+        ],
+        "confidence": 0.9030761122703552,
+        "image_path": "extracted_faces/test/real/1/frame_000148.jpg"
+    },
+    {
+        "frame_index": 149,
+        "timestamp": 5.026266666666666,
+        "detected": true,
+        "bbox": [
+            184,
+            142,
+            296,
+            376
+        ],
+        "confidence": 0.8387877345085144,
+        "image_path": "extracted_faces/test/real/1/frame_000149.jpg"
+    },
+    {
+        "frame_index": 150,
+        "timestamp": 5.06,
+        "detected": true,
+        "bbox": [
+            183,
+            141,
+            297,
+            375
+        ],
+        "confidence": 0.7814555168151855,
+        "image_path": "extracted_faces/test/real/1/frame_000150.jpg"
+    },
+    {
+        "frame_index": 151,
+        "timestamp": 5.093733333333333,
+        "detected": true,
+        "bbox": [
+            177,
+            140,
+            303,
+            379
+        ],
+        "confidence": 0.834583044052124,
+        "image_path": "extracted_faces/test/real/1/frame_000151.jpg"
+    },
+    {
+        "frame_index": 152,
+        "timestamp": 5.127466666666667,
+        "detected": true,
+        "bbox": [
+            171,
+            145,
+            309,
+            380
+        ],
+        "confidence": 0.9001027345657349,
+        "image_path": "extracted_faces/test/real/1/frame_000152.jpg"
+    },
+    {
+        "frame_index": 153,
+        "timestamp": 5.1612,
+        "detected": true,
+        "bbox": [
+            165,
+            143,
+            315,
+            378
+        ],
+        "confidence": 0.8291134238243103,
+        "image_path": "extracted_faces/test/real/1/frame_000153.jpg"
+    },
+    {
+        "frame_index": 154,
+        "timestamp": 5.194933333333333,
+        "detected": true,
+        "bbox": [
+            151,
+            134,
+            329,
+            393
+        ],
+        "confidence": 0.8638142347335815,
+        "image_path": "extracted_faces/test/real/1/frame_000154.jpg"
+    },
+    {
+        "frame_index": 155,
+        "timestamp": 5.228666666666666,
+        "detected": true,
+        "bbox": [
+            150,
+            142,
+            330,
+            379
+        ],
+        "confidence": 0.8470754623413086,
+        "image_path": "extracted_faces/test/real/1/frame_000155.jpg"
+    },
+    {
+        "frame_index": 156,
+        "timestamp": 5.2623999999999995,
+        "detected": true,
+        "bbox": [
+            143,
+            149,
+            337,
+            372
+        ],
+        "confidence": 0.8142829537391663,
+        "image_path": "extracted_faces/test/real/1/frame_000156.jpg"
+    },
+    {
+        "frame_index": 157,
+        "timestamp": 5.296133333333333,
+        "detected": true,
+        "bbox": [
+            137,
+            146,
+            343,
+            369
+        ],
+        "confidence": 0.889383852481842,
+        "image_path": "extracted_faces/test/real/1/frame_000157.jpg"
+    },
+    {
+        "frame_index": 158,
+        "timestamp": 5.329866666666667,
+        "detected": true,
+        "bbox": [
+            128,
+            146,
+            352,
+            371
+        ],
+        "confidence": 0.8465425968170166,
+        "image_path": "extracted_faces/test/real/1/frame_000158.jpg"
+    },
+    {
+        "frame_index": 159,
+        "timestamp": 5.3636,
+        "detected": true,
+        "bbox": [
+            110,
+            144,
+            370,
+            390
+        ],
+        "confidence": 0.8553290367126465,
+        "image_path": "extracted_faces/test/real/1/frame_000159.jpg"
+    },
+    {
+        "frame_index": 160,
+        "timestamp": 5.397333333333333,
+        "detected": true,
+        "bbox": [
+            95,
+            144,
+            385,
+            397
+        ],
+        "confidence": 0.8370534181594849,
+        "image_path": "extracted_faces/test/real/1/frame_000160.jpg"
+    },
+    {
+        "frame_index": 161,
+        "timestamp": 5.431066666666666,
+        "detected": true,
+        "bbox": [
+            86,
+            144,
+            394,
+            395
+        ],
+        "confidence": 0.8742141723632812,
+        "image_path": "extracted_faces/test/real/1/frame_000161.jpg"
+    },
+    {
+        "frame_index": 162,
+        "timestamp": 5.464799999999999,
+        "detected": true,
+        "bbox": [
+            85,
+            146,
+            389,
+            389
+        ],
+        "confidence": 0.8365825414657593,
+        "image_path": "extracted_faces/test/real/1/frame_000162.jpg"
+    },
+    {
+        "frame_index": 163,
+        "timestamp": 5.4985333333333335,
+        "detected": true,
+        "bbox": [
+            81,
+            152,
+            378,
+            379
+        ],
+        "confidence": 0.9001627564430237,
+        "image_path": "extracted_faces/test/real/1/frame_000163.jpg"
+    },
+    {
+        "frame_index": 164,
+        "timestamp": 5.532266666666667,
+        "detected": true,
+        "bbox": [
+            73,
+            150,
+            380,
+            379
+        ],
+        "confidence": 0.8309925198554993,
+        "image_path": "extracted_faces/test/real/1/frame_000164.jpg"
+    },
+    {
+        "frame_index": 165,
+        "timestamp": 5.566,
+        "detected": true,
+        "bbox": [
+            56,
+            145,
+            394,
+            395
+        ],
+        "confidence": 0.8248798251152039,
+        "image_path": "extracted_faces/test/real/1/frame_000165.jpg"
+    },
+    {
+        "frame_index": 166,
+        "timestamp": 5.599733333333333,
+        "detected": true,
+        "bbox": [
+            56,
+            147,
+            380,
+            379
+        ],
+        "confidence": 0.8962088227272034,
+        "image_path": "extracted_faces/test/real/1/frame_000166.jpg"
+    },
+    {
+        "frame_index": 167,
+        "timestamp": 5.633466666666666,
+        "detected": true,
+        "bbox": [
+            49,
+            152,
+            376,
+            376
+        ],
+        "confidence": 0.7914022207260132,
+        "image_path": "extracted_faces/test/real/1/frame_000167.jpg"
+    },
+    {
+        "frame_index": 168,
+        "timestamp": 5.667199999999999,
+        "detected": true,
+        "bbox": [
+            43,
+            153,
+            373,
+            373
+        ],
+        "confidence": 0.8573521971702576,
+        "image_path": "extracted_faces/test/real/1/frame_000168.jpg"
+    },
+    {
+        "frame_index": 169,
+        "timestamp": 5.700933333333333,
+        "detected": true,
+        "bbox": [
+            37,
+            152,
+            365,
+            366
+        ],
+        "confidence": 0.7578698396682739,
+        "image_path": "extracted_faces/test/real/1/frame_000169.jpg"
+    },
+    {
+        "frame_index": 170,
+        "timestamp": 5.734666666666667,
+        "detected": true,
+        "bbox": [
+            30,
+            154,
+            372,
+            373
+        ],
+        "confidence": 0.8812480568885803,
+        "image_path": "extracted_faces/test/real/1/frame_000170.jpg"
+    },
+    {
+        "frame_index": 171,
+        "timestamp": 5.7684,
+        "detected": true,
+        "bbox": [
+            16,
+            152,
+            378,
+            378
+        ],
+        "confidence": 0.8755572438240051,
+        "image_path": "extracted_faces/test/real/1/frame_000171.jpg"
+    },
+    {
+        "frame_index": 172,
+        "timestamp": 5.802133333333333,
+        "detected": true,
+        "bbox": [
+            10,
+            153,
+            381,
+            380
+        ],
+        "confidence": 0.831847071647644,
+        "image_path": "extracted_faces/test/real/1/frame_000172.jpg"
+    },
+    {
+        "frame_index": 173,
+        "timestamp": 5.835866666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            150,
+            386,
+            388
+        ],
+        "confidence": 0.7832595705986023,
+        "image_path": "extracted_faces/test/real/1/frame_000173.jpg"
+    },
+    {
+        "frame_index": 174,
+        "timestamp": 5.8696,
+        "detected": true,
+        "bbox": [
+            0,
+            158,
+            375,
+            375
+        ],
+        "confidence": 0.8837822079658508,
+        "image_path": "extracted_faces/test/real/1/frame_000174.jpg"
+    },
+    {
+        "frame_index": 175,
+        "timestamp": 5.903333333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            156,
+            370,
+            377
+        ],
+        "confidence": 0.741210401058197,
+        "image_path": "extracted_faces/test/real/1/frame_000175.jpg"
+    },
+    {
+        "frame_index": 176,
+        "timestamp": 5.9370666666666665,
+        "detected": true,
+        "bbox": [
+            0,
+            168,
+            355,
+            362
+        ],
+        "confidence": 0.8543741106987,
+        "image_path": "extracted_faces/test/real/1/frame_000176.jpg"
+    },
+    {
+        "frame_index": 177,
+        "timestamp": 5.9708,
+        "detected": true,
+        "bbox": [
+            0,
+            169,
+            346,
+            363
+        ],
+        "confidence": 0.8750093579292297,
+        "image_path": "extracted_faces/test/real/1/frame_000177.jpg"
+    },
+    {
+        "frame_index": 178,
+        "timestamp": 6.004533333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            169,
+            347,
+            372
+        ],
+        "confidence": 0.8761231303215027,
+        "image_path": "extracted_faces/test/real/1/frame_000178.jpg"
+    },
+    {
+        "frame_index": 179,
+        "timestamp": 6.038266666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            171,
+            338,
+            360
+        ],
+        "confidence": 0.7232434153556824,
+        "image_path": "extracted_faces/test/real/1/frame_000179.jpg"
+    },
+    {
+        "frame_index": 180,
+        "timestamp": 6.072,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            324,
+            344
+        ],
+        "confidence": 0.6803566217422485,
+        "image_path": "extracted_faces/test/real/1/frame_000180.jpg"
+    },
+    {
+        "frame_index": 181,
+        "timestamp": 6.105733333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            170,
+            324,
+            347
+        ],
+        "confidence": 0.7496194839477539,
+        "image_path": "extracted_faces/test/real/1/frame_000181.jpg"
+    },
+    {
+        "frame_index": 182,
+        "timestamp": 6.139466666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            180,
+            317,
+            336
+        ],
+        "confidence": 0.824655294418335,
+        "image_path": "extracted_faces/test/real/1/frame_000182.jpg"
+    },
+    {
+        "frame_index": 183,
+        "timestamp": 6.1732,
+        "detected": true,
+        "bbox": [
+            0,
+            180,
+            315,
+            336
+        ],
+        "confidence": 0.786217987537384,
+        "image_path": "extracted_faces/test/real/1/frame_000183.jpg"
+    },
+    {
+        "frame_index": 184,
+        "timestamp": 6.206933333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            175,
+            319,
+            345
+        ],
+        "confidence": 0.6284041404724121,
+        "image_path": "extracted_faces/test/real/1/frame_000184.jpg"
+    },
+    {
+        "frame_index": 185,
+        "timestamp": 6.240666666666667,
+        "detected": true,
+        "bbox": [
+            0,
+            172,
+            299,
+            326
+        ],
+        "confidence": 0.7135024666786194,
+        "image_path": "extracted_faces/test/real/1/frame_000185.jpg"
+    },
+    {
+        "frame_index": 186,
+        "timestamp": 6.2744,
+        "detected": true,
+        "bbox": [
+            0,
+            171,
+            297,
+            326
+        ],
+        "confidence": 0.7189431190490723,
+        "image_path": "extracted_faces/test/real/1/frame_000186.jpg"
+    },
+    {
+        "frame_index": 187,
+        "timestamp": 6.308133333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            172,
+            302,
+            337
+        ],
+        "confidence": 0.7415173053741455,
+        "image_path": "extracted_faces/test/real/1/frame_000187.jpg"
+    },
+    {
+        "frame_index": 188,
+        "timestamp": 6.341866666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            174,
+            302,
+            336
+        ],
+        "confidence": 0.7507497072219849,
+        "image_path": "extracted_faces/test/real/1/frame_000188.jpg"
+    },
+    {
+        "frame_index": 189,
+        "timestamp": 6.3755999999999995,
+        "detected": true,
+        "bbox": [
+            0,
+            171,
+            296,
+            328
+        ],
+        "confidence": 0.7502005696296692,
+        "image_path": "extracted_faces/test/real/1/frame_000189.jpg"
+    },
+    {
+        "frame_index": 190,
+        "timestamp": 6.409333333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            299,
+            331
+        ],
+        "confidence": 0.6633580327033997,
+        "image_path": "extracted_faces/test/real/1/frame_000190.jpg"
+    },
+    {
+        "frame_index": 191,
+        "timestamp": 6.443066666666667,
+        "detected": true,
+        "bbox": [
+            0,
+            169,
+            298,
+            332
+        ],
+        "confidence": 0.6970860362052917,
+        "image_path": "extracted_faces/test/real/1/frame_000191.jpg"
+    },
+    {
+        "frame_index": 192,
+        "timestamp": 6.4768,
+        "detected": true,
+        "bbox": [
+            0,
+            170,
+            297,
+            331
+        ],
+        "confidence": 0.6758888363838196,
+        "image_path": "extracted_faces/test/real/1/frame_000192.jpg"
+    },
+    {
+        "frame_index": 193,
+        "timestamp": 6.510533333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 194,
+        "timestamp": 6.544266666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            177,
+            304,
+            341
+        ],
+        "confidence": 0.6291288137435913,
+        "image_path": "extracted_faces/test/real/1/frame_000194.jpg"
+    },
+    {
+        "frame_index": 195,
+        "timestamp": 6.577999999999999,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 196,
+        "timestamp": 6.6117333333333335,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            294,
+            343
+        ],
+        "confidence": 0.6205258369445801,
+        "image_path": "extracted_faces/test/real/1/frame_000196.jpg"
+    },
+    {
+        "frame_index": 197,
+        "timestamp": 6.645466666666667,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 198,
+        "timestamp": 6.6792,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 199,
+        "timestamp": 6.712933333333333,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 200,
+        "timestamp": 6.746666666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            178,
+            304,
+            344
+        ],
+        "confidence": 0.6006271243095398,
+        "image_path": "extracted_faces/test/real/1/frame_000200.jpg"
+    },
+    {
+        "frame_index": 201,
+        "timestamp": 6.780399999999999,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            307,
+            348
+        ],
+        "confidence": 0.7264247536659241,
+        "image_path": "extracted_faces/test/real/1/frame_000201.jpg"
+    },
+    {
+        "frame_index": 202,
+        "timestamp": 6.814133333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            174,
+            309,
+            352
+        ],
+        "confidence": 0.694540798664093,
+        "image_path": "extracted_faces/test/real/1/frame_000202.jpg"
+    },
+    {
+        "frame_index": 203,
+        "timestamp": 6.8478666666666665,
+        "detected": true,
+        "bbox": [
+            0,
+            179,
+            305,
+            342
+        ],
+        "confidence": 0.7478038668632507,
+        "image_path": "extracted_faces/test/real/1/frame_000203.jpg"
+    },
+    {
+        "frame_index": 204,
+        "timestamp": 6.8816,
+        "detected": true,
+        "bbox": [
+            0,
+            178,
+            310,
+            353
+        ],
+        "confidence": 0.7934742569923401,
+        "image_path": "extracted_faces/test/real/1/frame_000204.jpg"
+    },
+    {
+        "frame_index": 205,
+        "timestamp": 6.915333333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            177,
+            307,
+            344
+        ],
+        "confidence": 0.7610797882080078,
+        "image_path": "extracted_faces/test/real/1/frame_000205.jpg"
+    },
+    {
+        "frame_index": 206,
+        "timestamp": 6.949066666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            178,
+            306,
+            342
+        ],
+        "confidence": 0.7645698189735413,
+        "image_path": "extracted_faces/test/real/1/frame_000206.jpg"
+    },
+    {
+        "frame_index": 207,
+        "timestamp": 6.9828,
+        "detected": true,
+        "bbox": [
+            0,
+            170,
+            308,
+            346
+        ],
+        "confidence": 0.7102792263031006,
+        "image_path": "extracted_faces/test/real/1/frame_000207.jpg"
+    },
+    {
+        "frame_index": 208,
+        "timestamp": 7.016533333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            302,
+            332
+        ],
+        "confidence": 0.6296823024749756,
+        "image_path": "extracted_faces/test/real/1/frame_000208.jpg"
+    },
+    {
+        "frame_index": 209,
+        "timestamp": 7.0502666666666665,
+        "detected": false,
+        "bbox": null,
+        "confidence": 0.0,
+        "image_path": null
+    },
+    {
+        "frame_index": 210,
+        "timestamp": 7.084,
+        "detected": true,
+        "bbox": [
+            0,
+            176,
+            325,
+            355
+        ],
+        "confidence": 0.7893022298812866,
+        "image_path": "extracted_faces/test/real/1/frame_000210.jpg"
+    },
+    {
+        "frame_index": 211,
+        "timestamp": 7.117733333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            174,
+            324,
+            350
+        ],
+        "confidence": 0.8235127329826355,
+        "image_path": "extracted_faces/test/real/1/frame_000211.jpg"
+    },
+    {
+        "frame_index": 212,
+        "timestamp": 7.151466666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            172,
+            328,
+            353
+        ],
+        "confidence": 0.7857341170310974,
+        "image_path": "extracted_faces/test/real/1/frame_000212.jpg"
+    },
+    {
+        "frame_index": 213,
+        "timestamp": 7.1852,
+        "detected": true,
+        "bbox": [
+            0,
+            180,
+            335,
+            351
+        ],
+        "confidence": 0.8342795372009277,
+        "image_path": "extracted_faces/test/real/1/frame_000213.jpg"
+    },
+    {
+        "frame_index": 214,
+        "timestamp": 7.218933333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            179,
+            338,
+            354
+        ],
+        "confidence": 0.868862509727478,
+        "image_path": "extracted_faces/test/real/1/frame_000214.jpg"
+    },
+    {
+        "frame_index": 215,
+        "timestamp": 7.252666666666666,
+        "detected": true,
+        "bbox": [
+            0,
+            169,
+            348,
+            365
+        ],
+        "confidence": 0.8232800364494324,
+        "image_path": "extracted_faces/test/real/1/frame_000215.jpg"
+    },
+    {
+        "frame_index": 216,
+        "timestamp": 7.2863999999999995,
+        "detected": true,
+        "bbox": [
+            0,
+            173,
+            351,
+            354
+        ],
+        "confidence": 0.8515921831130981,
+        "image_path": "extracted_faces/test/real/1/frame_000216.jpg"
+    },
+    {
+        "frame_index": 217,
+        "timestamp": 7.320133333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            165,
+            363,
+            369
+        ],
+        "confidence": 0.8453182578086853,
+        "image_path": "extracted_faces/test/real/1/frame_000217.jpg"
+    },
+    {
+        "frame_index": 218,
+        "timestamp": 7.353866666666667,
+        "detected": true,
+        "bbox": [
+            0,
+            157,
+            376,
+            388
+        ],
+        "confidence": 0.7210032343864441,
+        "image_path": "extracted_faces/test/real/1/frame_000218.jpg"
+    },
+    {
+        "frame_index": 219,
+        "timestamp": 7.3876,
+        "detected": true,
+        "bbox": [
+            0,
+            153,
+            386,
+            397
+        ],
+        "confidence": 0.9174101948738098,
+        "image_path": "extracted_faces/test/real/1/frame_000219.jpg"
+    },
+    {
+        "frame_index": 220,
+        "timestamp": 7.421333333333333,
+        "detected": true,
+        "bbox": [
+            0,
+            149,
+            388,
+            392
+        ],
+        "confidence": 0.8033628463745117,
+        "image_path": "extracted_faces/test/real/1/frame_000220.jpg"
+    },
+    {
+        "frame_index": 221,
+        "timestamp": 7.455066666666666,
+        "detected": true,
+        "bbox": [
+            7,
+            157,
+            387,
+            387
+        ],
+        "confidence": 0.9019778966903687,
+        "image_path": "extracted_faces/test/real/1/frame_000221.jpg"
+    },
+    {
+        "frame_index": 222,
+        "timestamp": 7.4887999999999995,
+        "detected": true,
+        "bbox": [
+            18,
+            157,
+            376,
+            376
+        ],
+        "confidence": 0.8575305342674255,
+        "image_path": "extracted_faces/test/real/1/frame_000222.jpg"
+    },
+    {
+        "frame_index": 223,
+        "timestamp": 7.522533333333333,
+        "detected": true,
+        "bbox": [
+            19,
+            158,
+            382,
+            382
+        ],
+        "confidence": 0.782842755317688,
+        "image_path": "extracted_faces/test/real/1/frame_000223.jpg"
+    },
+    {
+        "frame_index": 224,
+        "timestamp": 7.556266666666667,
+        "detected": true,
+        "bbox": [
+            23,
+            155,
+            381,
+            381
+        ],
+        "confidence": 0.900952935218811,
+        "image_path": "extracted_faces/test/real/1/frame_000224.jpg"
+    },
+    {
+        "frame_index": 225,
+        "timestamp": 7.59,
+        "detected": true,
+        "bbox": [
+            24,
+            153,
+            385,
+            385
+        ],
+        "confidence": 0.8744565844535828,
+        "image_path": "extracted_faces/test/real/1/frame_000225.jpg"
+    },
+    {
+        "frame_index": 226,
+        "timestamp": 7.623733333333333,
+        "detected": true,
+        "bbox": [
+            24,
+            151,
+            397,
+            396
+        ],
+        "confidence": 0.7176546454429626,
+        "image_path": "extracted_faces/test/real/1/frame_000226.jpg"
+    },
+    {
+        "frame_index": 227,
+        "timestamp": 7.657466666666666,
+        "detected": true,
+        "bbox": [
+            30,
+            152,
+            395,
+            396
+        ],
+        "confidence": 0.8686864376068115,
+        "image_path": "extracted_faces/test/real/1/frame_000227.jpg"
+    },
+    {
+        "frame_index": 228,
+        "timestamp": 7.691199999999999,
+        "detected": true,
+        "bbox": [
+            29,
+            149,
+            401,
+            401
+        ],
+        "confidence": 0.8580353856086731,
+        "image_path": "extracted_faces/test/real/1/frame_000228.jpg"
+    },
+    {
+        "frame_index": 229,
+        "timestamp": 7.724933333333333,
+        "detected": true,
+        "bbox": [
+            34,
+            148,
+            394,
+            394
+        ],
+        "confidence": 0.8165674209594727,
+        "image_path": "extracted_faces/test/real/1/frame_000229.jpg"
+    },
+    {
+        "frame_index": 230,
+        "timestamp": 7.758666666666667,
+        "detected": true,
+        "bbox": [
+            36,
+            150,
+            399,
+            399
+        ],
+        "confidence": 0.7089481949806213,
+        "image_path": "extracted_faces/test/real/1/frame_000230.jpg"
+    },
+    {
+        "frame_index": 231,
+        "timestamp": 7.7924,
+        "detected": true,
+        "bbox": [
+            40,
+            150,
+            401,
+            401
+        ],
+        "confidence": 0.8789483308792114,
+        "image_path": "extracted_faces/test/real/1/frame_000231.jpg"
+    },
+    {
+        "frame_index": 232,
+        "timestamp": 7.826133333333333,
+        "detected": true,
+        "bbox": [
+            41,
+            146,
+            399,
+            399
+        ],
+        "confidence": 0.8925046324729919,
+        "image_path": "extracted_faces/test/real/1/frame_000232.jpg"
+    },
+    {
+        "frame_index": 233,
+        "timestamp": 7.859866666666666,
+        "detected": true,
+        "bbox": [
+            44,
+            151,
+            400,
+            400
+        ],
+        "confidence": 0.9022574424743652,
+        "image_path": "extracted_faces/test/real/1/frame_000233.jpg"
+    },
+    {
+        "frame_index": 234,
+        "timestamp": 7.893599999999999,
+        "detected": true,
+        "bbox": [
+            47,
+            147,
+            400,
+            400
+        ],
+        "confidence": 0.8409972786903381,
+        "image_path": "extracted_faces/test/real/1/frame_000234.jpg"
+    },
+    {
+        "frame_index": 235,
+        "timestamp": 7.927333333333333,
+        "detected": true,
+        "bbox": [
+            48,
+            149,
+            403,
+            402
+        ],
+        "confidence": 0.7710572481155396,
+        "image_path": "extracted_faces/test/real/1/frame_000235.jpg"
+    },
+    {
+        "frame_index": 236,
+        "timestamp": 7.9610666666666665,
+        "detected": true,
+        "bbox": [
+            55,
+            151,
+            397,
+            397
+        ],
+        "confidence": 0.8873617649078369,
+        "image_path": "extracted_faces/test/real/1/frame_000236.jpg"
+    },
+    {
+        "frame_index": 237,
+        "timestamp": 7.9948,
+        "detected": true,
+        "bbox": [
+            56,
+            149,
+            396,
+            396
+        ],
+        "confidence": 0.9038395285606384,
+        "image_path": "extracted_faces/test/real/1/frame_000237.jpg"
+    },
+    {
+        "frame_index": 238,
+        "timestamp": 8.028533333333334,
+        "detected": true,
+        "bbox": [
+            56,
+            151,
+            399,
+            398
+        ],
+        "confidence": 0.8965059518814087,
+        "image_path": "extracted_faces/test/real/1/frame_000238.jpg"
+    },
+    {
+        "frame_index": 239,
+        "timestamp": 8.062266666666666,
+        "detected": true,
+        "bbox": [
+            58,
+            152,
+            398,
+            398
+        ],
+        "confidence": 0.893446147441864,
+        "image_path": "extracted_faces/test/real/1/frame_000239.jpg"
+    },
+    {
+        "frame_index": 240,
+        "timestamp": 8.096,
+        "detected": true,
+        "bbox": [
+            63,
+            152,
+            389,
+            389
+        ],
+        "confidence": 0.8928617835044861,
+        "image_path": "extracted_faces/test/real/1/frame_000240.jpg"
+    },
+    {
+        "frame_index": 241,
+        "timestamp": 8.129733333333332,
+        "detected": true,
+        "bbox": [
+            63,
+            151,
+            390,
+            389
+        ],
+        "confidence": 0.8821447491645813,
+        "image_path": "extracted_faces/test/real/1/frame_000241.jpg"
+    },
+    {
+        "frame_index": 242,
+        "timestamp": 8.163466666666666,
+        "detected": true,
+        "bbox": [
+            64,
+            155,
+            391,
+            391
+        ],
+        "confidence": 0.8707700967788696,
+        "image_path": "extracted_faces/test/real/1/frame_000242.jpg"
+    },
+    {
+        "frame_index": 243,
+        "timestamp": 8.1972,
+        "detected": true,
+        "bbox": [
+            65,
+            155,
+            390,
+            390
+        ],
+        "confidence": 0.8576558232307434,
+        "image_path": "extracted_faces/test/real/1/frame_000243.jpg"
+    },
+    {
+        "frame_index": 244,
+        "timestamp": 8.230933333333333,
+        "detected": true,
+        "bbox": [
+            66,
+            155,
+            391,
+            391
+        ],
+        "confidence": 0.83213871717453,
+        "image_path": "extracted_faces/test/real/1/frame_000244.jpg"
+    },
+    {
+        "frame_index": 245,
+        "timestamp": 8.264666666666667,
+        "detected": true,
+        "bbox": [
+            67,
+            155,
+            391,
+            391
+        ],
+        "confidence": 0.7921891212463379,
+        "image_path": "extracted_faces/test/real/1/frame_000245.jpg"
+    },
+    {
+        "frame_index": 246,
+        "timestamp": 8.298399999999999,
+        "detected": true,
+        "bbox": [
+            70,
+            157,
+            388,
+            388
+        ],
+        "confidence": 0.8725603818893433,
+        "image_path": "extracted_faces/test/real/1/frame_000246.jpg"
+    },
+    {
+        "frame_index": 247,
+        "timestamp": 8.332133333333333,
+        "detected": true,
+        "bbox": [
+            70,
+            157,
+            388,
+            388
+        ],
+        "confidence": 0.8851892352104187,
+        "image_path": "extracted_faces/test/real/1/frame_000247.jpg"
+    },
+    {
+        "frame_index": 248,
+        "timestamp": 8.365866666666665,
+        "detected": true,
+        "bbox": [
+            68,
+            155,
+            391,
+            391
+        ],
+        "confidence": 0.866878867149353,
+        "image_path": "extracted_faces/test/real/1/frame_000248.jpg"
+    },
+    {
+        "frame_index": 249,
+        "timestamp": 8.3996,
+        "detected": true,
+        "bbox": [
+            73,
+            159,
+            383,
+            383
+        ],
+        "confidence": 0.8925216794013977,
+        "image_path": "extracted_faces/test/real/1/frame_000249.jpg"
+    },
+    {
+        "frame_index": 250,
+        "timestamp": 8.433333333333334,
+        "detected": true,
+        "bbox": [
+            70,
+            157,
+            388,
+            388
+        ],
+        "confidence": 0.8817093968391418,
+        "image_path": "extracted_faces/test/real/1/frame_000250.jpg"
+    },
+    {
+        "frame_index": 251,
+        "timestamp": 8.467066666666666,
+        "detected": true,
+        "bbox": [
+            68,
+            156,
+            390,
+            390
+        ],
+        "confidence": 0.8213701248168945,
+        "image_path": "extracted_faces/test/real/1/frame_000251.jpg"
+    },
+    {
+        "frame_index": 252,
+        "timestamp": 8.5008,
+        "detected": true,
+        "bbox": [
+            65,
+            154,
+            394,
+            394
+        ],
+        "confidence": 0.8223056197166443,
+        "image_path": "extracted_faces/test/real/1/frame_000252.jpg"
+    },
+    {
+        "frame_index": 253,
+        "timestamp": 8.534533333333332,
+        "detected": true,
+        "bbox": [
+            66,
+            155,
+            392,
+            391
+        ],
+        "confidence": 0.8387232422828674,
+        "image_path": "extracted_faces/test/real/1/frame_000253.jpg"
+    },
+    {
+        "frame_index": 254,
+        "timestamp": 8.568266666666666,
+        "detected": true,
+        "bbox": [
+            65,
+            154,
+            394,
+            393
+        ],
+        "confidence": 0.8141102194786072,
+        "image_path": "extracted_faces/test/real/1/frame_000254.jpg"
+    },
+    {
+        "frame_index": 255,
+        "timestamp": 8.602,
+        "detected": true,
+        "bbox": [
+            68,
+            157,
+            388,
+            388
+        ],
+        "confidence": 0.8083246350288391,
+        "image_path": "extracted_faces/test/real/1/frame_000255.jpg"
+    },
+    {
+        "frame_index": 256,
+        "timestamp": 8.635733333333333,
+        "detected": true,
+        "bbox": [
+            69,
+            158,
+            387,
+            387
+        ],
+        "confidence": 0.7955312132835388,
+        "image_path": "extracted_faces/test/real/1/frame_000256.jpg"
+    },
+    {
+        "frame_index": 257,
+        "timestamp": 8.669466666666667,
+        "detected": true,
+        "bbox": [
+            70,
+            158,
+            385,
+            385
+        ],
+        "confidence": 0.8074402213096619,
+        "image_path": "extracted_faces/test/real/1/frame_000257.jpg"
+    },
+    {
+        "frame_index": 258,
+        "timestamp": 8.703199999999999,
+        "detected": true,
+        "bbox": [
+            71,
+            158,
+            385,
+            385
+        ],
+        "confidence": 0.8634688258171082,
+        "image_path": "extracted_faces/test/real/1/frame_000258.jpg"
+    },
+    {
+        "frame_index": 259,
+        "timestamp": 8.736933333333333,
+        "detected": true,
+        "bbox": [
+            68,
+            156,
+            389,
+            389
+        ],
+        "confidence": 0.7834364175796509,
+        "image_path": "extracted_faces/test/real/1/frame_000259.jpg"
+    },
+    {
+        "frame_index": 260,
+        "timestamp": 8.770666666666667,
+        "detected": true,
+        "bbox": [
+            69,
+            157,
+            386,
+            387
+        ],
+        "confidence": 0.8162328600883484,
+        "image_path": "extracted_faces/test/real/1/frame_000260.jpg"
+    },
+    {
+        "frame_index": 261,
+        "timestamp": 8.8044,
+        "detected": true,
+        "bbox": [
+            67,
+            155,
+            391,
+            391
+        ],
+        "confidence": 0.8054455518722534,
+        "image_path": "extracted_faces/test/real/1/frame_000261.jpg"
+    },
+    {
+        "frame_index": 262,
+        "timestamp": 8.838133333333333,
+        "detected": true,
+        "bbox": [
+            69,
+            157,
+            387,
+            388
+        ],
+        "confidence": 0.8163228034973145,
+        "image_path": "extracted_faces/test/real/1/frame_000262.jpg"
+    },
+    {
+        "frame_index": 263,
+        "timestamp": 8.871866666666666,
+        "detected": true,
+        "bbox": [
+            68,
+            156,
+            389,
+            389
+        ],
+        "confidence": 0.8171988129615784,
+        "image_path": "extracted_faces/test/real/1/frame_000263.jpg"
+    },
+    {
+        "frame_index": 264,
+        "timestamp": 8.9056,
+        "detected": true,
+        "bbox": [
+            70,
+            159,
+            383,
+            383
+        ],
+        "confidence": 0.8469552993774414,
+        "image_path": "extracted_faces/test/real/1/frame_000264.jpg"
+    },
+    {
+        "frame_index": 265,
+        "timestamp": 8.939333333333334,
+        "detected": true,
+        "bbox": [
+            71,
+            160,
+            382,
+            382
+        ],
+        "confidence": 0.8124796152114868,
+        "image_path": "extracted_faces/test/real/1/frame_000265.jpg"
+    },
+    {
+        "frame_index": 266,
+        "timestamp": 8.973066666666666,
+        "detected": true,
+        "bbox": [
+            71,
+            160,
+            382,
+            382
+        ],
+        "confidence": 0.8239330053329468,
+        "image_path": "extracted_faces/test/real/1/frame_000266.jpg"
+    },
+    {
+        "frame_index": 267,
+        "timestamp": 9.0068,
+        "detected": true,
+        "bbox": [
+            74,
+            163,
+            376,
+            375
+        ],
+        "confidence": 0.8452652096748352,
+        "image_path": "extracted_faces/test/real/1/frame_000267.jpg"
+    },
+    {
+        "frame_index": 268,
+        "timestamp": 9.040533333333332,
+        "detected": true,
+        "bbox": [
+            72,
+            161,
+            379,
+            379
+        ],
+        "confidence": 0.8527246713638306,
+        "image_path": "extracted_faces/test/real/1/frame_000268.jpg"
+    },
+    {
+        "frame_index": 269,
+        "timestamp": 9.074266666666666,
+        "detected": true,
+        "bbox": [
+            70,
+            159,
+            382,
+            382
+        ],
+        "confidence": 0.8794403076171875,
+        "image_path": "extracted_faces/test/real/1/frame_000269.jpg"
+    },
+    {
+        "frame_index": 270,
+        "timestamp": 9.107999999999999,
+        "detected": true,
+        "bbox": [
+            72,
+            161,
+            378,
+            378
+        ],
+        "confidence": 0.8939939141273499,
+        "image_path": "extracted_faces/test/real/1/frame_000270.jpg"
+    },
+    {
+        "frame_index": 271,
+        "timestamp": 9.141733333333333,
+        "detected": true,
+        "bbox": [
+            70,
+            157,
+            380,
+            381
+        ],
+        "confidence": 0.8824419379234314,
+        "image_path": "extracted_faces/test/real/1/frame_000271.jpg"
+    },
+    {
+        "frame_index": 272,
+        "timestamp": 9.175466666666667,
+        "detected": true,
+        "bbox": [
+            71,
+            158,
+            378,
+            378
+        ],
+        "confidence": 0.8797656893730164,
+        "image_path": "extracted_faces/test/real/1/frame_000272.jpg"
+    },
+    {
+        "frame_index": 273,
+        "timestamp": 9.2092,
+        "detected": true,
+        "bbox": [
+            67,
+            155,
+            383,
+            384
+        ],
+        "confidence": 0.9004500508308411,
+        "image_path": "extracted_faces/test/real/1/frame_000273.jpg"
+    },
+    {
+        "frame_index": 274,
+        "timestamp": 9.242933333333333,
+        "detected": true,
+        "bbox": [
+            70,
+            161,
+            378,
+            378
+        ],
+        "confidence": 0.8975735306739807,
+        "image_path": "extracted_faces/test/real/1/frame_000274.jpg"
+    },
+    {
+        "frame_index": 275,
+        "timestamp": 9.276666666666666,
+        "detected": true,
+        "bbox": [
+            67,
+            159,
+            382,
+            382
+        ],
+        "confidence": 0.896293044090271,
+        "image_path": "extracted_faces/test/real/1/frame_000275.jpg"
+    },
+    {
+        "frame_index": 276,
+        "timestamp": 9.3104,
+        "detected": true,
+        "bbox": [
+            67,
+            159,
+            383,
+            383
+        ],
+        "confidence": 0.9045013785362244,
+        "image_path": "extracted_faces/test/real/1/frame_000276.jpg"
+    },
+    {
+        "frame_index": 277,
+        "timestamp": 9.344133333333334,
+        "detected": true,
+        "bbox": [
+            68,
+            161,
+            379,
+            379
+        ],
+        "confidence": 0.9074302911758423,
+        "image_path": "extracted_faces/test/real/1/frame_000277.jpg"
+    },
+    {
+        "frame_index": 278,
+        "timestamp": 9.377866666666666,
+        "detected": true,
+        "bbox": [
+            67,
+            160,
+            380,
+            381
+        ],
+        "confidence": 0.9027843475341797,
+        "image_path": "extracted_faces/test/real/1/frame_000278.jpg"
+    },
+    {
+        "frame_index": 279,
+        "timestamp": 9.4116,
+        "detected": true,
+        "bbox": [
+            63,
+            157,
+            388,
+            387
+        ],
+        "confidence": 0.9014975428581238,
+        "image_path": "extracted_faces/test/real/1/frame_000279.jpg"
+    },
+    {
+        "frame_index": 280,
+        "timestamp": 9.445333333333332,
+        "detected": true,
+        "bbox": [
+            66,
+            159,
+            384,
+            383
+        ],
+        "confidence": 0.9081274271011353,
+        "image_path": "extracted_faces/test/real/1/frame_000280.jpg"
+    },
+    {
+        "frame_index": 281,
+        "timestamp": 9.479066666666666,
+        "detected": true,
+        "bbox": [
+            67,
+            159,
+            382,
+            383
+        ],
+        "confidence": 0.9089005589485168,
+        "image_path": "extracted_faces/test/real/1/frame_000281.jpg"
+    },
+    {
+        "frame_index": 282,
+        "timestamp": 9.5128,
+        "detected": true,
+        "bbox": [
+            64,
+            160,
+            387,
+            387
+        ],
+        "confidence": 0.8910558223724365,
+        "image_path": "extracted_faces/test/real/1/frame_000282.jpg"
+    }
+]

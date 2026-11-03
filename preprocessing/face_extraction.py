@@ -438,7 +438,7 @@ class FaceExtractor:
 
     def extract_dataset(
         self,
-        dataset_dir: str = "extracted_face/dataset",
+        dataset_dir: str = "dataset",
     ) -> List[Dict[str, Any]]:
         """
         Automatically extract faces from every video
@@ -448,7 +448,7 @@ class FaceExtractor:
 
         Example:
 
-            extracted_face/dataset/train/real/video1.mp4
+            training/dataset/train/real/video1.mp4
 
             becomes:
 
@@ -576,5 +576,5 @@ if __name__ == "__main__":
 
     # Extract every video in the dataset.
     extractor.extract_dataset(
-        dataset_dir="extracted_face/dataset"
+        dataset_dir="dataset"
     )
