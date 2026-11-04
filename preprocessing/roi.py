@@ -311,13 +311,24 @@ class ROIExtractor:
             crop_h, crop_w = face_crop.shape[:2]
 
             # ---------------------------------------------
-            # STEP 2: Resize the crop for Face Mesh.
+            # STEP 2: Resize while preserving aspect ratio.
             # ---------------------------------------------
+
+            scale = self.mesh_input_size / max(crop_w, crop_h)
+
+            new_w = max(1, int(round(crop_w * scale)))
+            new_h = max(1, int(round(crop_h * scale)))
+
+            interpolation = (
+                cv2.INTER_AREA
+                if scale < 1.0
+                else cv2.INTER_CUBIC
+            )
 
             resized_crop = cv2.resize(
                 face_crop,
-                (self.mesh_input_size, self.mesh_input_size),
-                interpolation=cv2.INTER_CUBIC,
+                (new_w, new_h),
+                interpolation=interpolation,
             )
 
             # ---------------------------------------------
