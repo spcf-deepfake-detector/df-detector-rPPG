@@ -48,7 +48,7 @@ class RPPGDataset(Dataset):
         min_valid_rgb_fraction: float = 0.80,
         min_rgb_frames: int = 10,
         detection_confidence: float = 0.3,
-        model_selection: int = 1,
+        model_selection: int = 0,
         frame_scale: float = 1.0,
         debug: bool = True,
     ):

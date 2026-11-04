@@ -29,7 +29,7 @@ class FaceDetector:
     def __init__(
         self,
         min_detection_confidence: float = 0.3,
-        model_selection: int = 1,
+        model_selection: int = 0,
         frame_scale: float = 1.0,
         max_faces: Optional[int] = None,
     ):
