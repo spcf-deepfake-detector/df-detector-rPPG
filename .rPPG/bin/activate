@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=/home/macs/Documents/GitHub/df-detector-rPPG/.rPPG
+VIRTUAL_ENV=/media/macs/NewVolume/GitHub/df-detector-rPPG/.rPPG
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

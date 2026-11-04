@@ -3,6 +3,8 @@ import numpy as np
 import mediapipe as mp
 
 from typing import Any, Dict, List, Optional, Tuple
+from types import SimpleNamespace
+
 
 
 class ROIExtractor:
@@ -35,7 +37,8 @@ class ROIExtractor:
         min_skin_pixels: int = 20,
         min_polygon_area: float = 4.0,
         min_match_iou: float = 0.0,
-        bbox_padding_fraction: float = 0.30,
+        bbox_padding_fraction: float = 0.20,
+        mesh_input_size: int = 128,
         debug: bool = False,
     ):
         if not isinstance(max_num_faces, int) or max_num_faces < 1:
@@ -60,10 +63,19 @@ class ROIExtractor:
         ):
             raise ValueError("bbox_padding_fraction must be between 0 and 2.")
 
+        if (
+            isinstance(mesh_input_size, bool)
+            or not isinstance(mesh_input_size, int)
+            or mesh_input_size < 32
+        ):
+            raise ValueError("mesh_input_size must be an integer of at least 32.")
+            
+
         self.min_skin_pixels = min_skin_pixels
         self.min_polygon_area = float(min_polygon_area)
         self.min_match_iou = float(min_match_iou)
         self.bbox_padding_fraction = float(bbox_padding_fraction)
+        self.mesh_input_size = int(mesh_input_size)
         self.debug = bool(debug)
 
         self.face_mesh = mp.solutions.face_mesh.FaceMesh(
@@ -281,48 +293,141 @@ class ROIExtractor:
         ]
 
         try:
-            # OpenCV frames are BGR; MediaPipe Face Mesh expects RGB.
-            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            results = self.face_mesh.process(rgb_frame)
+    # ---------------------------------------------
+    # STEP 1: Crop the padded face region.
+    # ---------------------------------------------
+
+            crop_x1, crop_y1, crop_x2, crop_y2 = target_box
+
+            face_crop = frame[
+                crop_y1:crop_y2,
+                crop_x1:crop_x2
+            ]
+
+            if face_crop.size == 0:
+                self.stats["invalid_frame"] += 1
+                return empty
+
+            crop_h, crop_w = face_crop.shape[:2]
+
+            # ---------------------------------------------
+            # STEP 2: Resize the crop for Face Mesh.
+            # ---------------------------------------------
+
+            resized_crop = cv2.resize(
+                face_crop,
+                (self.mesh_input_size, self.mesh_input_size),
+                interpolation=cv2.INTER_CUBIC,
+            )
+
+            # ---------------------------------------------
+            # STEP 3: Convert BGR to RGB.
+            # ---------------------------------------------
+
+            rgb_crop = cv2.cvtColor(
+                resized_crop,
+                cv2.COLOR_BGR2RGB
+            )
+
+            # ---------------------------------------------
+            # STEP 4: Run MediaPipe Face Mesh.
+            # ---------------------------------------------
+
+            results = self.face_mesh.process(rgb_crop)
+
         except Exception as exc:
             self.stats["face_mesh_errors"] += 1
-            if self.debug:
-                print(f"[ROI ERROR] Face Mesh processing failed: {exc}")
-            return empty
 
+            if self.debug:
+                print(
+                    f"[ROI ERROR] Face Mesh processing failed: {exc}"
+                )
+
+            return empty
     
+        # ---------------------------------------------
+        # STEP 5: Check whether Face Mesh found a face.
+        # ---------------------------------------------
+
         if not results.multi_face_landmarks:
             self.stats["no_landmarks"] += 1
             self.stats["frames_without_valid_roi"] += 1
 
             if self.debug:
                 print(
-                    "[NO LANDMARKS DEBUG] "
-                    f"Frame={frame_w}x{frame_h}, "
-                    f"bbox={valid_bbox}, "
-                    f"clipped face-box={x2 - x1}x{y2 - y1}, "
-                    f"target_box={target_box}"
+                    f"[ROI DEBUG] No landmarks detected "
+                    f"in padded crop {crop_w}x{crop_h}."
                 )
 
             return empty
 
+
+        # ---------------------------------------------
+        # STEP 6: Map crop landmarks to original frame.
+        # ---------------------------------------------
+
+        mapped_faces = []
+
+        for face in results.multi_face_landmarks:
+
+            mapped_landmarks = []
+
+            for point in face.landmark:
+
+                # Convert normalized crop coordinates
+                # into original-frame normalized coordinates.
+
+                original_x = (
+                    crop_x1 + point.x * crop_w
+                ) / frame_w
+
+                original_y = (
+                    crop_y1 + point.y * crop_h
+                ) / frame_h
+
+                mapped_landmarks.append(
+                    SimpleNamespace(
+                        x=original_x,
+                        y=original_y
+                    )
+                )
+
+            mapped_faces.append(
+                SimpleNamespace(
+                    landmark=mapped_landmarks
+                )
+            )
+
+
+        # Create a results-like object so the existing
+        # face-selection function can process mapped landmarks.
+
+        mapped_results = SimpleNamespace(
+            multi_face_landmarks=mapped_faces
+        )
+
+
+        # ---------------------------------------------
+        # STEP 7: Select the matching face.
+        # ---------------------------------------------
 
         landmarks, match_iou = self._select_face_landmarks(
-            results, frame_w, frame_h, target_box
+            mapped_results,
+            frame_w,
+            frame_h,
+            target_box
         )
+
         if landmarks is None:
             self.stats["no_face_match"] += 1
+
             if self.debug:
                 print(
-                    "[ROI DEBUG] Landmarks returned, but no face matched "
-                    f"the target box. Best IoU={match_iou:.4f}; "
-                    f"target_box={target_box}"
+                    "[ROI DEBUG] No matching face found. "
+                    f"Best IoU={match_iou:.4f}"
                 )
-            return empty
 
-        self.stats["face_selected"] += 1
-        if self.debug:
-            print(f"[ROI DEBUG] Face selected; IoU={match_iou:.4f}")
+            return empty
 
         def make_roi(
             indices: List[int],

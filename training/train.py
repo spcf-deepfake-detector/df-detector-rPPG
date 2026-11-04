@@ -73,11 +73,14 @@ def train_model(data_dir: str,
 
     ckpt_path = os.path.join(
         save_dir,
-        "best_rppg_model.pt  "
+        "best_rppg_model.pt "
     )
 
     for epoch in range(1, epochs + 1):
 
+    # =========================
+    # TRAINING
+    # =========================
         model.train()
 
         train_loss = 0.0
@@ -88,17 +91,16 @@ def train_model(data_dir: str,
 
             x = x.to(device, dtype=torch.float32)
             y = y.to(device, dtype=torch.float32).view(-1)
+
             optimizer.zero_grad()
-            
+
             logits = model(x).view(-1)
 
             if logits.shape != y.shape:
-                raise ValueError(
-                    "Model output and label shapes do not match"
-                )
+                raise ValueError("Model output and label shapes do not match")
 
             loss = criterion(logits, y)
-     
+
             loss.backward()
             optimizer.step()
 
@@ -109,20 +111,73 @@ def train_model(data_dir: str,
             preds = torch.sigmoid(logits) >= 0.5
             labels = y >= 0.5
 
-            train_correct += (
-                preds == labels
-                ).sum().item()
-            
+            train_correct += (preds == labels).sum().item()
             total_train += batch_size_actual
 
-    if total_train == 0:
-        raise ValueError("No training samples were processed.")
-    
-    train_acc = train_correct / total_train 
-    avg_train_loss = train_loss / total_train 
+        # Calculate training metrics
+        if total_train == 0:
+            raise ValueError("No training samples were processed.")
 
-        # Validation Loop
-    model.eval()
+        train_acc = train_correct / total_train
+        avg_train_loss = train_loss / total_train
+
+        # =========================
+        # VALIDATION
+        # =========================
+        model.eval()
+
+        val_loss = 0.0
+        val_correct = 0
+        total_val = 0
+
+        with torch.no_grad():
+
+            for x, y in val_loader:
+
+                x = x.to(device, dtype=torch.float32)
+                y = y.to(device, dtype=torch.float32).view(-1)
+
+                logits = model(x).view(-1)
+
+                loss = criterion(logits, y)
+
+                batch_size_actual = y.size(0)
+
+                val_loss += loss.item() * batch_size_actual
+
+                preds = torch.sigmoid(logits) >= 0.5
+                labels = y >= 0.5
+
+                val_correct += (preds == labels).sum().item()
+                total_val += batch_size_actual
+
+        if total_val == 0:
+            raise ValueError("No validation samples were processed.")
+
+        val_acc = val_correct / total_val
+        avg_val_loss = val_loss / total_val
+
+        # =========================
+        # EPOCH RESULTS
+        # =========================
+        print(
+            f"Epoch {epoch:02d}/{epochs:02d} | "
+            f"Train Loss: {avg_train_loss:.4f} | "
+            f"Train Acc: {train_acc:.4f} | "
+            f"Val Loss: {avg_val_loss:.4f} | "
+            f"Val Acc: {val_acc:.4f}"
+        )
+
+        # =========================
+        # SAVE BEST CHECKPOINT
+        # =========================
+        if avg_val_loss < best_val_loss:
+
+            best_val_loss = avg_val_loss
+
+            torch.save(model.state_dict(), ckpt_path)
+
+            print(f"  [+] Saved new best model checkpoint to {ckpt_path}")
     val_loss = 0.0
     val_correct = 0
     total_val = 0
@@ -214,7 +269,8 @@ def train_model(data_dir: str,
             all_labels.extend(
                 y.long().cpu().tolist()
             )
-
+    if total_test == 0:
+        raise ValueError("No test samples were processed.")
     avg_test_loss = test_loss/total_test
     test_accuracy = accuracy_score(
         all_labels,
@@ -223,7 +279,6 @@ def train_model(data_dir: str,
 
     test_precision = precision_score(
         all_labels,
-        all_preds,
         all_preds,
         zero_division=0
     )
