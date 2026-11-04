@@ -666,6 +666,12 @@ class RPPGDataset(Dataset):
 
         original_length = len(rppg_wave)
 
+        print(
+            f"[SIGNAL LENGTH] "
+            f"{os.path.basename(video_path)}: "
+            f"{original_length} samples"
+        )
+
         # ----------------------------------------------
         # TRUNCATE LONG SIGNALS
         # ----------------------------------------------

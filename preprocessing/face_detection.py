@@ -165,7 +165,7 @@ class FaceDetector:
         # 1. Optionally enlarge the frame
         # ---------------------------------------------------------
 
-        if self.frame_scale > 1.5:
+        if self.frame_scale > 1.0:
             detection_frame = cv2.resize(
                 frame,
                 None,
