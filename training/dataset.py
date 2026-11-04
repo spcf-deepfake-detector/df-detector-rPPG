@@ -1,5 +1,6 @@
 import os
 import glob
+from collections import Counter
 from typing import List, Tuple
 
 import numpy as np
@@ -12,32 +13,31 @@ from preprocessing.rgb_extraction import RGBExtractor
 from preprocessing.rppg import pos_method
 
 
+class VideoQualityError(ValueError):
+    """Raised when a video cannot produce a sufficiently reliable signal."""
+
+
 class RPPGDataset(Dataset):
     """
-    Load real and fake videos, extract POS rPPG signals,
-    and return fixed-length PyTorch tensors.
+    Load real and fake videos and extract their rPPG signals.
 
-    Expected directory structure:
-
-        root_dir/
-            real/
-                video1.mp4
-                video2.mp4
-            fake/
-                video1.mp4
-                video2.mp4
+    Pipeline:
+        Video
+          -> Face Detection
+          -> Face Tracking
+          -> RGB Extraction
+          -> RGB Validation
+          -> POS
+          -> Fixed-Length Signal
+          -> PyTorch Tensor
 
     Labels:
         Real = 0
         Fake = 1
 
     Returns:
-        x_tensor: float32 tensor with shape (target_length,)
+        x_tensor: float32 tensor, shape (target_length,)
         y_tensor: float32 scalar tensor
-
-    Important:
-        This dataset currently processes one face per video frame.
-        It does not implement multi-face tracking.
     """
 
     def __init__(
@@ -52,9 +52,10 @@ class RPPGDataset(Dataset):
         frame_scale: float = 1.0,
         debug: bool = True,
     ):
-        # --------------------------------------------------
-        # STEP 1: Validate configuration
-        # --------------------------------------------------
+
+        # ==================================================
+        # STEP 1: VALIDATE CONFIGURATION
+        # ==================================================
 
         if (
             isinstance(target_length, bool)
@@ -79,11 +80,10 @@ class RPPGDataset(Dataset):
             isinstance(min_valid_rgb_fraction, bool)
             or not np.isscalar(min_valid_rgb_fraction)
             or not np.isfinite(min_valid_rgb_fraction)
-            or not 0.0 < min_valid_rgb_fraction <= 1.0
+            or not 0 < min_valid_rgb_fraction <= 1
         ):
             raise ValueError(
-                "min_valid_rgb_fraction must be greater than 0 "
-                "and at most 1."
+                "min_valid_rgb_fraction must be between 0 and 1."
             )
 
         if (
@@ -99,11 +99,10 @@ class RPPGDataset(Dataset):
             isinstance(detection_confidence, bool)
             or not np.isscalar(detection_confidence)
             or not np.isfinite(detection_confidence)
-            or not 0.0 < detection_confidence <= 1.0
+            or not 0 < detection_confidence <= 1
         ):
             raise ValueError(
-                "detection_confidence must be greater than 0 "
-                "and at most 1."
+                "detection_confidence must be between 0 and 1."
             )
 
         if (
@@ -130,22 +129,27 @@ class RPPGDataset(Dataset):
             )
 
         self.root_dir = os.path.abspath(root_dir)
+
         self.target_length = target_length
         self.fps = float(fps)
+
         self.min_valid_rgb_fraction = float(
             min_valid_rgb_fraction
         )
+
         self.min_rgb_frames = min_rgb_frames
+
         self.detection_confidence = float(
             detection_confidence
         )
+
         self.model_selection = model_selection
         self.frame_scale = float(frame_scale)
         self.debug = debug
 
-        # --------------------------------------------------
-        # STEP 2: Discover videos and assign labels
-        # --------------------------------------------------
+        # ==================================================
+        # STEP 2: FIND VIDEOS
+        # ==================================================
 
         real_dir = os.path.join(self.root_dir, "real")
         fake_dir = os.path.join(self.root_dir, "fake")
@@ -160,79 +164,106 @@ class RPPGDataset(Dataset):
 
         self.samples: List[Tuple[str, int]] = []
 
-        self.samples.extend(
-            (path, 0) for path in real_videos
-        )
+        # Real = 0
+        for path in real_videos:
+            self.samples.append((path, 0))
 
-        self.samples.extend(
-            (path, 1) for path in fake_videos
-        )
+        # Fake = 1
+        for path in fake_videos:
+            self.samples.append((path, 1))
 
         if not self.samples:
             raise ValueError(
-                "No .mp4 videos were found. Expected videos in "
-                f"'{real_dir}' and/or '{fake_dir}'."
+                "No MP4 videos found.\n"
+                f"Expected folders:\n"
+                f"{real_dir}\n"
+                f"{fake_dir}"
             )
 
+        # ==================================================
+        # STEP 3: DISPLAY DATASET INFORMATION
+        # ==================================================
+
         print("\n========== RPPG DATASET ==========")
+
         print(f"Root directory: {self.root_dir}")
         print(f"Real videos: {len(real_videos)}")
         print(f"Fake videos: {len(fake_videos)}")
         print(f"Total videos: {len(self.samples)}")
+
         print(f"Target signal length: {self.target_length}")
+
         print(
             "Minimum valid RGB fraction: "
             f"{self.min_valid_rgb_fraction:.1%}"
         )
+
+        print(
+            f"Minimum valid RGB frames: {self.min_rgb_frames}"
+        )
+
         print("==================================\n")
 
+    # ======================================================
+    # DATASET LENGTH
+    # ======================================================
+
     def __len__(self) -> int:
-        """Return the number of videos in the dataset."""
         return len(self.samples)
+
+    # ======================================================
+    # STEP 4: VALIDATE FACE DETECTION RESULTS
+    # ======================================================
 
     @staticmethod
     def _validate_detections(summary, video_path):
-        """Validate the detector output and its frame records."""
 
         if not isinstance(summary, dict):
             raise ValueError(
-                f"FaceDetector returned an invalid result for "
-                f"'{video_path}': expected a dictionary."
+                f"Invalid FaceDetector output: {video_path}"
             )
 
         detections = summary.get("detections")
 
-        if not isinstance(detections, list) or not detections:
+        if not isinstance(detections, list):
             raise ValueError(
-                f"No frame detection records were produced for "
-                f"'{video_path}'."
+                f"FaceDetector did not return a detection list: "
+                f"{video_path}"
             )
 
-        # The detector is expected to return one record per decoded
-        # frame, including frames where no face was found.
+        if len(detections) == 0:
+            raise ValueError(
+                f"No frame records were returned: {video_path}"
+            )
+
         for index, record in enumerate(detections):
+
             if not isinstance(record, dict):
                 raise ValueError(
-                    f"Invalid detection record at position {index} "
-                    f"in '{video_path}'."
+                    f"Invalid detection record at frame {index}: "
+                    f"{video_path}"
                 )
 
             frame_idx = record.get("frame_idx")
 
             if frame_idx is not None and frame_idx != index:
                 raise ValueError(
-                    f"Frame-index mismatch in '{video_path}': "
-                    f"record {index} refers to frame {frame_idx}."
+                    f"Frame index mismatch in {video_path}. "
+                    f"Expected {index}, received {frame_idx}."
                 )
 
         return detections
 
+    # ======================================================
+    # STEP 5: FACE DETECTION AND TRACKING
+    # ======================================================
+
     def _extract_tracked_detections(self, video_path):
-        """Detect and track the primary face in a video."""
 
         detector = None
 
         try:
+
             detector = FaceDetector(
                 min_detection_confidence=self.detection_confidence,
                 model_selection=self.model_selection,
@@ -251,17 +282,29 @@ class RPPGDataset(Dataset):
             )
 
         except Exception as exc:
+
             raise RuntimeError(
-                f"Face detection failed for '{video_path}': {exc}"
+                f"Face detection failed:\n"
+                f"Video: {video_path}\n"
+                f"Reason: {exc}"
             ) from exc
 
         finally:
+
             if detector is not None:
                 detector.close()
 
+        # ----------------------------------------------
+        # TRACK DETECTED FACE
+        # ----------------------------------------------
+
         try:
+
             tracker = FaceTracker()
-            tracked_detections = tracker.track_faces(detections)
+
+            tracked_detections = tracker.track_faces(
+                detections
+            )
 
             if not isinstance(tracked_detections, list):
                 raise ValueError(
@@ -270,25 +313,69 @@ class RPPGDataset(Dataset):
 
             if len(tracked_detections) != len(detections):
                 raise ValueError(
-                    "The number of tracking records does not match "
-                    "the number of detection records. "
-                    f"Detections={len(detections)}, "
-                    f"tracking={len(tracked_detections)}."
+                    "Detection and tracking frame counts differ.\n"
+                    f"Detection records: {len(detections)}\n"
+                    f"Tracking records: {len(tracked_detections)}"
                 )
+
+            # ------------------------------------------
+            # TRACKING DIAGNOSTICS
+            # ------------------------------------------
+
+            if self.debug:
+
+                status_counts = Counter(
+                    record.get("status", "unknown")
+                    for record in tracked_detections
+                )
+
+                valid_count = sum(
+                    bool(record.get("track_valid", False))
+                    for record in tracked_detections
+                )
+
+                print("\n[TRACKING SUMMARY]")
+                print(f"Video: {os.path.basename(video_path)}")
+
+                print(
+                    f"Total tracking frames: "
+                    f"{len(tracked_detections)}"
+                )
+
+                print(
+                    f"Tracking-valid frames: {valid_count}"
+                )
+
+                print(
+                    f"Tracking-rejected frames: "
+                    f"{len(tracked_detections) - valid_count}"
+                )
+
+                print("Tracking statuses:")
+
+                for status, count in sorted(status_counts.items()):
+                    print(f"  {status}: {count}")
 
             return summary, tracked_detections
 
         except Exception as exc:
+
             raise RuntimeError(
-                f"Face tracking failed for '{video_path}': {exc}"
+                f"Face tracking failed:\n"
+                f"Video: {video_path}\n"
+                f"Reason: {exc}"
             ) from exc
 
+    # ======================================================
+    # STEP 6: RGB EXTRACTION
+    # ======================================================
+
     def _extract_rgb(self, video_path, tracked_detections):
-        """Extract one RGB measurement per corresponding frame."""
 
         extractor = None
 
         try:
+
             extractor = RGBExtractor()
 
             rgb_signals = extractor.process_video_frames(
@@ -297,118 +384,216 @@ class RPPGDataset(Dataset):
             )
 
         except Exception as exc:
+
             raise RuntimeError(
-                f"RGB extraction failed for '{video_path}': {exc}"
+                f"RGB extraction failed:\n"
+                f"Video: {video_path}\n"
+                f"Reason: {exc}"
             ) from exc
 
         finally:
+
             if extractor is not None:
                 extractor.close()
 
+        # ----------------------------------------------
+        # CONVERT TO NUMPY
+        # ----------------------------------------------
+
         try:
+
             rgb_signals = np.asarray(
                 rgb_signals,
                 dtype=np.float64,
             )
+
         except (TypeError, ValueError) as exc:
+
             raise ValueError(
-                f"RGB extraction returned non-numeric data for "
-                f"'{video_path}'."
+                f"RGB extraction returned invalid data:\n"
+                f"{video_path}"
             ) from exc
 
-        if (
-            rgb_signals.ndim != 2
-            or rgb_signals.shape[1] != 3
-        ):
+        # ----------------------------------------------
+        # VALIDATE ARRAY SHAPE
+        # ----------------------------------------------
+
+        if rgb_signals.ndim != 2:
             raise ValueError(
-                f"Invalid RGB array shape for '{video_path}': "
-                f"{rgb_signals.shape}. Expected (frames, 3)."
+                f"RGB array must have 2 dimensions.\n"
+                f"Received shape: {rgb_signals.shape}\n"
+                f"Video: {video_path}"
+            )
+
+        if rgb_signals.shape[1] != 3:
+            raise ValueError(
+                f"RGB array must contain 3 channels (R, G, B).\n"
+                f"Received shape: {rgb_signals.shape}\n"
+                f"Video: {video_path}"
             )
 
         if len(rgb_signals) != len(tracked_detections):
             raise ValueError(
-                f"Frame-count mismatch for '{video_path}': "
-                f"tracking produced {len(tracked_detections)} records, "
-                f"but RGB extraction produced {len(rgb_signals)}."
+                f"Frame count mismatch:\n"
+                f"Tracking: {len(tracked_detections)}\n"
+                f"RGB: {len(rgb_signals)}\n"
+                f"Video: {video_path}"
             )
 
         return rgb_signals
 
-    def _diagnose_rgb(self, rgb_signals, video_path):
-        """Report missing RGB measurements and validate data quality."""
+    # ======================================================
+    # STEP 7: RGB QUALITY DIAGNOSTICS
+    # ======================================================
+
+    def _diagnose_rgb(
+        self,
+        rgb_signals,
+        tracked_detections,
+        video_path,
+    ):
 
         total_count = len(rgb_signals)
 
         if total_count == 0:
-            raise ValueError(
-                f"No RGB measurements were produced for '{video_path}'."
+            raise VideoQualityError(
+                f"No RGB measurements found: {video_path}"
             )
 
+        # A row is valid only when all 3 channels are finite.
         valid_rows = np.all(
             np.isfinite(rgb_signals),
             axis=1,
         )
 
         valid_count = int(np.count_nonzero(valid_rows))
+
         missing_count = total_count - valid_count
+
         valid_fraction = valid_count / total_count
 
+        # ----------------------------------------------
+        # TRACKING STATUS OF MISSING RGB FRAMES
+        # ----------------------------------------------
+
+        missing_statuses = Counter()
+
+        for index, is_valid in enumerate(valid_rows):
+
+            if not is_valid:
+
+                status = tracked_detections[index].get(
+                    "tracking_status",
+                    "unknown",
+                )
+                missing_statuses[status] += 1
+
+        # ----------------------------------------------
+        # PRINT DIAGNOSTICS
+        # ----------------------------------------------
+
         if self.debug:
-            print(f"\n[RGB DEBUG] Video: {video_path}")
-            print(f"[RGB DEBUG] Total frames: {total_count}")
-            print(f"[RGB DEBUG] Valid RGB frames: {valid_count}")
-            print(f"[RGB DEBUG] Missing RGB frames: {missing_count}")
+
+            print("\n========== RGB QUALITY ==========")
+
+            print(f"Video: {os.path.basename(video_path)}")
+
+            print(f"Total frames: {total_count}")
+            print(f"Valid RGB frames: {valid_count}")
+            print(f"Missing RGB frames: {missing_count}")
+
             print(
-                f"[RGB DEBUG] Valid fraction: {valid_fraction:.2%}"
+                f"Valid RGB percentage: {valid_fraction:.2%}"
             )
 
-        # Identify consecutive runs of missing RGB measurements.
-        if self.debug:
-            invalid = ~valid_rows
+            print("\nMissing RGB by tracking status:")
+
+            if missing_statuses:
+
+                for status, count in sorted(
+                    missing_statuses.items()
+                ):
+                    print(f"  {status}: {count}")
+
+            else:
+                print("  No missing RGB frames.")
+
+            # ------------------------------------------
+            # FIND CONSECUTIVE MISSING FRAME GROUPS
+            # ------------------------------------------
+
             missing_runs = []
+
             run_start = None
 
-            for i, is_missing in enumerate(invalid):
+            for index, is_valid in enumerate(valid_rows):
+
+                is_missing = not is_valid
+
                 if is_missing and run_start is None:
-                    run_start = i
+                    run_start = index
 
                 elif not is_missing and run_start is not None:
-                    missing_runs.append((run_start, i - 1))
+
+                    missing_runs.append(
+                        (run_start, index - 1)
+                    )
+
                     run_start = None
 
             if run_start is not None:
+
                 missing_runs.append(
-                    (run_start, len(invalid) - 1)
+                    (run_start, total_count - 1)
                 )
 
-            print(f"[RGB DEBUG] Missing runs: {missing_runs}")
+            print(f"\nMissing frame groups: {missing_runs}")
 
-        # Enforce the validity threshold before POS processing.
+            print("==================================\n")
+
+        # ----------------------------------------------
+        # ENFORCE QUALITY REQUIREMENTS
+        # ----------------------------------------------
+
         if valid_fraction < self.min_valid_rgb_fraction:
-            raise ValueError(
-                f"Insufficient valid RGB measurements for "
-                f"'{video_path}': {valid_fraction:.2%} valid, "
-                f"but at least "
-                f"{self.min_valid_rgb_fraction:.2%} is required. "
-                f"Valid={valid_count}, total={total_count}."
+
+            raise VideoQualityError(
+                "\nInsufficient valid RGB measurements.\n"
+                f"Video: {video_path}\n"
+                f"Valid: {valid_count}/{total_count}\n"
+                f"Valid percentage: {valid_fraction:.2%}\n"
+                f"Required percentage: "
+                f"{self.min_valid_rgb_fraction:.2%}\n"
+                f"Missing: {missing_count}\n"
+                "Check face tracking and ROI extraction."
             )
 
         if valid_count < self.min_rgb_frames:
-            raise ValueError(
-                f"Too few valid RGB measurements for '{video_path}': "
-                f"{valid_count}; at least {self.min_rgb_frames} "
-                "are required."
+
+            raise VideoQualityError(
+                f"Too few valid RGB measurements.\n"
+                f"Video: {video_path}\n"
+                f"Valid frames: {valid_count}\n"
+                f"Required frames: {self.min_rgb_frames}"
             )
 
         return valid_fraction
 
+    # ======================================================
+    # STEP 8: GET VIDEO FPS
+    # ======================================================
+
     @staticmethod
     def _resolve_video_fps(summary, fallback_fps):
-        """Use valid video FPS metadata or a configured fallback."""
 
         try:
-            video_fps = float(summary.get("fps", fallback_fps))
+
+            video_fps = float(
+                summary.get("fps", fallback_fps)
+            )
+
         except (TypeError, ValueError, OverflowError):
+
             video_fps = fallback_fps
 
         if not np.isfinite(video_fps) or video_fps <= 0:
@@ -416,14 +601,19 @@ class RPPGDataset(Dataset):
 
         return float(video_fps)
 
-    def _extract_pos_signal(self, rgb_signals, video_fps, video_path):
-        """Convert RGB measurements into a validated POS waveform."""
+    # ======================================================
+    # STEP 9: RGB TO POS SIGNAL
+    # ======================================================
+
+    def _extract_pos_signal(
+        self,
+        rgb_signals,
+        video_fps,
+        video_path,
+    ):
 
         try:
-            # pos_method must handle or validate missing values before
-            # performing POS calculations. We deliberately do not
-            # silently interpolate here because that behavior belongs
-            # to the signal-preparation implementation.
+
             rppg_wave = pos_method(
                 rgb_signals,
                 fps=video_fps,
@@ -435,44 +625,63 @@ class RPPGDataset(Dataset):
             )
 
         except Exception as exc:
+
             raise RuntimeError(
-                f"POS signal extraction failed for '{video_path}': "
-                f"{exc}"
+                f"POS processing failed:\n"
+                f"Video: {video_path}\n"
+                f"Reason: {exc}"
             ) from exc
 
+        # ----------------------------------------------
+        # VALIDATE POS OUTPUT
+        # ----------------------------------------------
+
         if rppg_wave.ndim != 1:
+
             raise ValueError(
-                f"POS output for '{video_path}' must be one-dimensional; "
-                f"received shape {rppg_wave.shape}."
+                f"POS output must be one-dimensional.\n"
+                f"Received shape: {rppg_wave.shape}\n"
+                f"Video: {video_path}"
             )
 
         if len(rppg_wave) == 0:
+
             raise ValueError(
-                f"POS produced an empty signal for '{video_path}'."
+                f"POS produced an empty signal: {video_path}"
             )
 
         if not np.all(np.isfinite(rppg_wave)):
+
             raise ValueError(
-                f"POS produced NaN or infinite values for "
-                f"'{video_path}'."
+                f"POS produced NaN or infinite values: {video_path}"
             )
 
         return rppg_wave
 
+    # ======================================================
+    # STEP 10: FORMAT SIGNAL LENGTH
+    # ======================================================
+
     def _format_signal(self, rppg_wave, video_path):
-        """Truncate or pad a valid waveform to the configured length."""
 
         original_length = len(rppg_wave)
 
+        # ----------------------------------------------
+        # TRUNCATE LONG SIGNALS
+        # ----------------------------------------------
+
         if original_length > self.target_length:
-            # Use the first target_length samples.
+
             rppg_wave = rppg_wave[:self.target_length]
 
+        # ----------------------------------------------
+        # PAD SHORT SIGNALS
+        # ----------------------------------------------
+
         elif original_length < self.target_length:
+
             pad_length = self.target_length - original_length
 
-            # Zero padding is retained for compatibility with the
-            # existing model. The debug output makes it visible.
             rppg_wave = np.pad(
                 rppg_wave,
                 (0, pad_length),
@@ -481,78 +690,117 @@ class RPPGDataset(Dataset):
             )
 
             if self.debug:
+
                 print(
-                    f"[PADDING] {os.path.basename(video_path)}: "
-                    f"{original_length} signal samples + "
-                    f"{pad_length} zero samples."
+                    f"[PADDING] {os.path.basename(video_path)}\n"
+                    f"Original samples: {original_length}\n"
+                    f"Added zero samples: {pad_length}"
                 )
 
-        # Return a contiguous float32 array for PyTorch.
         return np.ascontiguousarray(
             rppg_wave,
             dtype=np.float32,
         )
 
-    def __getitem__(
-        self,
-        idx: int,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Process one video and return its signal and label."""
+    # ======================================================
+    # STEP 11: LOAD ONE DATASET SAMPLE
+    # ======================================================
+
+    def __getitem__(self, idx: int):
+
+        # ----------------------------------------------
+        # VALIDATE INDEX
+        # ----------------------------------------------
 
         if (
             isinstance(idx, bool)
             or not isinstance(idx, (int, np.integer))
         ):
-            raise TypeError("Dataset index must be an integer.")
+
+            raise TypeError(
+                "Dataset index must be an integer."
+            )
 
         if idx < 0:
             idx += len(self.samples)
 
         if idx < 0 or idx >= len(self.samples):
+
             raise IndexError(
                 f"Dataset index {idx} is out of range."
             )
 
         video_path, label = self.samples[idx]
 
-        # STEP 1 and 2: Detect and track the primary face.
-        summary, tracked_detections = (
-            self._extract_tracked_detections(video_path)
+        print(
+            f"\n[PROCESSING VIDEO] "
+            f"{os.path.basename(video_path)}"
         )
 
-        # STEP 3: Extract RGB measurements.
+        # ----------------------------------------------
+        # 1. FACE DETECTION + TRACKING
+        # ----------------------------------------------
+
+        summary, tracked_detections = (
+            self._extract_tracked_detections(
+                video_path
+            )
+        )
+
+        # ----------------------------------------------
+        # 2. RGB EXTRACTION
+        # ----------------------------------------------
+
         rgb_signals = self._extract_rgb(
             video_path,
             tracked_detections,
         )
 
-        # STEP 4: Check RGB validity before POS processing.
+        # ----------------------------------------------
+        # 3. RGB QUALITY CHECK
+        # ----------------------------------------------
+
         self._diagnose_rgb(
             rgb_signals,
+            tracked_detections,
             video_path,
         )
 
-        # STEP 5: Resolve the video's frame rate.
+        # ----------------------------------------------
+        # 4. VIDEO FPS
+        # ----------------------------------------------
+
         video_fps = self._resolve_video_fps(
             summary,
             self.fps,
         )
 
-        # STEP 6: Extract and validate the POS signal.
+        # ----------------------------------------------
+        # 5. POS PROCESSING
+        # ----------------------------------------------
+
         rppg_wave = self._extract_pos_signal(
             rgb_signals,
             video_fps,
             video_path,
         )
 
-        # STEP 7: Pad or truncate the waveform.
+        # ----------------------------------------------
+        # 6. FIXED-LENGTH SIGNAL
+        # ----------------------------------------------
+
         rppg_wave = self._format_signal(
             rppg_wave,
             video_path,
         )
 
-        # STEP 8: Return tensors in the original format.
-        x_tensor = torch.from_numpy(rppg_wave)
+        # ----------------------------------------------
+        # 7. CONVERT TO PYTORCH TENSORS
+        # ----------------------------------------------
+
+        x_tensor = torch.from_numpy(
+            rppg_wave
+        )
 
         y_tensor = torch.tensor(
             label,

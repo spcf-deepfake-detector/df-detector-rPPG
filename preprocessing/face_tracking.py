@@ -1,13 +1,12 @@
-
 import math
 from numbers import Real
 from collections import Counter
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 
 class FaceTracker:
     """
-    Single-face tracker for the FalseFacet rPPG pipeline.
+    Adaptive single-face tracker for the FalseFacet rPPG pipeline.
 
     Input:
         One detection record per video frame.
@@ -15,35 +14,32 @@ class FaceTracker:
     Output:
         One tracking record per input frame.
 
-    Bounding-box format:
+    Bounding box:
         [x, y, width, height]
 
-    Important fields:
-        detected:
-            Whether the detector found a valid face.
+    Tracking statuses:
+        initialized
+        matched
+        predicted_match
+        missing
+        low_iou
+        reacquired
 
-        track_valid:
-            Whether the detection is accepted for downstream processing.
-
-        tracking_status:
-            Explanation of the tracking decision.
-
-        tracking_iou:
-            IoU between the current detection and the previous
-            accepted bounding box.
-
-    Important limitation:
-        IoU measures geometric overlap, not facial identity.
-        This tracker cannot guarantee identity consistency.
+    Important:
+        IoU measures bounding-box overlap, not facial identity.
+        This tracker uses geometric prediction and is not an
+        identity-recognition tracker.
     """
 
     def __init__(
         self,
-        iou_threshold: float = 0.3,
+        iou_threshold: float = 0.30,
+        prediction_threshold: float = 0.20,
         max_missed_frames: int = 5,
+        max_prediction_frames: int = 2,
         debug: bool = False,
     ):
-        # Validate IoU threshold.
+
         if (
             isinstance(iou_threshold, bool)
             or not isinstance(iou_threshold, Real)
@@ -51,10 +47,19 @@ class FaceTracker:
             or not 0.0 <= iou_threshold <= 1.0
         ):
             raise ValueError(
-                "iou_threshold must be a finite number between 0 and 1."
+                "iou_threshold must be between 0 and 1."
             )
 
-        # Validate recovery interval.
+        if (
+            isinstance(prediction_threshold, bool)
+            or not isinstance(prediction_threshold, Real)
+            or not math.isfinite(prediction_threshold)
+            or not 0.0 <= prediction_threshold <= 1.0
+        ):
+            raise ValueError(
+                "prediction_threshold must be between 0 and 1."
+            )
+
         if (
             isinstance(max_missed_frames, bool)
             or not isinstance(max_missed_frames, int)
@@ -64,24 +69,59 @@ class FaceTracker:
                 "max_missed_frames must be an integer >= 1."
             )
 
+        if (
+            isinstance(max_prediction_frames, bool)
+            or not isinstance(max_prediction_frames, int)
+            or max_prediction_frames < 0
+        ):
+            raise ValueError(
+                "max_prediction_frames must be an integer >= 0."
+            )
+
         if not isinstance(debug, bool):
             raise TypeError("debug must be a boolean.")
 
         self.iou_threshold = float(iou_threshold)
+        self.prediction_threshold = float(prediction_threshold)
+
         self.max_missed_frames = max_missed_frames
+        self.max_prediction_frames = max_prediction_frames
+
         self.debug = debug
 
+        self.reset()
+
+    # ==================================================
+    # RESET TRACKING
+    # ==================================================
+
+    def reset(self):
+
         self.last_valid_bbox: Optional[List[float]] = None
+
+        self.previous_valid_bbox: Optional[List[float]] = None
+
         self.missed_frames = 0
+
+        self.accepted_frames = 0
+
+        self.rejected_frames = 0
+
+    # ==================================================
+    # VALIDATE BOUNDING BOX
+    # ==================================================
 
     @staticmethod
     def _valid_bbox(bbox: Any) -> bool:
-        """Return True if the bounding box is finite and has positive size."""
 
-        if not isinstance(bbox, (list, tuple)) or len(bbox) != 4:
+        if not isinstance(bbox, (list, tuple)):
+            return False
+
+        if len(bbox) != 4:
             return False
 
         for value in bbox:
+
             if (
                 isinstance(value, bool)
                 or not isinstance(value, Real)
@@ -93,16 +133,48 @@ class FaceTracker:
 
         return width > 0 and height > 0
 
+    # ==================================================
+    # VALIDATE DETECTION FLAG
+    # ==================================================
+
+    @staticmethod
+    def _is_detected(value: Any) -> bool:
+
+        if isinstance(value, bool):
+            return value
+
+        # Supports numpy.bool_ without requiring NumPy import.
+        if type(value).__name__ == "bool_":
+            return bool(value)
+
+        return False
+
+    # ==================================================
+    # VALIDATE CONFIDENCE
+    # ==================================================
+
+    @staticmethod
+    def _validate_confidence(value: Any) -> float:
+
+        if (
+            isinstance(value, bool)
+            or not isinstance(value, Real)
+            or not math.isfinite(value)
+            or not 0.0 <= value <= 1.0
+        ):
+            return 0.0
+
+        return float(value)
+
+    # ==================================================
+    # CALCULATE IOU
+    # ==================================================
+
     @staticmethod
     def compute_iou(
         boxA: List[float],
         boxB: List[float],
     ) -> float:
-        """
-        Calculate Intersection over Union.
-
-        IoU = intersection area / union area.
-        """
 
         if not FaceTracker._valid_bbox(boxA):
             return 0.0
@@ -115,262 +187,412 @@ class FaceTracker:
 
         x_left = max(ax, bx)
         y_top = max(ay, by)
+
         x_right = min(ax + aw, bx + bw)
         y_bottom = min(ay + ah, by + bh)
 
-        intersection_width = max(0.0, x_right - x_left)
-        intersection_height = max(0.0, y_bottom - y_top)
+        intersection_width = max(
+            0.0,
+            x_right - x_left,
+        )
+
+        intersection_height = max(
+            0.0,
+            y_bottom - y_top,
+        )
 
         intersection_area = (
             intersection_width * intersection_height
         )
 
-        area_a = aw * ah
-        area_b = bw * bh
+        union_area = (
+            aw * ah + bw * bh - intersection_area
+        )
 
-        union_area = area_a + area_b - intersection_area
-
-        if union_area <= 0.0:
+        if union_area <= 0:
             return 0.0
 
         return intersection_area / union_area
 
-    def reset(self) -> None:
-        """Reset tracking state before processing another video."""
+    # ==================================================
+    # PREDICT NEXT BOUNDING BOX
+    # ==================================================
 
-        self.last_valid_bbox = None
-        self.missed_frames = 0
+    def _predict_bbox(self) -> Optional[List[float]]:
+
+        if (
+            self.last_valid_bbox is None
+            or self.previous_valid_bbox is None
+        ):
+            return self.last_valid_bbox
+
+        last = self.last_valid_bbox
+        previous = self.previous_valid_bbox
+
+        # Estimate movement from the last two accepted boxes.
+        predicted = []
+
+        for index in range(4):
+
+            movement = last[index] - previous[index]
+
+            predicted.append(
+                last[index] + movement
+            )
+
+        # Avoid invalid predicted dimensions.
+        if not self._valid_bbox(predicted):
+            return self.last_valid_bbox.copy()
+
+        return predicted
+
+    # ==================================================
+    # UPDATE TRACKING POSITION
+    # ==================================================
+
+    def _update_position(self, current_bbox: List[float]):
+
+        self.previous_valid_bbox = (
+            self.last_valid_bbox.copy()
+            if self.last_valid_bbox is not None
+            else None
+        )
+
+        self.last_valid_bbox = current_bbox.copy()
+
+    # ==================================================
+    # SET TRACKING STATUS
+    # ==================================================
+
+    @staticmethod
+    def _set_status(
+        record: Dict[str, Any],
+        status: str,
+        valid: bool,
+    ):
+
+        record["tracking_status"] = status
+
+        # Backward compatibility with dataset diagnostics.
+        record["status"] = status
+
+        record["track_valid"] = valid
+
+    # ==================================================
+    # MAIN TRACKING FUNCTION
+    # ==================================================
 
     def track_faces(
         self,
         raw_detections: List[Dict[str, Any]],
     ) -> List[Dict[str, Any]]:
-        """
-        Process detections in frame order.
-
-        Tracking statuses:
-            initialized:
-                First accepted detection.
-
-            matched:
-                Detection meets the IoU threshold.
-
-            missing:
-                No valid detection is available.
-
-            low_iou:
-                Detection overlap is below the threshold.
-
-            reacquired:
-                Detection accepted after consecutive mismatches.
-        """
 
         if not isinstance(raw_detections, list):
-            raise TypeError("raw_detections must be a list.")
+            raise TypeError(
+                "raw_detections must be a list."
+            )
 
-        # Each call represents a separate video.
         self.reset()
 
-        tracked: List[Dict[str, Any]] = []
-        iou_values: List[float] = []
+        tracked = []
 
-        for frame_position, detection in enumerate(raw_detections):
+        iou_values = []
+
+        for frame_position, detection in enumerate(
+            raw_detections
+        ):
 
             if not isinstance(detection, dict):
+
                 raise TypeError(
                     f"Detection at position {frame_position} "
                     "must be a dictionary."
                 )
 
-            # Preserve the original detection record.
             record = dict(detection)
-            record.setdefault("frame_idx", frame_position)
+
+            record.setdefault(
+                "frame_idx",
+                frame_position,
+            )
 
             bbox = record.get("bbox")
-            detected_flag = record.get("detected", False)
+
+            detected = self._is_detected(
+                record.get("detected", False)
+            )
 
             valid_detection = (
-                detected_flag is True
+                detected
                 and self._valid_bbox(bbox)
             )
 
             record["tracking_iou"] = None
+
             record["track_valid"] = False
 
-            # -------------------------------------------------
-            # CASE 1: No valid detection.
-            # -------------------------------------------------
+            # ------------------------------------------
+            # CASE 1: FACE MISSING
+            # ------------------------------------------
+
             if not valid_detection:
 
                 self.missed_frames += 1
 
                 record["bbox"] = [0, 0, 0, 0]
+
                 record["confidence"] = 0.0
+
                 record["detected"] = False
-                record["tracking_status"] = "missing"
+
+                self._set_status(
+                    record,
+                    "missing",
+                    False,
+                )
+
+                self.rejected_frames += 1
 
                 tracked.append(record)
 
-                if self.debug:
-                    print(
-                        f"[TRACK DEBUG] Frame "
-                        f"{record['frame_idx']}: missing detection"
-                    )
+                if (
+                    self.missed_frames
+                    >= self.max_missed_frames
+                ):
 
-                # Discard stale tracking position after enough misses.
-                if self.missed_frames >= self.max_missed_frames:
                     self.last_valid_bbox = None
+
+                    self.previous_valid_bbox = None
 
                 continue
 
-            current_bbox = [float(value) for value in bbox]
+            current_bbox = [
+                float(value)
+                for value in bbox
+            ]
 
-            # Validate confidence without rejecting an otherwise
-            # valid bounding box.
-            confidence = record.get("confidence", 0.0)
+            record["confidence"] = (
+                self._validate_confidence(
+                    record.get("confidence", 0.0)
+                )
+            )
 
-            if (
-                isinstance(confidence, bool)
-                or not isinstance(confidence, Real)
-                or not math.isfinite(confidence)
-                or not 0.0 <= confidence <= 1.0
-            ):
-                confidence = 0.0
-
-            record["confidence"] = float(confidence)
             record["detected"] = True
 
-            # -------------------------------------------------
-            # CASE 2: Initialize a new track.
-            # -------------------------------------------------
+            # ------------------------------------------
+            # CASE 2: INITIALIZE
+            # ------------------------------------------
+
             if self.last_valid_bbox is None:
 
-                self.last_valid_bbox = current_bbox
+                self._update_position(current_bbox)
+
                 self.missed_frames = 0
 
                 record["bbox"] = current_bbox
-                record["track_valid"] = True
-                record["tracking_status"] = "initialized"
+
+                self._set_status(
+                    record,
+                    "initialized",
+                    True,
+                )
+
+                self.accepted_frames += 1
 
                 tracked.append(record)
 
-                if self.debug:
-                    print(
-                        f"[TRACK DEBUG] Frame "
-                        f"{record['frame_idx']}: initialized"
-                    )
-
                 continue
 
-            # -------------------------------------------------
-            # CASE 3: Compare with the previous accepted box.
-            # -------------------------------------------------
-            iou = self.compute_iou(
+            # ------------------------------------------
+            # CASE 3: NORMAL IOU MATCH
+            # ------------------------------------------
+
+            normal_iou = self.compute_iou(
                 self.last_valid_bbox,
                 current_bbox,
             )
 
-            record["tracking_iou"] = iou
-            iou_values.append(iou)
+            iou_values.append(normal_iou)
 
-            if iou >= self.iou_threshold:
+            record["tracking_iou"] = normal_iou
 
-                self.last_valid_bbox = current_bbox
+            if normal_iou >= self.iou_threshold:
+
+                self._update_position(current_bbox)
+
                 self.missed_frames = 0
 
                 record["bbox"] = current_bbox
-                record["track_valid"] = True
-                record["tracking_status"] = "matched"
+
+                self._set_status(
+                    record,
+                    "matched",
+                    True,
+                )
+
+                self.accepted_frames += 1
 
                 tracked.append(record)
 
-                if self.debug:
-                    print(
-                        f"[TRACK DEBUG] Frame "
-                        f"{record['frame_idx']}: matched, "
-                        f"IoU={iou:.3f}"
-                    )
+                continue
+
+            # ------------------------------------------
+            # CASE 4: PREDICTED POSITION MATCH
+            # ------------------------------------------
+
+            predicted_bbox = self._predict_bbox()
+
+            predicted_iou = 0.0
+
+            if predicted_bbox is not None:
+
+                predicted_iou = self.compute_iou(
+                    predicted_bbox,
+                    current_bbox,
+                )
+
+            record["predicted_iou"] = predicted_iou
+
+            if (
+                predicted_iou >= self.prediction_threshold
+                and self.missed_frames < self.max_prediction_frames
+            ):
+
+                self._update_position(current_bbox)
+
+                self.missed_frames = 0
+
+                record["bbox"] = current_bbox
+
+                self._set_status(
+                    record,
+                    "predicted_match",
+                    True,
+                )
+
+                self.accepted_frames += 1
+
+                tracked.append(record)
 
                 continue
 
-            # -------------------------------------------------
-            # CASE 4: Low-IoU detection.
-            # -------------------------------------------------
+            # ------------------------------------------
+            # CASE 5: LOW IOU
+            # ------------------------------------------
+
             self.missed_frames += 1
 
             record["bbox"] = current_bbox
-            record["track_valid"] = False
-            record["tracking_status"] = "low_iou"
 
-            # Recover after consecutive mismatches.
-            if self.missed_frames >= self.max_missed_frames:
+            self._set_status(
+                record,
+                "low_iou",
+                False,
+            )
 
-                self.last_valid_bbox = current_bbox
+            self.rejected_frames += 1
+
+            # ------------------------------------------
+            # CASE 6: REACQUIRE
+            # ------------------------------------------
+
+            if (
+                self.missed_frames
+                >= self.max_missed_frames
+            ):
+
+                self._update_position(current_bbox)
+
                 self.missed_frames = 0
 
-                record["track_valid"] = True
-                record["tracking_status"] = "reacquired"
+                self._set_status(
+                    record,
+                    "reacquired",
+                    True,
+                )
+
+                self.accepted_frames += 1
+
+                self.rejected_frames -= 1
 
             tracked.append(record)
 
-            if self.debug:
-                print(
-                    f"[TRACK DEBUG] Frame "
-                    f"{record['frame_idx']}: "
-                    f"{record['tracking_status']}, "
-                    f"IoU={iou:.3f}"
-                )
+        # ==================================================
+        # TRACKING SUMMARY
+        # ==================================================
 
-        # -----------------------------------------------------
-        # Diagnostic summary.
-        # -----------------------------------------------------
         status_counts = Counter(
-            record.get("tracking_status", "unknown")
+            record["tracking_status"]
             for record in tracked
-        )
-
-        accepted_count = sum(
-            1
-            for record in tracked
-            if record["track_valid"]
         )
 
         total_frames = len(tracked)
 
         print("\n========== FACE TRACKING SUMMARY ==========")
+
         print(f"Total frames: {total_frames}")
-        print(f"Accepted frames: {accepted_count}")
-        print(f"Rejected frames: {total_frames - accepted_count}")
+
+        print(f"Accepted frames: {self.accepted_frames}")
+
+        print(f"Rejected frames: {self.rejected_frames}")
 
         print("\nTracking statuses:")
 
         for status in (
             "initialized",
             "matched",
+            "predicted_match",
             "missing",
             "low_iou",
             "reacquired",
         ):
-            print(f"  {status}: {status_counts.get(status, 0)}")
+
+            print(
+                f"  {status}: "
+                f"{status_counts.get(status, 0)}"
+            )
 
         if total_frames:
-            tracking_rate = accepted_count / total_frames * 100.0
-            print(f"\nTracking-valid rate: {tracking_rate:.2f}%")
+
+            tracking_rate = (
+                self.accepted_frames / total_frames
+            ) * 100
+
+            print(
+                f"\nTracking-valid rate: "
+                f"{tracking_rate:.2f}%"
+            )
 
         if iou_values:
+
             print("\nIoU diagnostics:")
-            print(f"  Comparisons: {len(iou_values)}")
-            print(f"  Minimum IoU: {min(iou_values):.3f}")
+
+            print(
+                f"  Comparisons: {len(iou_values)}"
+            )
+
+            print(
+                f"  Minimum IoU: {min(iou_values):.3f}"
+            )
+
             print(
                 f"  Mean IoU: "
                 f"{sum(iou_values) / len(iou_values):.3f}"
             )
-            print(f"  Maximum IoU: {max(iou_values):.3f}")
+
             print(
-                f"  Below threshold: "
-                f"{sum(i < self.iou_threshold for i in iou_values)}"
+                f"  Maximum IoU: {max(iou_values):.3f}"
             )
 
-        print("============================================")
+            below_threshold = sum(
+                value < self.iou_threshold
+                for value in iou_values
+            )
+
+            print(
+                f"  Below threshold: {below_threshold}"
+            )
+
+        print("============================================\n")
 
         return tracked
