@@ -1,0 +1,5 @@
+split,class,label,video_path,status,failure_stage,failure_reason,fps,total_frames,detected_frames,detection_rate_pct,tracking_valid_frames,tracking_rejected_frames,rgb_total_frames,rgb_valid_frames,rgb_missing_frames,rgb_valid_pct,missing_run_count,missing_runs,pos_signal_length
+train,real,0,dataset/train/real/11.mp4,PASSED,,,29.927536161220583,341,341,100.0,341,0,341,341,0,100.0,0,,341
+train,fake,1,dataset/train/fake/Screen Recording 2026-01-23 091908.mp4,PASSED,,,30.0,354,354,100.0,354,0,354,353,1,99.72,1,38-38,354
+test,real,0,dataset/test/real/1.mp4,PASSED,,,29.64426877470356,283,283,100.0,283,0,283,283,0,100.0,0,,283
+test,fake,1,dataset/test/fake/Screen Recording 2026-01-23 093025.mp4,FAILED,insufficient_rgb_validity,"ValueError: Valid RGB percentage is 43.11%, but 80.00% is required.",30.0,450,450,100.0,219,0,450,194,256,43.11,9,109-126; 131-131; 140-140; 150-150; 158-158; 170-170; 188-188; 203-203; 219-449,0
