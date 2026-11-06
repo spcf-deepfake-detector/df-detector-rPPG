@@ -1,149 +1,363 @@
 import numpy as np
+import torch
 from scipy import signal
 
 
 # ============================================================
-# 1. NORMALIZE SIGNAL
+# 1. DEVICE MANAGEMENT
 # ============================================================
 
-def normalize_signal(s: np.ndarray) -> np.ndarray:
+def _get_device(device=None):
     """
-    Normalize a one-dimensional signal to approximately
-    zero mean and unit variance.
+    Select the processing device.
 
-    A constant signal returns zeros because it has no variation.
-    The rPPG extraction methods should reject constant signals
-    when a meaningful pulse signal is required.
+    CUDA is preferred when available.
     """
 
-    s = np.asarray(s, dtype=np.float64)
+    if device is None:
+        device = "cuda" if torch.cuda.is_available() else "cpu"
 
+    device = torch.device(device)
+
+    if device.type == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError(
+            "CUDA was requested, but CUDA is not available."
+        )
+
+    return device
+
+
+def _to_tensor(s, device=None):
+    """
+    Convert NumPy arrays or PyTorch tensors to float64 tensors.
+    """
+
+    device = _get_device(device)
+
+    if isinstance(s, torch.Tensor):
+        return s.to(
+            device=device,
+            dtype=torch.float64
+        ), True
+
+    return torch.as_tensor(
+        np.asarray(s, dtype=np.float64),
+        dtype=torch.float64,
+        device=device
+    ), False
+
+
+def _restore_type(tensor, was_tensor):
+    """
+    Preserve the input type.
+
+    PyTorch input -> PyTorch output.
+    NumPy input   -> NumPy output.
+    """
+
+    if was_tensor:
+        return tensor
+
+    return tensor.detach().cpu().numpy()
+
+
+def _validate_signal(s):
     if s.ndim != 1:
         raise ValueError(
             "Signal must be one-dimensional."
         )
 
-    if not np.all(np.isfinite(s)):
+    if not torch.isfinite(s).all().item():
         raise ValueError(
             "Signal contains NaN or infinite values."
         )
 
-    if len(s) == 0:
-        return s.copy()
 
-    mean = float(np.mean(s))
-    std = float(np.std(s))
+# ============================================================
+# 2. NORMALIZE SIGNAL
+# ============================================================
 
-    if not np.isfinite(mean) or not np.isfinite(std):
+def normalize_signal(s, device=None):
+    """
+    Normalize a one-dimensional signal using PyTorch.
+
+    Runs on CUDA when CUDA is available.
+
+    Constant signals return zeros.
+    """
+
+    s, was_tensor = _to_tensor(s, device)
+
+    _validate_signal(s)
+
+    if s.numel() == 0:
+        return _restore_type(s.clone(), was_tensor)
+
+    mean = torch.mean(s)
+    std = torch.std(s, unbiased=False)
+
+    if not torch.isfinite(mean).item():
         raise ValueError(
-            "Signal mean or standard deviation is invalid."
+            "Signal mean is invalid."
         )
 
-    # A constant or nearly constant signal cannot be meaningfully
-    # standardized.
-    if std < 1e-8:
-        return np.zeros_like(s)
+    if not torch.isfinite(std).item():
+        raise ValueError(
+            "Signal standard deviation is invalid."
+        )
+
+    if std.item() < 1e-8:
+        return _restore_type(
+            torch.zeros_like(s),
+            was_tensor
+        )
 
     normalized = (s - mean) / std
 
-    if not np.all(np.isfinite(normalized)):
+    if not torch.isfinite(normalized).all().item():
         raise ValueError(
             "Normalization produced invalid values."
         )
 
-    return normalized
+    return _restore_type(normalized, was_tensor)
 
 
 # ============================================================
-# 2. DETREND SIGNAL
+# 3. DETREND SIGNAL
 # ============================================================
 
-def detrend_signal(s: np.ndarray) -> np.ndarray:
+def detrend_signal(s, device=None):
     """
-    Remove a linear trend from a one-dimensional signal.
+    Remove a linear trend using PyTorch.
 
-    Detrending helps reduce gradual changes in the signal,
-    such as slow brightness or baseline drift.
+    Fits:
+        y = slope * x + intercept
 
-    It does not remove every possible source of noise.
+    Then subtracts the fitted trend.
     """
 
-    s = np.asarray(s, dtype=np.float64)
+    s, was_tensor = _to_tensor(s, device)
 
-    if s.ndim != 1:
-        raise ValueError(
-            "Signal must be one-dimensional."
-        )
+    _validate_signal(s)
 
-    if not np.all(np.isfinite(s)):
-        raise ValueError(
-            "Signal contains NaN or infinite values."
-        )
+    n = s.numel()
 
-    if len(s) < 2:
-        return s.copy()
+    if n < 2:
+        return _restore_type(s.clone(), was_tensor)
 
-    detrended = signal.detrend(
-        s,
-        type="linear"
+    x = torch.arange(
+        n,
+        device=s.device,
+        dtype=s.dtype
     )
 
-    if not np.all(np.isfinite(detrended)):
+    x_mean = torch.mean(x)
+    y_mean = torch.mean(s)
+
+    centered_x = x - x_mean
+    centered_y = s - y_mean
+
+    denominator = torch.sum(centered_x ** 2)
+
+    if denominator.item() < 1e-12:
+        return _restore_type(
+            s.clone(),
+            was_tensor
+        )
+
+    slope = torch.sum(
+        centered_x * centered_y
+    ) / denominator
+
+    trend = slope * centered_x + y_mean
+
+    detrended = s - trend
+
+    if not torch.isfinite(detrended).all().item():
         raise ValueError(
             "Detrending produced invalid values."
         )
 
-    return detrended
+    return _restore_type(detrended, was_tensor)
 
 
 # ============================================================
-# 3. BANDPASS FILTER
+# 4. CUDA BUTTERWORTH BANDPASS FILTER
 # ============================================================
+
+def _butterworth_fft_filter(
+    s,
+    fps,
+    low_hz,
+    high_hz,
+    order
+):
+    """
+    Apply a Butterworth bandpass response using PyTorch FFT.
+
+    Filter design:
+        SciPy Butterworth SOS coefficients.
+
+    Signal filtering:
+        PyTorch FFT on the selected device.
+
+    The forward-backward equivalent response is approximated
+    using the squared magnitude of the Butterworth response.
+
+    Reflection padding reduces edge artifacts.
+    """
+
+    n = s.numel()
+
+    if n < 2:
+        return s.clone()
+
+    # --------------------------------------------------------
+    # Design Butterworth filter on CPU
+    # --------------------------------------------------------
+
+    # SciPy is used only to calculate the filter coefficients.
+    # The actual signal filtering happens using PyTorch.
+    sos = signal.butter(
+        order,
+        [low_hz, high_hz],
+        btype="bandpass",
+        fs=fps,
+        output="sos"
+    )
+
+    sos = torch.as_tensor(
+        sos,
+        dtype=s.dtype,
+        device=s.device
+    )
+
+    # --------------------------------------------------------
+    # Reflection padding
+    # --------------------------------------------------------
+
+    pad_length = min(
+        3 * (2 * len(sos) + 1),
+        n - 1
+    )
+
+    if pad_length > 0:
+        padded = torch.cat([
+            torch.flip(s[:pad_length], dims=[0]),
+            s,
+            torch.flip(s[-pad_length:], dims=[0])
+        ])
+    else:
+        padded = s
+
+    padded_length = padded.numel()
+
+    # --------------------------------------------------------
+    # FFT
+    # --------------------------------------------------------
+
+    spectrum = torch.fft.rfft(padded)
+
+    frequencies = torch.fft.rfftfreq(
+        padded_length,
+        d=1.0 / fps,
+        device=s.device,
+        dtype=s.dtype
+    )
+
+    omega = (
+        2.0 * torch.pi * frequencies / fps
+    )
+
+    z1 = torch.exp(
+        -1j * omega
+    )
+
+    # --------------------------------------------------------
+    # Calculate Butterworth frequency response
+    # --------------------------------------------------------
+
+    response = torch.ones(
+        frequencies.shape,
+        dtype=torch.complex128,
+        device=s.device
+    )
+
+    for section in sos:
+
+        b0, b1, b2, a0, a1, a2 = section
+
+        numerator = (
+            b0
+            + b1 * z1
+            + b2 * z1 ** 2
+        )
+
+        denominator = (
+            a0
+            + a1 * z1
+            + a2 * z1 ** 2
+        )
+
+        response = response * (
+            numerator / denominator
+        )
+
+    # Forward-backward filtering has approximately |H|^2
+    # magnitude response and zero phase.
+    magnitude_squared = torch.abs(response) ** 2
+
+    filtered_spectrum = (
+        spectrum * magnitude_squared
+    )
+
+    # --------------------------------------------------------
+    # Inverse FFT
+    # --------------------------------------------------------
+
+    filtered = torch.fft.irfft(
+        filtered_spectrum,
+        n=padded_length
+    )
+
+    # Remove reflection padding.
+    if pad_length > 0:
+        filtered = filtered[
+            pad_length:pad_length + n
+        ]
+
+    if not torch.isfinite(filtered).all().item():
+        raise ValueError(
+            "Bandpass filtering produced invalid values."
+        )
+
+    return filtered
+
 
 def bandpass_filter(
-    s: np.ndarray,
-    fps: float = 30.0,
-    low_hz: float = 0.7,
-    high_hz: float = 2.5,
-    order: int = 4
-) -> np.ndarray:
+    s,
+    fps=30.0,
+    low_hz=0.7,
+    high_hz=2.5,
+    order=4,
+    device=None
+):
     """
-    Apply a Butterworth bandpass filter.
+    Butterworth bandpass filtering using PyTorch.
 
-    Default passband:
-        0.7-2.5 Hz
-        Approximately 42-150 beats per minute.
+    Default frequency range:
+        0.7 - 2.5 Hz
+        Approximately 42 - 150 BPM.
 
-    Long signals:
-        Use zero-phase filtering with sosfiltfilt.
-
-    Short signals:
-        Use causal filtering with sosfilt because there may not
-        be enough samples for zero-phase filtering.
-
-    Note:
-        The short-signal fallback can introduce phase delay
-        and edge effects.
+    CUDA is used when available.
     """
 
-    s = np.asarray(s, dtype=np.float64)
+    s, was_tensor = _to_tensor(s, device)
 
-    # --------------------------------------------------------
-    # Validate input signal
-    # --------------------------------------------------------
+    _validate_signal(s)
 
-    if s.ndim != 1:
-        raise ValueError(
-            "Signal must be one-dimensional."
-        )
-
-    if not np.all(np.isfinite(s)):
-        raise ValueError(
-            "Signal contains NaN or infinite values."
-        )
-
-    if len(s) == 0:
-        return s.copy()
+    if s.numel() == 0:
+        return _restore_type(s.clone(), was_tensor)
 
     # --------------------------------------------------------
     # Validate FPS
@@ -173,28 +387,22 @@ def bandpass_filter(
             "Cutoff frequencies must be finite numbers."
         ) from exc
 
-    if (
-        not np.isfinite(low_hz)
-        or not np.isfinite(high_hz)
-    ):
+    if not np.isfinite(low_hz) or not np.isfinite(high_hz):
         raise ValueError(
             "Cutoff frequencies must be finite."
         )
 
     if low_hz <= 0 or high_hz <= low_hz:
         raise ValueError(
-            "Invalid bandpass cutoff frequencies. "
             "Require 0 < low_hz < high_hz."
         )
 
-    # The Nyquist frequency is half the sampling rate.
     nyquist = fps / 2.0
 
     if high_hz >= nyquist:
         raise ValueError(
-            f"High cutoff frequency ({high_hz} Hz) must be below "
-            f"the Nyquist frequency ({nyquist} Hz). "
-            f"Current FPS: {fps}."
+            f"High cutoff ({high_hz} Hz) must be below "
+            f"Nyquist frequency ({nyquist} Hz)."
         )
 
     # --------------------------------------------------------
@@ -210,101 +418,49 @@ def bandpass_filter(
             "Filter order must be a positive integer."
         )
 
-    if len(s) < 2:
-        return s.copy()
+    if s.numel() < 2:
+        return _restore_type(s.clone(), was_tensor)
 
-    # --------------------------------------------------------
-    # Design the Butterworth filter
-    # --------------------------------------------------------
-
-    # Second-order sections are more numerically stable than
-    # the traditional numerator/denominator representation.
-    sos = signal.butter(
-        int(order),
-        [low_hz, high_hz],
-        btype="bandpass",
-        fs=fps,
-        output="sos"
+    filtered = _butterworth_fft_filter(
+        s,
+        fps,
+        low_hz,
+        high_hz,
+        int(order)
     )
 
-    # --------------------------------------------------------
-    # Determine whether zero-phase filtering is possible
-    # --------------------------------------------------------
-
-    # This follows SciPy's default padding-length calculation
-    # for SOS zero-phase filtering.
-    default_padlen = 3 * (
-        2 * len(sos) + 1
-        - min(
-            int(np.sum(sos[:, 2] == 0)),
-            int(np.sum(sos[:, 5] == 0))
-        )
-    )
-
-    if len(s) > default_padlen:
-
-        # Forward-backward filtering reduces phase distortion.
-        filtered = signal.sosfiltfilt(
-            sos,
-            s
-        )
-
-    else:
-
-        # Short recordings may not have enough samples for
-        # forward-backward filtering.
-        # This fallback is causal and may introduce delay.
-        filtered = signal.sosfilt(
-            sos,
-            s
-        )
-
-    if not np.all(np.isfinite(filtered)):
-        raise ValueError(
-            "Bandpass filtering produced invalid values."
-        )
-
-    return filtered
+    return _restore_type(filtered, was_tensor)
 
 
 # ============================================================
-# 4. PROCESS RAW RGB
+# 5. PROCESS RAW RGB
 # ============================================================
 
 def process_raw_rgb(
-    rgb_signal: np.ndarray,
-    fps: float = 30.0
-) -> np.ndarray:
+    rgb_signal,
+    fps=30.0,
+    device=None
+):
     """
-    Detrend, normalize, and filter each RGB channel independently.
+    Process RGB signals using PyTorch.
 
-    Parameters
-    ----------
-    rgb_signal:
-        Array of shape (number_of_frames, 3).
+    Input:
+        (number_of_frames, 3)
 
-        Channel order:
-            R = column 0
-            G = column 1
-            B = column 2
+    Channel order:
+        R = column 0
+        G = column 1
+        B = column 2
 
-    fps:
-        Video sampling rate in frames per second.
+    All channels are processed on the selected device.
 
-    Returns
-    -------
-    np.ndarray
-        Processed RGB array with shape (number_of_frames, 3).
-
-    Important
-    ---------
-    This function processes each channel independently.
-    It does not replace the Green, CHROM, or POS algorithms.
+    For NumPy input, the final result is returned as NumPy.
+    For PyTorch input, the result remains a PyTorch tensor.
     """
 
-    rgb = np.asarray(
+    rgb, was_tensor = _to_tensor(
         rgb_signal,
-        dtype=np.float64
+        device
     )
 
     if rgb.ndim != 2 or rgb.shape[1] != 3:
@@ -313,19 +469,20 @@ def process_raw_rgb(
             "(number_of_frames, 3)."
         )
 
-    if not np.all(np.isfinite(rgb)):
+    if not torch.isfinite(rgb).all().item():
         raise ValueError(
-            "RGB signal contains missing or invalid values. "
-            "Handle missing measurements before processing."
+            "RGB signal contains missing or invalid values."
         )
 
-    if len(rgb) == 0:
-        return np.empty(
+    if rgb.shape[0] == 0:
+        empty = torch.empty(
             (0, 3),
-            dtype=np.float64
+            dtype=rgb.dtype,
+            device=rgb.device
         )
 
-    # Validate FPS before processing any channels.
+        return _restore_type(empty, was_tensor)
+
     try:
         fps = float(fps)
     except (TypeError, ValueError) as exc:
@@ -338,34 +495,39 @@ def process_raw_rgb(
             "fps must be a finite positive number."
         )
 
-    processed = np.zeros_like(rgb)
+    # --------------------------------------------------------
+    # Process all RGB channels
+    # --------------------------------------------------------
 
-    # Process red, green, and blue separately.
+    processed_channels = []
+
     for channel in range(3):
 
         raw_channel = rgb[:, channel]
 
-        # Remove slow linear drift.
         detrended = detrend_signal(
             raw_channel
         )
 
-        # Standardize the channel.
         normalized = normalize_signal(
             detrended
         )
 
-        # Keep temporal variations within the selected frequency band.
         filtered = bandpass_filter(
             normalized,
             fps=fps
         )
 
-        processed[:, channel] = filtered
+        processed_channels.append(filtered)
 
-    if not np.all(np.isfinite(processed)):
+    processed = torch.stack(
+        processed_channels,
+        dim=1
+    )
+
+    if not torch.isfinite(processed).all().item():
         raise ValueError(
             "RGB processing produced invalid values."
         )
 
-    return processed
+    return _restore_type(processed, was_tensor)

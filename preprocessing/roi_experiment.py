@@ -34,7 +34,8 @@ REQUIRED_ROIS = [
 # =====================================================
 
 face_detector = FaceDetector(
-    frame_scale=1.5
+    frame_scale=1.0,#turn into 1 temporarily for testing
+
 )
 
 

@@ -12,7 +12,7 @@ from preprocessing.face_tracking import FaceTracker
 
 DEFAULT_VIDEO = (
     "dataset/train/fake/"
-    "Screen Recording 2026-01-23 103451.mp4"
+    "Screen Recording 2026-01-23 091908.mp4"
     
 )
 
@@ -271,9 +271,10 @@ def process_video(
     with FaceDetector(
         min_detection_confidence=0.30,
         model_selection=1,
-        frame_scale=1.5,
+        frame_scale=1.0,#turn into 1 temporarily for testing
+
         max_faces=None,
-        use_dual_model=True,
+        use_dual_model=False, #for testing, set to False
     ) as detector:
 
         detection_results = detector.process_video(
@@ -315,6 +316,12 @@ def process_video(
     tracked_results = tracker.track_faces(
         detections
     )
+
+    #for temporary testing, print the tracked results
+    print("\nTracked results:")
+    print("First tracking Record:", tracked_results[0])
+
+    print("\nAvailable keys in tracking record:", tracked_results[0].keys())
 
     if len(detections) != len(tracked_results):
 
@@ -525,6 +532,8 @@ def main():
         preview=args.preview,
     )
 
+    
 
 if __name__ == "__main__":
     main()
+

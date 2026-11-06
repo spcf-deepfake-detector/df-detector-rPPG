@@ -36,7 +36,7 @@ class FaceDetector:
         model_selection: int = 1,
         frame_scale: float = 1.5,
         max_faces: Optional[int] = None,
-        use_dual_model: bool = True,
+        use_dual_model: bool = False, #for testing, set to False
         duplicate_iou_threshold: float = 0.5,
     ):
 
@@ -96,6 +96,9 @@ class FaceDetector:
 
         self.closed = False
 
+        self.detectors = {}
+
+
         # ---------------------------------------------------------
         # 2. Initialize MediaPipe
         # ---------------------------------------------------------
@@ -104,8 +107,7 @@ class FaceDetector:
 
             self.mp_face_detection = mp.solutions.face_detection
 
-            self.detectors = {}
-
+            
             # Always initialize the requested model.
             self.detectors[self.model_selection] = (
                 self.mp_face_detection.FaceDetection(
@@ -819,9 +821,9 @@ class FaceDetector:
                 f"Primary model: {self.model_selection}"
             )
 
-            print(
-                f"Dual model enabled: {self.use_dual_model}"
-            )
+            # print(
+            #     f"Dual model enabled: {self.use_dual_model}"
+            # )
 
             print(
                 f"Frame scale: {self.frame_scale:.2f}"

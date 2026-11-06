@@ -16,7 +16,8 @@ from sklearn.metrics import (
 )
 
 from model.rppg_model import RPPG1DCNN
-from training.dataset import RPPGDataset
+from training.dataset import RPPGDataset 
+
 
 
 # ==========================================================
@@ -130,7 +131,7 @@ def create_datasets(data_dir):
 
     train_path = os.path.join(data_dir, "train")
 
-    val_path = os.path.join(data_dir, "val")
+    val_path = os.path.join(data_dir, "validation")
 
     test_path = os.path.join(data_dir, "test")
 
@@ -145,19 +146,24 @@ def create_datasets(data_dir):
     print("\n[1/3] Loading training dataset...")
 
     train_dataset = RPPGDataset(
-        root_dir=train_path
+        root_dir=train_path,
+        target_length=300,
     )
 
     print("\n[2/3] Loading validation dataset...")
 
     val_dataset = RPPGDataset(
-        root_dir=val_path
+        root_dir=val_path,
+        target_length=300,
+
     )
 
     print("\n[3/3] Loading testing dataset...")
 
     test_dataset = RPPGDataset(
-        root_dir=test_path
+        root_dir=test_path,
+        target_length=300,
+
     )
 
     if len(train_dataset) == 0:
@@ -199,17 +205,21 @@ def create_dataloaders(
     train_dataset,
     val_dataset,
     test_dataset,
-    batch_size
+    batch_size,
+    device,
 ):
 
     print("[i] Creating DataLoaders...")
+
+
+    use_cuda = device.type == "cuda"
 
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
         shuffle=True,
         num_workers=0,
-        pin_memory=False,
+        pin_memory=use_cuda,
         drop_last=False
     )
 
@@ -218,7 +228,7 @@ def create_dataloaders(
         batch_size=batch_size,
         shuffle=False,
         num_workers=0,
-        pin_memory=False,
+        pin_memory=use_cuda,
         drop_last=False
     )
 
@@ -227,7 +237,7 @@ def create_dataloaders(
         batch_size=batch_size,
         shuffle=False,
         num_workers=0,
-        pin_memory=False,
+        pin_memory=use_cuda,
         drop_last=False
     )
 
@@ -236,6 +246,8 @@ def create_dataloaders(
     print(f"Validation batches: {len(val_loader)}")
 
     print(f"Testing batches:    {len(test_loader)}")
+
+    print(f"Pinned memory: {use_cuda}")
 
     print("[i] DataLoaders ready.\n")
 
@@ -249,47 +261,47 @@ def create_dataloaders(
 def prepare_batch(x, y, device):
 
     if not torch.is_tensor(x) or not torch.is_tensor(y):
-
         raise TypeError(
             "Dataset must return PyTorch tensors."
         )
 
     if x.ndim < 2:
-
         raise ValueError(
             f"Invalid input dimensions: {x.shape}"
         )
 
-    x = x.to(
-        device,
-        dtype=torch.float32
-    )
-
-    y = y.to(
-        device,
-        dtype=torch.float32
-    ).view(-1)
-
+    # Validate on CPU before transferring.
     if not torch.isfinite(x).all():
-
         raise ValueError(
             "Input contains NaN or infinite values."
         )
 
     if not torch.isfinite(y).all():
-
         raise ValueError(
             "Labels contain NaN or infinite values."
         )
 
     if not torch.all((y == 0) | (y == 1)):
-
         raise ValueError(
             "Labels must contain only 0 or 1."
         )
 
-    return x, y
+    # Transfer validated tensors to the selected device.
+    non_blocking = device.type == "cuda"
 
+    x = x.to(
+        device,
+        dtype=torch.float32,
+        non_blocking=non_blocking,
+    )
+
+    y = y.to(
+        device,
+        dtype=torch.float32,
+        non_blocking=non_blocking,
+    ).view(-1)
+
+    return x, y
 
 # ==========================================================
 # TRAINING ONE EPOCH
@@ -778,7 +790,7 @@ def train_model(
 
     print("DataLoader workers: 0")
 
-    print("Pinned memory: False")
+    print(f"Pinned memory: {device.type == 'cuda'}")
 
     print("============================================\n")
 
@@ -799,7 +811,8 @@ def train_model(
             train_dataset,
             val_dataset,
             test_dataset,
-            batch_size
+            batch_size,
+            device,
         )
     )
 
@@ -946,8 +959,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--data_dir",
         type=str,
-        default="dataset",
-        help="Root dataset directory."
+        default="processed",
+        help="Root directory containing preprocessed rPPG signals."
     )
 
     parser.add_argument(

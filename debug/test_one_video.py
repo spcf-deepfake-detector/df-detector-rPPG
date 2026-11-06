@@ -134,7 +134,7 @@ def main():
             min_detection_confidence=0.3,
             model_selection=1,
             frame_scale=1.0,
-        )
+        )z
 
         # ------------------------------------------
         # Detect faces

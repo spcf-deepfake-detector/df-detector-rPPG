@@ -46,6 +46,7 @@ class FaceTracker:
 
     def __init__(
         self,
+        
         iou_threshold: float = 0.20,
         smoothing_alpha: float = 0.65,
         fast_motion_threshold: float = 0.15,
@@ -56,11 +57,14 @@ class FaceTracker:
         max_target_lost_frames: int = 30,
         max_match_score: float = 0.90,
         debug: bool = False,
+        
     ):
 
         # --------------------------------------------------
         # VALIDATE PARAMETERS
         # --------------------------------------------------
+
+    
 
         self._validate_range(
             "iou_threshold",
@@ -247,6 +251,7 @@ class FaceTracker:
         Called automatically whenever track_faces() starts.
         """
 
+        self.last_processed_frame_idx = -1
         # Most recently accepted bounding box.
         self.last_valid_bbox: Optional[List[float]] = None
 
@@ -1059,6 +1064,284 @@ class FaceTracker:
     # ======================================================
     # MAIN TRACKING FUNCTION
     # ======================================================
+    
+        # ======================================================
+    # PROCESS ONE FRAME
+    # ======================================================
+
+    def track_frame(
+        self,
+        detection: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        """
+        Process one frame while preserving tracking state.
+
+        Unlike track_faces(), this method does not reset
+        the tracker or print the final summary.
+
+        This is used for single-pass video processing.
+        """
+
+        if not isinstance(detection, dict):
+
+            raise TypeError(
+                "detection must be a dictionary."
+            )
+
+        record = dict(detection)
+
+        # ----------------------------------------------
+        # FRAME INDEX
+        # ----------------------------------------------
+
+        frame_idx = record.get(
+            "frame_idx",
+            self.last_processed_frame_idx + 1,
+        )
+
+        if (
+            isinstance(frame_idx, bool)
+            or not isinstance(frame_idx, int)
+            or frame_idx < 0
+            or frame_idx <= self.last_processed_frame_idx
+        ):
+
+            frame_idx = self.last_processed_frame_idx + 1
+
+        record["frame_idx"] = frame_idx
+
+        self.last_processed_frame_idx = frame_idx
+
+        # ----------------------------------------------
+        # EXTRACT CANDIDATES
+        # ----------------------------------------------
+
+        candidates = self._get_candidates(record)
+
+        record["candidate_count"] = len(candidates)
+
+        record["tracking_iou"] = None
+
+        record["predicted_iou"] = None
+
+        record["motion_displacement"] = None
+
+        record["match_score"] = None
+
+        record["selected_face_index"] = None
+
+        # ----------------------------------------------
+        # CASE 1: TARGET ALREADY LOST
+        # ----------------------------------------------
+
+        if self.target_lost:
+
+            return self._handle_missing(record)
+
+        # ----------------------------------------------
+        # CASE 2: INITIALIZE TARGET
+        # ----------------------------------------------
+
+        if self.last_valid_bbox is None:
+
+            if not candidates:
+
+                return self._handle_missing(record)
+
+            return self._initialize_target(
+                record,
+                candidates,
+                frame_idx,
+            )
+
+        # ----------------------------------------------
+        # CASE 3: NO CANDIDATES
+        # ----------------------------------------------
+
+        if not candidates:
+
+            return self._handle_missing(record)
+
+        # ----------------------------------------------
+        # CASE 4: PREDICT TARGET POSITION
+        # ----------------------------------------------
+
+        predicted_bbox = self._predict_bbox(frame_idx)
+
+        if predicted_bbox is None:
+
+            return self._handle_missing(record)
+
+        # ----------------------------------------------
+        # CASE 5: DETERMINE MOTION
+        # ----------------------------------------------
+
+        fast_motion = False
+
+        if (
+            self.previous_valid_bbox is not None
+            and self.last_valid_bbox is not None
+        ):
+
+            recent_displacement = (
+                self._normalized_displacement(
+                    self.previous_valid_bbox,
+                    self.last_valid_bbox,
+                )
+            )
+
+            fast_motion = (
+                recent_displacement
+                >= self.fast_motion_threshold
+            )
+
+        reacquiring = self.missed_frames > 0
+
+        extended_reacquiring = (
+            self.missed_frames > self.max_missed_frames
+        )
+
+        # ----------------------------------------------
+        # CASE 6: FIND ORIGINAL TARGET
+        # ----------------------------------------------
+
+        selected = self._select_matching_candidate(
+            candidates=candidates,
+            predicted_bbox=predicted_bbox,
+            fast_motion=fast_motion,
+            reacquiring=reacquiring,
+            extended_reacquiring=extended_reacquiring,
+        )
+
+        # ----------------------------------------------
+        # CASE 7: NO ACCEPTABLE MATCH
+        # ----------------------------------------------
+
+        if selected is None:
+
+            return self._handle_missing(record)
+
+        # ----------------------------------------------
+        # CASE 8: ACCEPT MATCH
+        # ----------------------------------------------
+
+        current_bbox = selected["bbox"]
+
+        old_missed_frames = self.missed_frames
+
+        previous_bbox = self.last_valid_bbox.copy()
+
+        smoothed_bbox = self._update_position(
+            current_bbox=current_bbox,
+            current_frame=frame_idx,
+        )
+
+        displacement = self._normalized_displacement(
+            previous_bbox,
+            current_bbox,
+        )
+
+        record["bbox"] = smoothed_bbox
+
+        record["confidence"] = selected["confidence"]
+
+        record["detected"] = True
+
+        record["selected_face_index"] = (
+            selected["face_index"]
+        )
+
+        record["tracking_iou"] = selected["iou"]
+
+        record["predicted_iou"] = self.compute_iou(
+            predicted_bbox,
+            current_bbox,
+        )
+
+        record["motion_displacement"] = displacement
+
+        record["match_score"] = selected["score"]
+
+        self.iou_values.append(selected["iou"])
+
+        self.match_scores.append(selected["score"])
+
+        self.missed_frames = 0
+
+        if old_missed_frames > 0:
+
+            status = "reacquired"
+
+            self.reacquired_frames += 1
+
+        else:
+
+            status = "matched"
+
+        self._set_status(
+            record,
+            status,
+            True,
+        )
+
+        self.accepted_frames += 1
+
+        if self.debug:
+
+            print(
+                f"[TRACKER] Frame {frame_idx}: "
+                f"{status} | "
+                f"face_index={selected['face_index']} | "
+                f"IoU={selected['iou']:.3f} | "
+                f"distance={selected['center_distance']:.3f} | "
+                f"size_ratio={selected['size_ratio']:.3f} | "
+                f"score={selected['score']:.3f}"
+            )
+
+        return record
+
+    # ======================================================
+    # MAIN TRACKING FUNCTION
+    # ======================================================
+
+    def track_faces(
+        self,
+        raw_detections: List[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        """
+        Track a complete list of detection records.
+
+        Uses track_frame() internally so batch processing
+        and single-pass processing share the same algorithm.
+        """
+
+        if not isinstance(raw_detections, list):
+
+            raise TypeError(
+                "raw_detections must be a list."
+            )
+
+        # Start a fresh tracking session.
+        self.reset()
+
+        tracked = []
+
+        for detection in raw_detections:
+
+            tracked_record = self.track_frame(detection)
+
+            tracked.append(tracked_record)
+
+        self._print_summary(tracked)
+
+        return tracked
+        
+    """
+    Track the initially selected largest face for a single frame.
+
+    Returns one tracking record for the input detection record.
+    """
+
 
     def track_faces(
         self,

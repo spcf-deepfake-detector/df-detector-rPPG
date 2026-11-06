@@ -320,6 +320,207 @@ class RGBExtractor:
 
         return r_mean, g_mean, b_mean, None
 
+    #---------------------------------------------------------
+    #SINGLE-FRAME PROCESSING
+    #---------------------------------------------------------
+
+        # ---------------------------------------------------------
+    # SINGLE-FRAME PROCESSING
+    # ---------------------------------------------------------
+
+    def process_frame(
+        self,
+        frame: np.ndarray,
+        tracking_record: Dict[str, Any],
+    ) -> np.ndarray:
+        """
+        Extract RGB measurements from one already-decoded frame.
+
+        Args:
+            frame:
+                An OpenCV BGR image.
+
+            tracking_record:
+                Detection/tracking information for this frame.
+
+        Returns:
+            Float32 NumPy array with shape (3,):
+                [red_mean, green_mean, blue_mean]
+
+            Returns NaN values if no usable RGB measurement
+            can be extracted.
+
+        Important:
+            This method does not open or decode a video.
+        """
+
+        invalid_rgb = np.array(
+            [np.nan, np.nan, np.nan],
+            dtype=np.float32,
+        )
+
+        # -------------------------------------------------
+        # 1. Validate the input frame.
+        # -------------------------------------------------
+
+        if (
+            not isinstance(frame, np.ndarray)
+            or frame.size == 0
+            or frame.ndim != 3
+            or frame.shape[2] != 3
+        ):
+            if self.debug:
+                print("[RGB ERROR] Invalid video frame.")
+
+            return invalid_rgb
+
+        # -------------------------------------------------
+        # 2. Validate the tracking record.
+        # -------------------------------------------------
+
+        if not isinstance(tracking_record, dict):
+            if self.debug:
+                print("[RGB ERROR] Invalid tracking record.")
+
+            return invalid_rgb
+
+        detected = self._is_true(
+            tracking_record.get("detected", False)
+        )
+
+        track_valid = self._is_true(
+            tracking_record.get(
+                "track_valid",
+                detected,
+            )
+        )
+
+        if not detected or not track_valid:
+            return invalid_rgb
+
+        # -------------------------------------------------
+        # 3. Validate the tracked bounding box.
+        # -------------------------------------------------
+
+        bbox = tracking_record.get("bbox")
+
+        if not self._valid_bbox(bbox):
+            if self.debug:
+                print(
+                    "[RGB ERROR] Invalid bounding box:",
+                    bbox,
+                )
+
+            return invalid_rgb
+
+        try:
+            x, y, width, height = (
+                int(value) for value in bbox
+            )
+
+        except (
+            TypeError,
+            ValueError,
+            OverflowError,
+        ):
+            return invalid_rgb
+
+        if width <= 0 or height <= 0:
+            return invalid_rgb
+
+        # -------------------------------------------------
+        # 4. Extract facial ROIs.
+        # -------------------------------------------------
+
+        try:
+            rois = self.roi_extractor.extract_rois(
+                frame,
+                [x, y, width, height],
+            )
+
+        except Exception as exc:
+            if self.debug:
+                print(
+                    f"[ROI EXCEPTION] "
+                    f"{type(exc).__name__}: {exc}"
+                )
+
+            return invalid_rgb
+
+        if not isinstance(rois, dict) or not rois:
+            if self.debug:
+                print("[RGB ERROR] No valid ROI structure.")
+
+            return invalid_rgb
+
+        # -------------------------------------------------
+        # 5. Calculate RGB measurements for each ROI.
+        # -------------------------------------------------
+
+        roi_stats = {
+            "total_checked": 0,
+            "invalid_data": 0,
+            "invalid_dimensions": 0,
+            "empty_mask": 0,
+            "small_crop": 0,
+            "insufficient_skin_pixels": 0,
+            "usable": 0,
+        }
+
+        r_values = []
+        g_values = []
+        b_values = []
+
+        for roi_name, roi_data in rois.items():
+
+            r_mean, g_mean, b_mean, failure_reason = (
+                self._calculate_roi_rgb(
+                    roi_name,
+                    roi_data,
+                    roi_stats,
+                )
+            )
+
+            if failure_reason is not None:
+
+                if self.debug:
+                    print(
+                        f"[ROI FAILURE] {failure_reason}"
+                    )
+
+                continue
+
+            r_values.append(r_mean)
+            g_values.append(g_mean)
+            b_values.append(b_mean)
+
+        # -------------------------------------------------
+        # 6. Combine usable ROI measurements.
+        # -------------------------------------------------
+
+        if not r_values:
+
+            if self.debug:
+                print(
+                    "[RGB WARNING] No usable facial ROIs."
+                )
+
+            return invalid_rgb
+
+        rgb = np.array(
+            [
+                np.mean(r_values),
+                np.mean(g_values),
+                np.mean(b_values),
+            ],
+            dtype=np.float32,
+        )
+
+        if not np.all(np.isfinite(rgb)):
+            return invalid_rgb
+
+        return rgb
+
     # ---------------------------------------------------------
     # VIDEO PROCESSING
     # ---------------------------------------------------------
