@@ -1,0 +1,86 @@
+[
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/11.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/11.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/121.mp4",
+        "label": 0,
+        "class": "real",
+        "status": "failed",
+        "error": "\nInsufficient valid RGB measurements.\nVideo: /media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/121.mp4\nValid: 88/259\nValid percentage: 33.98%\nRequired percentage: 80.00%\nMissing: 171\nCheck face tracking and ROI extraction."
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/16.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/16.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/18.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/18.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/221.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/221.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/25.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/25.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/262.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/262.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/train/real/3.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed/train/real/3.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    }
+]

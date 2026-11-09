@@ -11,8 +11,8 @@ from preprocessing.rgb_extraction import RGBExtractor
 # ==========================================================
 
 VIDEO_PATH = (
-    "dataset/train/fake/"
-    "Screen Recording 2026-01-23 091908.mp4"
+    "dataset/val/real/"
+    "122.mp4"
 )
 
 

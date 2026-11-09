@@ -1,0 +1,24 @@
+[
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/122.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed_test2/val/real/122.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/20.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed_test2/val/real/20.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "success"
+    }
+]

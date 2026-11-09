@@ -11,6 +11,21 @@ from training.video_preprocessing_dataset import RPPGDataset
 
 
 # ==========================================================
+# CONFIGURATION
+# ==========================================================
+
+TARGET_LENGTH = 300
+TARGET_FPS = 30.0
+
+MIN_VALID_RGB_FRACTION = 0.80
+MIN_RGB_FRAMES = 10
+
+DETECTION_CONFIDENCE = 0.30
+MODEL_SELECTION = 1
+FRAME_SCALE = 1.0
+
+
+# ==========================================================
 # SAVE NUMPY SIGNAL SAFELY
 # ==========================================================
 
@@ -54,6 +69,45 @@ def save_signal(signal, output_path):
 
         if temp_path and os.path.exists(temp_path):
             os.remove(temp_path)
+
+
+# ==========================================================
+# LOAD EXISTING MANIFEST
+# ==========================================================
+
+def load_manifest(output_dir):
+
+    output_dir = Path(output_dir)
+
+    manifest_path = output_dir / "manifest.json"
+
+    if not manifest_path.exists():
+        return []
+
+    try:
+
+        with open(
+            manifest_path,
+            "r",
+            encoding="utf-8",
+        ) as file:
+
+            records = json.load(file)
+
+        if not isinstance(records, list):
+
+            raise ValueError(
+                "Manifest must contain a JSON list."
+            )
+
+        return records
+
+    except Exception as exc:
+
+        raise RuntimeError(
+            f"Could not load manifest: {manifest_path}\n"
+            f"Reason: {exc}"
+        ) from exc
 
 
 # ==========================================================
@@ -106,10 +160,31 @@ def save_manifest(records, output_dir):
 
 
 # ==========================================================
+# INSERT OR UPDATE MANIFEST RECORD
+# ==========================================================
+
+def upsert_manifest_record(records, new_record):
+
+    video_path = new_record["video"]
+
+    for index, existing_record in enumerate(records):
+
+        if existing_record.get("video") == video_path:
+
+            records[index] = new_record
+            return
+
+    records.append(new_record)
+
+
+# ==========================================================
 # VALIDATE EXISTING SIGNAL
 # ==========================================================
 
-def validate_existing_signal(signal_path, target_length=300):
+def validate_existing_signal(
+    signal_path,
+    target_length=TARGET_LENGTH,
+):
 
     try:
 
@@ -121,7 +196,10 @@ def validate_existing_signal(signal_path, target_length=300):
         if signal.shape != (target_length,):
             return False
 
-        if not np.issubdtype(signal.dtype, np.number):
+        if not np.issubdtype(
+            signal.dtype,
+            np.number,
+        ):
             return False
 
         if not np.all(np.isfinite(signal)):
@@ -135,6 +213,53 @@ def validate_existing_signal(signal_path, target_length=300):
 
 
 # ==========================================================
+# VALIDATE NEW SIGNAL
+# ==========================================================
+
+def validate_signal(
+    signal,
+    expected_length,
+    expected_label,
+    saved_label,
+):
+
+    if signal.ndim != 1:
+
+        raise ValueError(
+            f"Expected a 1D signal, got shape {signal.shape}"
+        )
+
+    if len(signal) != expected_length:
+
+        raise ValueError(
+            f"Expected {expected_length} samples, "
+            f"got {len(signal)}"
+        )
+
+    if not np.issubdtype(
+        signal.dtype,
+        np.number,
+    ):
+
+        raise ValueError(
+            f"Signal must be numeric, got {signal.dtype}"
+        )
+
+    if not np.all(np.isfinite(signal)):
+
+        raise ValueError(
+            "Signal contains NaN or infinite values."
+        )
+
+    if saved_label != expected_label:
+
+        raise ValueError(
+            f"Label mismatch: expected {expected_label}, "
+            f"got {saved_label}"
+        )
+
+
+# ==========================================================
 # PREPROCESS ONE DATASET SPLIT
 # ==========================================================
 
@@ -144,11 +269,12 @@ def preprocess_split(
     output_dir,
     debug=False,
     overwrite=False,
+    limit=None,
 ):
 
-    print("\n" + "=" * 60)
+    print("\n" + "=" * 65)
     print(f"PREPROCESSING: {split_name.upper()}")
-    print("=" * 60)
+    print("=" * 65)
 
     # ------------------------------------------------------
     # RESOLVE DIRECTORIES
@@ -163,12 +289,12 @@ def preprocess_split(
 
     split_output_dir = (
         output_dir / split_name
-    )
+    ).resolve()
 
     if not split_input_dir.is_dir():
 
         print(
-            f"[WARNING] Dataset split not found: "
+            f"[WARNING] Dataset split not found:\n"
             f"{split_input_dir}"
         )
 
@@ -179,32 +305,79 @@ def preprocess_split(
         exist_ok=True,
     )
 
-    print(f"Input directory: {split_input_dir}")
+    print(f"Input directory:  {split_input_dir}")
     print(f"Output directory: {split_output_dir}")
+
+    # ------------------------------------------------------
+    # LOAD EXISTING MANIFEST
+    # ------------------------------------------------------
+
+    records = load_manifest(
+        split_output_dir
+    )
+
+    print(
+        f"Existing manifest records: {len(records)}"
+    )
 
     # ------------------------------------------------------
     # CREATE DATASET
     # ------------------------------------------------------
 
+    print("\nInitializing RPPGDataset...")
+
     dataset = RPPGDataset(
         root_dir=str(split_input_dir),
-        target_length=300,
-        fps=30.0,
-        min_valid_rgb_fraction=0.80,
-        min_rgb_frames=10,
-        detection_confidence=0.30,
-        model_selection=1,
-        frame_scale=1.0,#turn into 1 temporarily for testing
+
+        target_length=TARGET_LENGTH,
+        fps=TARGET_FPS,
+
+        min_valid_rgb_fraction=MIN_VALID_RGB_FRACTION,
+        min_rgb_frames=MIN_RGB_FRAMES,
+
+        detection_confidence=DETECTION_CONFIDENCE,
+        model_selection=MODEL_SELECTION,
+        frame_scale=FRAME_SCALE,
+
         debug=debug,
     )
 
-    records = []
+    # ------------------------------------------------------
+    # DETERMINE PROCESSING LIMIT
+    # ------------------------------------------------------
+
+    dataset_total = len(dataset)
+
+    if limit is None:
+
+        total = dataset_total
+
+    else:
+
+        total = min(
+            limit,
+            dataset_total,
+        )
+
+    print("\nDataset information:")
+    print(f"Available videos: {dataset_total}")
+    print(f"Videos to process: {total}")
+
+    if total == 0:
+
+        print("[WARNING] No videos to process.")
+
+        return []
+
+    # ------------------------------------------------------
+    # COUNTERS
+    # ------------------------------------------------------
 
     successful = 0
     skipped = 0
     failed = 0
 
-    total = len(dataset)
+    run_records = []
 
     # ------------------------------------------------------
     # PROCESS VIDEOS
@@ -214,136 +387,159 @@ def preprocess_split(
 
         video_path, label = dataset.samples[index]
 
-        # Convert video path to an absolute path.
         video_path = Path(video_path).resolve()
 
-        if label not in (0, 1):
-            raise ValueError(
-                f"Invalid label {label} for {video_path}"
-            )
-
-        class_name = "real" if label == 0 else "fake"
-
-        # --------------------------------------------------
-        # CALCULATE RELATIVE PATH
-        # --------------------------------------------------
-
-        try:
-
-            relative_path = video_path.relative_to(
-                split_input_dir
-            )
-
-        except ValueError as exc:
-
-            raise ValueError(
-                "Video path is outside the dataset split.\n"
-                f"Video: {video_path}\n"
-                f"Dataset root: {split_input_dir}"
-            ) from exc
-
-        # --------------------------------------------------
-        # CREATE OUTPUT PATH
-        # --------------------------------------------------
-
-        output_path = (
-            split_output_dir
-            / relative_path.parent
-            / f"{video_path.stem}.npy"
-        )
-
-        print("\n" + "-" * 60)
+        print("\n" + "-" * 65)
 
         print(
             f"[{index + 1}/{total}] "
             f"{video_path.name}"
         )
 
-        print(f"Class: {class_name}")
-        print(f"Label: {label}")
-        print(f"Output: {output_path}")
-
         # --------------------------------------------------
-        # SKIP VALID EXISTING SIGNALS
+        # PROCESS ONE VIDEO
         # --------------------------------------------------
 
-        if output_path.exists() and not overwrite:
+        try:
 
-            if validate_existing_signal(output_path):
+            # ----------------------------------------------
+            # VALIDATE LABEL
+            # ----------------------------------------------
 
-                print(
-                    "[SKIPPED] Existing signal is valid."
+            if label not in (0, 1):
+
+                raise ValueError(
+                    f"Invalid label: {label}"
                 )
 
-                skipped += 1
+            label = int(label)
 
-                records.append({
-                    "video": str(video_path),
-                    "signal": str(output_path),
-                    "label": label,
-                    "class": class_name,
-                    "status": "skipped_existing",
-                })
+            class_name = (
+                "real" if label == 0 else "fake"
+            )
 
-                save_manifest(
-                    records,
-                    split_output_dir,
+            print(f"Class: {class_name}")
+            print(f"Label: {label}")
+
+            # ----------------------------------------------
+            # CALCULATE RELATIVE PATH
+            # ----------------------------------------------
+
+            try:
+
+                relative_path = video_path.relative_to(
+                    split_input_dir
                 )
 
-                continue
+            except ValueError as exc:
 
-            else:
+                raise ValueError(
+                    "Video path is outside the dataset split.\n"
+                    f"Video: {video_path}\n"
+                    f"Dataset root: {split_input_dir}"
+                ) from exc
+
+            # ----------------------------------------------
+            # CREATE OUTPUT PATH
+            # ----------------------------------------------
+
+            output_path = (
+                split_output_dir
+                / relative_path.parent
+                / f"{video_path.stem}.npy"
+            )
+
+            print(f"Output: {output_path}")
+
+            # ----------------------------------------------
+            # SKIP VALID EXISTING SIGNAL
+            # ----------------------------------------------
+
+            if output_path.exists() and not overwrite:
+
+                if validate_existing_signal(
+                    output_path,
+                    TARGET_LENGTH,
+                ):
+
+                    existing_signal = np.load(
+                        output_path,
+                        allow_pickle=False,
+                    )
+
+                    print(
+                        "[SKIPPED] Existing signal is valid."
+                    )
+
+                    skipped += 1
+
+                    record = {
+                        "video": str(video_path),
+                        "signal": str(output_path),
+                        "label": label,
+                        "class": class_name,
+                        "shape": list(existing_signal.shape),
+                        "dtype": str(existing_signal.dtype),
+                        "status": "skipped_existing",
+                    }
+
+                    upsert_manifest_record(
+                        records,
+                        record,
+                    )
+
+                    run_records.append(record)
+
+                    save_manifest(
+                        records,
+                        split_output_dir,
+                    )
+
+                    continue
 
                 print(
                     "[WARNING] Existing signal is invalid. "
                     "Reprocessing video."
                 )
 
-        # --------------------------------------------------
-        # PROCESS VIDEO
-        # --------------------------------------------------
+            # ----------------------------------------------
+            # PROCESS VIDEO THROUGH RPPGDATASET
+            # ----------------------------------------------
 
-        try:
+            print("[PROCESSING] Extracting rPPG signal...")
 
             x_tensor, y_tensor = dataset[index]
 
-            signal = x_tensor.detach().cpu().numpy()
+            # ----------------------------------------------
+            # CONVERT TENSOR TO NUMPY
+            # ----------------------------------------------
+
+            signal = (
+                x_tensor
+                .detach()
+                .cpu()
+                .numpy()
+            )
 
             signal = signal.astype(
                 np.float32,
                 copy=False,
             )
 
-            saved_label = int(y_tensor.item())
+            saved_label = int(
+                y_tensor.item()
+            )
 
             # ----------------------------------------------
             # VALIDATE SIGNAL
             # ----------------------------------------------
 
-            if signal.ndim != 1:
-
-                raise ValueError(
-                    f"Expected 1D signal, got {signal.shape}"
-                )
-
-            if len(signal) != dataset.target_length:
-
-                raise ValueError(
-                    f"Expected {dataset.target_length} samples, "
-                    f"got {len(signal)}"
-                )
-
-            if not np.all(np.isfinite(signal)):
-
-                raise ValueError(
-                    "Signal contains NaN or infinite values."
-                )
-
-            if saved_label != label:
-
-                raise ValueError(
-                    "Saved label does not match dataset label."
-                )
+            validate_signal(
+                signal=signal,
+                expected_length=dataset.target_length,
+                expected_label=label,
+                saved_label=saved_label,
+            )
 
             # ----------------------------------------------
             # SAVE SIGNAL
@@ -360,7 +556,11 @@ def preprocess_split(
             print(f"Signal shape: {signal.shape}")
             print(f"Signal dtype: {signal.dtype}")
 
-            records.append({
+            # ----------------------------------------------
+            # CREATE MANIFEST RECORD
+            # ----------------------------------------------
+
+            record = {
                 "video": str(video_path),
                 "signal": str(output_path),
                 "label": label,
@@ -368,7 +568,14 @@ def preprocess_split(
                 "shape": list(signal.shape),
                 "dtype": str(signal.dtype),
                 "status": "success",
-            })
+            }
+
+            upsert_manifest_record(
+                records,
+                record,
+            )
+
+            run_records.append(record)
 
         except Exception as exc:
 
@@ -377,15 +584,24 @@ def preprocess_split(
             print("[FAILED] Could not process video.")
             print(f"Reason: {exc}")
 
-            records.append({
+            record = {
                 "video": str(video_path),
-                "label": label,
-                "class": class_name,
+                "label": int(label) if label in (0, 1) else str(label),
                 "status": "failed",
                 "error": str(exc),
-            })
+            }
 
-        # Save progress after every video.
+            upsert_manifest_record(
+                records,
+                record,
+            )
+
+            run_records.append(record)
+
+        # --------------------------------------------------
+        # SAVE PROGRESS AFTER EVERY VIDEO
+        # --------------------------------------------------
+
         save_manifest(
             records,
             split_output_dir,
@@ -395,20 +611,22 @@ def preprocess_split(
     # FINAL SUMMARY
     # ------------------------------------------------------
 
-    print("\n" + "=" * 60)
+    print("\n" + "=" * 65)
     print(f"{split_name.upper()} PREPROCESSING SUMMARY")
-    print("=" * 60)
+    print("=" * 65)
 
-    print(f"Total videos: {total}")
+    print(f"Available videos: {dataset_total}")
+    print(f"Videos selected: {total}")
     print(f"Successful: {successful}")
     print(f"Skipped: {skipped}")
     print(f"Failed: {failed}")
 
+    print(f"Manifest records: {len(records)}")
     print(f"Output directory: {split_output_dir}")
 
-    print("=" * 60)
+    print("=" * 65)
 
-    return records
+    return run_records
 
 
 # ==========================================================
@@ -420,6 +638,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="FALSEFACET rPPG Dataset Preprocessing"
     )
+
+    # ------------------------------------------------------
+    # DATASET DIRECTORIES
+    # ------------------------------------------------------
 
     parser.add_argument(
         "--data_dir",
@@ -435,11 +657,48 @@ def main():
         help="Directory for processed rPPG signals.",
     )
 
+    # ------------------------------------------------------
+    # DATASET SPLIT
+    # ------------------------------------------------------
+
+    parser.add_argument(
+        "--split",
+        type=str,
+        choices=[
+            "all",
+            "train",
+            "val",
+            "validation",
+            "test",
+        ],
+        default="all",
+        help="Dataset split to preprocess.",
+    )
+
+    # ------------------------------------------------------
+    # PROCESSING LIMIT
+    # ------------------------------------------------------
+
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Maximum number of videos to process per split.",
+    )
+
+    # ------------------------------------------------------
+    # DEBUGGING
+    # ------------------------------------------------------
+
     parser.add_argument(
         "--debug",
         action="store_true",
         help="Enable detailed preprocessing diagnostics.",
     )
+
+    # ------------------------------------------------------
+    # OVERWRITE
+    # ------------------------------------------------------
 
     parser.add_argument(
         "--overwrite",
@@ -449,26 +708,55 @@ def main():
 
     args = parser.parse_args()
 
+    # ------------------------------------------------------
+    # VALIDATE ARGUMENTS
+    # ------------------------------------------------------
+
+    if args.limit is not None and args.limit <= 0:
+
+        parser.error(
+            "--limit must be greater than 0."
+        )
+
+    # ------------------------------------------------------
+    # RESOLVE DIRECTORIES
+    # ------------------------------------------------------
+
     data_dir = Path(args.data_dir).resolve()
     output_dir = Path(args.output_dir).resolve()
 
-    print("\n==========================================")
+    # ------------------------------------------------------
+    # SELECT SPLITS
+    # ------------------------------------------------------
+
+    if args.split == "all":
+        splits = ["train", "val", "test"]
+    else:
+        selected_split = (
+            "val" if args.split == "validation"
+            else args.split
+        )
+
+        splits = [selected_split]
+    # ------------------------------------------------------
+    # START PREPROCESSING
+    # ------------------------------------------------------
+
+    print("\n" + "=" * 65)
     print("FALSEFACET rPPG PREPROCESSING")
-    print("==========================================")
+    print("=" * 65)
 
-    print(f"Input: {data_dir}")
-    print(f"Output: {output_dir}")
+    print(f"Input directory: {data_dir}")
+    print(f"Output directory: {output_dir}")
 
-    print("Signal length: 300")
+    print(f"Selected split: {args.split}")
+    print(f"Processing limit: {args.limit}")
+
+    print(f"Signal length: {TARGET_LENGTH}")
+    print(f"Signal FPS: {TARGET_FPS}")
     print("Signal format: NumPy float32")
 
-    print("==========================================")
-
-    splits = [
-        "train",
-        "validation",
-        "test",
-    ]
+    print("=" * 65)
 
     all_records = []
 
@@ -480,6 +768,7 @@ def main():
             output_dir=output_dir,
             debug=args.debug,
             overwrite=args.overwrite,
+            limit=args.limit,
         )
 
         all_records.extend(records)
@@ -488,11 +777,11 @@ def main():
     # FINAL SUMMARY
     # ------------------------------------------------------
 
-    print("\n==========================================")
+    print("\n" + "=" * 65)
     print("PREPROCESSING FINISHED")
-    print("==========================================")
+    print("=" * 65)
 
-    print(f"Total recorded videos: {len(all_records)}")
+    print(f"Videos processed in this run: {len(all_records)}")
 
     for status in [
         "success",
@@ -501,7 +790,8 @@ def main():
     ]:
 
         count = sum(
-            1 for record in all_records
+            1
+            for record in all_records
             if record["status"] == status
         )
 
@@ -509,8 +799,12 @@ def main():
 
     print(f"Output directory: {output_dir}")
 
-    print("==========================================")
+    print("=" * 65)
 
+
+# ==========================================================
+# ENTRY POINT
+# ==========================================================
 
 if __name__ == "__main__":
     main()

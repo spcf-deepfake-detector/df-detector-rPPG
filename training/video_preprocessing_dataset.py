@@ -1,5 +1,6 @@
 import os
 import glob
+import cv2
 from collections import Counter
 from typing import List, Tuple
 
@@ -259,14 +260,45 @@ class RPPGDataset(Dataset):
         return detections
 
     # ======================================================
-    # STEP 7: FACE DETECTION AND TRACKING
+    # STEP 7: SINGLE-PASS VIDEO PROCESSING
     # ======================================================
 
-    def _extract_tracked_detections(self, video_path):
-
+    def _process_video_single_pass(self, video_path):
+   
+        cap = None
         detector = None
+        extractor = None
+
+        detection_records = []
+        tracked_detections = []
+        rgb_signals = []
+
+        frame_idx = 0
+        video_fps = self.fps
 
         try:
+            # ==============================================
+            # 1. OPEN VIDEO ONCE
+            # ==============================================
+
+            cap = cv2.VideoCapture(str(video_path))
+
+            if not cap.isOpened():
+                raise RuntimeError(
+                    f"Could not open video: {video_path}"
+                )
+
+            # Match FaceDetector.process_video().
+            cap.set(cv2.CAP_PROP_ORIENTATION_AUTO, 1)
+
+            reported_fps = cap.get(cv2.CAP_PROP_FPS)
+
+            if np.isfinite(reported_fps) and reported_fps > 0:
+                video_fps = float(reported_fps)
+
+            # ==============================================
+            # 2. INITIALIZE PROCESSING COMPONENTS
+            # ==============================================
 
             detector = FaceDetector(
                 min_detection_confidence=self.detection_confidence,
@@ -276,68 +308,260 @@ class RPPGDataset(Dataset):
                 use_dual_model=self.use_dual_model,
             )
 
-            summary = detector.process_video(
-                video_path,
-                multi_face=self.multi_face,
-                verbose=self.debug,
+            tracker = FaceTracker(**self.tracker_config)
+
+            extractor = RGBExtractor(
+                min_roi_width=5,
+                min_roi_height=5,
+                min_skin_pixels=1,
+                debug=False,
             )
 
-            detections = self._validate_detections(
+            # ==============================================
+            # 3. PROCESS EACH FRAME
+            # ==============================================
+
+            while True:
+
+                ret, frame = cap.read()
+
+                if not ret:
+                    break
+
+                if frame is None or frame.size == 0:
+                    raise RuntimeError(
+                        f"Invalid frame at index {frame_idx}."
+                    )
+
+                # ------------------------------------------
+                # A. FACE DETECTION
+                # ------------------------------------------
+
+                face_detections = detector.detect_frame(frame)
+
+                if not isinstance(face_detections, list):
+                    raise ValueError(
+                        "FaceDetector.detect_frame() must return a list."
+                    )
+
+                if frame_idx < 20:
+                    print(
+                        f"[DETECTION] Frame {frame_idx} | "
+                        f"Faces detected: {len(face_detections)}"
+                    )
+
+                # ------------------------------------------
+                # B. BUILD TRACKER INPUT
+                # ------------------------------------------
+
+                detection = {
+                    "frame_idx": frame_idx,
+                    "faces": face_detections,
+                    "candidate_count": len(face_detections),
+                    "detected": False,
+                    "bbox": [0, 0, 0, 0],
+                    "confidence": 0.0,
+                }
+
+                valid_faces = []
+
+                for face in face_detections:
+
+                    if not isinstance(face, dict):
+                        continue
+
+                    bbox = face.get("bbox")
+
+                    if not isinstance(
+                        bbox,
+                        (list, tuple, np.ndarray)
+                    ):
+                        continue
+
+                    if len(bbox) != 4:
+                        continue
+
+                    try:
+                        x, y, width, height = map(float, bbox)
+                        confidence = float(
+                            face.get("confidence", 0.0)
+                        )
+
+                    except (TypeError, ValueError):
+                        continue
+
+                    if not all(
+                        np.isfinite(value)
+                        for value in (x, y, width, height, confidence)
+                    ):
+                        continue
+
+                    if width <= 0 or height <= 0:
+                        continue
+
+                    valid_faces.append(face)
+
+                if valid_faces:
+
+                    # Select the largest valid face for the
+                    # legacy single-face tracker input.
+
+                    selected_face = max(
+                        valid_faces,
+                        key=lambda face: (
+                            float(face["bbox"][2])
+                            * float(face["bbox"][3])
+                        ),
+                    )
+
+                    detection["bbox"] = selected_face["bbox"]
+
+                    detection["confidence"] = float(
+                        selected_face.get("confidence", 0.0)
+                    )
+
+                    detection["detected"] = True
+
+                detection_records.append(detection)
+
+                # ------------------------------------------
+                # C. FACE TRACKING
+                # ------------------------------------------
+
+                # IMPORTANT:
+                # Call track_frame() exactly once per frame.
+
+                tracking = tracker.track_frame(detection)
+
+                if not isinstance(tracking, dict):
+                    raise ValueError(
+                        "FaceTracker.track_frame() must return a dictionary."
+                    )
+
+                tracked_detections.append(tracking)
+
+                if frame_idx < 20:
+                    print(
+                        f"[TRACKING] Frame {frame_idx} | "
+                        f"Status: {tracking.get('tracking_status')} | "
+                        f"Valid: {tracking.get('track_valid')} | "
+                        f"BBox: {tracking.get('bbox')}"
+                    )
+
+                # ------------------------------------------
+                # D. RGB EXTRACTION
+                # ------------------------------------------
+
+                rgb = extractor.process_frame(
+                    frame,
+                    tracking,
+                )
+
+                try:
+                    rgb = np.asarray(
+                        rgb,
+                        dtype=np.float32,
+                    )
+
+                except (TypeError, ValueError) as exc:
+                    raise ValueError(
+                        f"Invalid RGB output at frame {frame_idx}."
+                    ) from exc
+
+                if rgb.shape != (3,):
+                    raise ValueError(
+                        f"RGB output must have shape (3,) at "
+                        f"frame {frame_idx}; received {rgb.shape}."
+                    )
+
+                rgb_signals.append(rgb)
+
+                # Temporary RGB diagnostics.
+
+                if frame_idx < 10:
+                    print(
+                        f"[RGB DEBUG] Frame {frame_idx} | "
+                        f"Tracking valid: {tracking.get('track_valid')} | "
+                        f"RGB: {rgb}"
+                    )
+
+                frame_idx += 1
+
+                # ------------------------------------------
+                # E. PROGRESS
+                # ------------------------------------------
+
+                if frame_idx % 50 == 0:
+                    print(
+                        f"[PROGRESS] Processed {frame_idx} frames"
+                    )
+
+            # ==============================================
+            # 4. VALIDATE PROCESSING RESULTS
+            # ==============================================
+
+            if frame_idx == 0:
+                raise ValueError(
+                    f"No frames could be read from video: {video_path}"
+                )
+
+            summary = {
+                "fps": video_fps,
+                "total_frames": frame_idx,
+                "detections": detection_records,
+            }
+
+            self._validate_detections(
                 summary,
                 video_path,
             )
 
-        except Exception as exc:
+            rgb_signals = np.asarray(
+                rgb_signals,
+                dtype=np.float32,
+            )
 
-            raise RuntimeError(
-                f"Face detection failed.\n"
-                f"Video: {video_path}\n"
-                f"Reason: {exc}"
-            ) from exc
-
-        finally:
-
-            if detector is not None:
-                detector.close()
-
-        # ----------------------------------------------
-        # TRACK THE SELECTED FACE
-        # ----------------------------------------------
-
-        try:
-
-            tracker = FaceTracker(
-                **self.tracker_config
+            if rgb_signals.shape != (frame_idx, 3):
+                raise ValueError(
+                    f"RGB array has an unexpected shape: "
+                    f"{rgb_signals.shape}"
                 )
 
-            tracked_detections = tracker.track_faces(detections)
-
-            if not isinstance(tracked_detections, list):
+            if len(tracked_detections) != frame_idx:
                 raise ValueError(
-                    "FaceTracker must return a list."
-                )
-
-            if len(tracked_detections) != len(detections):
-                raise ValueError(
-                    "Detection and tracking frame counts differ."
+                    "Tracking and video frame counts do not match."
                 )
 
             if self.debug:
                 self._print_tracking_summary(
                     video_path,
-                    detections,
+                    detection_records,
                     tracked_detections,
                 )
 
-            return summary, tracked_detections
+            return summary, tracked_detections, rgb_signals
 
         except Exception as exc:
 
             raise RuntimeError(
-                f"Face tracking failed.\n"
+                f"Single-pass video processing failed.\n"
                 f"Video: {video_path}\n"
+                f"Frame: {frame_idx}\n"
                 f"Reason: {exc}"
             ) from exc
+
+        finally:
+
+            # Release resources safely.
+
+            if cap is not None:
+                cap.release()
+
+            if detector is not None:
+                detector.close()
+
+            if extractor is not None:
+                extractor.close()
 
     # ======================================================
     # TRACKING DIAGNOSTICS
@@ -739,22 +963,11 @@ class RPPGDataset(Dataset):
         )
 
         # ----------------------------------------------
-        # 1. FACE DETECTION AND TRACKING
+        # 1. SINGLE-PASS VIDEO PROCESSING
         # ----------------------------------------------
 
-        summary, tracked_detections = (
-            self._extract_tracked_detections(
-                video_path
-            )
-        )
-
-        # ----------------------------------------------
-        # 2. RGB EXTRACTION
-        # ----------------------------------------------
-
-        rgb_signals = self._extract_rgb(
-            video_path,
-            tracked_detections,
+        summary, tracked_detections, rgb_signals = (
+            self._process_video_single_pass(video_path)
         )
 
         # ----------------------------------------------

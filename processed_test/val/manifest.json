@@ -1,0 +1,19 @@
+[
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/122.mp4",
+        "signal": "/media/macs/NewVolume/GitHub/df-detector-rPPG/processed_test/val/real/122.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/20.mp4",
+        "label": 0,
+        "status": "failed",
+        "error": "\nInsufficient valid RGB measurements.\nVideo: /media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/20.mp4\nValid: 0/320\nValid percentage: 0.00%\nRequired percentage: 80.00%\nMissing: 320\nCheck face tracking and ROI extraction."
+    }
+]

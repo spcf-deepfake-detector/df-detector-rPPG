@@ -1,0 +1,62 @@
+[
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/122.mp4",
+        "label": 0,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/20.mp4",
+        "label": 0,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/24.mp4",
+        "label": 0,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/real/video.mp4",
+        "label": 0,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 092722.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 093352.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 093632.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 095038.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 100419.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "video": "/media/macs/NewVolume/GitHub/df-detector-rPPG/dataset/val/fake/Screen Recording 2026-01-23 103706.mp4",
+        "label": 1,
+        "status": "failed",
+        "error": "cannot access local variable 'cap' where it is not associated with a value"
+    }
+]

@@ -11,8 +11,8 @@ from preprocessing.face_tracking import FaceTracker
 # ==========================================================
 
 DEFAULT_VIDEO = (
-    "dataset/train/fake/"
-    "Screen Recording 2026-01-23 091908.mp4"
+    "dataset/val/real/"
+    "122.mp4"
     
 )
 
