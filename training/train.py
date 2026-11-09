@@ -1,23 +1,44 @@
 import os
-import argparse
 import time
+import random
 import tempfile
+import argparse
 
+import numpy as np
 import torch
 import torch.nn as nn
 
+from pathlib import Path
 from torch.utils.data import DataLoader
 
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
     recall_score,
-    f1_score
+    f1_score,
+    confusion_matrix,
 )
 
 from model.rppg_model import RPPG1DCNN
-from training.dataset import RPPGDataset 
+from training.dataset import RPPGDataset
 
+
+# ==========================================================
+# REPRODUCIBILITY
+# ==========================================================
+
+def set_seed(seed=42):
+
+    random.seed(seed)
+
+    np.random.seed(seed)
+
+    torch.manual_seed(seed)
+
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+    print(f"[i] Random seed: {seed}")
 
 
 # ==========================================================
@@ -32,16 +53,20 @@ def print_device_information(device):
 
     if device.type == "cuda":
 
-        print(f"GPU: {torch.cuda.get_device_name(device)}")
+        print(
+            f"GPU: {torch.cuda.get_device_name(device)}"
+        )
 
         print(
             f"CUDA version: {torch.version.cuda}"
         )
 
-        print(
-            f"GPU memory: "
-            f"{torch.cuda.get_device_properties(device).total_memory / (1024 ** 3):.2f} GB"
+        memory = (
+            torch.cuda.get_device_properties(device)
+            .total_memory / (1024 ** 3)
         )
+
+        print(f"GPU memory: {memory:.2f} GB")
 
     else:
 
@@ -51,64 +76,56 @@ def print_device_information(device):
 
 
 # ==========================================================
-# CUDA MEMORY MONITORING
-# ==========================================================
-
-def print_cuda_memory(device):
-
-    if device.type != "cuda":
-        return
-
-    allocated = torch.cuda.memory_allocated(device) / (1024 ** 3)
-
-    reserved = torch.cuda.memory_reserved(device) / (1024 ** 3)
-
-    peak = torch.cuda.max_memory_allocated(device) / (1024 ** 3)
-
-    print(
-        f"[GPU MEMORY] "
-        f"Allocated: {allocated:.2f} GB | "
-        f"Reserved: {reserved:.2f} GB | "
-        f"Peak: {peak:.2f} GB",
-        flush=True
-    )
-
-
-# ==========================================================
 # SAFE CHECKPOINT SAVING
 # ==========================================================
 
-def save_checkpoint(model, checkpoint_path):
+def save_checkpoint(
+    model,
+    optimizer,
+    epoch,
+    best_val_loss,
+    checkpoint_path,
+):
 
-    directory = os.path.dirname(checkpoint_path)
+    checkpoint_path = Path(checkpoint_path)
 
-    os.makedirs(directory, exist_ok=True)
+    checkpoint_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     temporary_path = None
+
+    checkpoint = {
+        "epoch": epoch,
+        "best_val_loss": best_val_loss,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+    }
 
     try:
 
         with tempfile.NamedTemporaryFile(
-            dir=directory,
+            dir=checkpoint_path.parent,
             suffix=".tmp",
-            delete=False
+            delete=False,
         ) as temporary_file:
 
             temporary_path = temporary_file.name
 
         torch.save(
-            model.state_dict(),
-            temporary_path
+            checkpoint,
+            temporary_path,
         )
 
         os.replace(
             temporary_path,
-            checkpoint_path
+            checkpoint_path,
         )
 
         print(
             f"[CHECKPOINT] Saved: {checkpoint_path}",
-            flush=True
+            flush=True,
         )
 
     finally:
@@ -117,7 +134,6 @@ def save_checkpoint(model, checkpoint_path):
             temporary_path is not None
             and os.path.exists(temporary_path)
         ):
-
             os.remove(temporary_path)
 
 
@@ -127,17 +143,28 @@ def save_checkpoint(model, checkpoint_path):
 
 def create_datasets(data_dir):
 
+    data_dir = Path(data_dir).resolve()
+
     print("\n========== LOADING DATASETS ==========")
 
-    train_path = os.path.join(data_dir, "train")
+    train_path = data_dir / "train"
 
-    val_path = os.path.join(data_dir, "validation")
+    val_path = data_dir / "val"
 
-    test_path = os.path.join(data_dir, "test")
+    # Support older directory naming.
+    if not val_path.is_dir():
 
-    for path in (train_path, val_path, test_path):
+        val_path = data_dir / "validation"
 
-        if not os.path.isdir(path):
+    test_path = data_dir / "test"
+
+    for path in (
+        train_path,
+        val_path,
+        test_path,
+    ):
+
+        if not path.is_dir():
 
             raise FileNotFoundError(
                 f"Dataset directory not found: {path}"
@@ -146,59 +173,41 @@ def create_datasets(data_dir):
     print("\n[1/3] Loading training dataset...")
 
     train_dataset = RPPGDataset(
-        root_dir=train_path,
+        root_dir=str(train_path),
         target_length=300,
     )
 
     print("\n[2/3] Loading validation dataset...")
 
     val_dataset = RPPGDataset(
-        root_dir=val_path,
+        root_dir=str(val_path),
         target_length=300,
-
     )
 
     print("\n[3/3] Loading testing dataset...")
 
     test_dataset = RPPGDataset(
-        root_dir=test_path,
+        root_dir=str(test_path),
         target_length=300,
-
     )
-
-    if len(train_dataset) == 0:
-
-        raise ValueError(
-            "Training dataset is empty."
-        )
-
-    if len(val_dataset) == 0:
-
-        raise ValueError(
-            "Validation dataset is empty."
-        )
-
-    if len(test_dataset) == 0:
-
-        raise ValueError(
-            "Testing dataset is empty."
-        )
 
     print("\n========== DATASET SUMMARY ==========")
 
     print(f"Training samples:   {len(train_dataset)}")
-
     print(f"Validation samples: {len(val_dataset)}")
-
     print(f"Testing samples:    {len(test_dataset)}")
 
     print("=====================================\n")
 
-    return train_dataset, val_dataset, test_dataset
+    return (
+        train_dataset,
+        val_dataset,
+        test_dataset,
+    )
 
 
 # ==========================================================
-# DATALOADER CREATION
+# DATALOADERS
 # ==========================================================
 
 def create_dataloaders(
@@ -209,9 +218,6 @@ def create_dataloaders(
     device,
 ):
 
-    print("[i] Creating DataLoaders...")
-
-
     use_cuda = device.type == "cuda"
 
     train_loader = DataLoader(
@@ -220,7 +226,7 @@ def create_dataloaders(
         shuffle=True,
         num_workers=0,
         pin_memory=use_cuda,
-        drop_last=False
+        drop_last=False,
     )
 
     val_loader = DataLoader(
@@ -229,7 +235,7 @@ def create_dataloaders(
         shuffle=False,
         num_workers=0,
         pin_memory=use_cuda,
-        drop_last=False
+        drop_last=False,
     )
 
     test_loader = DataLoader(
@@ -238,20 +244,25 @@ def create_dataloaders(
         shuffle=False,
         num_workers=0,
         pin_memory=use_cuda,
-        drop_last=False
+        drop_last=False,
     )
 
+    print("========== DATALOADERS ==========")
+
     print(f"Training batches:   {len(train_loader)}")
-
     print(f"Validation batches: {len(val_loader)}")
-
     print(f"Testing batches:    {len(test_loader)}")
 
+    print(f"Batch size: {batch_size}")
     print(f"Pinned memory: {use_cuda}")
 
-    print("[i] DataLoaders ready.\n")
+    print("=================================\n")
 
-    return train_loader, val_loader, test_loader
+    return (
+        train_loader,
+        val_loader,
+        test_loader,
+    )
 
 
 # ==========================================================
@@ -260,17 +271,22 @@ def create_dataloaders(
 
 def prepare_batch(x, y, device):
 
-    if not torch.is_tensor(x) or not torch.is_tensor(y):
-        raise TypeError(
-            "Dataset must return PyTorch tensors."
-        )
+    if not torch.is_tensor(x):
+        raise TypeError("Input must be a PyTorch tensor.")
 
-    if x.ndim < 2:
+    if not torch.is_tensor(y):
+        raise TypeError("Labels must be PyTorch tensors.")
+
+    if x.ndim != 2:
         raise ValueError(
-            f"Invalid input dimensions: {x.shape}"
+            f"Expected input shape (B,T), got {tuple(x.shape)}"
         )
 
-    # Validate on CPU before transferring.
+    if x.size(1) != 300:
+        raise ValueError(
+            f"Expected 300 temporal samples, got {x.size(1)}"
+        )
+
     if not torch.isfinite(x).all():
         raise ValueError(
             "Input contains NaN or infinite values."
@@ -286,273 +302,228 @@ def prepare_batch(x, y, device):
             "Labels must contain only 0 or 1."
         )
 
-    # Transfer validated tensors to the selected device.
-    non_blocking = device.type == "cuda"
-
     x = x.to(
         device,
         dtype=torch.float32,
-        non_blocking=non_blocking,
+        non_blocking=device.type == "cuda",
     )
 
     y = y.to(
         device,
         dtype=torch.float32,
-        non_blocking=non_blocking,
+        non_blocking=device.type == "cuda",
     ).view(-1)
 
     return x, y
 
+
 # ==========================================================
-# TRAINING ONE EPOCH
+# CALCULATE CLASSIFICATION METRICS
 # ==========================================================
 
-def train_one_epoch(
+def calculate_metrics(all_labels, all_predictions):
+
+    return {
+        "accuracy": accuracy_score(
+            all_labels,
+            all_predictions,
+        ),
+
+        "precision": precision_score(
+            all_labels,
+            all_predictions,
+            zero_division=0,
+        ),
+
+        "recall": recall_score(
+            all_labels,
+            all_predictions,
+            zero_division=0,
+        ),
+
+        "f1": f1_score(
+            all_labels,
+            all_predictions,
+            zero_division=0,
+        ),
+    }
+
+
+# ==========================================================
+# TRAINING AND EVALUATION LOOP
+# ==========================================================
+
+def run_epoch(
     model,
     loader,
     criterion,
-    optimizer,
     device,
-    epoch,
-    total_epochs
+    optimizer=None,
+    epoch=None,
+    total_epochs=None,
+    phase="validation",
 ):
 
-    model.train()
+    is_training = optimizer is not None
+
+    if is_training:
+        model.train()
+    else:
+        model.eval()
 
     total_loss = 0.0
 
-    total_correct = 0
-
     total_samples = 0
 
-    number_of_batches = len(loader)
+    all_labels = []
+
+    all_predictions = []
 
     start_time = time.time()
 
-    print(
-        f"\n========== TRAINING EPOCH "
-        f"{epoch}/{total_epochs} ==========",
-        flush=True
-    )
+    context = torch.enable_grad if is_training else torch.inference_mode
 
-    for batch_idx, (x, y) in enumerate(loader, start=1):
+    with context():
 
-        print(
-            f"[TRAIN] Epoch {epoch}/{total_epochs} "
-            f"Batch {batch_idx}/{number_of_batches}",
-            flush=True
-        )
-
-        try:
+        for batch_idx, (x, y) in enumerate(
+            loader,
+            start=1,
+        ):
 
             x, y = prepare_batch(
                 x,
                 y,
-                device
+                device,
             )
 
-            optimizer.zero_grad(set_to_none=True)
+            if is_training:
+
+                optimizer.zero_grad(
+                    set_to_none=True,
+                )
 
             logits = model(x).view(-1)
 
             if logits.shape != y.shape:
-
                 raise ValueError(
-                    f"Output shape {logits.shape} "
-                    f"does not match label shape {y.shape}."
+                    f"Logits shape {logits.shape} "
+                    f"does not match labels {y.shape}."
                 )
 
             loss = criterion(
                 logits,
-                y
+                y,
             )
 
             if not torch.isfinite(loss):
-
                 raise ValueError(
-                    "Training loss became NaN or infinite."
+                    f"{phase} loss became NaN or infinite."
                 )
 
-            loss.backward()
+            if is_training:
 
-            optimizer.step()
+                loss.backward()
+
+                optimizer.step()
 
             batch_count = y.size(0)
 
-            total_loss += loss.item() * batch_count
-
-            predictions = (
-                torch.sigmoid(logits) >= 0.5
+            total_loss += (
+                loss.item() * batch_count
             )
-
-            labels = y >= 0.5
-
-            total_correct += (
-                predictions == labels
-            ).sum().item()
 
             total_samples += batch_count
 
-        except torch.cuda.OutOfMemoryError as exc:
+            probabilities = torch.sigmoid(logits)
 
-            optimizer.zero_grad(set_to_none=True)
+            predictions = (
+                probabilities >= 0.5
+            ).long()
 
-            if device.type == "cuda":
+            all_predictions.extend(
+                predictions.detach().cpu().tolist()
+            )
 
-                torch.cuda.empty_cache()
+            all_labels.extend(
+                y.detach().long().cpu().tolist()
+            )
 
-            raise RuntimeError(
-                "CUDA ran out of memory during training. "
-                "Try reducing batch_size."
-            ) from exc
-
-        if device.type == "cuda":
-
-            if batch_idx % 5 == 0:
-
-                print_cuda_memory(device)
+            print(
+                f"[{phase.upper()}] "
+                f"Batch {batch_idx}/{len(loader)}",
+                flush=True,
+            )
 
     if total_samples == 0:
-
         raise ValueError(
-            "No training samples were processed."
+            f"No samples processed during {phase}."
         )
 
     average_loss = total_loss / total_samples
 
-    accuracy = total_correct / total_samples
+    metrics = calculate_metrics(
+        all_labels,
+        all_predictions,
+    )
 
     elapsed = time.time() - start_time
 
-    print("\n========== TRAINING SUMMARY ==========")
+    print(f"\n========== {phase.upper()} SUMMARY ==========")
 
-    print(f"Training loss: {average_loss:.4f}")
+    print(f"Loss:      {average_loss:.4f}")
+    print(f"Accuracy:  {metrics['accuracy']:.4f}")
+    print(f"Precision: {metrics['precision']:.4f}")
+    print(f"Recall:    {metrics['recall']:.4f}")
+    print(f"F1-score:  {metrics['f1']:.4f}")
 
-    print(f"Training accuracy: {accuracy:.4f}")
+    print(f"Samples:   {total_samples}")
+    print(f"Time:      {elapsed:.2f} seconds")
 
-    print(f"Processed samples: {total_samples}")
+    print("============================================\n")
 
-    print(f"Time: {elapsed:.2f} seconds")
-
-    print("======================================")
-
-    return average_loss, accuracy
+    return average_loss, metrics
 
 
 # ==========================================================
-# VALIDATION
+# LOAD BEST CHECKPOINT
 # ==========================================================
 
-def validate_model(
-    model,
-    loader,
-    criterion,
-    device,
-    epoch,
-    total_epochs
-):
+def load_checkpoint(model, checkpoint_path, device):
 
-    model.eval()
-
-    total_loss = 0.0
-
-    total_correct = 0
-
-    total_samples = 0
-
-    print(
-        f"\n========== VALIDATION "
-        f"{epoch}/{total_epochs} ==========",
-        flush=True
-    )
-
-    with torch.inference_mode():
-
-        for batch_idx, (x, y) in enumerate(
-            loader,
-            start=1
-        ):
-
-            print(
-                f"[VALIDATION] Batch "
-                f"{batch_idx}/{len(loader)}",
-                flush=True
-            )
-
-            try:
-
-                x, y = prepare_batch(
-                    x,
-                    y,
-                    device
-                )
-
-                logits = model(x).view(-1)
-
-                if logits.shape != y.shape:
-
-                    raise ValueError(
-                        "Validation output and labels do not match."
-                    )
-
-                loss = criterion(
-                    logits,
-                    y
-                )
-
-                if not torch.isfinite(loss):
-
-                    raise ValueError(
-                        "Validation loss became NaN or infinite."
-                    )
-
-                batch_count = y.size(0)
-
-                total_loss += loss.item() * batch_count
-
-                predictions = (
-                    torch.sigmoid(logits) >= 0.5
-                )
-
-                labels = y >= 0.5
-
-                total_correct += (
-                    predictions == labels
-                ).sum().item()
-
-                total_samples += batch_count
-
-            except torch.cuda.OutOfMemoryError as exc:
-
-                if device.type == "cuda":
-
-                    torch.cuda.empty_cache()
-
-                raise RuntimeError(
-                    "CUDA ran out of memory during validation."
-                ) from exc
-
-    if total_samples == 0:
-
-        raise ValueError(
-            "No validation samples were processed."
+    if not os.path.isfile(checkpoint_path):
+        raise FileNotFoundError(
+            f"Checkpoint not found: {checkpoint_path}"
         )
 
-    average_loss = total_loss / total_samples
+    checkpoint = torch.load(
+        checkpoint_path,
+        map_location=device,
+        weights_only=True,
+    )
 
-    accuracy = total_correct / total_samples
+    # Support both the new checkpoint format
+    # and older checkpoints containing only state_dict.
+    if (
+        isinstance(checkpoint, dict)
+        and "model_state_dict" in checkpoint
+    ):
 
-    print("\n========== VALIDATION SUMMARY ==========")
+        model.load_state_dict(
+            checkpoint["model_state_dict"]
+        )
 
-    print(f"Validation loss: {average_loss:.4f}")
+        print(
+            f"[i] Loaded best checkpoint from epoch "
+            f"{checkpoint['epoch']}"
+        )
 
-    print(f"Validation accuracy: {accuracy:.4f}")
+    else:
 
-    print(f"Processed samples: {total_samples}")
+        model.load_state_dict(checkpoint)
 
-    print("========================================")
+        print("[i] Loaded legacy model checkpoint.")
 
-    return average_loss, accuracy
+    return model
 
 
 # ==========================================================
@@ -564,149 +535,93 @@ def test_model(
     loader,
     criterion,
     device,
-    checkpoint_path
+    checkpoint_path,
 ):
 
     print("\n========== FINAL TESTING ==========")
 
-    if not os.path.exists(checkpoint_path):
-
-        raise FileNotFoundError(
-            f"Checkpoint not found: {checkpoint_path}"
-        )
-
-    state_dict = torch.load(
+    model = load_checkpoint(
+        model,
         checkpoint_path,
-        map_location=device,
-        weights_only=True
+        device,
     )
 
-    model.load_state_dict(state_dict)
+    test_loss, metrics = run_epoch(
+        model=model,
+        loader=loader,
+        criterion=criterion,
+        device=device,
+        phase="test",
+    )
+
+    # Collect predictions for confusion matrix.
+    all_labels = []
+    all_predictions = []
 
     model.eval()
 
-    total_loss = 0.0
-
-    total_samples = 0
-
-    all_labels = []
-
-    all_predictions = []
-
     with torch.inference_mode():
 
-        for batch_idx, (x, y) in enumerate(
-            loader,
-            start=1
-        ):
+        for x, y in loader:
 
-            print(
-                f"[TEST] Batch {batch_idx}/{len(loader)}",
-                flush=True
+            x, y = prepare_batch(
+                x,
+                y,
+                device,
             )
 
-            try:
+            logits = model(x).view(-1)
 
-                x, y = prepare_batch(
-                    x,
-                    y,
-                    device
-                )
+            predictions = (
+                torch.sigmoid(logits) >= 0.5
+            ).long()
 
-                logits = model(x).view(-1)
+            all_predictions.extend(
+                predictions.cpu().tolist()
+            )
 
-                if logits.shape != y.shape:
+            all_labels.extend(
+                y.long().cpu().tolist()
+            )
 
-                    raise ValueError(
-                        "Test output and labels do not match."
-                    )
-
-                loss = criterion(
-                    logits,
-                    y
-                )
-
-                batch_count = y.size(0)
-
-                total_loss += loss.item() * batch_count
-
-                total_samples += batch_count
-
-                probabilities = torch.sigmoid(logits)
-
-                predictions = (
-                    probabilities >= 0.5
-                ).long()
-
-                all_predictions.extend(
-                    predictions.cpu().tolist()
-                )
-
-                all_labels.extend(
-                    y.long().cpu().tolist()
-                )
-
-            except torch.cuda.OutOfMemoryError as exc:
-
-                if device.type == "cuda":
-
-                    torch.cuda.empty_cache()
-
-                raise RuntimeError(
-                    "CUDA ran out of memory during testing."
-                ) from exc
-
-    if total_samples == 0:
-
-        raise ValueError(
-            "No test samples were processed."
-        )
-
-    average_loss = total_loss / total_samples
-
-    accuracy = accuracy_score(
-        all_labels,
-        all_predictions
-    )
-
-    precision = precision_score(
+    matrix = confusion_matrix(
         all_labels,
         all_predictions,
-        zero_division=0
+        labels=[0, 1],
     )
 
-    recall = recall_score(
-        all_labels,
-        all_predictions,
-        zero_division=0
+    print("\n========== CONFUSION MATRIX ==========")
+
+    print("                 Predicted")
+
+    print("                 Real   Fake")
+
+    print(
+        f"Actual Real      {matrix[0][0]:5d}  "
+        f"{matrix[0][1]:5d}"
     )
 
-    f1 = f1_score(
-        all_labels,
-        all_predictions,
-        zero_division=0
+    print(
+        f"Actual Fake      {matrix[1][0]:5d}  "
+        f"{matrix[1][1]:5d}"
     )
 
-    print("\n========== FINAL TEST RESULTS ==========")
+    print("=======================================\n")
 
-    print(f"Test Loss:      {average_loss:.4f}")
+    print("========== FINAL TEST RESULTS ==========")
 
-    print(f"Test Accuracy:  {accuracy:.4f}")
+    print(f"Test loss:      {test_loss:.4f}")
+    print(f"Test accuracy:  {metrics['accuracy']:.4f}")
+    print(f"Test precision: {metrics['precision']:.4f}")
+    print(f"Test recall:    {metrics['recall']:.4f}")
+    print(f"Test F1-score:  {metrics['f1']:.4f}")
 
-    print(f"Test Precision: {precision:.4f}")
-
-    print(f"Test Recall:    {recall:.4f}")
-
-    print(f"Test F1-Score:  {f1:.4f}")
-
-    print("========================================")
+    print("=========================================\n")
 
     return {
-        "loss": average_loss,
-        "accuracy": accuracy,
-        "precision": precision,
-        "recall": recall,
-        "f1": f1
+        "loss": test_loss,
+        **metrics,
+        "confusion_matrix": matrix.tolist(),
     }
 
 
@@ -715,57 +630,47 @@ def test_model(
 # ==========================================================
 
 def train_model(
-    data_dir: str,
-    epochs: int = 20,
-    batch_size: int = 2,
-    lr: float = 1e-3,
-    save_dir: str = "model/checkpoints",
-    device_name: str = "auto"
+    data_dir,
+    epochs=20,
+    batch_size=2,
+    lr=1e-3,
+    save_dir="model/checkpoints",
+    device_name="auto",
+    seed=42,
 ):
 
-    # ------------------------------------------------------
-    # STEP 1: VALIDATE CONFIGURATION
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # VALIDATE CONFIGURATION
+    # ------------------------------------------
 
     if epochs < 1:
-
-        raise ValueError(
-            "epochs must be at least 1."
-        )
+        raise ValueError("epochs must be at least 1.")
 
     if batch_size < 1:
-
-        raise ValueError(
-            "batch_size must be at least 1."
-        )
+        raise ValueError("batch_size must be at least 1.")
 
     if lr <= 0:
+        raise ValueError("Learning rate must be positive.")
 
-        raise ValueError(
-            "Learning rate must be positive."
-        )
+    set_seed(seed)
 
-    os.makedirs(
-        save_dir,
-        exist_ok=True
-    )
-
-    # ------------------------------------------------------
-    # STEP 2: SELECT DEVICE
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # SELECT DEVICE
+    # ------------------------------------------
 
     if device_name == "auto":
 
         device = torch.device(
-            "cuda:0" if torch.cuda.is_available() else "cpu"
+            "cuda:0"
+            if torch.cuda.is_available()
+            else "cpu"
         )
 
     elif device_name == "cuda":
 
         if not torch.cuda.is_available():
-
             raise RuntimeError(
-                "CUDA was requested but is unavailable."
+                "CUDA requested but unavailable."
             )
 
         device = torch.device("cuda:0")
@@ -776,49 +681,55 @@ def train_model(
 
     print_device_information(device)
 
+    # ------------------------------------------
+    # CONFIGURATION
+    # ------------------------------------------
+
     print("========== TRAINING CONFIGURATION ==========")
 
-    print(f"Epochs: {epochs}")
-
-    print(f"Batch size: {batch_size}")
-
+    print(f"Epochs:       {epochs}")
+    print(f"Batch size:   {batch_size}")
     print(f"Learning rate: {lr}")
-
     print(f"Data directory: {data_dir}")
+    print(f"Device:       {device}")
 
-    print(f"Checkpoint directory: {save_dir}")
+    print("Model: RPPG1DCNN")
+    print("Input channels: 1")
+    print("Signal length: 300")
+    print("Real label: 0")
+    print("Fake label: 1")
 
-    print("DataLoader workers: 0")
+    print("=============================================\n")
 
-    print(f"Pinned memory: {device.type == 'cuda'}")
+    # ------------------------------------------
+    # LOAD DATASETS
+    # ------------------------------------------
 
-    print("============================================\n")
+    (
+        train_dataset,
+        val_dataset,
+        test_dataset,
+    ) = create_datasets(data_dir)
 
-    # ------------------------------------------------------
-    # STEP 3: LOAD DATASETS
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # CREATE DATALOADERS
+    # ------------------------------------------
 
-    train_dataset, val_dataset, test_dataset = (
-        create_datasets(data_dir)
+    (
+        train_loader,
+        val_loader,
+        test_loader,
+    ) = create_dataloaders(
+        train_dataset,
+        val_dataset,
+        test_dataset,
+        batch_size,
+        device,
     )
 
-    # ------------------------------------------------------
-    # STEP 4: CREATE DATALOADERS
-    # ------------------------------------------------------
-
-    train_loader, val_loader, test_loader = (
-        create_dataloaders(
-            train_dataset,
-            val_dataset,
-            test_dataset,
-            batch_size,
-            device,
-        )
-    )
-
-    # ------------------------------------------------------
-    # STEP 5: CREATE MODEL
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # INITIALIZE MODEL
+    # ------------------------------------------
 
     print("[i] Initializing RPPG1DCNN...")
 
@@ -828,120 +739,160 @@ def train_model(
 
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=lr
+        lr=lr,
     )
 
     print("[i] Model initialized successfully.")
 
-    # ------------------------------------------------------
-    # STEP 6: CHECKPOINT CONFIGURATION
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # CHECKPOINT CONFIGURATION
+    # ------------------------------------------
+
+    os.makedirs(
+        save_dir,
+        exist_ok=True,
+    )
 
     checkpoint_path = os.path.join(
         save_dir,
-        "best_rppg_model.pt"
+        "best_rppg_model.pt",
     )
 
     best_val_loss = float("inf")
 
-    # ------------------------------------------------------
-    # STEP 7: TRAINING
-    # ------------------------------------------------------
+    # ------------------------------------------
+    # TRAINING
+    # ------------------------------------------
 
     training_start = time.time()
 
     for epoch in range(1, epochs + 1):
 
-        if device.type == "cuda":
+        print("\n" + "=" * 55)
 
+        print(f"TRAINING EPOCH {epoch}/{epochs}")
+
+        print("=" * 55)
+
+        if device.type == "cuda":
             torch.cuda.reset_peak_memory_stats(device)
 
-        # TRAINING
-
-        train_loss, train_accuracy = train_one_epoch(
+        # TRAIN
+        train_loss, train_metrics = run_epoch(
             model=model,
             loader=train_loader,
             criterion=criterion,
-            optimizer=optimizer,
             device=device,
+            optimizer=optimizer,
             epoch=epoch,
-            total_epochs=epochs
+            total_epochs=epochs,
+            phase="training",
         )
 
-        # VALIDATION
-
-        val_loss, val_accuracy = validate_model(
+        # VALIDATE
+        val_loss, val_metrics = run_epoch(
             model=model,
             loader=val_loader,
             criterion=criterion,
             device=device,
             epoch=epoch,
-            total_epochs=epochs
+            total_epochs=epochs,
+            phase="validation",
         )
 
-        # EPOCH RESULTS
+        # --------------------------------------
+        # EPOCH SUMMARY
+        # --------------------------------------
 
         print("\n========== EPOCH RESULTS ==========")
 
         print(f"Epoch: {epoch}/{epochs}")
 
-        print(f"Train Loss: {train_loss:.4f}")
+        print(f"Train loss: {train_loss:.4f}")
 
-        print(f"Train Accuracy: {train_accuracy:.4f}")
+        print(
+            f"Train accuracy: "
+            f"{train_metrics['accuracy']:.4f}"
+        )
 
-        print(f"Validation Loss: {val_loss:.4f}")
+        print(f"Validation loss: {val_loss:.4f}")
 
-        print(f"Validation Accuracy: {val_accuracy:.4f}")
+        print(
+            f"Validation accuracy: "
+            f"{val_metrics['accuracy']:.4f}"
+        )
 
         print("===================================\n")
 
-        # SAVE BEST CHECKPOINT
+        # --------------------------------------
+        # SAVE BEST MODEL
+        # --------------------------------------
 
         if val_loss < best_val_loss:
 
             best_val_loss = val_loss
 
             save_checkpoint(
-                model,
-                checkpoint_path
+                model=model,
+                optimizer=optimizer,
+                epoch=epoch,
+                best_val_loss=best_val_loss,
+                checkpoint_path=checkpoint_path,
             )
 
-        # MEMORY INFORMATION
+        # --------------------------------------
+        # GPU MEMORY
+        # --------------------------------------
 
-        print_cuda_memory(device)
+        if device.type == "cuda":
 
-    # ------------------------------------------------------
-    # STEP 8: TRAINING COMPLETE
-    # ------------------------------------------------------
+            allocated = (
+                torch.cuda.memory_allocated(device)
+                / (1024 ** 3)
+            )
 
-    total_training_time = (
-        time.time() - training_start
-    )
+            peak = (
+                torch.cuda.max_memory_allocated(device)
+                / (1024 ** 3)
+            )
+
+            print(
+                f"[GPU MEMORY] "
+                f"Allocated: {allocated:.2f} GB | "
+                f"Peak: {peak:.2f} GB"
+            )
+
+    # ------------------------------------------
+    # TRAINING COMPLETE
+    # ------------------------------------------
+
+    elapsed = time.time() - training_start
 
     print("\n========== TRAINING COMPLETE ==========")
 
     print(
-        f"Total training time: "
-        f"{total_training_time / 60:.2f} minutes"
+        f"Training time: {elapsed / 60:.2f} minutes"
     )
 
     print(f"Best validation loss: {best_val_loss:.4f}")
 
-    print("========================================")
+    print(f"Best checkpoint: {checkpoint_path}")
 
-    # ------------------------------------------------------
-    # STEP 9: FINAL TESTING
-    # ------------------------------------------------------
+    print("========================================\n")
+
+    # ------------------------------------------
+    # FINAL TESTING
+    # ------------------------------------------
 
     test_results = test_model(
         model=model,
         loader=test_loader,
         criterion=criterion,
         device=device,
-        checkpoint_path=checkpoint_path
+        checkpoint_path=checkpoint_path,
     )
 
-    print("\n[i] FALSEFACET rPPG training finished.")
+    print("[i] FALSEFACET rPPG training finished.")
 
     return test_results
 
@@ -953,42 +904,42 @@ def train_model(
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description="FALSEFACET rPPG Training"
+        description="FALSEFACET RPPG1DCNN Training"
     )
 
     parser.add_argument(
         "--data_dir",
         type=str,
         default="processed",
-        help="Root directory containing preprocessed rPPG signals."
+        help="Processed rPPG dataset directory.",
     )
 
     parser.add_argument(
         "--epochs",
         type=int,
         default=20,
-        help="Number of training epochs."
+        help="Number of training epochs.",
     )
 
     parser.add_argument(
         "--batch_size",
         type=int,
         default=2,
-        help="Training batch size."
+        help="Training batch size.",
     )
 
     parser.add_argument(
         "--lr",
         type=float,
         default=1e-3,
-        help="Learning rate."
+        help="Learning rate.",
     )
 
     parser.add_argument(
         "--save_dir",
         type=str,
         default="model/checkpoints",
-        help="Checkpoint output directory."
+        help="Model checkpoint directory.",
     )
 
     parser.add_argument(
@@ -996,21 +947,25 @@ if __name__ == "__main__":
         type=str,
         choices=["auto", "cuda", "cpu"],
         default="auto",
-        help="Training device."
+        help="Training device.",
+    )
+
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Random seed.",
     )
 
     args = parser.parse_args()
 
     if args.epochs < 1:
-
         parser.error("--epochs must be at least 1.")
 
     if args.batch_size < 1:
-
         parser.error("--batch_size must be at least 1.")
 
     if args.lr <= 0:
-
         parser.error("--lr must be positive.")
 
     train_model(
@@ -1019,5 +974,6 @@ if __name__ == "__main__":
         batch_size=args.batch_size,
         lr=args.lr,
         save_dir=args.save_dir,
-        device_name=args.device
+        device_name=args.device,
+        seed=args.seed,
     )

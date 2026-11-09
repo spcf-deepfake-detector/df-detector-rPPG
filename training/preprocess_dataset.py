@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from training.video_preprocessing_dataset import RPPGDataset
+from training.dataset import RPPGDataset
 
 
 # ==========================================================
@@ -20,9 +21,11 @@ TARGET_FPS = 30.0
 MIN_VALID_RGB_FRACTION = 0.80
 MIN_RGB_FRAMES = 10
 
-DETECTION_CONFIDENCE = 0.30
-MODEL_SELECTION = 1
-FRAME_SCALE = 1.0
+# Input now contains extracted face-image sequences.
+DEFAULT_DATA_DIR = "extracted_faces"
+
+# Output contains processed NumPy rPPG signals.
+DEFAULT_OUTPUT_DIR = "processed"
 
 
 # ==========================================================
@@ -165,11 +168,11 @@ def save_manifest(records, output_dir):
 
 def upsert_manifest_record(records, new_record):
 
-    video_path = new_record["video"]
+    sequence = new_record["sequence"]
 
     for index, existing_record in enumerate(records):
 
-        if existing_record.get("video") == video_path:
+        if existing_record.get("sequence") == sequence:
 
             records[index] = new_record
             return
@@ -183,6 +186,7 @@ def upsert_manifest_record(records, new_record):
 
 def validate_existing_signal(
     signal_path,
+    expected_label,
     target_length=TARGET_LENGTH,
 ):
 
@@ -321,7 +325,7 @@ def preprocess_split(
     )
 
     # ------------------------------------------------------
-    # CREATE DATASET
+    # CREATE IMAGE-BASED DATASET
     # ------------------------------------------------------
 
     print("\nInitializing RPPGDataset...")
@@ -334,10 +338,6 @@ def preprocess_split(
 
         min_valid_rgb_fraction=MIN_VALID_RGB_FRACTION,
         min_rgb_frames=MIN_RGB_FRAMES,
-
-        detection_confidence=DETECTION_CONFIDENCE,
-        model_selection=MODEL_SELECTION,
-        frame_scale=FRAME_SCALE,
 
         debug=debug,
     )
@@ -360,12 +360,12 @@ def preprocess_split(
         )
 
     print("\nDataset information:")
-    print(f"Available videos: {dataset_total}")
-    print(f"Videos to process: {total}")
+    print(f"Available sequences: {dataset_total}")
+    print(f"Sequences to process: {total}")
 
     if total == 0:
 
-        print("[WARNING] No videos to process.")
+        print("[WARNING] No sequences to process.")
 
         return []
 
@@ -380,25 +380,21 @@ def preprocess_split(
     run_records = []
 
     # ------------------------------------------------------
-    # PROCESS VIDEOS
+    # PROCESS SEQUENCES
     # ------------------------------------------------------
 
     for index in range(total):
 
-        video_path, label = dataset.samples[index]
+        sequence_dir, label = dataset.samples[index]
 
-        video_path = Path(video_path).resolve()
+        sequence_dir = Path(sequence_dir).resolve()
 
         print("\n" + "-" * 65)
 
         print(
             f"[{index + 1}/{total}] "
-            f"{video_path.name}"
+            f"{sequence_dir.name}"
         )
-
-        # --------------------------------------------------
-        # PROCESS ONE VIDEO
-        # --------------------------------------------------
 
         try:
 
@@ -422,20 +418,42 @@ def preprocess_split(
             print(f"Label: {label}")
 
             # ----------------------------------------------
-            # CALCULATE RELATIVE PATH
+            # VALIDATE SEQUENCE DIRECTORY
+            # ----------------------------------------------
+
+            if not sequence_dir.is_dir():
+
+                raise FileNotFoundError(
+                    f"Sequence directory not found: "
+                    f"{sequence_dir}"
+                )
+
+            metadata_path = (
+                sequence_dir / "metadata.json"
+            )
+
+            if not metadata_path.is_file():
+
+                raise FileNotFoundError(
+                    f"metadata.json not found: "
+                    f"{metadata_path}"
+                )
+
+            # ----------------------------------------------
+            # CALCULATE RELATIVE SEQUENCE PATH
             # ----------------------------------------------
 
             try:
 
-                relative_path = video_path.relative_to(
+                relative_path = sequence_dir.relative_to(
                     split_input_dir
                 )
 
             except ValueError as exc:
 
                 raise ValueError(
-                    "Video path is outside the dataset split.\n"
-                    f"Video: {video_path}\n"
+                    "Sequence directory is outside the dataset split.\n"
+                    f"Sequence: {sequence_dir}\n"
                     f"Dataset root: {split_input_dir}"
                 ) from exc
 
@@ -445,11 +463,11 @@ def preprocess_split(
 
             output_path = (
                 split_output_dir
-                / relative_path.parent
-                / f"{video_path.stem}.npy"
-            )
+                / relative_path
+            ).with_suffix(".npy")
 
-            print(f"Output: {output_path}")
+            print(f"Sequence: {sequence_dir}")
+            print(f"Output:   {output_path}")
 
             # ----------------------------------------------
             # SKIP VALID EXISTING SIGNAL
@@ -459,7 +477,8 @@ def preprocess_split(
 
                 if validate_existing_signal(
                     output_path,
-                    TARGET_LENGTH,
+                    expected_label=label,
+                    target_length=TARGET_LENGTH,
                 ):
 
                     existing_signal = np.load(
@@ -474,8 +493,10 @@ def preprocess_split(
                     skipped += 1
 
                     record = {
-                        "video": str(video_path),
-                        "signal": str(output_path),
+                        "sequence": str(relative_path),
+                        "signal": str(
+                            output_path.relative_to(output_dir)
+                        ),
                         "label": label,
                         "class": class_name,
                         "shape": list(existing_signal.shape),
@@ -499,14 +520,17 @@ def preprocess_split(
 
                 print(
                     "[WARNING] Existing signal is invalid. "
-                    "Reprocessing video."
+                    "Reprocessing sequence."
                 )
 
             # ----------------------------------------------
-            # PROCESS VIDEO THROUGH RPPGDATASET
+            # PROCESS SEQUENCE THROUGH RPPGDATASET
             # ----------------------------------------------
 
-            print("[PROCESSING] Extracting rPPG signal...")
+            print(
+                "[PROCESSING] Extracting rPPG signal "
+                "from cropped face images..."
+            )
 
             x_tensor, y_tensor = dataset[index]
 
@@ -536,7 +560,7 @@ def preprocess_split(
 
             validate_signal(
                 signal=signal,
-                expected_length=dataset.target_length,
+                expected_length=TARGET_LENGTH,
                 expected_label=label,
                 saved_label=saved_label,
             )
@@ -561,8 +585,10 @@ def preprocess_split(
             # ----------------------------------------------
 
             record = {
-                "video": str(video_path),
-                "signal": str(output_path),
+                "sequence": str(relative_path),
+                "signal": str(
+                    output_path.relative_to(output_dir)
+                ),
                 "label": label,
                 "class": class_name,
                 "shape": list(signal.shape),
@@ -581,12 +607,16 @@ def preprocess_split(
 
             failed += 1
 
-            print("[FAILED] Could not process video.")
+            print("[FAILED] Could not process sequence.")
             print(f"Reason: {exc}")
 
             record = {
-                "video": str(video_path),
-                "label": int(label) if label in (0, 1) else str(label),
+                "sequence": str(sequence_dir),
+                "label": (
+                    int(label)
+                    if label in (0, 1)
+                    else str(label)
+                ),
                 "status": "failed",
                 "error": str(exc),
             }
@@ -599,7 +629,7 @@ def preprocess_split(
             run_records.append(record)
 
         # --------------------------------------------------
-        # SAVE PROGRESS AFTER EVERY VIDEO
+        # SAVE PROGRESS AFTER EVERY SEQUENCE
         # --------------------------------------------------
 
         save_manifest(
@@ -615,8 +645,8 @@ def preprocess_split(
     print(f"{split_name.upper()} PREPROCESSING SUMMARY")
     print("=" * 65)
 
-    print(f"Available videos: {dataset_total}")
-    print(f"Videos selected: {total}")
+    print(f"Available sequences: {dataset_total}")
+    print(f"Sequences selected: {total}")
     print(f"Successful: {successful}")
     print(f"Skipped: {skipped}")
     print(f"Failed: {failed}")
@@ -636,7 +666,7 @@ def preprocess_split(
 def main():
 
     parser = argparse.ArgumentParser(
-        description="FALSEFACET rPPG Dataset Preprocessing"
+        description="FALSEFACET rPPG Image-Based Preprocessing"
     )
 
     # ------------------------------------------------------
@@ -646,14 +676,14 @@ def main():
     parser.add_argument(
         "--data_dir",
         type=str,
-        default="dataset",
-        help="Original video dataset directory.",
+        default=DEFAULT_DATA_DIR,
+        help="Extracted face-image dataset directory.",
     )
 
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="processed",
+        default=DEFAULT_OUTPUT_DIR,
         help="Directory for processed rPPG signals.",
     )
 
@@ -683,7 +713,7 @@ def main():
         "--limit",
         type=int,
         default=None,
-        help="Maximum number of videos to process per split.",
+        help="Maximum number of sequences to process per split.",
     )
 
     # ------------------------------------------------------
@@ -730,14 +760,23 @@ def main():
     # ------------------------------------------------------
 
     if args.split == "all":
-        splits = ["train", "val", "test"]
+
+        splits = [
+            "train",
+            "val",
+            "test",
+        ]
+
     else:
+
         selected_split = (
-            "val" if args.split == "validation"
+            "val"
+            if args.split == "validation"
             else args.split
         )
 
         splits = [selected_split]
+
     # ------------------------------------------------------
     # START PREPROCESSING
     # ------------------------------------------------------
@@ -753,8 +792,9 @@ def main():
     print(f"Processing limit: {args.limit}")
 
     print(f"Signal length: {TARGET_LENGTH}")
-    print(f"Signal FPS: {TARGET_FPS}")
-    print("Signal format: NumPy float32")
+    print(f"Reference FPS: {TARGET_FPS}")
+    print("Input format: Cropped face images")
+    print("Output format: NumPy float32")
 
     print("=" * 65)
 
@@ -781,7 +821,10 @@ def main():
     print("PREPROCESSING FINISHED")
     print("=" * 65)
 
-    print(f"Videos processed in this run: {len(all_records)}")
+    print(
+        f"Sequences processed in this run: "
+        f"{len(all_records)}"
+    )
 
     for status in [
         "success",

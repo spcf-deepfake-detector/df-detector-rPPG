@@ -313,5 +313,493 @@
         ],
         "dtype": "float32",
         "status": "success"
+    },
+    {
+        "sequence": "real/11",
+        "signal": "train/real/11.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/121",
+        "signal": "train/real/121.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/16",
+        "signal": "train/real/16.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/17",
+        "signal": "train/real/17.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/18",
+        "signal": "train/real/18.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/2",
+        "signal": "train/real/2.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/221",
+        "signal": "train/real/221.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/25",
+        "signal": "train/real/25.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/262",
+        "signal": "train/real/262.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/3",
+        "signal": "train/real/3.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/real/312",
+        "label": 0,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/real/312\nLabel: 0\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/real/312\nValid: 162/234\nValid percentage: 69.23%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "real/321",
+        "signal": "train/real/321.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/3213",
+        "signal": "train/real/3213.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/34]",
+        "signal": "train/real/34].npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/4",
+        "signal": "train/real/4.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/4rt24",
+        "signal": "train/real/4rt24.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/5",
+        "signal": "train/real/5.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/56",
+        "signal": "train/real/56.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/563",
+        "signal": "train/real/563.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/6",
+        "signal": "train/real/6.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/7",
+        "signal": "train/real/7.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/8",
+        "signal": "train/real/8.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/9",
+        "signal": "train/real/9.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/live_video",
+        "signal": "train/real/live_video.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/w1333w",
+        "signal": "train/real/w1333w.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 091908",
+        "signal": "train/fake/Screen Recording 2026-01-23 091908.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 091957",
+        "signal": "train/fake/Screen Recording 2026-01-23 091957.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 092154",
+        "signal": "train/fake/Screen Recording 2026-01-23 092154.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 092550",
+        "signal": "train/fake/Screen Recording 2026-01-23 092550.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093509",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093509\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093509\nValid: 146/265\nValid percentage: 55.09%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 093715",
+        "signal": "train/fake/Screen Recording 2026-01-23 093715.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093848",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093848\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 093848\nValid: 972/1289\nValid percentage: 75.41%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 094252",
+        "signal": "train/fake/Screen Recording 2026-01-23 094252.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094519",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094519\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094519\nValid: 540/858\nValid percentage: 62.94%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094905",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094905\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 094905\nValid: 207/443\nValid percentage: 46.73%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 095457",
+        "signal": "train/fake/Screen Recording 2026-01-23 095457.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 095631",
+        "signal": "train/fake/Screen Recording 2026-01-23 095631.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 095802",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 095802\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 095802\nValid: 736/1652\nValid percentage: 44.55%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 095908",
+        "signal": "train/fake/Screen Recording 2026-01-23 095908.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 100053",
+        "signal": "train/fake/Screen Recording 2026-01-23 100053.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 100806",
+        "signal": "train/fake/Screen Recording 2026-01-23 100806.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 101018",
+        "signal": "train/fake/Screen Recording 2026-01-23 101018.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 102623",
+        "signal": "train/fake/Screen Recording 2026-01-23 102623.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103451",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103451\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103451\nValid: 295/436\nValid percentage: 67.66%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103830",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103830\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/train/fake/Screen Recording 2026-01-23 103830\nValid: 205/339\nValid percentage: 60.47%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 103949",
+        "signal": "train/fake/Screen Recording 2026-01-23 103949.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 104158",
+        "signal": "train/fake/Screen Recording 2026-01-23 104158.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/fake_video",
+        "signal": "train/fake/fake_video.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
     }
 ]

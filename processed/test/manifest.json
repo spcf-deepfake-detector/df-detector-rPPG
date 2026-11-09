@@ -70,5 +70,154 @@
         "label": 1,
         "status": "failed",
         "error": "cannot access local variable 'cap' where it is not associated with a value"
+    },
+    {
+        "sequence": "real/1",
+        "signal": "test/real/1.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/13",
+        "signal": "test/real/13.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/14",
+        "signal": "test/real/14.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/15",
+        "signal": "test/real/15.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/21",
+        "signal": "test/real/21.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/22",
+        "signal": "test/real/22.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "real/23",
+        "signal": "test/real/23.npy",
+        "label": 0,
+        "class": "real",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 092047",
+        "signal": "test/fake/Screen Recording 2026-01-23 092047.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 093025",
+        "signal": "test/fake/Screen Recording 2026-01-23 093025.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 095009",
+        "signal": "test/fake/Screen Recording 2026-01-23 095009.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "/media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/test/fake/Screen Recording 2026-01-23 100015",
+        "label": 1,
+        "status": "failed",
+        "error": "Sequence processing failed.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/test/fake/Screen Recording 2026-01-23 100015\nLabel: 1\nReason: Insufficient valid RGB measurements.\nSequence: /media/macs/NewVolume/GitHub/df-detector-rPPG/extracted_faces/test/fake/Screen Recording 2026-01-23 100015\nValid: 460/727\nValid percentage: 63.27%\nRequired: 80.00%"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 102224",
+        "signal": "test/fake/Screen Recording 2026-01-23 102224.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 104115",
+        "signal": "test/fake/Screen Recording 2026-01-23 104115.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
+    },
+    {
+        "sequence": "fake/Screen Recording 2026-01-23 104403",
+        "signal": "test/fake/Screen Recording 2026-01-23 104403.npy",
+        "label": 1,
+        "class": "fake",
+        "shape": [
+            300
+        ],
+        "dtype": "float32",
+        "status": "skipped_existing"
     }
 ]

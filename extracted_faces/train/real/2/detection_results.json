@@ -1,0 +1,6386 @@
+[
+    {
+        "image": "extracted_faces/train/real/2/frame_000000.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            59,
+            171,
+            170
+        ],
+        "confidence": 0.883927583694458,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    59,
+                    171,
+                    170
+                ],
+                "confidence": 0.883927583694458,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000001.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            59,
+            170,
+            170
+        ],
+        "confidence": 0.905405580997467,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    59,
+                    170,
+                    170
+                ],
+                "confidence": 0.905405580997467,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000002.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            57,
+            169,
+            169
+        ],
+        "confidence": 0.9036061763763428,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    57,
+                    169,
+                    169
+                ],
+                "confidence": 0.9036061763763428,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000003.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            58,
+            168,
+            168
+        ],
+        "confidence": 0.8956142663955688,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    58,
+                    168,
+                    168
+                ],
+                "confidence": 0.8956142663955688,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000004.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            56,
+            168,
+            169
+        ],
+        "confidence": 0.8944995403289795,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    56,
+                    168,
+                    169
+                ],
+                "confidence": 0.8944995403289795,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000005.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            56,
+            170,
+            169
+        ],
+        "confidence": 0.8920409679412842,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    56,
+                    170,
+                    169
+                ],
+                "confidence": 0.8920409679412842,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000006.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            54,
+            168,
+            168
+        ],
+        "confidence": 0.8933522701263428,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    54,
+                    168,
+                    168
+                ],
+                "confidence": 0.8933522701263428,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000007.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            54,
+            171,
+            171
+        ],
+        "confidence": 0.8920547366142273,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    54,
+                    171,
+                    171
+                ],
+                "confidence": 0.8920547366142273,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000008.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            169,
+            169
+        ],
+        "confidence": 0.9090422987937927,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    169,
+                    169
+                ],
+                "confidence": 0.9090422987937927,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000009.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            169,
+            169
+        ],
+        "confidence": 0.9046450257301331,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    169,
+                    169
+                ],
+                "confidence": 0.9046450257301331,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000010.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            168,
+            168
+        ],
+        "confidence": 0.9086728692054749,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    168,
+                    168
+                ],
+                "confidence": 0.9086728692054749,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000011.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            56,
+            168,
+            169
+        ],
+        "confidence": 0.8996611833572388,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    56,
+                    168,
+                    169
+                ],
+                "confidence": 0.8996611833572388,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000012.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            56,
+            169,
+            169
+        ],
+        "confidence": 0.8944404125213623,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    56,
+                    169,
+                    169
+                ],
+                "confidence": 0.8944404125213623,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000013.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            55,
+            171,
+            171
+        ],
+        "confidence": 0.8908675312995911,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    55,
+                    171,
+                    171
+                ],
+                "confidence": 0.8908675312995911,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000014.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            56,
+            171,
+            172
+        ],
+        "confidence": 0.8988906145095825,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    56,
+                    171,
+                    172
+                ],
+                "confidence": 0.8988906145095825,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000015.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            57,
+            172,
+            172
+        ],
+        "confidence": 0.9063066840171814,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    57,
+                    172,
+                    172
+                ],
+                "confidence": 0.9063066840171814,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000016.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            57,
+            172,
+            171
+        ],
+        "confidence": 0.8985415697097778,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    57,
+                    172,
+                    171
+                ],
+                "confidence": 0.8985415697097778,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000017.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            57,
+            168,
+            168
+        ],
+        "confidence": 0.9141008853912354,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    57,
+                    168,
+                    168
+                ],
+                "confidence": 0.9141008853912354,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000018.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            57,
+            167,
+            167
+        ],
+        "confidence": 0.9033583998680115,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    57,
+                    167,
+                    167
+                ],
+                "confidence": 0.9033583998680115,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000019.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            57,
+            167,
+            167
+        ],
+        "confidence": 0.8951555490493774,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    57,
+                    167,
+                    167
+                ],
+                "confidence": 0.8951555490493774,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000020.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            56,
+            168,
+            167
+        ],
+        "confidence": 0.9043983817100525,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    56,
+                    168,
+                    167
+                ],
+                "confidence": 0.9043983817100525,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000021.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            167,
+            167
+        ],
+        "confidence": 0.9023128151893616,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    167,
+                    167
+                ],
+                "confidence": 0.9023128151893616,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000022.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            168,
+            167
+        ],
+        "confidence": 0.9047877788543701,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    168,
+                    167
+                ],
+                "confidence": 0.9047877788543701,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000023.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            56,
+            165,
+            165
+        ],
+        "confidence": 0.9072786569595337,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    56,
+                    165,
+                    165
+                ],
+                "confidence": 0.9072786569595337,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000024.jpg",
+        "detected": true,
+        "bbox": [
+            50,
+            55,
+            168,
+            168
+        ],
+        "confidence": 0.919277548789978,
+        "faces": [
+            {
+                "bbox": [
+                    50,
+                    55,
+                    168,
+                    168
+                ],
+                "confidence": 0.919277548789978,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000025.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            49,
+            167,
+            167
+        ],
+        "confidence": 0.9137719869613647,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    49,
+                    167,
+                    167
+                ],
+                "confidence": 0.9137719869613647,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000026.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            53,
+            167,
+            167
+        ],
+        "confidence": 0.9109036326408386,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    53,
+                    167,
+                    167
+                ],
+                "confidence": 0.9109036326408386,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000027.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            51,
+            166,
+            166
+        ],
+        "confidence": 0.9105955362319946,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    51,
+                    166,
+                    166
+                ],
+                "confidence": 0.9105955362319946,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000028.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            50,
+            168,
+            168
+        ],
+        "confidence": 0.910594642162323,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    50,
+                    168,
+                    168
+                ],
+                "confidence": 0.910594642162323,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000029.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            50,
+            170,
+            170
+        ],
+        "confidence": 0.9192916750907898,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    50,
+                    170,
+                    170
+                ],
+                "confidence": 0.9192916750907898,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000030.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            52,
+            168,
+            169
+        ],
+        "confidence": 0.9267016649246216,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    52,
+                    168,
+                    169
+                ],
+                "confidence": 0.9267016649246216,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000031.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            52,
+            168,
+            168
+        ],
+        "confidence": 0.9241859912872314,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    52,
+                    168,
+                    168
+                ],
+                "confidence": 0.9241859912872314,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000032.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            52,
+            166,
+            166
+        ],
+        "confidence": 0.9313000440597534,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    52,
+                    166,
+                    166
+                ],
+                "confidence": 0.9313000440597534,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000033.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            52,
+            165,
+            165
+        ],
+        "confidence": 0.9340633153915405,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    52,
+                    165,
+                    165
+                ],
+                "confidence": 0.9340633153915405,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000034.jpg",
+        "detected": true,
+        "bbox": [
+            16,
+            50,
+            167,
+            167
+        ],
+        "confidence": 0.9336775541305542,
+        "faces": [
+            {
+                "bbox": [
+                    16,
+                    50,
+                    167,
+                    167
+                ],
+                "confidence": 0.9336775541305542,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000035.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            50,
+            168,
+            169
+        ],
+        "confidence": 0.9430572986602783,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    50,
+                    168,
+                    169
+                ],
+                "confidence": 0.9430572986602783,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000036.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            50,
+            161,
+            161
+        ],
+        "confidence": 0.9210862517356873,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    50,
+                    161,
+                    161
+                ],
+                "confidence": 0.9210862517356873,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000037.jpg",
+        "detected": true,
+        "bbox": [
+            6,
+            48,
+            161,
+            161
+        ],
+        "confidence": 0.9260417819023132,
+        "faces": [
+            {
+                "bbox": [
+                    6,
+                    48,
+                    161,
+                    161
+                ],
+                "confidence": 0.9260417819023132,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000038.jpg",
+        "detected": true,
+        "bbox": [
+            6,
+            47,
+            162,
+            162
+        ],
+        "confidence": 0.9261705279350281,
+        "faces": [
+            {
+                "bbox": [
+                    6,
+                    47,
+                    162,
+                    162
+                ],
+                "confidence": 0.9261705279350281,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000039.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            44,
+            163,
+            162
+        ],
+        "confidence": 0.9274402260780334,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    44,
+                    163,
+                    162
+                ],
+                "confidence": 0.9274402260780334,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000040.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            42,
+            164,
+            163
+        ],
+        "confidence": 0.9280639886856079,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    42,
+                    164,
+                    163
+                ],
+                "confidence": 0.9280639886856079,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000041.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            43,
+            160,
+            160
+        ],
+        "confidence": 0.9293320178985596,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    43,
+                    160,
+                    160
+                ],
+                "confidence": 0.9293320178985596,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000042.jpg",
+        "detected": true,
+        "bbox": [
+            4,
+            42,
+            165,
+            165
+        ],
+        "confidence": 0.9353530406951904,
+        "faces": [
+            {
+                "bbox": [
+                    4,
+                    42,
+                    165,
+                    165
+                ],
+                "confidence": 0.9353530406951904,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000043.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            45,
+            165,
+            166
+        ],
+        "confidence": 0.934948205947876,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    45,
+                    165,
+                    166
+                ],
+                "confidence": 0.934948205947876,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000044.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            48,
+            165,
+            165
+        ],
+        "confidence": 0.9273928999900818,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    48,
+                    165,
+                    165
+                ],
+                "confidence": 0.9273928999900818,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000045.jpg",
+        "detected": true,
+        "bbox": [
+            8,
+            48,
+            165,
+            165
+        ],
+        "confidence": 0.920573353767395,
+        "faces": [
+            {
+                "bbox": [
+                    8,
+                    48,
+                    165,
+                    165
+                ],
+                "confidence": 0.920573353767395,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000046.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            50,
+            163,
+            164
+        ],
+        "confidence": 0.9290052652359009,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    50,
+                    163,
+                    164
+                ],
+                "confidence": 0.9290052652359009,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000047.jpg",
+        "detected": true,
+        "bbox": [
+            13,
+            52,
+            162,
+            162
+        ],
+        "confidence": 0.933751106262207,
+        "faces": [
+            {
+                "bbox": [
+                    13,
+                    52,
+                    162,
+                    162
+                ],
+                "confidence": 0.933751106262207,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000048.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            48,
+            165,
+            165
+        ],
+        "confidence": 0.9332134127616882,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    48,
+                    165,
+                    165
+                ],
+                "confidence": 0.9332134127616882,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000049.jpg",
+        "detected": true,
+        "bbox": [
+            10,
+            49,
+            164,
+            165
+        ],
+        "confidence": 0.933113694190979,
+        "faces": [
+            {
+                "bbox": [
+                    10,
+                    49,
+                    164,
+                    165
+                ],
+                "confidence": 0.933113694190979,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000050.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            47,
+            161,
+            162
+        ],
+        "confidence": 0.915981113910675,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    47,
+                    161,
+                    162
+                ],
+                "confidence": 0.915981113910675,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000051.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            44,
+            163,
+            163
+        ],
+        "confidence": 0.91917884349823,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    44,
+                    163,
+                    163
+                ],
+                "confidence": 0.91917884349823,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000052.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            40,
+            164,
+            164
+        ],
+        "confidence": 0.9278030395507812,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    40,
+                    164,
+                    164
+                ],
+                "confidence": 0.9278030395507812,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000053.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            40,
+            164,
+            164
+        ],
+        "confidence": 0.9263492226600647,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    40,
+                    164,
+                    164
+                ],
+                "confidence": 0.9263492226600647,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000054.jpg",
+        "detected": true,
+        "bbox": [
+            6,
+            38,
+            167,
+            167
+        ],
+        "confidence": 0.9271029233932495,
+        "faces": [
+            {
+                "bbox": [
+                    6,
+                    38,
+                    167,
+                    167
+                ],
+                "confidence": 0.9271029233932495,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000055.jpg",
+        "detected": true,
+        "bbox": [
+            6,
+            41,
+            165,
+            165
+        ],
+        "confidence": 0.9275326132774353,
+        "faces": [
+            {
+                "bbox": [
+                    6,
+                    41,
+                    165,
+                    165
+                ],
+                "confidence": 0.9275326132774353,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000056.jpg",
+        "detected": true,
+        "bbox": [
+            5,
+            43,
+            168,
+            167
+        ],
+        "confidence": 0.921040952205658,
+        "faces": [
+            {
+                "bbox": [
+                    5,
+                    43,
+                    168,
+                    167
+                ],
+                "confidence": 0.921040952205658,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000057.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            44,
+            160,
+            161
+        ],
+        "confidence": 0.9131278395652771,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    44,
+                    160,
+                    161
+                ],
+                "confidence": 0.9131278395652771,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000058.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            45,
+            163,
+            162
+        ],
+        "confidence": 0.9235807657241821,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    45,
+                    163,
+                    162
+                ],
+                "confidence": 0.9235807657241821,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000059.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            45,
+            163,
+            163
+        ],
+        "confidence": 0.9188207387924194,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    45,
+                    163,
+                    163
+                ],
+                "confidence": 0.9188207387924194,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000060.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            45,
+            164,
+            164
+        ],
+        "confidence": 0.9115958213806152,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    45,
+                    164,
+                    164
+                ],
+                "confidence": 0.9115958213806152,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000061.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            44,
+            163,
+            164
+        ],
+        "confidence": 0.8990102410316467,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    44,
+                    163,
+                    164
+                ],
+                "confidence": 0.8990102410316467,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000062.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            44,
+            163,
+            163
+        ],
+        "confidence": 0.9078717827796936,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    44,
+                    163,
+                    163
+                ],
+                "confidence": 0.9078717827796936,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000063.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            46,
+            161,
+            161
+        ],
+        "confidence": 0.9123388528823853,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    46,
+                    161,
+                    161
+                ],
+                "confidence": 0.9123388528823853,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000064.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            50,
+            161,
+            160
+        ],
+        "confidence": 0.9142096638679504,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    50,
+                    161,
+                    160
+                ],
+                "confidence": 0.9142096638679504,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000065.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            48,
+            161,
+            161
+        ],
+        "confidence": 0.9078766703605652,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    48,
+                    161,
+                    161
+                ],
+                "confidence": 0.9078766703605652,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000066.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            48,
+            161,
+            161
+        ],
+        "confidence": 0.8972747325897217,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    48,
+                    161,
+                    161
+                ],
+                "confidence": 0.8972747325897217,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000067.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            48,
+            162,
+            162
+        ],
+        "confidence": 0.9166737794876099,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    48,
+                    162,
+                    162
+                ],
+                "confidence": 0.9166737794876099,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000068.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            49,
+            161,
+            161
+        ],
+        "confidence": 0.9274795055389404,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    49,
+                    161,
+                    161
+                ],
+                "confidence": 0.9274795055389404,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000069.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            49,
+            163,
+            163
+        ],
+        "confidence": 0.926155686378479,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    49,
+                    163,
+                    163
+                ],
+                "confidence": 0.926155686378479,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000070.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            50,
+            163,
+            162
+        ],
+        "confidence": 0.9272212982177734,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    50,
+                    163,
+                    162
+                ],
+                "confidence": 0.9272212982177734,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000071.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            50,
+            162,
+            163
+        ],
+        "confidence": 0.9160338044166565,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    50,
+                    162,
+                    163
+                ],
+                "confidence": 0.9160338044166565,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000072.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            52,
+            164,
+            163
+        ],
+        "confidence": 0.9248331189155579,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    52,
+                    164,
+                    163
+                ],
+                "confidence": 0.9248331189155579,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000073.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            48,
+            163,
+            163
+        ],
+        "confidence": 0.9276169538497925,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    48,
+                    163,
+                    163
+                ],
+                "confidence": 0.9276169538497925,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000074.jpg",
+        "detected": true,
+        "bbox": [
+            66,
+            53,
+            161,
+            161
+        ],
+        "confidence": 0.9146309494972229,
+        "faces": [
+            {
+                "bbox": [
+                    66,
+                    53,
+                    161,
+                    161
+                ],
+                "confidence": 0.9146309494972229,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000075.jpg",
+        "detected": true,
+        "bbox": [
+            65,
+            53,
+            160,
+            160
+        ],
+        "confidence": 0.9033589959144592,
+        "faces": [
+            {
+                "bbox": [
+                    65,
+                    53,
+                    160,
+                    160
+                ],
+                "confidence": 0.9033589959144592,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000076.jpg",
+        "detected": true,
+        "bbox": [
+            63,
+            51,
+            160,
+            160
+        ],
+        "confidence": 0.8936691880226135,
+        "faces": [
+            {
+                "bbox": [
+                    63,
+                    51,
+                    160,
+                    160
+                ],
+                "confidence": 0.8936691880226135,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000077.jpg",
+        "detected": true,
+        "bbox": [
+            66,
+            49,
+            158,
+            158
+        ],
+        "confidence": 0.8773402571678162,
+        "faces": [
+            {
+                "bbox": [
+                    66,
+                    49,
+                    158,
+                    158
+                ],
+                "confidence": 0.8773402571678162,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000078.jpg",
+        "detected": true,
+        "bbox": [
+            66,
+            47,
+            157,
+            158
+        ],
+        "confidence": 0.8765243291854858,
+        "faces": [
+            {
+                "bbox": [
+                    66,
+                    47,
+                    157,
+                    158
+                ],
+                "confidence": 0.8765243291854858,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000079.jpg",
+        "detected": true,
+        "bbox": [
+            66,
+            42,
+            154,
+            153
+        ],
+        "confidence": 0.8784045577049255,
+        "faces": [
+            {
+                "bbox": [
+                    66,
+                    42,
+                    154,
+                    153
+                ],
+                "confidence": 0.8784045577049255,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000080.jpg",
+        "detected": true,
+        "bbox": [
+            69,
+            42,
+            152,
+            153
+        ],
+        "confidence": 0.8905118107795715,
+        "faces": [
+            {
+                "bbox": [
+                    69,
+                    42,
+                    152,
+                    153
+                ],
+                "confidence": 0.8905118107795715,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000081.jpg",
+        "detected": true,
+        "bbox": [
+            69,
+            43,
+            150,
+            150
+        ],
+        "confidence": 0.8746747970581055,
+        "faces": [
+            {
+                "bbox": [
+                    69,
+                    43,
+                    150,
+                    150
+                ],
+                "confidence": 0.8746747970581055,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000082.jpg",
+        "detected": true,
+        "bbox": [
+            72,
+            49,
+            149,
+            149
+        ],
+        "confidence": 0.8836145401000977,
+        "faces": [
+            {
+                "bbox": [
+                    72,
+                    49,
+                    149,
+                    149
+                ],
+                "confidence": 0.8836145401000977,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000083.jpg",
+        "detected": true,
+        "bbox": [
+            71,
+            46,
+            148,
+            148
+        ],
+        "confidence": 0.8931754231452942,
+        "faces": [
+            {
+                "bbox": [
+                    71,
+                    46,
+                    148,
+                    148
+                ],
+                "confidence": 0.8931754231452942,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000084.jpg",
+        "detected": true,
+        "bbox": [
+            65,
+            43,
+            143,
+            142
+        ],
+        "confidence": 0.8807162046432495,
+        "faces": [
+            {
+                "bbox": [
+                    65,
+                    43,
+                    143,
+                    142
+                ],
+                "confidence": 0.8807162046432495,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000085.jpg",
+        "detected": true,
+        "bbox": [
+            61,
+            43,
+            141,
+            141
+        ],
+        "confidence": 0.8591923117637634,
+        "faces": [
+            {
+                "bbox": [
+                    61,
+                    43,
+                    141,
+                    141
+                ],
+                "confidence": 0.8591923117637634,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000086.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            36,
+            139,
+            139
+        ],
+        "confidence": 0.8303993344306946,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    36,
+                    139,
+                    139
+                ],
+                "confidence": 0.8303993344306946,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000087.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            36,
+            137,
+            137
+        ],
+        "confidence": 0.8468131422996521,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    36,
+                    137,
+                    137
+                ],
+                "confidence": 0.8468131422996521,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000088.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            35,
+            141,
+            141
+        ],
+        "confidence": 0.8321037888526917,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    35,
+                    141,
+                    141
+                ],
+                "confidence": 0.8321037888526917,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000089.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            35,
+            143,
+            143
+        ],
+        "confidence": 0.8279987573623657,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    35,
+                    143,
+                    143
+                ],
+                "confidence": 0.8279987573623657,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000090.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            37,
+            144,
+            143
+        ],
+        "confidence": 0.8332192301750183,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    37,
+                    144,
+                    143
+                ],
+                "confidence": 0.8332192301750183,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000091.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            30,
+            141,
+            141
+        ],
+        "confidence": 0.8490680456161499,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    30,
+                    141,
+                    141
+                ],
+                "confidence": 0.8490680456161499,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000092.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            33,
+            140,
+            140
+        ],
+        "confidence": 0.8389608263969421,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    33,
+                    140,
+                    140
+                ],
+                "confidence": 0.8389608263969421,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000093.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            32,
+            143,
+            143
+        ],
+        "confidence": 0.8291497826576233,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    32,
+                    143,
+                    143
+                ],
+                "confidence": 0.8291497826576233,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000094.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            32,
+            142,
+            143
+        ],
+        "confidence": 0.810177743434906,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    32,
+                    142,
+                    143
+                ],
+                "confidence": 0.810177743434906,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000095.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            35,
+            143,
+            144
+        ],
+        "confidence": 0.8203368782997131,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    35,
+                    143,
+                    144
+                ],
+                "confidence": 0.8203368782997131,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000096.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            33,
+            141,
+            142
+        ],
+        "confidence": 0.8222576379776001,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    33,
+                    141,
+                    142
+                ],
+                "confidence": 0.8222576379776001,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000097.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            34,
+            140,
+            140
+        ],
+        "confidence": 0.8300673961639404,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    34,
+                    140,
+                    140
+                ],
+                "confidence": 0.8300673961639404,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000098.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            36,
+            140,
+            139
+        ],
+        "confidence": 0.823839545249939,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    36,
+                    140,
+                    139
+                ],
+                "confidence": 0.823839545249939,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000099.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            39,
+            141,
+            141
+        ],
+        "confidence": 0.802733302116394,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    39,
+                    141,
+                    141
+                ],
+                "confidence": 0.802733302116394,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000100.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            36,
+            141,
+            142
+        ],
+        "confidence": 0.7955330610275269,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    36,
+                    141,
+                    142
+                ],
+                "confidence": 0.7955330610275269,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000101.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            38,
+            140,
+            140
+        ],
+        "confidence": 0.8075060844421387,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    38,
+                    140,
+                    140
+                ],
+                "confidence": 0.8075060844421387,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000102.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            41,
+            140,
+            139
+        ],
+        "confidence": 0.8231351375579834,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    41,
+                    140,
+                    139
+                ],
+                "confidence": 0.8231351375579834,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000103.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            36,
+            144,
+            145
+        ],
+        "confidence": 0.793654203414917,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    36,
+                    144,
+                    145
+                ],
+                "confidence": 0.793654203414917,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000104.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            35,
+            142,
+            143
+        ],
+        "confidence": 0.8371344804763794,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    35,
+                    142,
+                    143
+                ],
+                "confidence": 0.8371344804763794,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000105.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            33,
+            141,
+            143
+        ],
+        "confidence": 0.8416057825088501,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    33,
+                    141,
+                    143
+                ],
+                "confidence": 0.8416057825088501,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000106.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            31,
+            141,
+            144
+        ],
+        "confidence": 0.838527262210846,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    31,
+                    141,
+                    144
+                ],
+                "confidence": 0.838527262210846,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000107.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            31,
+            141,
+            145
+        ],
+        "confidence": 0.8350390791893005,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    31,
+                    141,
+                    145
+                ],
+                "confidence": 0.8350390791893005,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000108.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            31,
+            139,
+            144
+        ],
+        "confidence": 0.8184602856636047,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    31,
+                    139,
+                    144
+                ],
+                "confidence": 0.8184602856636047,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000109.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            33,
+            138,
+            141
+        ],
+        "confidence": 0.848554253578186,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    33,
+                    138,
+                    141
+                ],
+                "confidence": 0.848554253578186,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000110.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            32,
+            141,
+            143
+        ],
+        "confidence": 0.8357747793197632,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    32,
+                    141,
+                    143
+                ],
+                "confidence": 0.8357747793197632,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000111.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            34,
+            138,
+            141
+        ],
+        "confidence": 0.8226924538612366,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    34,
+                    138,
+                    141
+                ],
+                "confidence": 0.8226924538612366,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000112.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            35,
+            138,
+            140
+        ],
+        "confidence": 0.8425680994987488,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    35,
+                    138,
+                    140
+                ],
+                "confidence": 0.8425680994987488,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000113.jpg",
+        "detected": true,
+        "bbox": [
+            62,
+            39,
+            134,
+            139
+        ],
+        "confidence": 0.8744334578514099,
+        "faces": [
+            {
+                "bbox": [
+                    62,
+                    39,
+                    134,
+                    139
+                ],
+                "confidence": 0.8744334578514099,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000114.jpg",
+        "detected": true,
+        "bbox": [
+            65,
+            44,
+            139,
+            139
+        ],
+        "confidence": 0.8663439750671387,
+        "faces": [
+            {
+                "bbox": [
+                    65,
+                    44,
+                    139,
+                    139
+                ],
+                "confidence": 0.8663439750671387,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000115.jpg",
+        "detected": true,
+        "bbox": [
+            67,
+            41,
+            139,
+            139
+        ],
+        "confidence": 0.8435401916503906,
+        "faces": [
+            {
+                "bbox": [
+                    67,
+                    41,
+                    139,
+                    139
+                ],
+                "confidence": 0.8435401916503906,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000116.jpg",
+        "detected": true,
+        "bbox": [
+            69,
+            39,
+            146,
+            146
+        ],
+        "confidence": 0.8434508442878723,
+        "faces": [
+            {
+                "bbox": [
+                    69,
+                    39,
+                    146,
+                    146
+                ],
+                "confidence": 0.8434508442878723,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000117.jpg",
+        "detected": true,
+        "bbox": [
+            71,
+            42,
+            149,
+            149
+        ],
+        "confidence": 0.8815101981163025,
+        "faces": [
+            {
+                "bbox": [
+                    71,
+                    42,
+                    149,
+                    149
+                ],
+                "confidence": 0.8815101981163025,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000118.jpg",
+        "detected": true,
+        "bbox": [
+            71,
+            43,
+            150,
+            150
+        ],
+        "confidence": 0.8823489546775818,
+        "faces": [
+            {
+                "bbox": [
+                    71,
+                    43,
+                    150,
+                    150
+                ],
+                "confidence": 0.8823489546775818,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000119.jpg",
+        "detected": true,
+        "bbox": [
+            65,
+            45,
+            151,
+            151
+        ],
+        "confidence": 0.8694161772727966,
+        "faces": [
+            {
+                "bbox": [
+                    65,
+                    45,
+                    151,
+                    151
+                ],
+                "confidence": 0.8694161772727966,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000120.jpg",
+        "detected": true,
+        "bbox": [
+            63,
+            47,
+            157,
+            157
+        ],
+        "confidence": 0.8784350752830505,
+        "faces": [
+            {
+                "bbox": [
+                    63,
+                    47,
+                    157,
+                    157
+                ],
+                "confidence": 0.8784350752830505,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000121.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            46,
+            157,
+            156
+        ],
+        "confidence": 0.9192289113998413,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    46,
+                    157,
+                    156
+                ],
+                "confidence": 0.9192289113998413,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000122.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            49,
+            155,
+            155
+        ],
+        "confidence": 0.9076483845710754,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    49,
+                    155,
+                    155
+                ],
+                "confidence": 0.9076483845710754,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000123.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            49,
+            155,
+            155
+        ],
+        "confidence": 0.9151387214660645,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    49,
+                    155,
+                    155
+                ],
+                "confidence": 0.9151387214660645,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000124.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            43,
+            157,
+            157
+        ],
+        "confidence": 0.9098174571990967,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    43,
+                    157,
+                    157
+                ],
+                "confidence": 0.9098174571990967,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000125.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            45,
+            156,
+            157
+        ],
+        "confidence": 0.9237722754478455,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    45,
+                    156,
+                    157
+                ],
+                "confidence": 0.9237722754478455,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000126.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            46,
+            155,
+            155
+        ],
+        "confidence": 0.9092981219291687,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    46,
+                    155,
+                    155
+                ],
+                "confidence": 0.9092981219291687,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000127.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            46,
+            155,
+            155
+        ],
+        "confidence": 0.9033324718475342,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    46,
+                    155,
+                    155
+                ],
+                "confidence": 0.9033324718475342,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000128.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            50,
+            155,
+            154
+        ],
+        "confidence": 0.9083206057548523,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    50,
+                    155,
+                    154
+                ],
+                "confidence": 0.9083206057548523,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000129.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            50,
+            154,
+            154
+        ],
+        "confidence": 0.9197274446487427,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    50,
+                    154,
+                    154
+                ],
+                "confidence": 0.9197274446487427,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000130.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            51,
+            153,
+            153
+        ],
+        "confidence": 0.9120475053787231,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    51,
+                    153,
+                    153
+                ],
+                "confidence": 0.9120475053787231,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000131.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            48,
+            156,
+            157
+        ],
+        "confidence": 0.9244389533996582,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    48,
+                    156,
+                    157
+                ],
+                "confidence": 0.9244389533996582,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000132.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            49,
+            154,
+            154
+        ],
+        "confidence": 0.9217478632926941,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    49,
+                    154,
+                    154
+                ],
+                "confidence": 0.9217478632926941,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000133.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            48,
+            154,
+            154
+        ],
+        "confidence": 0.9184572696685791,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    48,
+                    154,
+                    154
+                ],
+                "confidence": 0.9184572696685791,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000134.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            49,
+            151,
+            151
+        ],
+        "confidence": 0.9172291159629822,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    49,
+                    151,
+                    151
+                ],
+                "confidence": 0.9172291159629822,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000135.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            48,
+            150,
+            151
+        ],
+        "confidence": 0.9173653721809387,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    48,
+                    150,
+                    151
+                ],
+                "confidence": 0.9173653721809387,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000136.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            48,
+            154,
+            154
+        ],
+        "confidence": 0.9350849986076355,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    48,
+                    154,
+                    154
+                ],
+                "confidence": 0.9350849986076355,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000137.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            47,
+            154,
+            154
+        ],
+        "confidence": 0.9299299716949463,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    47,
+                    154,
+                    154
+                ],
+                "confidence": 0.9299299716949463,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000138.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            50,
+            151,
+            151
+        ],
+        "confidence": 0.9268414974212646,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    50,
+                    151,
+                    151
+                ],
+                "confidence": 0.9268414974212646,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000139.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            54,
+            150,
+            151
+        ],
+        "confidence": 0.9339032173156738,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    54,
+                    150,
+                    151
+                ],
+                "confidence": 0.9339032173156738,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000140.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            53,
+            150,
+            150
+        ],
+        "confidence": 0.9316525459289551,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    53,
+                    150,
+                    150
+                ],
+                "confidence": 0.9316525459289551,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000141.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            50,
+            149,
+            150
+        ],
+        "confidence": 0.9198306202888489,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    50,
+                    149,
+                    150
+                ],
+                "confidence": 0.9198306202888489,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000142.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            45,
+            147,
+            148
+        ],
+        "confidence": 0.8956192135810852,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    45,
+                    147,
+                    148
+                ],
+                "confidence": 0.8956192135810852,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000143.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            40,
+            148,
+            148
+        ],
+        "confidence": 0.8940060138702393,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    40,
+                    148,
+                    148
+                ],
+                "confidence": 0.8940060138702393,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000144.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            43,
+            141,
+            141
+        ],
+        "confidence": 0.8993118405342102,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    43,
+                    141,
+                    141
+                ],
+                "confidence": 0.8993118405342102,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000145.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            46,
+            139,
+            140
+        ],
+        "confidence": 0.904293954372406,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    46,
+                    139,
+                    140
+                ],
+                "confidence": 0.904293954372406,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000146.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            47,
+            137,
+            137
+        ],
+        "confidence": 0.9114667773246765,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    47,
+                    137,
+                    137
+                ],
+                "confidence": 0.9114667773246765,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000147.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            42,
+            138,
+            137
+        ],
+        "confidence": 0.9021483063697815,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    42,
+                    138,
+                    137
+                ],
+                "confidence": 0.9021483063697815,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000148.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            36,
+            134,
+            133
+        ],
+        "confidence": 0.8758840560913086,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    36,
+                    134,
+                    133
+                ],
+                "confidence": 0.8758840560913086,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000149.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            35,
+            134,
+            133
+        ],
+        "confidence": 0.8814426064491272,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    35,
+                    134,
+                    133
+                ],
+                "confidence": 0.8814426064491272,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000150.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            32,
+            133,
+            133
+        ],
+        "confidence": 0.8841879963874817,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    32,
+                    133,
+                    133
+                ],
+                "confidence": 0.8841879963874817,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000151.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            36,
+            130,
+            130
+        ],
+        "confidence": 0.8855127096176147,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    36,
+                    130,
+                    130
+                ],
+                "confidence": 0.8855127096176147,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000152.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            29,
+            129,
+            129
+        ],
+        "confidence": 0.8560923337936401,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    29,
+                    129,
+                    129
+                ],
+                "confidence": 0.8560923337936401,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000153.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            27,
+            130,
+            130
+        ],
+        "confidence": 0.8424985408782959,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    27,
+                    130,
+                    130
+                ],
+                "confidence": 0.8424985408782959,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000154.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            27,
+            125,
+            125
+        ],
+        "confidence": 0.8497693538665771,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    27,
+                    125,
+                    125
+                ],
+                "confidence": 0.8497693538665771,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000155.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            25,
+            124,
+            124
+        ],
+        "confidence": 0.8213891983032227,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    25,
+                    124,
+                    124
+                ],
+                "confidence": 0.8213891983032227,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000156.jpg",
+        "detected": true,
+        "bbox": [
+            22,
+            21,
+            125,
+            124
+        ],
+        "confidence": 0.827953040599823,
+        "faces": [
+            {
+                "bbox": [
+                    22,
+                    21,
+                    125,
+                    124
+                ],
+                "confidence": 0.827953040599823,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000157.jpg",
+        "detected": true,
+        "bbox": [
+            21,
+            20,
+            121,
+            122
+        ],
+        "confidence": 0.799081027507782,
+        "faces": [
+            {
+                "bbox": [
+                    21,
+                    20,
+                    121,
+                    122
+                ],
+                "confidence": 0.799081027507782,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000158.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            20,
+            117,
+            117
+        ],
+        "confidence": 0.776120126247406,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    20,
+                    117,
+                    117
+                ],
+                "confidence": 0.776120126247406,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000159.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            23,
+            117,
+            117
+        ],
+        "confidence": 0.7785353064537048,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    23,
+                    117,
+                    117
+                ],
+                "confidence": 0.7785353064537048,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000160.jpg",
+        "detected": true,
+        "bbox": [
+            22,
+            23,
+            121,
+            121
+        ],
+        "confidence": 0.7897720336914062,
+        "faces": [
+            {
+                "bbox": [
+                    22,
+                    23,
+                    121,
+                    121
+                ],
+                "confidence": 0.7897720336914062,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000161.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            23,
+            120,
+            120
+        ],
+        "confidence": 0.7699592709541321,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    23,
+                    120,
+                    120
+                ],
+                "confidence": 0.7699592709541321,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000162.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            25,
+            118,
+            118
+        ],
+        "confidence": 0.7754461765289307,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    25,
+                    118,
+                    118
+                ],
+                "confidence": 0.7754461765289307,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000163.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            23,
+            121,
+            121
+        ],
+        "confidence": 0.7630137205123901,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    23,
+                    121,
+                    121
+                ],
+                "confidence": 0.7630137205123901,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000164.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            22,
+            120,
+            120
+        ],
+        "confidence": 0.7487406730651855,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    22,
+                    120,
+                    120
+                ],
+                "confidence": 0.7487406730651855,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000165.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            24,
+            117,
+            117
+        ],
+        "confidence": 0.7443952560424805,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    24,
+                    117,
+                    117
+                ],
+                "confidence": 0.7443952560424805,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000166.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            20,
+            117,
+            117
+        ],
+        "confidence": 0.7411500811576843,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    20,
+                    117,
+                    117
+                ],
+                "confidence": 0.7411500811576843,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000167.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            20,
+            121,
+            120
+        ],
+        "confidence": 0.7388965487480164,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    20,
+                    121,
+                    120
+                ],
+                "confidence": 0.7388965487480164,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000168.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            19,
+            123,
+            122
+        ],
+        "confidence": 0.7133814692497253,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    19,
+                    123,
+                    122
+                ],
+                "confidence": 0.7133814692497253,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000169.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            23,
+            119,
+            118
+        ],
+        "confidence": 0.7338414788246155,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    23,
+                    119,
+                    118
+                ],
+                "confidence": 0.7338414788246155,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000170.jpg",
+        "detected": true,
+        "bbox": [
+            21,
+            23,
+            122,
+            122
+        ],
+        "confidence": 0.749957799911499,
+        "faces": [
+            {
+                "bbox": [
+                    21,
+                    23,
+                    122,
+                    122
+                ],
+                "confidence": 0.749957799911499,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000171.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            24,
+            117,
+            117
+        ],
+        "confidence": 0.7392144203186035,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    24,
+                    117,
+                    117
+                ],
+                "confidence": 0.7392144203186035,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000172.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            24,
+            118,
+            118
+        ],
+        "confidence": 0.7392953038215637,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    24,
+                    118,
+                    118
+                ],
+                "confidence": 0.7392953038215637,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000173.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            24,
+            117,
+            118
+        ],
+        "confidence": 0.7392124533653259,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    24,
+                    117,
+                    118
+                ],
+                "confidence": 0.7392124533653259,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000174.jpg",
+        "detected": true,
+        "bbox": [
+            22,
+            23,
+            120,
+            119
+        ],
+        "confidence": 0.7508954405784607,
+        "faces": [
+            {
+                "bbox": [
+                    22,
+                    23,
+                    120,
+                    119
+                ],
+                "confidence": 0.7508954405784607,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000175.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            23,
+            118,
+            119
+        ],
+        "confidence": 0.7339097857475281,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    23,
+                    118,
+                    119
+                ],
+                "confidence": 0.7339097857475281,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000176.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            23,
+            114,
+            114
+        ],
+        "confidence": 0.733599066734314,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    23,
+                    114,
+                    114
+                ],
+                "confidence": 0.733599066734314,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000177.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            18,
+            118,
+            119
+        ],
+        "confidence": 0.7048412561416626,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    18,
+                    118,
+                    119
+                ],
+                "confidence": 0.7048412561416626,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000178.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            11,
+            119,
+            119
+        ],
+        "confidence": 0.7297000288963318,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    11,
+                    119,
+                    119
+                ],
+                "confidence": 0.7297000288963318,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000179.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            3,
+            125,
+            125
+        ],
+        "confidence": 0.7329422235488892,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    3,
+                    125,
+                    125
+                ],
+                "confidence": 0.7329422235488892,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000180.jpg",
+        "detected": true,
+        "bbox": [
+            13,
+            7,
+            131,
+            131
+        ],
+        "confidence": 0.7320541143417358,
+        "faces": [
+            {
+                "bbox": [
+                    13,
+                    7,
+                    131,
+                    131
+                ],
+                "confidence": 0.7320541143417358,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000181.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            18,
+            130,
+            130
+        ],
+        "confidence": 0.8031327724456787,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    18,
+                    130,
+                    130
+                ],
+                "confidence": 0.8031327724456787,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000182.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            20,
+            130,
+            130
+        ],
+        "confidence": 0.8153790831565857,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    20,
+                    130,
+                    130
+                ],
+                "confidence": 0.8153790831565857,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000183.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            26,
+            131,
+            130
+        ],
+        "confidence": 0.8432909250259399,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    26,
+                    131,
+                    130
+                ],
+                "confidence": 0.8432909250259399,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000184.jpg",
+        "detected": true,
+        "bbox": [
+            22,
+            25,
+            134,
+            133
+        ],
+        "confidence": 0.8554069995880127,
+        "faces": [
+            {
+                "bbox": [
+                    22,
+                    25,
+                    134,
+                    133
+                ],
+                "confidence": 0.8554069995880127,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000185.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            27,
+            136,
+            135
+        ],
+        "confidence": 0.8697286248207092,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    27,
+                    136,
+                    135
+                ],
+                "confidence": 0.8697286248207092,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000186.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            29,
+            132,
+            132
+        ],
+        "confidence": 0.8630527853965759,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    29,
+                    132,
+                    132
+                ],
+                "confidence": 0.8630527853965759,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000187.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            34,
+            134,
+            134
+        ],
+        "confidence": 0.8801500201225281,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    34,
+                    134,
+                    134
+                ],
+                "confidence": 0.8801500201225281,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000188.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            30,
+            137,
+            137
+        ],
+        "confidence": 0.8760918378829956,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    30,
+                    137,
+                    137
+                ],
+                "confidence": 0.8760918378829956,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000189.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            33,
+            137,
+            137
+        ],
+        "confidence": 0.8798848986625671,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    33,
+                    137,
+                    137
+                ],
+                "confidence": 0.8798848986625671,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000190.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            46,
+            139,
+            139
+        ],
+        "confidence": 0.9161116480827332,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    46,
+                    139,
+                    139
+                ],
+                "confidence": 0.9161116480827332,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000191.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            45,
+            142,
+            142
+        ],
+        "confidence": 0.9105326533317566,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    45,
+                    142,
+                    142
+                ],
+                "confidence": 0.9105326533317566,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000192.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            45,
+            145,
+            144
+        ],
+        "confidence": 0.9250063896179199,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    45,
+                    145,
+                    144
+                ],
+                "confidence": 0.9250063896179199,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000193.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            44,
+            146,
+            146
+        ],
+        "confidence": 0.9212696552276611,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    44,
+                    146,
+                    146
+                ],
+                "confidence": 0.9212696552276611,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000194.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            48,
+            152,
+            152
+        ],
+        "confidence": 0.9109379649162292,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    48,
+                    152,
+                    152
+                ],
+                "confidence": 0.9109379649162292,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000195.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            48,
+            154,
+            154
+        ],
+        "confidence": 0.8900758624076843,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    48,
+                    154,
+                    154
+                ],
+                "confidence": 0.8900758624076843,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000196.jpg",
+        "detected": true,
+        "bbox": [
+            50,
+            52,
+            156,
+            157
+        ],
+        "confidence": 0.8981403112411499,
+        "faces": [
+            {
+                "bbox": [
+                    50,
+                    52,
+                    156,
+                    157
+                ],
+                "confidence": 0.8981403112411499,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000197.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            49,
+            156,
+            156
+        ],
+        "confidence": 0.890348494052887,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    49,
+                    156,
+                    156
+                ],
+                "confidence": 0.890348494052887,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000198.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            46,
+            161,
+            161
+        ],
+        "confidence": 0.8761076331138611,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    46,
+                    161,
+                    161
+                ],
+                "confidence": 0.8761076331138611,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000199.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            38,
+            164,
+            164
+        ],
+        "confidence": 0.8660853505134583,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    38,
+                    164,
+                    164
+                ],
+                "confidence": 0.8660853505134583,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000200.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            43,
+            165,
+            165
+        ],
+        "confidence": 0.8654322624206543,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    43,
+                    165,
+                    165
+                ],
+                "confidence": 0.8654322624206543,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000201.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            47,
+            162,
+            162
+        ],
+        "confidence": 0.8564788103103638,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    47,
+                    162,
+                    162
+                ],
+                "confidence": 0.8564788103103638,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000202.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            39,
+            169,
+            169
+        ],
+        "confidence": 0.8561656475067139,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    39,
+                    169,
+                    169
+                ],
+                "confidence": 0.8561656475067139,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000203.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            44,
+            170,
+            170
+        ],
+        "confidence": 0.882928192615509,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    44,
+                    170,
+                    170
+                ],
+                "confidence": 0.882928192615509,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000204.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            46,
+            167,
+            167
+        ],
+        "confidence": 0.8836733102798462,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    46,
+                    167,
+                    167
+                ],
+                "confidence": 0.8836733102798462,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000205.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            36,
+            171,
+            171
+        ],
+        "confidence": 0.8705934286117554,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    36,
+                    171,
+                    171
+                ],
+                "confidence": 0.8705934286117554,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000206.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            42,
+            171,
+            171
+        ],
+        "confidence": 0.871496319770813,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    42,
+                    171,
+                    171
+                ],
+                "confidence": 0.871496319770813,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000207.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            42,
+            172,
+            173
+        ],
+        "confidence": 0.8778796792030334,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    42,
+                    172,
+                    173
+                ],
+                "confidence": 0.8778796792030334,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000208.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            32,
+            179,
+            178
+        ],
+        "confidence": 0.8825958967208862,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    32,
+                    179,
+                    178
+                ],
+                "confidence": 0.8825958967208862,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000209.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            35,
+            177,
+            178
+        ],
+        "confidence": 0.9106495976448059,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    35,
+                    177,
+                    178
+                ],
+                "confidence": 0.9106495976448059,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000210.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            38,
+            173,
+            173
+        ],
+        "confidence": 0.9144634008407593,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    38,
+                    173,
+                    173
+                ],
+                "confidence": 0.9144634008407593,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000211.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            39,
+            174,
+            174
+        ],
+        "confidence": 0.894446849822998,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    39,
+                    174,
+                    174
+                ],
+                "confidence": 0.894446849822998,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000212.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            42,
+            170,
+            169
+        ],
+        "confidence": 0.8873041272163391,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    42,
+                    170,
+                    169
+                ],
+                "confidence": 0.8873041272163391,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000213.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            42,
+            174,
+            174
+        ],
+        "confidence": 0.8834085464477539,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    42,
+                    174,
+                    174
+                ],
+                "confidence": 0.8834085464477539,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000214.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            40,
+            169,
+            169
+        ],
+        "confidence": 0.8807408213615417,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    40,
+                    169,
+                    169
+                ],
+                "confidence": 0.8807408213615417,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000215.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            39,
+            167,
+            168
+        ],
+        "confidence": 0.8900277018547058,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    39,
+                    167,
+                    168
+                ],
+                "confidence": 0.8900277018547058,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000216.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            37,
+            169,
+            168
+        ],
+        "confidence": 0.8939297199249268,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    37,
+                    169,
+                    168
+                ],
+                "confidence": 0.8939297199249268,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000217.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            32,
+            172,
+            172
+        ],
+        "confidence": 0.8984993100166321,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    32,
+                    172,
+                    172
+                ],
+                "confidence": 0.8984993100166321,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000218.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            32,
+            170,
+            169
+        ],
+        "confidence": 0.8802520036697388,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    32,
+                    170,
+                    169
+                ],
+                "confidence": 0.8802520036697388,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000219.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            30,
+            171,
+            172
+        ],
+        "confidence": 0.8904696702957153,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    30,
+                    171,
+                    172
+                ],
+                "confidence": 0.8904696702957153,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000220.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            28,
+            170,
+            170
+        ],
+        "confidence": 0.8871331810951233,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    28,
+                    170,
+                    170
+                ],
+                "confidence": 0.8871331810951233,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000221.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            26,
+            171,
+            171
+        ],
+        "confidence": 0.8894846439361572,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    26,
+                    171,
+                    171
+                ],
+                "confidence": 0.8894846439361572,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000222.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            29,
+            175,
+            174
+        ],
+        "confidence": 0.9066808223724365,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    29,
+                    175,
+                    174
+                ],
+                "confidence": 0.9066808223724365,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000223.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            26,
+            173,
+            172
+        ],
+        "confidence": 0.8993420004844666,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    26,
+                    173,
+                    172
+                ],
+                "confidence": 0.8993420004844666,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000224.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            23,
+            173,
+            173
+        ],
+        "confidence": 0.8924381732940674,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    23,
+                    173,
+                    173
+                ],
+                "confidence": 0.8924381732940674,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000225.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            24,
+            174,
+            174
+        ],
+        "confidence": 0.8907552361488342,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    24,
+                    174,
+                    174
+                ],
+                "confidence": 0.8907552361488342,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000226.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            28,
+            171,
+            172
+        ],
+        "confidence": 0.894022524356842,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    28,
+                    171,
+                    172
+                ],
+                "confidence": 0.894022524356842,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000227.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            28,
+            169,
+            169
+        ],
+        "confidence": 0.9020869731903076,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    28,
+                    169,
+                    169
+                ],
+                "confidence": 0.9020869731903076,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000228.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            28,
+            171,
+            171
+        ],
+        "confidence": 0.8949530720710754,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    28,
+                    171,
+                    171
+                ],
+                "confidence": 0.8949530720710754,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000229.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            27,
+            172,
+            172
+        ],
+        "confidence": 0.8967739939689636,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    27,
+                    172,
+                    172
+                ],
+                "confidence": 0.8967739939689636,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000230.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            25,
+            173,
+            173
+        ],
+        "confidence": 0.8858036994934082,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    25,
+                    173,
+                    173
+                ],
+                "confidence": 0.8858036994934082,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000231.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            26,
+            169,
+            169
+        ],
+        "confidence": 0.904244065284729,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    26,
+                    169,
+                    169
+                ],
+                "confidence": 0.904244065284729,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000232.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            22,
+            173,
+            173
+        ],
+        "confidence": 0.9181323647499084,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    22,
+                    173,
+                    173
+                ],
+                "confidence": 0.9181323647499084,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000233.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            25,
+            172,
+            172
+        ],
+        "confidence": 0.9132867455482483,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    25,
+                    172,
+                    172
+                ],
+                "confidence": 0.9132867455482483,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000234.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            28,
+            172,
+            171
+        ],
+        "confidence": 0.9067983031272888,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    28,
+                    172,
+                    171
+                ],
+                "confidence": 0.9067983031272888,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000235.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            28,
+            170,
+            169
+        ],
+        "confidence": 0.9112269878387451,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    28,
+                    170,
+                    169
+                ],
+                "confidence": 0.9112269878387451,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000236.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            28,
+            171,
+            170
+        ],
+        "confidence": 0.9013946056365967,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    28,
+                    171,
+                    170
+                ],
+                "confidence": 0.9013946056365967,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000237.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            29,
+            173,
+            173
+        ],
+        "confidence": 0.8949772119522095,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    29,
+                    173,
+                    173
+                ],
+                "confidence": 0.8949772119522095,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000238.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            30,
+            173,
+            172
+        ],
+        "confidence": 0.8990606665611267,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    30,
+                    173,
+                    172
+                ],
+                "confidence": 0.8990606665611267,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000239.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            37,
+            174,
+            174
+        ],
+        "confidence": 0.8967110514640808,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    37,
+                    174,
+                    174
+                ],
+                "confidence": 0.8967110514640808,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000240.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            36,
+            174,
+            174
+        ],
+        "confidence": 0.8922310471534729,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    36,
+                    174,
+                    174
+                ],
+                "confidence": 0.8922310471534729,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000241.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            42,
+            173,
+            172
+        ],
+        "confidence": 0.8867241144180298,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    42,
+                    173,
+                    172
+                ],
+                "confidence": 0.8867241144180298,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000242.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            42,
+            175,
+            174
+        ],
+        "confidence": 0.904093325138092,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    42,
+                    175,
+                    174
+                ],
+                "confidence": 0.904093325138092,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000243.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            37,
+            179,
+            178
+        ],
+        "confidence": 0.8932761549949646,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    37,
+                    179,
+                    178
+                ],
+                "confidence": 0.8932761549949646,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000245.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            47,
+            176,
+            176
+        ],
+        "confidence": 0.8974623084068298,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    47,
+                    176,
+                    176
+                ],
+                "confidence": 0.8974623084068298,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000246.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            46,
+            176,
+            176
+        ],
+        "confidence": 0.8689305782318115,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    46,
+                    176,
+                    176
+                ],
+                "confidence": 0.8689305782318115,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000247.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            46,
+            176,
+            176
+        ],
+        "confidence": 0.8825724720954895,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    46,
+                    176,
+                    176
+                ],
+                "confidence": 0.8825724720954895,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000248.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            54,
+            173,
+            173
+        ],
+        "confidence": 0.8693165183067322,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    54,
+                    173,
+                    173
+                ],
+                "confidence": 0.8693165183067322,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000249.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            51,
+            174,
+            174
+        ],
+        "confidence": 0.8918988108634949,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    51,
+                    174,
+                    174
+                ],
+                "confidence": 0.8918988108634949,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000250.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            53,
+            172,
+            172
+        ],
+        "confidence": 0.8911085724830627,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    53,
+                    172,
+                    172
+                ],
+                "confidence": 0.8911085724830627,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000251.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            50,
+            168,
+            168
+        ],
+        "confidence": 0.883294403553009,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    50,
+                    168,
+                    168
+                ],
+                "confidence": 0.883294403553009,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000252.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            51,
+            168,
+            168
+        ],
+        "confidence": 0.9059679508209229,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    51,
+                    168,
+                    168
+                ],
+                "confidence": 0.9059679508209229,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000253.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            54,
+            162,
+            162
+        ],
+        "confidence": 0.8876730799674988,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    54,
+                    162,
+                    162
+                ],
+                "confidence": 0.8876730799674988,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000254.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            54,
+            160,
+            160
+        ],
+        "confidence": 0.8907498121261597,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    54,
+                    160,
+                    160
+                ],
+                "confidence": 0.8907498121261597,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000255.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            56,
+            160,
+            160
+        ],
+        "confidence": 0.8919932842254639,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    56,
+                    160,
+                    160
+                ],
+                "confidence": 0.8919932842254639,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000256.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            54,
+            159,
+            159
+        ],
+        "confidence": 0.8920080661773682,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    54,
+                    159,
+                    159
+                ],
+                "confidence": 0.8920080661773682,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000257.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            50,
+            162,
+            161
+        ],
+        "confidence": 0.8926634788513184,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    50,
+                    162,
+                    161
+                ],
+                "confidence": 0.8926634788513184,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000258.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            51,
+            157,
+            158
+        ],
+        "confidence": 0.9037491083145142,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    51,
+                    157,
+                    158
+                ],
+                "confidence": 0.9037491083145142,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000259.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            52,
+            157,
+            157
+        ],
+        "confidence": 0.9006679654121399,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    52,
+                    157,
+                    157
+                ],
+                "confidence": 0.9006679654121399,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000260.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            51,
+            157,
+            158
+        ],
+        "confidence": 0.9018173813819885,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    51,
+                    157,
+                    158
+                ],
+                "confidence": 0.9018173813819885,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000261.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            51,
+            158,
+            158
+        ],
+        "confidence": 0.9038711190223694,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    51,
+                    158,
+                    158
+                ],
+                "confidence": 0.9038711190223694,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000262.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            52,
+            157,
+            157
+        ],
+        "confidence": 0.9046197533607483,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    52,
+                    157,
+                    157
+                ],
+                "confidence": 0.9046197533607483,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000263.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            53,
+            156,
+            156
+        ],
+        "confidence": 0.9102750420570374,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    53,
+                    156,
+                    156
+                ],
+                "confidence": 0.9102750420570374,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000264.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            51,
+            157,
+            157
+        ],
+        "confidence": 0.9095851182937622,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    51,
+                    157,
+                    157
+                ],
+                "confidence": 0.9095851182937622,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000265.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            52,
+            157,
+            157
+        ],
+        "confidence": 0.9120768308639526,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    52,
+                    157,
+                    157
+                ],
+                "confidence": 0.9120768308639526,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/train/real/2/frame_000266.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            52,
+            156,
+            156
+        ],
+        "confidence": 0.9175289273262024,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    52,
+                    156,
+                    156
+                ],
+                "confidence": 0.9175289273262024,
+                "detected": true
+            }
+        ],
+        "error": null
+    }
+]

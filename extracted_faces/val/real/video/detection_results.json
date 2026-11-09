@@ -1,0 +1,8042 @@
+[
+    {
+        "image": "extracted_faces/val/real/video/frame_000000.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            45,
+            172,
+            172
+        ],
+        "confidence": 0.9092639088630676,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    45,
+                    172,
+                    172
+                ],
+                "confidence": 0.9092639088630676,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000001.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            43,
+            171,
+            172
+        ],
+        "confidence": 0.911228597164154,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    43,
+                    171,
+                    172
+                ],
+                "confidence": 0.911228597164154,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000002.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            45,
+            171,
+            170
+        ],
+        "confidence": 0.916628360748291,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    45,
+                    171,
+                    170
+                ],
+                "confidence": 0.916628360748291,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000003.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            44,
+            171,
+            171
+        ],
+        "confidence": 0.9176512360572815,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    44,
+                    171,
+                    171
+                ],
+                "confidence": 0.9176512360572815,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000004.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            45,
+            168,
+            168
+        ],
+        "confidence": 0.9293215870857239,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    45,
+                    168,
+                    168
+                ],
+                "confidence": 0.9293215870857239,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000005.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            45,
+            167,
+            168
+        ],
+        "confidence": 0.9215505123138428,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    45,
+                    167,
+                    168
+                ],
+                "confidence": 0.9215505123138428,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000006.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            43,
+            169,
+            169
+        ],
+        "confidence": 0.9196406602859497,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    43,
+                    169,
+                    169
+                ],
+                "confidence": 0.9196406602859497,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000007.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            43,
+            169,
+            169
+        ],
+        "confidence": 0.9213387966156006,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    43,
+                    169,
+                    169
+                ],
+                "confidence": 0.9213387966156006,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000008.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            46,
+            167,
+            167
+        ],
+        "confidence": 0.9217202067375183,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    46,
+                    167,
+                    167
+                ],
+                "confidence": 0.9217202067375183,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000009.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            45,
+            169,
+            168
+        ],
+        "confidence": 0.9205830693244934,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    45,
+                    169,
+                    168
+                ],
+                "confidence": 0.9205830693244934,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000010.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            43,
+            168,
+            168
+        ],
+        "confidence": 0.9231365919113159,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    43,
+                    168,
+                    168
+                ],
+                "confidence": 0.9231365919113159,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000011.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            43,
+            169,
+            169
+        ],
+        "confidence": 0.910307765007019,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    43,
+                    169,
+                    169
+                ],
+                "confidence": 0.910307765007019,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000012.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            45,
+            166,
+            167
+        ],
+        "confidence": 0.9238755702972412,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    45,
+                    166,
+                    167
+                ],
+                "confidence": 0.9238755702972412,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000013.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            46,
+            165,
+            166
+        ],
+        "confidence": 0.924313485622406,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    46,
+                    165,
+                    166
+                ],
+                "confidence": 0.924313485622406,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000014.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            44,
+            166,
+            167
+        ],
+        "confidence": 0.9288365244865417,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    44,
+                    166,
+                    167
+                ],
+                "confidence": 0.9288365244865417,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000015.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            47,
+            166,
+            166
+        ],
+        "confidence": 0.9209407567977905,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    47,
+                    166,
+                    166
+                ],
+                "confidence": 0.9209407567977905,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000016.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            46,
+            167,
+            167
+        ],
+        "confidence": 0.9239733219146729,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    46,
+                    167,
+                    167
+                ],
+                "confidence": 0.9239733219146729,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000017.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            46,
+            167,
+            167
+        ],
+        "confidence": 0.921443521976471,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    46,
+                    167,
+                    167
+                ],
+                "confidence": 0.921443521976471,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000018.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            46,
+            166,
+            166
+        ],
+        "confidence": 0.9278289079666138,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    46,
+                    166,
+                    166
+                ],
+                "confidence": 0.9278289079666138,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000019.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            46,
+            167,
+            167
+        ],
+        "confidence": 0.9236595034599304,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    46,
+                    167,
+                    167
+                ],
+                "confidence": 0.9236595034599304,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000020.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            44,
+            167,
+            168
+        ],
+        "confidence": 0.927594780921936,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    44,
+                    167,
+                    168
+                ],
+                "confidence": 0.927594780921936,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000021.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            44,
+            167,
+            167
+        ],
+        "confidence": 0.9274370670318604,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    44,
+                    167,
+                    167
+                ],
+                "confidence": 0.9274370670318604,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000022.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            44,
+            167,
+            167
+        ],
+        "confidence": 0.9258743524551392,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    44,
+                    167,
+                    167
+                ],
+                "confidence": 0.9258743524551392,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000023.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            41,
+            168,
+            169
+        ],
+        "confidence": 0.9127715826034546,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    41,
+                    168,
+                    169
+                ],
+                "confidence": 0.9127715826034546,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000024.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            44,
+            169,
+            170
+        ],
+        "confidence": 0.8977287411689758,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    44,
+                    169,
+                    170
+                ],
+                "confidence": 0.8977287411689758,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000025.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            47,
+            168,
+            169
+        ],
+        "confidence": 0.9011878371238708,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    47,
+                    168,
+                    169
+                ],
+                "confidence": 0.9011878371238708,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000026.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            45,
+            167,
+            166
+        ],
+        "confidence": 0.8955235481262207,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    45,
+                    167,
+                    166
+                ],
+                "confidence": 0.8955235481262207,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000027.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            43,
+            165,
+            165
+        ],
+        "confidence": 0.8854303359985352,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    43,
+                    165,
+                    165
+                ],
+                "confidence": 0.8854303359985352,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000028.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            37,
+            168,
+            169
+        ],
+        "confidence": 0.8779413104057312,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    37,
+                    168,
+                    169
+                ],
+                "confidence": 0.8779413104057312,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000029.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            31,
+            172,
+            173
+        ],
+        "confidence": 0.8898330926895142,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    31,
+                    172,
+                    173
+                ],
+                "confidence": 0.8898330926895142,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000030.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            32,
+            172,
+            172
+        ],
+        "confidence": 0.8633436560630798,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    32,
+                    172,
+                    172
+                ],
+                "confidence": 0.8633436560630798,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000031.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            34,
+            168,
+            168
+        ],
+        "confidence": 0.8730415105819702,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    34,
+                    168,
+                    168
+                ],
+                "confidence": 0.8730415105819702,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000032.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            34,
+            168,
+            168
+        ],
+        "confidence": 0.8724504709243774,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    34,
+                    168,
+                    168
+                ],
+                "confidence": 0.8724504709243774,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000033.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            32,
+            171,
+            172
+        ],
+        "confidence": 0.8664162755012512,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    32,
+                    171,
+                    172
+                ],
+                "confidence": 0.8664162755012512,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000034.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            33,
+            171,
+            171
+        ],
+        "confidence": 0.8721755743026733,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    33,
+                    171,
+                    171
+                ],
+                "confidence": 0.8721755743026733,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000035.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            34,
+            170,
+            170
+        ],
+        "confidence": 0.884056806564331,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    34,
+                    170,
+                    170
+                ],
+                "confidence": 0.884056806564331,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000036.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            28,
+            174,
+            174
+        ],
+        "confidence": 0.8726303577423096,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    28,
+                    174,
+                    174
+                ],
+                "confidence": 0.8726303577423096,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000037.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            34,
+            168,
+            168
+        ],
+        "confidence": 0.8782595992088318,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    34,
+                    168,
+                    168
+                ],
+                "confidence": 0.8782595992088318,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000038.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            38,
+            168,
+            168
+        ],
+        "confidence": 0.87149578332901,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    38,
+                    168,
+                    168
+                ],
+                "confidence": 0.87149578332901,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000039.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            40,
+            167,
+            167
+        ],
+        "confidence": 0.8674801588058472,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    40,
+                    167,
+                    167
+                ],
+                "confidence": 0.8674801588058472,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000040.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            39,
+            167,
+            167
+        ],
+        "confidence": 0.8713537454605103,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    39,
+                    167,
+                    167
+                ],
+                "confidence": 0.8713537454605103,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000041.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            28,
+            174,
+            174
+        ],
+        "confidence": 0.8701200485229492,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    28,
+                    174,
+                    174
+                ],
+                "confidence": 0.8701200485229492,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000042.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            31,
+            174,
+            173
+        ],
+        "confidence": 0.8786882162094116,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    31,
+                    174,
+                    173
+                ],
+                "confidence": 0.8786882162094116,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000043.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            31,
+            175,
+            174
+        ],
+        "confidence": 0.8766942620277405,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    31,
+                    175,
+                    174
+                ],
+                "confidence": 0.8766942620277405,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000044.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            28,
+            174,
+            174
+        ],
+        "confidence": 0.8779131770133972,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    28,
+                    174,
+                    174
+                ],
+                "confidence": 0.8779131770133972,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000045.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            28,
+            176,
+            176
+        ],
+        "confidence": 0.9018614292144775,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    28,
+                    176,
+                    176
+                ],
+                "confidence": 0.9018614292144775,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000046.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            28,
+            179,
+            179
+        ],
+        "confidence": 0.8952174186706543,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    28,
+                    179,
+                    179
+                ],
+                "confidence": 0.8952174186706543,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000047.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            33,
+            182,
+            182
+        ],
+        "confidence": 0.9066438674926758,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    33,
+                    182,
+                    182
+                ],
+                "confidence": 0.9066438674926758,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000048.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            32,
+            184,
+            185
+        ],
+        "confidence": 0.8867964744567871,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    32,
+                    184,
+                    185
+                ],
+                "confidence": 0.8867964744567871,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000049.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            35,
+            176,
+            177
+        ],
+        "confidence": 0.8705036044120789,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    35,
+                    176,
+                    177
+                ],
+                "confidence": 0.8705036044120789,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000050.jpg",
+        "detected": true,
+        "bbox": [
+            40,
+            38,
+            177,
+            178
+        ],
+        "confidence": 0.886253297328949,
+        "faces": [
+            {
+                "bbox": [
+                    40,
+                    38,
+                    177,
+                    178
+                ],
+                "confidence": 0.886253297328949,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000051.jpg",
+        "detected": true,
+        "bbox": [
+            40,
+            39,
+            173,
+            174
+        ],
+        "confidence": 0.8893157839775085,
+        "faces": [
+            {
+                "bbox": [
+                    40,
+                    39,
+                    173,
+                    174
+                ],
+                "confidence": 0.8893157839775085,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000052.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            40,
+            171,
+            172
+        ],
+        "confidence": 0.8987523317337036,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    40,
+                    171,
+                    172
+                ],
+                "confidence": 0.8987523317337036,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000053.jpg",
+        "detected": true,
+        "bbox": [
+            42,
+            41,
+            163,
+            162
+        ],
+        "confidence": 0.8969557285308838,
+        "faces": [
+            {
+                "bbox": [
+                    42,
+                    41,
+                    163,
+                    162
+                ],
+                "confidence": 0.8969557285308838,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000054.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            48,
+            159,
+            158
+        ],
+        "confidence": 0.9032009243965149,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    48,
+                    159,
+                    158
+                ],
+                "confidence": 0.9032009243965149,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000055.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            46,
+            155,
+            155
+        ],
+        "confidence": 0.9235103130340576,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    46,
+                    155,
+                    155
+                ],
+                "confidence": 0.9235103130340576,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000056.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            41,
+            151,
+            152
+        ],
+        "confidence": 0.9317517876625061,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    41,
+                    151,
+                    152
+                ],
+                "confidence": 0.9317517876625061,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000057.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            46,
+            144,
+            144
+        ],
+        "confidence": 0.9459394216537476,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    46,
+                    144,
+                    144
+                ],
+                "confidence": 0.9459394216537476,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000058.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            45,
+            139,
+            139
+        ],
+        "confidence": 0.9292653203010559,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    45,
+                    139,
+                    139
+                ],
+                "confidence": 0.9292653203010559,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000059.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            45,
+            135,
+            136
+        ],
+        "confidence": 0.9396013617515564,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    45,
+                    135,
+                    136
+                ],
+                "confidence": 0.9396013617515564,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000060.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            41,
+            136,
+            136
+        ],
+        "confidence": 0.9136978387832642,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    41,
+                    136,
+                    136
+                ],
+                "confidence": 0.9136978387832642,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000061.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            36,
+            139,
+            139
+        ],
+        "confidence": 0.9161921739578247,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    36,
+                    139,
+                    139
+                ],
+                "confidence": 0.9161921739578247,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000062.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            34,
+            138,
+            138
+        ],
+        "confidence": 0.9097221493721008,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    34,
+                    138,
+                    138
+                ],
+                "confidence": 0.9097221493721008,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000063.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            38,
+            135,
+            136
+        ],
+        "confidence": 0.8895034193992615,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    38,
+                    135,
+                    136
+                ],
+                "confidence": 0.8895034193992615,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000064.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            37,
+            137,
+            137
+        ],
+        "confidence": 0.8987744450569153,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    37,
+                    137,
+                    137
+                ],
+                "confidence": 0.8987744450569153,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000065.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            35,
+            137,
+            137
+        ],
+        "confidence": 0.9070866703987122,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    35,
+                    137,
+                    137
+                ],
+                "confidence": 0.9070866703987122,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000066.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            35,
+            134,
+            134
+        ],
+        "confidence": 0.9220986366271973,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    35,
+                    134,
+                    134
+                ],
+                "confidence": 0.9220986366271973,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000067.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            34,
+            136,
+            136
+        ],
+        "confidence": 0.909250020980835,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    34,
+                    136,
+                    136
+                ],
+                "confidence": 0.909250020980835,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000068.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            33,
+            136,
+            136
+        ],
+        "confidence": 0.9046275019645691,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    33,
+                    136,
+                    136
+                ],
+                "confidence": 0.9046275019645691,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000069.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            31,
+            136,
+            136
+        ],
+        "confidence": 0.8996715545654297,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    31,
+                    136,
+                    136
+                ],
+                "confidence": 0.8996715545654297,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000070.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            28,
+            137,
+            138
+        ],
+        "confidence": 0.8972135186195374,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    28,
+                    137,
+                    138
+                ],
+                "confidence": 0.8972135186195374,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000071.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            29,
+            137,
+            137
+        ],
+        "confidence": 0.9020405411720276,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    29,
+                    137,
+                    137
+                ],
+                "confidence": 0.9020405411720276,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000072.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            33,
+            135,
+            136
+        ],
+        "confidence": 0.8881815075874329,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    33,
+                    135,
+                    136
+                ],
+                "confidence": 0.8881815075874329,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000073.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            35,
+            134,
+            133
+        ],
+        "confidence": 0.9007198810577393,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    35,
+                    134,
+                    133
+                ],
+                "confidence": 0.9007198810577393,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000074.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            30,
+            134,
+            134
+        ],
+        "confidence": 0.8694695830345154,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    30,
+                    134,
+                    134
+                ],
+                "confidence": 0.8694695830345154,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000075.jpg",
+        "detected": true,
+        "bbox": [
+            17,
+            26,
+            137,
+            137
+        ],
+        "confidence": 0.866414487361908,
+        "faces": [
+            {
+                "bbox": [
+                    17,
+                    26,
+                    137,
+                    137
+                ],
+                "confidence": 0.866414487361908,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000076.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            33,
+            135,
+            135
+        ],
+        "confidence": 0.8534459471702576,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    33,
+                    135,
+                    135
+                ],
+                "confidence": 0.8534459471702576,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000077.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            27,
+            134,
+            134
+        ],
+        "confidence": 0.850493848323822,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    27,
+                    134,
+                    134
+                ],
+                "confidence": 0.850493848323822,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000078.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            33,
+            130,
+            130
+        ],
+        "confidence": 0.8587557673454285,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    33,
+                    130,
+                    130
+                ],
+                "confidence": 0.8587557673454285,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000079.jpg",
+        "detected": true,
+        "bbox": [
+            21,
+            23,
+            133,
+            133
+        ],
+        "confidence": 0.8610198497772217,
+        "faces": [
+            {
+                "bbox": [
+                    21,
+                    23,
+                    133,
+                    133
+                ],
+                "confidence": 0.8610198497772217,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000080.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            11,
+            144,
+            144
+        ],
+        "confidence": 0.8446689248085022,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    11,
+                    144,
+                    144
+                ],
+                "confidence": 0.8446689248085022,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000081.jpg",
+        "detected": true,
+        "bbox": [
+            7,
+            9,
+            139,
+            140
+        ],
+        "confidence": 0.8070254325866699,
+        "faces": [
+            {
+                "bbox": [
+                    7,
+                    9,
+                    139,
+                    140
+                ],
+                "confidence": 0.8070254325866699,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000082.jpg",
+        "detected": true,
+        "bbox": [
+            10,
+            12,
+            140,
+            139
+        ],
+        "confidence": 0.8162199258804321,
+        "faces": [
+            {
+                "bbox": [
+                    10,
+                    12,
+                    140,
+                    139
+                ],
+                "confidence": 0.8162199258804321,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000083.jpg",
+        "detected": true,
+        "bbox": [
+            8,
+            13,
+            138,
+            138
+        ],
+        "confidence": 0.8207103610038757,
+        "faces": [
+            {
+                "bbox": [
+                    8,
+                    13,
+                    138,
+                    138
+                ],
+                "confidence": 0.8207103610038757,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000084.jpg",
+        "detected": true,
+        "bbox": [
+            10,
+            24,
+            135,
+            135
+        ],
+        "confidence": 0.8033342957496643,
+        "faces": [
+            {
+                "bbox": [
+                    10,
+                    24,
+                    135,
+                    135
+                ],
+                "confidence": 0.8033342957496643,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000085.jpg",
+        "detected": true,
+        "bbox": [
+            4,
+            11,
+            142,
+            142
+        ],
+        "confidence": 0.8095056414604187,
+        "faces": [
+            {
+                "bbox": [
+                    4,
+                    11,
+                    142,
+                    142
+                ],
+                "confidence": 0.8095056414604187,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000086.jpg",
+        "detected": true,
+        "bbox": [
+            2,
+            10,
+            144,
+            143
+        ],
+        "confidence": 0.7781938910484314,
+        "faces": [
+            {
+                "bbox": [
+                    2,
+                    10,
+                    144,
+                    143
+                ],
+                "confidence": 0.7781938910484314,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000087.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            8,
+            142,
+            143
+        ],
+        "confidence": 0.7812290191650391,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    8,
+                    142,
+                    143
+                ],
+                "confidence": 0.7812290191650391,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000088.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            4,
+            143,
+            146
+        ],
+        "confidence": 0.7817580699920654,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    4,
+                    143,
+                    146
+                ],
+                "confidence": 0.7817580699920654,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000089.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            8,
+            142,
+            143
+        ],
+        "confidence": 0.8068429231643677,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    8,
+                    142,
+                    143
+                ],
+                "confidence": 0.8068429231643677,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000090.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            5,
+            143,
+            148
+        ],
+        "confidence": 0.7925256490707397,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    5,
+                    143,
+                    148
+                ],
+                "confidence": 0.7925256490707397,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000091.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            10,
+            143,
+            148
+        ],
+        "confidence": 0.8019643425941467,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    10,
+                    143,
+                    148
+                ],
+                "confidence": 0.8019643425941467,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000092.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            12,
+            143,
+            145
+        ],
+        "confidence": 0.8091298341751099,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    12,
+                    143,
+                    145
+                ],
+                "confidence": 0.8091298341751099,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000093.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            11,
+            144,
+            147
+        ],
+        "confidence": 0.8297160863876343,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    11,
+                    144,
+                    147
+                ],
+                "confidence": 0.8297160863876343,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000094.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            12,
+            145,
+            148
+        ],
+        "confidence": 0.8121739625930786,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    12,
+                    145,
+                    148
+                ],
+                "confidence": 0.8121739625930786,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000095.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            11,
+            143,
+            146
+        ],
+        "confidence": 0.8479428887367249,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    11,
+                    143,
+                    146
+                ],
+                "confidence": 0.8479428887367249,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000096.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            12,
+            141,
+            142
+        ],
+        "confidence": 0.8685789704322815,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    12,
+                    141,
+                    142
+                ],
+                "confidence": 0.8685789704322815,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000097.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            14,
+            141,
+            142
+        ],
+        "confidence": 0.8824371099472046,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    14,
+                    141,
+                    142
+                ],
+                "confidence": 0.8824371099472046,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000098.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            13,
+            145,
+            147
+        ],
+        "confidence": 0.8544847369194031,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    13,
+                    145,
+                    147
+                ],
+                "confidence": 0.8544847369194031,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000099.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            21,
+            135,
+            135
+        ],
+        "confidence": 0.842038631439209,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    21,
+                    135,
+                    135
+                ],
+                "confidence": 0.842038631439209,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000100.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            31,
+            130,
+            130
+        ],
+        "confidence": 0.8760033249855042,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    31,
+                    130,
+                    130
+                ],
+                "confidence": 0.8760033249855042,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000101.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            38,
+            127,
+            128
+        ],
+        "confidence": 0.8856232166290283,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    38,
+                    127,
+                    128
+                ],
+                "confidence": 0.8856232166290283,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000102.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            39,
+            133,
+            132
+        ],
+        "confidence": 0.8900096416473389,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    39,
+                    133,
+                    132
+                ],
+                "confidence": 0.8900096416473389,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000103.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            45,
+            129,
+            129
+        ],
+        "confidence": 0.9227142333984375,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    45,
+                    129,
+                    129
+                ],
+                "confidence": 0.9227142333984375,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000104.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            44,
+            134,
+            133
+        ],
+        "confidence": 0.9388273358345032,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    44,
+                    134,
+                    133
+                ],
+                "confidence": 0.9388273358345032,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000105.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            39,
+            137,
+            137
+        ],
+        "confidence": 0.8978489637374878,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    39,
+                    137,
+                    137
+                ],
+                "confidence": 0.8978489637374878,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000106.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            42,
+            136,
+            137
+        ],
+        "confidence": 0.923302412033081,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    42,
+                    136,
+                    137
+                ],
+                "confidence": 0.923302412033081,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000107.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            41,
+            137,
+            137
+        ],
+        "confidence": 0.9412114024162292,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    41,
+                    137,
+                    137
+                ],
+                "confidence": 0.9412114024162292,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000108.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            38,
+            137,
+            137
+        ],
+        "confidence": 0.924187958240509,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    38,
+                    137,
+                    137
+                ],
+                "confidence": 0.924187958240509,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000109.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            41,
+            138,
+            138
+        ],
+        "confidence": 0.9402028322219849,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    41,
+                    138,
+                    138
+                ],
+                "confidence": 0.9402028322219849,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000110.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            38,
+            139,
+            139
+        ],
+        "confidence": 0.9403448104858398,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    38,
+                    139,
+                    139
+                ],
+                "confidence": 0.9403448104858398,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000111.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            38,
+            141,
+            141
+        ],
+        "confidence": 0.9288333654403687,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    38,
+                    141,
+                    141
+                ],
+                "confidence": 0.9288333654403687,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000112.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            39,
+            143,
+            143
+        ],
+        "confidence": 0.9202163815498352,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    39,
+                    143,
+                    143
+                ],
+                "confidence": 0.9202163815498352,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000113.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            39,
+            141,
+            141
+        ],
+        "confidence": 0.932272732257843,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    39,
+                    141,
+                    141
+                ],
+                "confidence": 0.932272732257843,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000114.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            40,
+            139,
+            140
+        ],
+        "confidence": 0.9312265515327454,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    40,
+                    139,
+                    140
+                ],
+                "confidence": 0.9312265515327454,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000115.jpg",
+        "detected": true,
+        "bbox": [
+            53,
+            35,
+            139,
+            139
+        ],
+        "confidence": 0.9221884608268738,
+        "faces": [
+            {
+                "bbox": [
+                    53,
+                    35,
+                    139,
+                    139
+                ],
+                "confidence": 0.9221884608268738,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000116.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            34,
+            139,
+            139
+        ],
+        "confidence": 0.9281649589538574,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    34,
+                    139,
+                    139
+                ],
+                "confidence": 0.9281649589538574,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000117.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            37,
+            139,
+            139
+        ],
+        "confidence": 0.9266005158424377,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    37,
+                    139,
+                    139
+                ],
+                "confidence": 0.9266005158424377,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000118.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            37,
+            139,
+            140
+        ],
+        "confidence": 0.9235032796859741,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    37,
+                    139,
+                    140
+                ],
+                "confidence": 0.9235032796859741,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000119.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            38,
+            139,
+            139
+        ],
+        "confidence": 0.930304229259491,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    38,
+                    139,
+                    139
+                ],
+                "confidence": 0.930304229259491,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000120.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            41,
+            140,
+            139
+        ],
+        "confidence": 0.9246963858604431,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    41,
+                    140,
+                    139
+                ],
+                "confidence": 0.9246963858604431,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000121.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            43,
+            139,
+            139
+        ],
+        "confidence": 0.9390218257904053,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    43,
+                    139,
+                    139
+                ],
+                "confidence": 0.9390218257904053,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000122.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            41,
+            139,
+            139
+        ],
+        "confidence": 0.9430244565010071,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    41,
+                    139,
+                    139
+                ],
+                "confidence": 0.9430244565010071,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000123.jpg",
+        "detected": true,
+        "bbox": [
+            64,
+            41,
+            142,
+            142
+        ],
+        "confidence": 0.943733274936676,
+        "faces": [
+            {
+                "bbox": [
+                    64,
+                    41,
+                    142,
+                    142
+                ],
+                "confidence": 0.943733274936676,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000124.jpg",
+        "detected": true,
+        "bbox": [
+            64,
+            42,
+            141,
+            141
+        ],
+        "confidence": 0.936096727848053,
+        "faces": [
+            {
+                "bbox": [
+                    64,
+                    42,
+                    141,
+                    141
+                ],
+                "confidence": 0.936096727848053,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000125.jpg",
+        "detected": true,
+        "bbox": [
+            61,
+            41,
+            140,
+            140
+        ],
+        "confidence": 0.9461683034896851,
+        "faces": [
+            {
+                "bbox": [
+                    61,
+                    41,
+                    140,
+                    140
+                ],
+                "confidence": 0.9461683034896851,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000126.jpg",
+        "detected": true,
+        "bbox": [
+            62,
+            41,
+            140,
+            141
+        ],
+        "confidence": 0.9311613440513611,
+        "faces": [
+            {
+                "bbox": [
+                    62,
+                    41,
+                    140,
+                    141
+                ],
+                "confidence": 0.9311613440513611,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000127.jpg",
+        "detected": true,
+        "bbox": [
+            63,
+            42,
+            140,
+            141
+        ],
+        "confidence": 0.9313799142837524,
+        "faces": [
+            {
+                "bbox": [
+                    63,
+                    42,
+                    140,
+                    141
+                ],
+                "confidence": 0.9313799142837524,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000128.jpg",
+        "detected": true,
+        "bbox": [
+            61,
+            39,
+            143,
+            143
+        ],
+        "confidence": 0.9229990839958191,
+        "faces": [
+            {
+                "bbox": [
+                    61,
+                    39,
+                    143,
+                    143
+                ],
+                "confidence": 0.9229990839958191,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000129.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            40,
+            145,
+            145
+        ],
+        "confidence": 0.9282235503196716,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    40,
+                    145,
+                    145
+                ],
+                "confidence": 0.9282235503196716,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000130.jpg",
+        "detected": true,
+        "bbox": [
+            64,
+            41,
+            148,
+            149
+        ],
+        "confidence": 0.9279013872146606,
+        "faces": [
+            {
+                "bbox": [
+                    64,
+                    41,
+                    148,
+                    149
+                ],
+                "confidence": 0.9279013872146606,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000131.jpg",
+        "detected": true,
+        "bbox": [
+            63,
+            42,
+            150,
+            150
+        ],
+        "confidence": 0.9135689735412598,
+        "faces": [
+            {
+                "bbox": [
+                    63,
+                    42,
+                    150,
+                    150
+                ],
+                "confidence": 0.9135689735412598,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000132.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            39,
+            147,
+            148
+        ],
+        "confidence": 0.9152703881263733,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    39,
+                    147,
+                    148
+                ],
+                "confidence": 0.9152703881263733,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000133.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            46,
+            146,
+            146
+        ],
+        "confidence": 0.9275903105735779,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    46,
+                    146,
+                    146
+                ],
+                "confidence": 0.9275903105735779,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000134.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            43,
+            148,
+            148
+        ],
+        "confidence": 0.922841489315033,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    43,
+                    148,
+                    148
+                ],
+                "confidence": 0.922841489315033,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000135.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            42,
+            157,
+            157
+        ],
+        "confidence": 0.9365124702453613,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    42,
+                    157,
+                    157
+                ],
+                "confidence": 0.9365124702453613,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000136.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            38,
+            157,
+            157
+        ],
+        "confidence": 0.9203071594238281,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    38,
+                    157,
+                    157
+                ],
+                "confidence": 0.9203071594238281,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000137.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            40,
+            155,
+            155
+        ],
+        "confidence": 0.9127445220947266,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    40,
+                    155,
+                    155
+                ],
+                "confidence": 0.9127445220947266,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000138.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            44,
+            158,
+            157
+        ],
+        "confidence": 0.9027048945426941,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    44,
+                    158,
+                    157
+                ],
+                "confidence": 0.9027048945426941,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000139.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            40,
+            155,
+            155
+        ],
+        "confidence": 0.9037598967552185,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    40,
+                    155,
+                    155
+                ],
+                "confidence": 0.9037598967552185,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000140.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            34,
+            159,
+            159
+        ],
+        "confidence": 0.8744796514511108,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    34,
+                    159,
+                    159
+                ],
+                "confidence": 0.8744796514511108,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000141.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            33,
+            162,
+            163
+        ],
+        "confidence": 0.8824127912521362,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    33,
+                    162,
+                    163
+                ],
+                "confidence": 0.8824127912521362,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000142.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            26,
+            165,
+            165
+        ],
+        "confidence": 0.879629909992218,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    26,
+                    165,
+                    165
+                ],
+                "confidence": 0.879629909992218,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000143.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            28,
+            164,
+            164
+        ],
+        "confidence": 0.8896819949150085,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    28,
+                    164,
+                    164
+                ],
+                "confidence": 0.8896819949150085,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000144.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            35,
+            162,
+            162
+        ],
+        "confidence": 0.8927425146102905,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    35,
+                    162,
+                    162
+                ],
+                "confidence": 0.8927425146102905,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000145.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            30,
+            165,
+            166
+        ],
+        "confidence": 0.8815391063690186,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    30,
+                    165,
+                    166
+                ],
+                "confidence": 0.8815391063690186,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000146.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            31,
+            164,
+            164
+        ],
+        "confidence": 0.8846743702888489,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    31,
+                    164,
+                    164
+                ],
+                "confidence": 0.8846743702888489,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000147.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            31,
+            163,
+            163
+        ],
+        "confidence": 0.8743036985397339,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    31,
+                    163,
+                    163
+                ],
+                "confidence": 0.8743036985397339,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000148.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            31,
+            164,
+            164
+        ],
+        "confidence": 0.8749936819076538,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    31,
+                    164,
+                    164
+                ],
+                "confidence": 0.8749936819076538,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000149.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            29,
+            164,
+            164
+        ],
+        "confidence": 0.868539571762085,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    29,
+                    164,
+                    164
+                ],
+                "confidence": 0.868539571762085,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000150.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            25,
+            166,
+            166
+        ],
+        "confidence": 0.8401361107826233,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    25,
+                    166,
+                    166
+                ],
+                "confidence": 0.8401361107826233,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000151.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            27,
+            163,
+            163
+        ],
+        "confidence": 0.850212574005127,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    27,
+                    163,
+                    163
+                ],
+                "confidence": 0.850212574005127,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000152.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            27,
+            164,
+            163
+        ],
+        "confidence": 0.8508646488189697,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    27,
+                    164,
+                    163
+                ],
+                "confidence": 0.8508646488189697,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000153.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            25,
+            168,
+            169
+        ],
+        "confidence": 0.8693029284477234,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    25,
+                    168,
+                    169
+                ],
+                "confidence": 0.8693029284477234,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000154.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            29,
+            167,
+            167
+        ],
+        "confidence": 0.897814154624939,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    29,
+                    167,
+                    167
+                ],
+                "confidence": 0.897814154624939,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000155.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            35,
+            170,
+            170
+        ],
+        "confidence": 0.8927074074745178,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    35,
+                    170,
+                    170
+                ],
+                "confidence": 0.8927074074745178,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000156.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            37,
+            175,
+            175
+        ],
+        "confidence": 0.903170108795166,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    37,
+                    175,
+                    175
+                ],
+                "confidence": 0.903170108795166,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000157.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            35,
+            174,
+            174
+        ],
+        "confidence": 0.8932846784591675,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    35,
+                    174,
+                    174
+                ],
+                "confidence": 0.8932846784591675,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000158.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            36,
+            174,
+            173
+        ],
+        "confidence": 0.8996629118919373,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    36,
+                    174,
+                    173
+                ],
+                "confidence": 0.8996629118919373,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000159.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            36,
+            168,
+            168
+        ],
+        "confidence": 0.8999093174934387,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    36,
+                    168,
+                    168
+                ],
+                "confidence": 0.8999093174934387,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000160.jpg",
+        "detected": true,
+        "bbox": [
+            43,
+            40,
+            167,
+            167
+        ],
+        "confidence": 0.8779613971710205,
+        "faces": [
+            {
+                "bbox": [
+                    43,
+                    40,
+                    167,
+                    167
+                ],
+                "confidence": 0.8779613971710205,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000161.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            38,
+            166,
+            166
+        ],
+        "confidence": 0.8727495074272156,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    38,
+                    166,
+                    166
+                ],
+                "confidence": 0.8727495074272156,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000162.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            37,
+            165,
+            164
+        ],
+        "confidence": 0.8913568258285522,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    37,
+                    165,
+                    164
+                ],
+                "confidence": 0.8913568258285522,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000163.jpg",
+        "detected": true,
+        "bbox": [
+            40,
+            45,
+            155,
+            154
+        ],
+        "confidence": 0.8886086940765381,
+        "faces": [
+            {
+                "bbox": [
+                    40,
+                    45,
+                    155,
+                    154
+                ],
+                "confidence": 0.8886086940765381,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000164.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            43,
+            150,
+            150
+        ],
+        "confidence": 0.9196243286132812,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    43,
+                    150,
+                    150
+                ],
+                "confidence": 0.9196243286132812,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000165.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            47,
+            144,
+            143
+        ],
+        "confidence": 0.9319207072257996,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    47,
+                    144,
+                    143
+                ],
+                "confidence": 0.9319207072257996,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000166.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            40,
+            143,
+            143
+        ],
+        "confidence": 0.9375709891319275,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    40,
+                    143,
+                    143
+                ],
+                "confidence": 0.9375709891319275,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000167.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            43,
+            139,
+            139
+        ],
+        "confidence": 0.9379878044128418,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    43,
+                    139,
+                    139
+                ],
+                "confidence": 0.9379878044128418,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000168.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            38,
+            136,
+            136
+        ],
+        "confidence": 0.927628755569458,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    38,
+                    136,
+                    136
+                ],
+                "confidence": 0.927628755569458,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000169.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            46,
+            132,
+            132
+        ],
+        "confidence": 0.9364727139472961,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    46,
+                    132,
+                    132
+                ],
+                "confidence": 0.9364727139472961,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000170.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            47,
+            130,
+            130
+        ],
+        "confidence": 0.9411912560462952,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    47,
+                    130,
+                    130
+                ],
+                "confidence": 0.9411912560462952,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000171.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            43,
+            128,
+            128
+        ],
+        "confidence": 0.9417206048965454,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    43,
+                    128,
+                    128
+                ],
+                "confidence": 0.9417206048965454,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000172.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            40,
+            130,
+            131
+        ],
+        "confidence": 0.9286825060844421,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    40,
+                    130,
+                    131
+                ],
+                "confidence": 0.9286825060844421,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000173.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            38,
+            131,
+            131
+        ],
+        "confidence": 0.9298722147941589,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    38,
+                    131,
+                    131
+                ],
+                "confidence": 0.9298722147941589,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000174.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            39,
+            132,
+            132
+        ],
+        "confidence": 0.9319990873336792,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    39,
+                    132,
+                    132
+                ],
+                "confidence": 0.9319990873336792,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000175.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            36,
+            134,
+            134
+        ],
+        "confidence": 0.9114649295806885,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    36,
+                    134,
+                    134
+                ],
+                "confidence": 0.9114649295806885,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000176.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            34,
+            134,
+            135
+        ],
+        "confidence": 0.9032653570175171,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    34,
+                    134,
+                    135
+                ],
+                "confidence": 0.9032653570175171,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000177.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            33,
+            137,
+            136
+        ],
+        "confidence": 0.8977466225624084,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    33,
+                    137,
+                    136
+                ],
+                "confidence": 0.8977466225624084,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000178.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            37,
+            135,
+            134
+        ],
+        "confidence": 0.9152490496635437,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    37,
+                    135,
+                    134
+                ],
+                "confidence": 0.9152490496635437,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000179.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            39,
+            131,
+            132
+        ],
+        "confidence": 0.9188387393951416,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    39,
+                    131,
+                    132
+                ],
+                "confidence": 0.9188387393951416,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000180.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            41,
+            129,
+            129
+        ],
+        "confidence": 0.9313055276870728,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    41,
+                    129,
+                    129
+                ],
+                "confidence": 0.9313055276870728,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000181.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            38,
+            130,
+            130
+        ],
+        "confidence": 0.9106791615486145,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    38,
+                    130,
+                    130
+                ],
+                "confidence": 0.9106791615486145,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000182.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            37,
+            127,
+            127
+        ],
+        "confidence": 0.9226167798042297,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    37,
+                    127,
+                    127
+                ],
+                "confidence": 0.9226167798042297,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000183.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            41,
+            127,
+            126
+        ],
+        "confidence": 0.9286569952964783,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    41,
+                    127,
+                    126
+                ],
+                "confidence": 0.9286569952964783,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000184.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            39,
+            125,
+            125
+        ],
+        "confidence": 0.9157943725585938,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    39,
+                    125,
+                    125
+                ],
+                "confidence": 0.9157943725585938,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000185.jpg",
+        "detected": true,
+        "bbox": [
+            17,
+            33,
+            131,
+            130
+        ],
+        "confidence": 0.8831071257591248,
+        "faces": [
+            {
+                "bbox": [
+                    17,
+                    33,
+                    131,
+                    130
+                ],
+                "confidence": 0.8831071257591248,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000186.jpg",
+        "detected": true,
+        "bbox": [
+            16,
+            33,
+            131,
+            131
+        ],
+        "confidence": 0.8833025097846985,
+        "faces": [
+            {
+                "bbox": [
+                    16,
+                    33,
+                    131,
+                    131
+                ],
+                "confidence": 0.8833025097846985,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000187.jpg",
+        "detected": true,
+        "bbox": [
+            17,
+            34,
+            129,
+            128
+        ],
+        "confidence": 0.8899404406547546,
+        "faces": [
+            {
+                "bbox": [
+                    17,
+                    34,
+                    129,
+                    128
+                ],
+                "confidence": 0.8899404406547546,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000188.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            37,
+            127,
+            127
+        ],
+        "confidence": 0.8875413537025452,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    37,
+                    127,
+                    127
+                ],
+                "confidence": 0.8875413537025452,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000189.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            35,
+            124,
+            124
+        ],
+        "confidence": 0.8850500583648682,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    35,
+                    124,
+                    124
+                ],
+                "confidence": 0.8850500583648682,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000190.jpg",
+        "detected": true,
+        "bbox": [
+            17,
+            32,
+            123,
+            123
+        ],
+        "confidence": 0.8779715299606323,
+        "faces": [
+            {
+                "bbox": [
+                    17,
+                    32,
+                    123,
+                    123
+                ],
+                "confidence": 0.8779715299606323,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000191.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            21,
+            133,
+            134
+        ],
+        "confidence": 0.8624939322471619,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    21,
+                    133,
+                    134
+                ],
+                "confidence": 0.8624939322471619,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000192.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            17,
+            133,
+            133
+        ],
+        "confidence": 0.8549273610115051,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    17,
+                    133,
+                    133
+                ],
+                "confidence": 0.8549273610115051,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000193.jpg",
+        "detected": true,
+        "bbox": [
+            8,
+            15,
+            137,
+            138
+        ],
+        "confidence": 0.8343358635902405,
+        "faces": [
+            {
+                "bbox": [
+                    8,
+                    15,
+                    137,
+                    138
+                ],
+                "confidence": 0.8343358635902405,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000194.jpg",
+        "detected": true,
+        "bbox": [
+            3,
+            18,
+            140,
+            140
+        ],
+        "confidence": 0.811335563659668,
+        "faces": [
+            {
+                "bbox": [
+                    3,
+                    18,
+                    140,
+                    140
+                ],
+                "confidence": 0.811335563659668,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000195.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            31,
+            128,
+            128
+        ],
+        "confidence": 0.8395394682884216,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    31,
+                    128,
+                    128
+                ],
+                "confidence": 0.8395394682884216,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000196.jpg",
+        "detected": true,
+        "bbox": [
+            3,
+            22,
+            135,
+            135
+        ],
+        "confidence": 0.830042839050293,
+        "faces": [
+            {
+                "bbox": [
+                    3,
+                    22,
+                    135,
+                    135
+                ],
+                "confidence": 0.830042839050293,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000197.jpg",
+        "detected": true,
+        "bbox": [
+            4,
+            25,
+            131,
+            131
+        ],
+        "confidence": 0.8243468403816223,
+        "faces": [
+            {
+                "bbox": [
+                    4,
+                    25,
+                    131,
+                    131
+                ],
+                "confidence": 0.8243468403816223,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000198.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            11,
+            139,
+            142
+        ],
+        "confidence": 0.8183234930038452,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    11,
+                    139,
+                    142
+                ],
+                "confidence": 0.8183234930038452,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000199.jpg",
+        "detected": true,
+        "bbox": [
+            0,
+            13,
+            138,
+            141
+        ],
+        "confidence": 0.8115636706352234,
+        "faces": [
+            {
+                "bbox": [
+                    0,
+                    13,
+                    138,
+                    141
+                ],
+                "confidence": 0.8115636706352234,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000200.jpg",
+        "detected": true,
+        "bbox": [
+            1,
+            16,
+            138,
+            138
+        ],
+        "confidence": 0.8344257473945618,
+        "faces": [
+            {
+                "bbox": [
+                    1,
+                    16,
+                    138,
+                    138
+                ],
+                "confidence": 0.8344257473945618,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000201.jpg",
+        "detected": true,
+        "bbox": [
+            1,
+            15,
+            136,
+            137
+        ],
+        "confidence": 0.8149919509887695,
+        "faces": [
+            {
+                "bbox": [
+                    1,
+                    15,
+                    136,
+                    137
+                ],
+                "confidence": 0.8149919509887695,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000202.jpg",
+        "detected": true,
+        "bbox": [
+            3,
+            17,
+            135,
+            135
+        ],
+        "confidence": 0.8192927837371826,
+        "faces": [
+            {
+                "bbox": [
+                    3,
+                    17,
+                    135,
+                    135
+                ],
+                "confidence": 0.8192927837371826,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000203.jpg",
+        "detected": true,
+        "bbox": [
+            3,
+            20,
+            137,
+            137
+        ],
+        "confidence": 0.8238258361816406,
+        "faces": [
+            {
+                "bbox": [
+                    3,
+                    20,
+                    137,
+                    137
+                ],
+                "confidence": 0.8238258361816406,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000204.jpg",
+        "detected": true,
+        "bbox": [
+            10,
+            28,
+            127,
+            127
+        ],
+        "confidence": 0.8422254920005798,
+        "faces": [
+            {
+                "bbox": [
+                    10,
+                    28,
+                    127,
+                    127
+                ],
+                "confidence": 0.8422254920005798,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000205.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            38,
+            122,
+            122
+        ],
+        "confidence": 0.8716481924057007,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    38,
+                    122,
+                    122
+                ],
+                "confidence": 0.8716481924057007,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000206.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            41,
+            117,
+            117
+        ],
+        "confidence": 0.8529811501502991,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    41,
+                    117,
+                    117
+                ],
+                "confidence": 0.8529811501502991,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000207.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            51,
+            118,
+            118
+        ],
+        "confidence": 0.8846834897994995,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    51,
+                    118,
+                    118
+                ],
+                "confidence": 0.8846834897994995,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000208.jpg",
+        "detected": true,
+        "bbox": [
+            20,
+            42,
+            125,
+            125
+        ],
+        "confidence": 0.8827712535858154,
+        "faces": [
+            {
+                "bbox": [
+                    20,
+                    42,
+                    125,
+                    125
+                ],
+                "confidence": 0.8827712535858154,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000209.jpg",
+        "detected": true,
+        "bbox": [
+            21,
+            42,
+            129,
+            129
+        ],
+        "confidence": 0.9094262719154358,
+        "faces": [
+            {
+                "bbox": [
+                    21,
+                    42,
+                    129,
+                    129
+                ],
+                "confidence": 0.9094262719154358,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000210.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            42,
+            130,
+            129
+        ],
+        "confidence": 0.8958404660224915,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    42,
+                    130,
+                    129
+                ],
+                "confidence": 0.8958404660224915,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000211.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            47,
+            128,
+            128
+        ],
+        "confidence": 0.9017711281776428,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    47,
+                    128,
+                    128
+                ],
+                "confidence": 0.9017711281776428,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000212.jpg",
+        "detected": true,
+        "bbox": [
+            27,
+            42,
+            133,
+            132
+        ],
+        "confidence": 0.9051843881607056,
+        "faces": [
+            {
+                "bbox": [
+                    27,
+                    42,
+                    133,
+                    132
+                ],
+                "confidence": 0.9051843881607056,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000213.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            43,
+            133,
+            133
+        ],
+        "confidence": 0.9088118672370911,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    43,
+                    133,
+                    133
+                ],
+                "confidence": 0.9088118672370911,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000214.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            43,
+            135,
+            135
+        ],
+        "confidence": 0.948784589767456,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    43,
+                    135,
+                    135
+                ],
+                "confidence": 0.948784589767456,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000215.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            49,
+            132,
+            132
+        ],
+        "confidence": 0.9370895028114319,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    49,
+                    132,
+                    132
+                ],
+                "confidence": 0.9370895028114319,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000216.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            46,
+            134,
+            134
+        ],
+        "confidence": 0.9424221515655518,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    46,
+                    134,
+                    134
+                ],
+                "confidence": 0.9424221515655518,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000217.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            45,
+            137,
+            137
+        ],
+        "confidence": 0.9534322619438171,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    45,
+                    137,
+                    137
+                ],
+                "confidence": 0.9534322619438171,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000218.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            44,
+            138,
+            137
+        ],
+        "confidence": 0.9531368613243103,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    44,
+                    138,
+                    137
+                ],
+                "confidence": 0.9531368613243103,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000219.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            42,
+            138,
+            138
+        ],
+        "confidence": 0.9408792853355408,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    42,
+                    138,
+                    138
+                ],
+                "confidence": 0.9408792853355408,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000220.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            45,
+            137,
+            138
+        ],
+        "confidence": 0.9356493353843689,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    45,
+                    137,
+                    138
+                ],
+                "confidence": 0.9356493353843689,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000221.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            43,
+            139,
+            140
+        ],
+        "confidence": 0.947645902633667,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    43,
+                    139,
+                    140
+                ],
+                "confidence": 0.947645902633667,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000222.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            40,
+            141,
+            141
+        ],
+        "confidence": 0.9357003569602966,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    40,
+                    141,
+                    141
+                ],
+                "confidence": 0.9357003569602966,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000223.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            40,
+            142,
+            142
+        ],
+        "confidence": 0.9341617226600647,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    40,
+                    142,
+                    142
+                ],
+                "confidence": 0.9341617226600647,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000224.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            42,
+            143,
+            143
+        ],
+        "confidence": 0.9326915144920349,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    42,
+                    143,
+                    143
+                ],
+                "confidence": 0.9326915144920349,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000225.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            36,
+            143,
+            143
+        ],
+        "confidence": 0.9258372783660889,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    36,
+                    143,
+                    143
+                ],
+                "confidence": 0.9258372783660889,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000226.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            35,
+            145,
+            145
+        ],
+        "confidence": 0.9128455519676208,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    35,
+                    145,
+                    145
+                ],
+                "confidence": 0.9128455519676208,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000227.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            37,
+            146,
+            146
+        ],
+        "confidence": 0.9095968008041382,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    37,
+                    146,
+                    146
+                ],
+                "confidence": 0.9095968008041382,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000228.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            38,
+            147,
+            147
+        ],
+        "confidence": 0.9227846264839172,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    38,
+                    147,
+                    147
+                ],
+                "confidence": 0.9227846264839172,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000229.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            40,
+            146,
+            146
+        ],
+        "confidence": 0.9286507368087769,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    40,
+                    146,
+                    146
+                ],
+                "confidence": 0.9286507368087769,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000230.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            37,
+            147,
+            146
+        ],
+        "confidence": 0.9117090106010437,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    37,
+                    147,
+                    146
+                ],
+                "confidence": 0.9117090106010437,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000231.jpg",
+        "detected": true,
+        "bbox": [
+            56,
+            37,
+            150,
+            150
+        ],
+        "confidence": 0.9158687591552734,
+        "faces": [
+            {
+                "bbox": [
+                    56,
+                    37,
+                    150,
+                    150
+                ],
+                "confidence": 0.9158687591552734,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000232.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            36,
+            150,
+            149
+        ],
+        "confidence": 0.9102024435997009,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    36,
+                    150,
+                    149
+                ],
+                "confidence": 0.9102024435997009,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000233.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            38,
+            147,
+            147
+        ],
+        "confidence": 0.9302470684051514,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    38,
+                    147,
+                    147
+                ],
+                "confidence": 0.9302470684051514,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000234.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            40,
+            145,
+            145
+        ],
+        "confidence": 0.9261457920074463,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    40,
+                    145,
+                    145
+                ],
+                "confidence": 0.9261457920074463,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000235.jpg",
+        "detected": true,
+        "bbox": [
+            62,
+            43,
+            149,
+            149
+        ],
+        "confidence": 0.9373131990432739,
+        "faces": [
+            {
+                "bbox": [
+                    62,
+                    43,
+                    149,
+                    149
+                ],
+                "confidence": 0.9373131990432739,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000236.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            39,
+            152,
+            152
+        ],
+        "confidence": 0.9400745630264282,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    39,
+                    152,
+                    152
+                ],
+                "confidence": 0.9400745630264282,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000237.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            37,
+            153,
+            153
+        ],
+        "confidence": 0.9355996251106262,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    37,
+                    153,
+                    153
+                ],
+                "confidence": 0.9355996251106262,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000238.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            37,
+            157,
+            157
+        ],
+        "confidence": 0.9259151816368103,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    37,
+                    157,
+                    157
+                ],
+                "confidence": 0.9259151816368103,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000239.jpg",
+        "detected": true,
+        "bbox": [
+            55,
+            40,
+            158,
+            158
+        ],
+        "confidence": 0.9287725687026978,
+        "faces": [
+            {
+                "bbox": [
+                    55,
+                    40,
+                    158,
+                    158
+                ],
+                "confidence": 0.9287725687026978,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000240.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            42,
+            151,
+            150
+        ],
+        "confidence": 0.9247907996177673,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    42,
+                    151,
+                    150
+                ],
+                "confidence": 0.9247907996177673,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000241.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            48,
+            155,
+            155
+        ],
+        "confidence": 0.9212677478790283,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    48,
+                    155,
+                    155
+                ],
+                "confidence": 0.9212677478790283,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000242.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            36,
+            158,
+            158
+        ],
+        "confidence": 0.8754768371582031,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    36,
+                    158,
+                    158
+                ],
+                "confidence": 0.8754768371582031,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000243.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            33,
+            159,
+            160
+        ],
+        "confidence": 0.8741201162338257,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    33,
+                    159,
+                    160
+                ],
+                "confidence": 0.8741201162338257,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000244.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            31,
+            161,
+            161
+        ],
+        "confidence": 0.8622471690177917,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    31,
+                    161,
+                    161
+                ],
+                "confidence": 0.8622471690177917,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000245.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            37,
+            161,
+            161
+        ],
+        "confidence": 0.8813790678977966,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    37,
+                    161,
+                    161
+                ],
+                "confidence": 0.8813790678977966,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000246.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            41,
+            160,
+            160
+        ],
+        "confidence": 0.8709285855293274,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    41,
+                    160,
+                    160
+                ],
+                "confidence": 0.8709285855293274,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000247.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            31,
+            163,
+            162
+        ],
+        "confidence": 0.8419602513313293,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    31,
+                    163,
+                    162
+                ],
+                "confidence": 0.8419602513313293,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000248.jpg",
+        "detected": true,
+        "bbox": [
+            32,
+            33,
+            162,
+            162
+        ],
+        "confidence": 0.8119801878929138,
+        "faces": [
+            {
+                "bbox": [
+                    32,
+                    33,
+                    162,
+                    162
+                ],
+                "confidence": 0.8119801878929138,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000249.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            37,
+            162,
+            161
+        ],
+        "confidence": 0.8540226221084595,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    37,
+                    162,
+                    161
+                ],
+                "confidence": 0.8540226221084595,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000250.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            30,
+            165,
+            165
+        ],
+        "confidence": 0.8303457498550415,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    30,
+                    165,
+                    165
+                ],
+                "confidence": 0.8303457498550415,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000251.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            34,
+            164,
+            164
+        ],
+        "confidence": 0.8480995893478394,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    34,
+                    164,
+                    164
+                ],
+                "confidence": 0.8480995893478394,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000252.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            34,
+            164,
+            164
+        ],
+        "confidence": 0.8543214797973633,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    34,
+                    164,
+                    164
+                ],
+                "confidence": 0.8543214797973633,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000253.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            32,
+            165,
+            166
+        ],
+        "confidence": 0.860237181186676,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    32,
+                    165,
+                    166
+                ],
+                "confidence": 0.860237181186676,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000254.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            36,
+            167,
+            166
+        ],
+        "confidence": 0.8877667784690857,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    36,
+                    167,
+                    166
+                ],
+                "confidence": 0.8877667784690857,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000255.jpg",
+        "detected": true,
+        "bbox": [
+            31,
+            31,
+            170,
+            170
+        ],
+        "confidence": 0.8645028471946716,
+        "faces": [
+            {
+                "bbox": [
+                    31,
+                    31,
+                    170,
+                    170
+                ],
+                "confidence": 0.8645028471946716,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000256.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            26,
+            178,
+            178
+        ],
+        "confidence": 0.842460572719574,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    26,
+                    178,
+                    178
+                ],
+                "confidence": 0.842460572719574,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000257.jpg",
+        "detected": true,
+        "bbox": [
+            33,
+            33,
+            174,
+            174
+        ],
+        "confidence": 0.8609891533851624,
+        "faces": [
+            {
+                "bbox": [
+                    33,
+                    33,
+                    174,
+                    174
+                ],
+                "confidence": 0.8609891533851624,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000258.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            39,
+            182,
+            182
+        ],
+        "confidence": 0.8781265020370483,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    39,
+                    182,
+                    182
+                ],
+                "confidence": 0.8781265020370483,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000259.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            41,
+            187,
+            187
+        ],
+        "confidence": 0.8688095211982727,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    41,
+                    187,
+                    187
+                ],
+                "confidence": 0.8688095211982727,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000260.jpg",
+        "detected": true,
+        "bbox": [
+            40,
+            41,
+            186,
+            186
+        ],
+        "confidence": 0.8383675813674927,
+        "faces": [
+            {
+                "bbox": [
+                    40,
+                    41,
+                    186,
+                    186
+                ],
+                "confidence": 0.8383675813674927,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000261.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            47,
+            181,
+            181
+        ],
+        "confidence": 0.8463175296783447,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    47,
+                    181,
+                    181
+                ],
+                "confidence": 0.8463175296783447,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000262.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            49,
+            178,
+            178
+        ],
+        "confidence": 0.8570998907089233,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    49,
+                    178,
+                    178
+                ],
+                "confidence": 0.8570998907089233,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000263.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            49,
+            170,
+            170
+        ],
+        "confidence": 0.8740413784980774,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    49,
+                    170,
+                    170
+                ],
+                "confidence": 0.8740413784980774,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000264.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            50,
+            171,
+            171
+        ],
+        "confidence": 0.8881756663322449,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    50,
+                    171,
+                    171
+                ],
+                "confidence": 0.8881756663322449,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000265.jpg",
+        "detected": true,
+        "bbox": [
+            46,
+            45,
+            169,
+            169
+        ],
+        "confidence": 0.8839752674102783,
+        "faces": [
+            {
+                "bbox": [
+                    46,
+                    45,
+                    169,
+                    169
+                ],
+                "confidence": 0.8839752674102783,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000266.jpg",
+        "detected": true,
+        "bbox": [
+            40,
+            38,
+            162,
+            162
+        ],
+        "confidence": 0.8867353796958923,
+        "faces": [
+            {
+                "bbox": [
+                    40,
+                    38,
+                    162,
+                    162
+                ],
+                "confidence": 0.8867353796958923,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000267.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            42,
+            154,
+            154
+        ],
+        "confidence": 0.9006514549255371,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    42,
+                    154,
+                    154
+                ],
+                "confidence": 0.9006514549255371,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000268.jpg",
+        "detected": true,
+        "bbox": [
+            41,
+            47,
+            147,
+            147
+        ],
+        "confidence": 0.9263314008712769,
+        "faces": [
+            {
+                "bbox": [
+                    41,
+                    47,
+                    147,
+                    147
+                ],
+                "confidence": 0.9263314008712769,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000269.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            45,
+            145,
+            145
+        ],
+        "confidence": 0.9250956177711487,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    45,
+                    145,
+                    145
+                ],
+                "confidence": 0.9250956177711487,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000270.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            48,
+            144,
+            143
+        ],
+        "confidence": 0.9220206141471863,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    48,
+                    144,
+                    143
+                ],
+                "confidence": 0.9220206141471863,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000271.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            42,
+            140,
+            141
+        ],
+        "confidence": 0.9324035048484802,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    42,
+                    140,
+                    141
+                ],
+                "confidence": 0.9324035048484802,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000272.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            46,
+            140,
+            140
+        ],
+        "confidence": 0.946902871131897,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    46,
+                    140,
+                    140
+                ],
+                "confidence": 0.946902871131897,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000273.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            46,
+            139,
+            140
+        ],
+        "confidence": 0.944831371307373,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    46,
+                    139,
+                    140
+                ],
+                "confidence": 0.944831371307373,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000274.jpg",
+        "detected": true,
+        "bbox": [
+            38,
+            47,
+            139,
+            139
+        ],
+        "confidence": 0.9485927820205688,
+        "faces": [
+            {
+                "bbox": [
+                    38,
+                    47,
+                    139,
+                    139
+                ],
+                "confidence": 0.9485927820205688,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000275.jpg",
+        "detected": true,
+        "bbox": [
+            37,
+            45,
+            138,
+            138
+        ],
+        "confidence": 0.9452245831489563,
+        "faces": [
+            {
+                "bbox": [
+                    37,
+                    45,
+                    138,
+                    138
+                ],
+                "confidence": 0.9452245831489563,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000276.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            45,
+            139,
+            138
+        ],
+        "confidence": 0.9451376795768738,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    45,
+                    139,
+                    138
+                ],
+                "confidence": 0.9451376795768738,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000277.jpg",
+        "detected": true,
+        "bbox": [
+            36,
+            45,
+            138,
+            138
+        ],
+        "confidence": 0.944774329662323,
+        "faces": [
+            {
+                "bbox": [
+                    36,
+                    45,
+                    138,
+                    138
+                ],
+                "confidence": 0.944774329662323,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000278.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            45,
+            138,
+            137
+        ],
+        "confidence": 0.945145845413208,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    45,
+                    138,
+                    137
+                ],
+                "confidence": 0.945145845413208,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000279.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            45,
+            138,
+            138
+        ],
+        "confidence": 0.9463873505592346,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    45,
+                    138,
+                    138
+                ],
+                "confidence": 0.9463873505592346,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000280.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            45,
+            137,
+            137
+        ],
+        "confidence": 0.9457018375396729,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    45,
+                    137,
+                    137
+                ],
+                "confidence": 0.9457018375396729,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000281.jpg",
+        "detected": true,
+        "bbox": [
+            34,
+            44,
+            138,
+            138
+        ],
+        "confidence": 0.9459741115570068,
+        "faces": [
+            {
+                "bbox": [
+                    34,
+                    44,
+                    138,
+                    138
+                ],
+                "confidence": 0.9459741115570068,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000282.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            42,
+            137,
+            136
+        ],
+        "confidence": 0.9503037929534912,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    42,
+                    137,
+                    136
+                ],
+                "confidence": 0.9503037929534912,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000283.jpg",
+        "detected": true,
+        "bbox": [
+            29,
+            43,
+            136,
+            136
+        ],
+        "confidence": 0.9469540119171143,
+        "faces": [
+            {
+                "bbox": [
+                    29,
+                    43,
+                    136,
+                    136
+                ],
+                "confidence": 0.9469540119171143,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000284.jpg",
+        "detected": true,
+        "bbox": [
+            30,
+            42,
+            138,
+            139
+        ],
+        "confidence": 0.930444061756134,
+        "faces": [
+            {
+                "bbox": [
+                    30,
+                    42,
+                    138,
+                    139
+                ],
+                "confidence": 0.930444061756134,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000285.jpg",
+        "detected": true,
+        "bbox": [
+            24,
+            41,
+            139,
+            139
+        ],
+        "confidence": 0.9305500388145447,
+        "faces": [
+            {
+                "bbox": [
+                    24,
+                    41,
+                    139,
+                    139
+                ],
+                "confidence": 0.9305500388145447,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000286.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            41,
+            137,
+            137
+        ],
+        "confidence": 0.9099230766296387,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    41,
+                    137,
+                    137
+                ],
+                "confidence": 0.9099230766296387,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000287.jpg",
+        "detected": true,
+        "bbox": [
+            28,
+            49,
+            129,
+            128
+        ],
+        "confidence": 0.9085447192192078,
+        "faces": [
+            {
+                "bbox": [
+                    28,
+                    49,
+                    129,
+                    128
+                ],
+                "confidence": 0.9085447192192078,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000288.jpg",
+        "detected": true,
+        "bbox": [
+            25,
+            48,
+            134,
+            134
+        ],
+        "confidence": 0.9197215437889099,
+        "faces": [
+            {
+                "bbox": [
+                    25,
+                    48,
+                    134,
+                    134
+                ],
+                "confidence": 0.9197215437889099,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000289.jpg",
+        "detected": true,
+        "bbox": [
+            23,
+            48,
+            135,
+            135
+        ],
+        "confidence": 0.9183982014656067,
+        "faces": [
+            {
+                "bbox": [
+                    23,
+                    48,
+                    135,
+                    135
+                ],
+                "confidence": 0.9183982014656067,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000290.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            41,
+            139,
+            140
+        ],
+        "confidence": 0.8928114175796509,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    41,
+                    139,
+                    140
+                ],
+                "confidence": 0.8928114175796509,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000291.jpg",
+        "detected": true,
+        "bbox": [
+            17,
+            39,
+            141,
+            141
+        ],
+        "confidence": 0.8955167531967163,
+        "faces": [
+            {
+                "bbox": [
+                    17,
+                    39,
+                    141,
+                    141
+                ],
+                "confidence": 0.8955167531967163,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000292.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            34,
+            143,
+            143
+        ],
+        "confidence": 0.8685669302940369,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    34,
+                    143,
+                    143
+                ],
+                "confidence": 0.8685669302940369,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000293.jpg",
+        "detected": true,
+        "bbox": [
+            19,
+            39,
+            142,
+            141
+        ],
+        "confidence": 0.8922861814498901,
+        "faces": [
+            {
+                "bbox": [
+                    19,
+                    39,
+                    142,
+                    141
+                ],
+                "confidence": 0.8922861814498901,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000294.jpg",
+        "detected": true,
+        "bbox": [
+            15,
+            32,
+            144,
+            145
+        ],
+        "confidence": 0.892872154712677,
+        "faces": [
+            {
+                "bbox": [
+                    15,
+                    32,
+                    144,
+                    145
+                ],
+                "confidence": 0.892872154712677,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000295.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            41,
+            140,
+            140
+        ],
+        "confidence": 0.9120715260505676,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    41,
+                    140,
+                    140
+                ],
+                "confidence": 0.9120715260505676,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000296.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            37,
+            142,
+            142
+        ],
+        "confidence": 0.901171088218689,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    37,
+                    142,
+                    142
+                ],
+                "confidence": 0.901171088218689,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000297.jpg",
+        "detected": true,
+        "bbox": [
+            13,
+            34,
+            139,
+            139
+        ],
+        "confidence": 0.9110656976699829,
+        "faces": [
+            {
+                "bbox": [
+                    13,
+                    34,
+                    139,
+                    139
+                ],
+                "confidence": 0.9110656976699829,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000298.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            32,
+            140,
+            140
+        ],
+        "confidence": 0.9016607403755188,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    32,
+                    140,
+                    140
+                ],
+                "confidence": 0.9016607403755188,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000299.jpg",
+        "detected": true,
+        "bbox": [
+            12,
+            30,
+            139,
+            139
+        ],
+        "confidence": 0.905826985836029,
+        "faces": [
+            {
+                "bbox": [
+                    12,
+                    30,
+                    139,
+                    139
+                ],
+                "confidence": 0.905826985836029,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000300.jpg",
+        "detected": true,
+        "bbox": [
+            11,
+            31,
+            140,
+            139
+        ],
+        "confidence": 0.908645510673523,
+        "faces": [
+            {
+                "bbox": [
+                    11,
+                    31,
+                    140,
+                    139
+                ],
+                "confidence": 0.908645510673523,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000301.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            36,
+            138,
+            138
+        ],
+        "confidence": 0.9140022993087769,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    36,
+                    138,
+                    138
+                ],
+                "confidence": 0.9140022993087769,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000302.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            34,
+            139,
+            140
+        ],
+        "confidence": 0.909512460231781,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    34,
+                    139,
+                    140
+                ],
+                "confidence": 0.909512460231781,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000303.jpg",
+        "detected": true,
+        "bbox": [
+            14,
+            36,
+            140,
+            140
+        ],
+        "confidence": 0.9142606854438782,
+        "faces": [
+            {
+                "bbox": [
+                    14,
+                    36,
+                    140,
+                    140
+                ],
+                "confidence": 0.9142606854438782,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000304.jpg",
+        "detected": true,
+        "bbox": [
+            15,
+            41,
+            141,
+            140
+        ],
+        "confidence": 0.9357945919036865,
+        "faces": [
+            {
+                "bbox": [
+                    15,
+                    41,
+                    141,
+                    140
+                ],
+                "confidence": 0.9357945919036865,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000305.jpg",
+        "detected": true,
+        "bbox": [
+            9,
+            35,
+            144,
+            144
+        ],
+        "confidence": 0.9008316397666931,
+        "faces": [
+            {
+                "bbox": [
+                    9,
+                    35,
+                    144,
+                    144
+                ],
+                "confidence": 0.9008316397666931,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000306.jpg",
+        "detected": true,
+        "bbox": [
+            16,
+            41,
+            142,
+            143
+        ],
+        "confidence": 0.9153596758842468,
+        "faces": [
+            {
+                "bbox": [
+                    16,
+                    41,
+                    142,
+                    143
+                ],
+                "confidence": 0.9153596758842468,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000307.jpg",
+        "detected": true,
+        "bbox": [
+            13,
+            39,
+            145,
+            144
+        ],
+        "confidence": 0.9202499985694885,
+        "faces": [
+            {
+                "bbox": [
+                    13,
+                    39,
+                    145,
+                    144
+                ],
+                "confidence": 0.9202499985694885,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000308.jpg",
+        "detected": true,
+        "bbox": [
+            16,
+            41,
+            144,
+            144
+        ],
+        "confidence": 0.9303761124610901,
+        "faces": [
+            {
+                "bbox": [
+                    16,
+                    41,
+                    144,
+                    144
+                ],
+                "confidence": 0.9303761124610901,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000309.jpg",
+        "detected": true,
+        "bbox": [
+            18,
+            45,
+            145,
+            146
+        ],
+        "confidence": 0.923197865486145,
+        "faces": [
+            {
+                "bbox": [
+                    18,
+                    45,
+                    145,
+                    146
+                ],
+                "confidence": 0.923197865486145,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000310.jpg",
+        "detected": true,
+        "bbox": [
+            26,
+            43,
+            143,
+            143
+        ],
+        "confidence": 0.901626467704773,
+        "faces": [
+            {
+                "bbox": [
+                    26,
+                    43,
+                    143,
+                    143
+                ],
+                "confidence": 0.901626467704773,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000311.jpg",
+        "detected": true,
+        "bbox": [
+            35,
+            48,
+            140,
+            140
+        ],
+        "confidence": 0.9187145233154297,
+        "faces": [
+            {
+                "bbox": [
+                    35,
+                    48,
+                    140,
+                    140
+                ],
+                "confidence": 0.9187145233154297,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000312.jpg",
+        "detected": true,
+        "bbox": [
+            39,
+            49,
+            141,
+            141
+        ],
+        "confidence": 0.9281876087188721,
+        "faces": [
+            {
+                "bbox": [
+                    39,
+                    49,
+                    141,
+                    141
+                ],
+                "confidence": 0.9281876087188721,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000313.jpg",
+        "detected": true,
+        "bbox": [
+            45,
+            49,
+            141,
+            141
+        ],
+        "confidence": 0.9313101768493652,
+        "faces": [
+            {
+                "bbox": [
+                    45,
+                    49,
+                    141,
+                    141
+                ],
+                "confidence": 0.9313101768493652,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000314.jpg",
+        "detected": true,
+        "bbox": [
+            48,
+            48,
+            139,
+            140
+        ],
+        "confidence": 0.9373915195465088,
+        "faces": [
+            {
+                "bbox": [
+                    48,
+                    48,
+                    139,
+                    140
+                ],
+                "confidence": 0.9373915195465088,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000315.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            48,
+            142,
+            142
+        ],
+        "confidence": 0.9388429522514343,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    48,
+                    142,
+                    142
+                ],
+                "confidence": 0.9388429522514343,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000316.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            48,
+            143,
+            143
+        ],
+        "confidence": 0.9378374218940735,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    48,
+                    143,
+                    143
+                ],
+                "confidence": 0.9378374218940735,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000317.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            46,
+            145,
+            145
+        ],
+        "confidence": 0.9400674104690552,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    46,
+                    145,
+                    145
+                ],
+                "confidence": 0.9400674104690552,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000318.jpg",
+        "detected": true,
+        "bbox": [
+            54,
+            45,
+            147,
+            147
+        ],
+        "confidence": 0.9347932934761047,
+        "faces": [
+            {
+                "bbox": [
+                    54,
+                    45,
+                    147,
+                    147
+                ],
+                "confidence": 0.9347932934761047,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000319.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            46,
+            145,
+            145
+        ],
+        "confidence": 0.9302071332931519,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    46,
+                    145,
+                    145
+                ],
+                "confidence": 0.9302071332931519,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000320.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            45,
+            146,
+            146
+        ],
+        "confidence": 0.932711124420166,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    45,
+                    146,
+                    146
+                ],
+                "confidence": 0.932711124420166,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000321.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            44,
+            148,
+            148
+        ],
+        "confidence": 0.9281679391860962,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    44,
+                    148,
+                    148
+                ],
+                "confidence": 0.9281679391860962,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000322.jpg",
+        "detected": true,
+        "bbox": [
+            60,
+            42,
+            146,
+            145
+        ],
+        "confidence": 0.9413629770278931,
+        "faces": [
+            {
+                "bbox": [
+                    60,
+                    42,
+                    146,
+                    145
+                ],
+                "confidence": 0.9413629770278931,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000323.jpg",
+        "detected": true,
+        "bbox": [
+            61,
+            40,
+            148,
+            148
+        ],
+        "confidence": 0.9301668405532837,
+        "faces": [
+            {
+                "bbox": [
+                    61,
+                    40,
+                    148,
+                    148
+                ],
+                "confidence": 0.9301668405532837,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000324.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            42,
+            148,
+            149
+        ],
+        "confidence": 0.9255265593528748,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    42,
+                    148,
+                    149
+                ],
+                "confidence": 0.9255265593528748,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000325.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            45,
+            148,
+            149
+        ],
+        "confidence": 0.927358865737915,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    45,
+                    148,
+                    149
+                ],
+                "confidence": 0.927358865737915,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000326.jpg",
+        "detected": true,
+        "bbox": [
+            58,
+            45,
+            150,
+            149
+        ],
+        "confidence": 0.9188232421875,
+        "faces": [
+            {
+                "bbox": [
+                    58,
+                    45,
+                    150,
+                    149
+                ],
+                "confidence": 0.9188232421875,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000327.jpg",
+        "detected": true,
+        "bbox": [
+            57,
+            45,
+            150,
+            150
+        ],
+        "confidence": 0.9226221442222595,
+        "faces": [
+            {
+                "bbox": [
+                    57,
+                    45,
+                    150,
+                    150
+                ],
+                "confidence": 0.9226221442222595,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000328.jpg",
+        "detected": true,
+        "bbox": [
+            61,
+            49,
+            145,
+            144
+        ],
+        "confidence": 0.939934492111206,
+        "faces": [
+            {
+                "bbox": [
+                    61,
+                    49,
+                    145,
+                    144
+                ],
+                "confidence": 0.939934492111206,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000329.jpg",
+        "detected": true,
+        "bbox": [
+            59,
+            49,
+            146,
+            146
+        ],
+        "confidence": 0.9381976127624512,
+        "faces": [
+            {
+                "bbox": [
+                    59,
+                    49,
+                    146,
+                    146
+                ],
+                "confidence": 0.9381976127624512,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000330.jpg",
+        "detected": true,
+        "bbox": [
+            51,
+            46,
+            147,
+            146
+        ],
+        "confidence": 0.9478254914283752,
+        "faces": [
+            {
+                "bbox": [
+                    51,
+                    46,
+                    147,
+                    146
+                ],
+                "confidence": 0.9478254914283752,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000331.jpg",
+        "detected": true,
+        "bbox": [
+            52,
+            48,
+            147,
+            147
+        ],
+        "confidence": 0.9408100843429565,
+        "faces": [
+            {
+                "bbox": [
+                    52,
+                    48,
+                    147,
+                    147
+                ],
+                "confidence": 0.9408100843429565,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000332.jpg",
+        "detected": true,
+        "bbox": [
+            49,
+            45,
+            148,
+            148
+        ],
+        "confidence": 0.9160563349723816,
+        "faces": [
+            {
+                "bbox": [
+                    49,
+                    45,
+                    148,
+                    148
+                ],
+                "confidence": 0.9160563349723816,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000333.jpg",
+        "detected": true,
+        "bbox": [
+            47,
+            42,
+            148,
+            148
+        ],
+        "confidence": 0.8994478583335876,
+        "faces": [
+            {
+                "bbox": [
+                    47,
+                    42,
+                    148,
+                    148
+                ],
+                "confidence": 0.8994478583335876,
+                "detected": true
+            }
+        ],
+        "error": null
+    },
+    {
+        "image": "extracted_faces/val/real/video/frame_000334.jpg",
+        "detected": true,
+        "bbox": [
+            44,
+            42,
+            148,
+            148
+        ],
+        "confidence": 0.9162157773971558,
+        "faces": [
+            {
+                "bbox": [
+                    44,
+                    42,
+                    148,
+                    148
+                ],
+                "confidence": 0.9162157773971558,
+                "detected": true
+            }
+        ],
+        "error": null
+    }
+]
