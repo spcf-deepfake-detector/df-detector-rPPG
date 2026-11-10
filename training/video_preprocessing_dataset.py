@@ -18,11 +18,11 @@ from preprocessing.rppg import pos_method
 # ============================================================
 
 class VideoQualityError(ValueError):
-    """Raised when a sequence cannot produce a reliable rPPG signal."""
+    """Raised when a video window cannot produce reliable rPPG."""
 
 
 class MetadataError(ValueError):
-    """Raised when a sequence's metadata is invalid."""
+    """Raised when metadata is invalid."""
 
 
 # ============================================================
@@ -41,25 +41,24 @@ IMAGE_EXTENSIONS = {
 
 
 # ============================================================
-# RPPG DATASET
+# RPPG VIDEO PREPROCESSING DATASET
 # ============================================================
 
 class RPPGDataset(Dataset):
     """
-    FALSEFACET rPPG Dataset.
+    FALSEFACET rPPG video preprocessing dataset.
 
-    Processing pipeline:
+    Pipeline:
 
-        Source-video folder
+        Extracted face images
             -> metadata.json
-            -> Cropped face images
             -> RGB extraction
             -> RGB validation
+            -> 10-second windows
             -> POS
-            -> Fixed-length signal
-            -> PyTorch tensors
+            -> Fixed-length 300-sample signals
 
-    Each source-video folder represents ONE sample.
+    Each source video can generate multiple training samples.
 
     Labels:
         Real = 0
@@ -82,6 +81,12 @@ class RPPGDataset(Dataset):
         └── test/
             ├── real/
             └── fake/
+
+    Output from process_sequence():
+
+        X: (number_of_valid_windows, 300)
+        Y: (number_of_valid_windows,)
+
     """
 
     def __init__(
@@ -89,13 +94,14 @@ class RPPGDataset(Dataset):
         root_dir: str,
         target_length: int = 300,
         fps: float = 30.0,
+        window_seconds: float = 10.0,
         min_valid_rgb_fraction: float = 0.80,
         min_rgb_frames: int = 10,
         debug: bool = True,
     ):
 
         # ==================================================
-        # STEP 1: VALIDATE CONFIGURATION
+        # 1. VALIDATE CONFIGURATION
         # ==================================================
 
         if (
@@ -118,6 +124,15 @@ class RPPGDataset(Dataset):
             )
 
         if (
+            not np.isscalar(window_seconds)
+            or not np.isfinite(window_seconds)
+            or window_seconds <= 0
+        ):
+            raise ValueError(
+                "window_seconds must be positive."
+            )
+
+        if (
             not np.isscalar(min_valid_rgb_fraction)
             or not np.isfinite(min_valid_rgb_fraction)
             or not 0 < min_valid_rgb_fraction <= 1
@@ -135,6 +150,10 @@ class RPPGDataset(Dataset):
                 "min_rgb_frames must be at least 10."
             )
 
+        # ==================================================
+        # 2. INITIALIZE CONFIGURATION
+        # ==================================================
+
         self.root_dir = Path(root_dir).resolve()
 
         if not self.root_dir.is_dir():
@@ -145,6 +164,8 @@ class RPPGDataset(Dataset):
         self.target_length = target_length
         self.fps = float(fps)
 
+        self.window_seconds = float(window_seconds)
+
         self.min_valid_rgb_fraction = float(
             min_valid_rgb_fraction
         )
@@ -152,15 +173,8 @@ class RPPGDataset(Dataset):
         self.min_rgb_frames = min_rgb_frames
         self.debug = bool(debug)
 
-        # Example:
-        # 300 samples / 30 FPS = 10 seconds.
-
-        self.target_duration = (
-            self.target_length / self.fps
-        )
-
         # ==================================================
-        # STEP 2: FIND SOURCE-VIDEO SEQUENCES
+        # 3. FIND SOURCE VIDEO SEQUENCES
         # ==================================================
 
         self.samples: List[Tuple[Path, int]] = []
@@ -192,15 +206,11 @@ class RPPGDataset(Dataset):
 
         # Real = 0
         for sequence_dir in real_sequences:
-            self.samples.append(
-                (sequence_dir, 0)
-            )
+            self.samples.append((sequence_dir, 0))
 
         # Fake = 1
         for sequence_dir in fake_sequences:
-            self.samples.append(
-                (sequence_dir, 1)
-            )
+            self.samples.append((sequence_dir, 1))
 
         if not self.samples:
             raise ValueError(
@@ -208,70 +218,46 @@ class RPPGDataset(Dataset):
             )
 
         # ==================================================
-        # STEP 3: DISPLAY CONFIGURATION
+        # 4. DISPLAY CONFIGURATION
         # ==================================================
 
-        print("\n========== RPPG DATASET ==========")
+        print("\n========== RPPG PREPROCESSING DATASET ==========")
 
         print(f"Root directory: {self.root_dir}")
-        print(f"Real sequences: {len(real_sequences)}")
-        print(f"Fake sequences: {len(fake_sequences)}")
-        print(f"Total sequences: {len(self.samples)}")
 
+        print(f"Real videos: {len(real_sequences)}")
+        print(f"Fake videos: {len(fake_sequences)}")
+
+        print(f"Total videos: {len(self.samples)}")
+
+        print(f"Window duration: {self.window_seconds:.2f} seconds")
+        print(f"Target FPS: {self.fps:.2f}")
         print(f"Target signal length: {self.target_length}")
-        print(f"Reference FPS: {self.fps}")
 
         print(
-            f"Target duration: "
-            f"{self.target_duration:.2f} seconds"
+            f"Minimum valid RGB: "
+            f"{self.min_valid_rgb_fraction:.0%}"
         )
 
-        print(
-            f"Minimum valid RGB fraction: "
-            f"{self.min_valid_rgb_fraction:.1%}"
-        )
+        print(f"Minimum valid frames: {self.min_rgb_frames}")
 
-        print(
-            f"Minimum valid RGB frames: "
-            f"{self.min_rgb_frames}"
-        )
-
-        print("==================================\n")
+        print("================================================\n")
 
     # ======================================================
-    # STEP 4: DATASET LENGTH
+    # 5. DATASET LENGTH
     # ======================================================
 
     def __len__(self):
-        """Return the number of source-video sequences."""
-
         return len(self.samples)
 
     # ======================================================
-    # STEP 5: LOAD METADATA
+    # 6. LOAD METADATA
     # ======================================================
 
     @staticmethod
     def _load_metadata(
         sequence_dir: Path,
     ) -> List[Dict[str, Any]]:
-        """
-        Load metadata.json.
-
-        Supported structures:
-
-        1. Direct list:
-           [ {...}, {...} ]
-
-        2. Dictionary:
-           {"frames": [...]}
-
-        3. Dictionary:
-           {"metadata": [...]}
-
-        4. Dictionary:
-           {"records": [...]}
-        """
 
         metadata_path = sequence_dir / "metadata.json"
 
@@ -285,7 +271,6 @@ class RPPGDataset(Dataset):
                 "r",
                 encoding="utf-8",
             ) as file:
-
                 data = json.load(file)
 
         except (
@@ -294,7 +279,7 @@ class RPPGDataset(Dataset):
         ) as exc:
 
             raise MetadataError(
-                f"Could not read metadata: {metadata_path}\n"
+                f"Could not read metadata: {metadata_path}. "
                 f"Reason: {exc}"
             ) from exc
 
@@ -313,7 +298,6 @@ class RPPGDataset(Dataset):
             )
 
         else:
-
             records = None
 
         if not isinstance(records, list) or not records:
@@ -321,7 +305,7 @@ class RPPGDataset(Dataset):
                 f"No frame records found: {metadata_path}"
             )
 
-        # Validate records.
+        validated_records = []
 
         for position, record in enumerate(records):
 
@@ -369,24 +353,24 @@ class RPPGDataset(Dataset):
                     f"Non-finite timestamp at position {position}."
                 )
 
-        # Sort by original frame position.
+            validated_record = dict(record)
+            validated_record["timestamp"] = timestamp
 
-        records = sorted(
-            records,
-            key=lambda record: record["frame_index"],
+            validated_records.append(validated_record)
+
+        validated_records.sort(
+            key=lambda record: record["frame_index"]
         )
 
         frame_indices = [
             record["frame_index"]
-            for record in records
+            for record in validated_records
         ]
 
         if len(frame_indices) != len(set(frame_indices)):
             raise MetadataError(
                 f"Duplicate frame indices: {metadata_path}"
             )
-
-        # Do not silently discard missing frame positions.
 
         for previous, current in zip(
             frame_indices,
@@ -395,15 +379,14 @@ class RPPGDataset(Dataset):
 
             if current != previous + 1:
                 raise MetadataError(
-                    f"Missing metadata frame positions in "
-                    f"{sequence_dir}. "
+                    f"Missing frame positions in {sequence_dir}. "
                     f"Found {previous} followed by {current}."
                 )
 
-        return records
+        return validated_records
 
     # ======================================================
-    # STEP 6: ESTIMATE FPS
+    # 7. ESTIMATE ACTUAL FPS
     # ======================================================
 
     def _estimate_fps(
@@ -411,15 +394,10 @@ class RPPGDataset(Dataset):
         records: List[Dict[str, Any]],
         sequence_dir: Path,
     ) -> float:
-        """
-        Estimate FPS using metadata timestamps.
-
-        Uses the median timestamp interval.
-        """
 
         timestamps = np.asarray(
             [
-                float(record["timestamp"])
+                record["timestamp"]
                 for record in records
             ],
             dtype=np.float64,
@@ -427,8 +405,7 @@ class RPPGDataset(Dataset):
 
         if len(timestamps) < 2:
             raise MetadataError(
-                f"At least two timestamps are required: "
-                f"{sequence_dir}"
+                f"At least two timestamps are required: {sequence_dir}"
             )
 
         intervals = np.diff(timestamps)
@@ -440,17 +417,12 @@ class RPPGDataset(Dataset):
 
         if np.any(intervals <= 0):
             raise MetadataError(
-                f"Timestamps must be strictly increasing: "
-                f"{sequence_dir}"
+                f"Timestamps must be strictly increasing: {sequence_dir}"
             )
 
-        median_interval = float(
-            np.median(intervals)
-        )
+        median_interval = float(np.median(intervals))
 
         estimated_fps = 1.0 / median_interval
-
-        # Check timestamp regularity.
 
         relative_deviations = (
             np.abs(intervals - median_interval)
@@ -463,9 +435,13 @@ class RPPGDataset(Dataset):
 
         if max_deviation > 0.10:
             raise MetadataError(
-                f"Irregular timestamp intervals: {sequence_dir}\n"
-                f"Median interval: {median_interval:.6f}s\n"
+                f"Irregular timestamps: {sequence_dir}. "
                 f"Maximum deviation: {max_deviation:.2%}"
+            )
+
+        if not np.isfinite(estimated_fps) or estimated_fps <= 0:
+            raise MetadataError(
+                f"Invalid estimated FPS: {sequence_dir}"
             )
 
         if self.debug:
@@ -474,10 +450,10 @@ class RPPGDataset(Dataset):
                 f"{estimated_fps:.3f}"
             )
 
-        return float(estimated_fps)
+        return estimated_fps
 
     # ======================================================
-    # STEP 7: RESOLVE IMAGE PATH
+    # 8. RESOLVE IMAGE PATH
     # ======================================================
 
     @staticmethod
@@ -485,28 +461,14 @@ class RPPGDataset(Dataset):
         sequence_dir: Path,
         image_path: str,
     ) -> Path | None:
-        """
-        Resolve paths stored in metadata.json.
 
-        Supports:
-
-        1. Absolute paths.
-        2. Project-root-relative paths.
-        3. Sequence-folder-relative paths.
-        4. Image filenames directly inside the sequence folder.
-
-        Your current metadata uses project-root-relative paths.
-
-        Example:
-            extracted_faces/test/real/1/frame_000000.jpg
-        """
-
-        if not image_path or not isinstance(image_path, str):
+        if (
+            not isinstance(image_path, str)
+            or not image_path.strip()
+        ):
             return None
 
         path = Path(image_path)
-
-        # Absolute path.
 
         if path.is_absolute():
 
@@ -514,11 +476,9 @@ class RPPGDataset(Dataset):
                 path.suffix.lower() in IMAGE_EXTENSIONS
                 and path.is_file()
             ):
-                return path
+                return path.resolve()
 
             return None
-
-        # Relative path candidates.
 
         candidates = [
             Path.cwd() / path,
@@ -537,7 +497,7 @@ class RPPGDataset(Dataset):
         return None
 
     # ======================================================
-    # STEP 8: EXTRACT RGB FROM ONE CROPPED FACE
+    # 9. EXTRACT RGB FROM ONE CROPPED FACE
     # ======================================================
 
     def _extract_single_rgb(
@@ -545,15 +505,6 @@ class RPPGDataset(Dataset):
         rgb_extractor: RGBExtractor,
         face_image: np.ndarray,
     ) -> np.ndarray:
-        """
-        Extract RGB from one cropped face image.
-
-        Requires RGBExtractor.process_cropped_face() to return
-        a three-element RGB measurement.
-
-        Expected output:
-            [R, G, B]
-        """
 
         if (
             not isinstance(face_image, np.ndarray)
@@ -565,11 +516,13 @@ class RPPGDataset(Dataset):
                 "Invalid cropped face image."
             )
 
-        if not hasattr(rgb_extractor, "process_cropped_face"):
+        if not hasattr(
+            rgb_extractor,
+            "process_cropped_face",
+        ):
             raise AttributeError(
-                "RGBExtractor does not have process_cropped_face(). "
-                "Add this method to preprocessing/rgb_extraction.py "
-                "before running the cropped-face pipeline."
+                "RGBExtractor must implement "
+                "process_cropped_face()."
             )
 
         rgb = rgb_extractor.process_cropped_face(
@@ -583,18 +536,18 @@ class RPPGDataset(Dataset):
 
         if rgb.shape != (3,):
             raise ValueError(
-                f"Expected RGB shape (3,), received {rgb.shape}."
+                f"Expected RGB shape (3,), got {rgb.shape}."
             )
 
         if not np.all(np.isfinite(rgb)):
             raise ValueError(
-                "RGB measurement contains NaN or infinite values."
+                "RGB measurement contains invalid values."
             )
 
         return rgb
 
     # ======================================================
-    # STEP 9: PROCESS CROPPED FACE IMAGES
+    # 10. EXTRACT RGB FROM COMPLETE VIDEO SEQUENCE
     # ======================================================
 
     def _extract_rgb_from_sequence(
@@ -602,21 +555,6 @@ class RPPGDataset(Dataset):
         sequence_dir: Path,
         records: List[Dict[str, Any]],
     ) -> np.ndarray:
-        """
-        Extract RGB measurements for every metadata record.
-
-        Missing or unreadable images remain in their original
-        temporal positions as:
-
-            [NaN, NaN, NaN]
-
-        This prevents temporal compression.
-        """
-
-        rgb_extractor = None
-
-        # IMPORTANT:
-        # Initialize the list and counters BEFORE the loop.
 
         rgb_values = []
 
@@ -629,9 +567,9 @@ class RPPGDataset(Dataset):
             "valid_rgb": 0,
         }
 
-        try:
+        rgb_extractor = None
 
-            # One extractor for the entire sequence.
+        try:
 
             rgb_extractor = RGBExtractor(
                 min_roi_width=5,
@@ -640,18 +578,14 @@ class RPPGDataset(Dataset):
                 debug=False,
             )
 
-            # Process metadata in chronological order.
-
             for position, record in enumerate(records):
 
                 image_path = record.get("image_path")
                 detected = record.get("detected", False)
 
-                # ------------------------------------------
-                # A. Missing face detection or image path
-                # ------------------------------------------
-
-                if not detected or not image_path:
+                # A tracker prediction is not valid RGB.
+                # Only an explicitly detected face is accepted.
+                if detected is not True or not image_path:
 
                     rgb_values.append(
                         [np.nan, np.nan, np.nan]
@@ -660,10 +594,6 @@ class RPPGDataset(Dataset):
                     stats["missing_image_paths"] += 1
 
                     continue
-
-                # ------------------------------------------
-                # B. Resolve the image path
-                # ------------------------------------------
 
                 resolved_path = self._resolve_image_path(
                     sequence_dir,
@@ -678,36 +608,12 @@ class RPPGDataset(Dataset):
 
                     stats["missing_image_paths"] += 1
 
-                    if self.debug:
-                        print(
-                            f"[MISSING IMAGE] "
-                            f"Frame {record['frame_index']}: "
-                            f"{image_path}"
-                        )
-
                     continue
 
-                # ------------------------------------------
-                # C. Read the cropped face image
-                # ------------------------------------------
-
-                try:
-
-                    face_image = cv2.imread(
-                        str(resolved_path),
-                        cv2.IMREAD_COLOR,
-                    )
-
-                except Exception as exc:
-
-                    face_image = None
-
-                    if self.debug:
-                        print(
-                            f"[IMAGE ERROR] "
-                            f"Frame {record['frame_index']}: "
-                            f"{exc}"
-                        )
+                face_image = cv2.imread(
+                    str(resolved_path),
+                    cv2.IMREAD_COLOR,
+                )
 
                 if (
                     face_image is None
@@ -723,10 +629,6 @@ class RPPGDataset(Dataset):
                     continue
 
                 stats["images_loaded"] += 1
-
-                # ------------------------------------------
-                # D. Extract RGB measurement
-                # ------------------------------------------
 
                 try:
 
@@ -746,37 +648,25 @@ class RPPGDataset(Dataset):
                     if self.debug:
                         print(
                             f"[INVALID RGB] "
-                            f"Frame {record['frame_index']}: "
-                            f"{exc}"
+                            f"Frame {record['frame_index']}: {exc}"
                         )
 
                     continue
-
-                # ------------------------------------------
-                # E. Store RGB measurement
-                # ------------------------------------------
 
                 rgb_values.append(rgb)
 
                 stats["valid_rgb"] += 1
 
-                # ------------------------------------------
-                # F. Progress
-                # ------------------------------------------
-
                 if (
                     self.debug
                     and (position + 1) % 100 == 0
                 ):
-
                     print(
                         f"[RGB PROGRESS] "
-                        f"{position + 1}/{len(records)} frames"
+                        f"{position + 1}/{len(records)}"
                     )
 
         finally:
-
-            # Release RGB extractor resources if supported.
 
             if (
                 rgb_extractor is not None
@@ -784,51 +674,37 @@ class RPPGDataset(Dataset):
             ):
                 rgb_extractor.close()
 
-        # Convert the list into a NumPy array.
-
         rgb_signals = np.asarray(
             rgb_values,
             dtype=np.float32,
         )
 
-        # Every metadata record must have one RGB row.
-
         if rgb_signals.shape != (len(records), 3):
             raise RuntimeError(
-                "RGB sequence length does not match metadata.\n"
-                f"Expected: ({len(records)}, 3)\n"
-                f"Received: {rgb_signals.shape}"
+                "RGB output does not match metadata length. "
+                f"Expected {(len(records), 3)}, "
+                f"received {rgb_signals.shape}."
             )
 
-        # ----------------------------------------------
-        # Print extraction summary
-        # ----------------------------------------------
-
-        print(
-            "\n========== RGB EXTRACTION SUMMARY =========="
-        )
+        print("\n========== RGB EXTRACTION SUMMARY ==========")
 
         print(f"Sequence: {sequence_dir.name}")
 
         for name, value in stats.items():
             print(f"{name}: {value}")
 
-        if stats["total_frames"] > 0:
+        valid_fraction = (
+            stats["valid_rgb"] / stats["total_frames"]
+        )
 
-            valid_fraction = (
-                stats["valid_rgb"] / stats["total_frames"]
-            )
-
-            print(
-                f"Valid RGB percentage: {valid_fraction:.2%}"
-            )
+        print(f"Valid RGB percentage: {valid_fraction:.2%}")
 
         print("============================================")
 
         return rgb_signals
 
     # ======================================================
-    # STEP 10: RGB QUALITY DIAGNOSTICS
+    # 11. CHECK RGB QUALITY FOR ONE WINDOW
     # ======================================================
 
     def _diagnose_rgb(
@@ -836,11 +712,6 @@ class RPPGDataset(Dataset):
         rgb_signals: np.ndarray,
         sequence_dir: Path,
     ) -> float:
-        """
-        Validate RGB measurements.
-
-        A valid row must contain three finite values.
-        """
 
         if (
             not isinstance(rgb_signals, np.ndarray)
@@ -855,7 +726,7 @@ class RPPGDataset(Dataset):
 
         if total_frames == 0:
             raise VideoQualityError(
-                f"No RGB measurements: {sequence_dir}"
+                f"Empty RGB window: {sequence_dir}"
             )
 
         valid_rows = np.all(
@@ -867,16 +738,10 @@ class RPPGDataset(Dataset):
             np.count_nonzero(valid_rows)
         )
 
-        missing_count = total_frames - valid_count
-
         valid_fraction = valid_count / total_frames
 
-        # ----------------------------------------------
-        # Find consecutive missing frame groups
-        # ----------------------------------------------
-
+        # Find consecutive missing-frame groups.
         missing_runs = []
-
         run_start = None
 
         for index, is_valid in enumerate(valid_rows):
@@ -893,21 +758,15 @@ class RPPGDataset(Dataset):
                 run_start = None
 
         if run_start is not None:
-
             missing_runs.append(
                 (run_start, total_frames - 1)
             )
 
-        # ----------------------------------------------
-        # Print quality summary
-        # ----------------------------------------------
+        print("\n========== RGB WINDOW QUALITY ==========")
 
-        print("\n========== RGB QUALITY ==========")
-
-        print(f"Sequence: {sequence_dir.name}")
+        print(f"Window: {sequence_dir.name}")
         print(f"Total frames: {total_frames}")
         print(f"Valid RGB frames: {valid_count}")
-        print(f"Missing RGB frames: {missing_count}")
 
         print(
             f"Valid RGB percentage: {valid_fraction:.2%}"
@@ -915,35 +774,28 @@ class RPPGDataset(Dataset):
 
         print(f"Missing frame groups: {missing_runs}")
 
-        print("==================================")
-
-        # ----------------------------------------------
-        # Enforce minimum quality requirements
-        # ----------------------------------------------
+        print("========================================")
 
         if valid_fraction < self.min_valid_rgb_fraction:
 
             raise VideoQualityError(
-                "Insufficient valid RGB measurements.\n"
-                f"Sequence: {sequence_dir}\n"
-                f"Valid: {valid_count}/{total_frames}\n"
-                f"Valid percentage: {valid_fraction:.2%}\n"
-                f"Required: {self.min_valid_rgb_fraction:.2%}"
+                f"Insufficient valid RGB: {sequence_dir}. "
+                f"Got {valid_fraction:.2%}; "
+                f"required {self.min_valid_rgb_fraction:.2%}."
             )
 
         if valid_count < self.min_rgb_frames:
 
             raise VideoQualityError(
-                "Too few valid RGB measurements.\n"
-                f"Sequence: {sequence_dir}\n"
-                f"Valid frames: {valid_count}\n"
-                f"Required: {self.min_rgb_frames}"
+                f"Too few valid RGB frames: {sequence_dir}. "
+                f"Got {valid_count}; "
+                f"required {self.min_rgb_frames}."
             )
 
         return float(valid_fraction)
 
     # ======================================================
-    # STEP 11: EXTRACT POS SIGNAL
+    # 12. EXTRACT POS SIGNAL
     # ======================================================
 
     def _extract_pos_signal(
@@ -952,11 +804,6 @@ class RPPGDataset(Dataset):
         sequence_fps: float,
         sequence_dir: Path,
     ) -> np.ndarray:
-        """
-        Convert RGB measurements into a POS waveform.
-
-        Uses the actual FPS estimated from timestamps.
-        """
 
         try:
 
@@ -973,35 +820,29 @@ class RPPGDataset(Dataset):
         except Exception as exc:
 
             raise RuntimeError(
-                "POS processing failed.\n"
-                f"Sequence: {sequence_dir}\n"
+                f"POS processing failed: {sequence_dir}. "
                 f"Reason: {exc}"
             ) from exc
 
         if rppg_wave.ndim != 1:
-
             raise ValueError(
-                f"POS output must be one-dimensional. "
-                f"Received: {rppg_wave.shape}"
+                f"POS output must be 1D, got {rppg_wave.shape}."
             )
 
         if len(rppg_wave) == 0:
-
             raise ValueError(
-                f"POS produced an empty waveform: {sequence_dir}"
+                f"POS output is empty: {sequence_dir}"
             )
 
         if not np.all(np.isfinite(rppg_wave)):
-
             raise ValueError(
-                f"POS produced NaN or infinite values: "
-                f"{sequence_dir}"
+                f"POS contains NaN or infinite values: {sequence_dir}"
             )
 
         return rppg_wave
 
     # ======================================================
-    # STEP 12: FORMAT FIXED-LENGTH SIGNAL
+    # 13. FORMAT ONE 10-SECOND SIGNAL
     # ======================================================
 
     def _format_signal(
@@ -1010,25 +851,39 @@ class RPPGDataset(Dataset):
         sequence_fps: float,
         sequence_dir: Path,
     ) -> np.ndarray:
-        """
-        Convert a POS waveform into the model's expected length.
 
-        Shorter sequences are allowed and resampled.
+        rppg_wave = np.asarray(
+            rppg_wave,
+            dtype=np.float32,
+        )
 
-        No zero-padding is performed.
-        """
+        if rppg_wave.ndim != 1:
+            raise ValueError(
+                "POS waveform must be one-dimensional."
+            )
+
+        if not np.all(np.isfinite(rppg_wave)):
+            raise VideoQualityError(
+                f"POS waveform contains invalid values: {sequence_dir}"
+            )
+
+        expected_frames = int(
+            round(self.window_seconds * sequence_fps)
+        )
+
+        if len(rppg_wave) != expected_frames:
+            raise VideoQualityError(
+                f"Unexpected POS length: {sequence_dir}. "
+                f"Expected {expected_frames}, got {len(rppg_wave)}."
+            )
 
         if len(rppg_wave) < self.min_rgb_frames:
             raise VideoQualityError(
-                f"POS waveform is too short: {sequence_dir}\n"
-                f"Available samples: {len(rppg_wave)}\n"
-                f"Minimum required: {self.min_rgb_frames}"
+                f"POS waveform too short: {sequence_dir}"
             )
 
-        # Calculate actual sequence duration.
-        actual_duration = len(rppg_wave) / sequence_fps
-
-        # Resample the complete waveform to the target length.
+        # Each waveform represents approximately 10 seconds.
+        # Only this individual window is resampled.
         formatted_signal = resample(
             rppg_wave,
             self.target_length,
@@ -1041,16 +896,30 @@ class RPPGDataset(Dataset):
 
         if not np.all(np.isfinite(formatted_signal)):
             raise ValueError(
-                f"Invalid values after resampling: {sequence_dir}"
+                f"Invalid formatted signal: {sequence_dir}"
+            )
+
+        if np.std(formatted_signal) < 1e-8:
+            raise VideoQualityError(
+                f"POS waveform has almost no variation: {sequence_dir}"
             )
 
         if self.debug:
-            print("\n========== SIGNAL RESAMPLING ==========")
+
+            print("\n========== SIGNAL FORMATTING ==========")
+
             print(f"Original samples: {len(rppg_wave)}")
             print(f"Actual FPS: {sequence_fps:.3f}")
-            print(f"Actual duration: {actual_duration:.2f}s")
-            print(f"Target samples: {self.target_length}")
-            print("========================================")
+
+            print(
+                f"Window duration: {self.window_seconds:.2f}s"
+            )
+
+            print(
+                f"Formatted samples: {len(formatted_signal)}"
+            )
+
+            print("=======================================")
 
         return np.ascontiguousarray(
             formatted_signal,
@@ -1058,7 +927,47 @@ class RPPGDataset(Dataset):
         )
 
     # ======================================================
-    # STEP 13: PROCESS ONE SOURCE-VIDEO SEQUENCE
+    # 14. PROCESS ONE 10-SECOND WINDOW
+    # ======================================================
+
+    def _process_window(
+        self,
+        rgb_window: np.ndarray,
+        sequence_fps: float,
+        sequence_dir: Path,
+        window_index: int,
+    ) -> np.ndarray:
+
+        window_name = (
+            f"{sequence_dir.name}_window_{window_index + 1:03d}"
+        )
+
+        window_dir = sequence_dir / window_name
+
+        # 1. Validate RGB quality for this window.
+        self._diagnose_rgb(
+            rgb_window,
+            window_dir,
+        )
+
+        # 2. Generate POS waveform.
+        pos_wave = self._extract_pos_signal(
+            rgb_window,
+            sequence_fps,
+            window_dir,
+        )
+
+        # 3. Convert to exactly 300 samples.
+        formatted_signal = self._format_signal(
+            pos_wave,
+            sequence_fps,
+            window_dir,
+        )
+
+        return formatted_signal
+
+    # ======================================================
+    # 15. PROCESS COMPLETE SOURCE VIDEO
     # ======================================================
 
     def process_sequence(
@@ -1066,112 +975,205 @@ class RPPGDataset(Dataset):
         sequence_dir: Path,
         label: int,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """
-        Process one source-video sequence.
-        """
 
         print(
-            f"\n[PROCESSING SEQUENCE] {sequence_dir.name}"
+            f"\n[PROCESSING VIDEO] {sequence_dir.name}"
         )
 
-        # 1. Load metadata.
+        # ----------------------------------------------
+        # A. Load metadata
+        # ----------------------------------------------
 
         records = self._load_metadata(
             sequence_dir
         )
 
         print(
-            f"[METADATA] Frame records: {len(records)}"
+            f"[METADATA] Total frames: {len(records)}"
         )
 
-        # 2. Estimate actual FPS.
+        # ----------------------------------------------
+        # B. Estimate actual FPS
+        # ----------------------------------------------
 
         sequence_fps = self._estimate_fps(
             records,
             sequence_dir,
         )
 
-        # 3. Extract RGB measurements.
+        # ----------------------------------------------
+        # C. Extract RGB for all frames
+        # ----------------------------------------------
 
         rgb_signals = self._extract_rgb_from_sequence(
             sequence_dir,
             records,
         )
 
-        # 4. Validate RGB quality.
+        # ----------------------------------------------
+        # D. Calculate frames per window
+        # ----------------------------------------------
 
-        valid_fraction = self._diagnose_rgb(
-            rgb_signals,
-            sequence_dir,
+        frames_per_window = int(
+            round(self.window_seconds * sequence_fps)
         )
 
-        # 5. Generate POS waveform.
+        if frames_per_window < self.min_rgb_frames:
+            raise VideoQualityError(
+                f"Window is too short: {sequence_dir}"
+            )
 
-        rppg_wave = self._extract_pos_signal(
-            rgb_signals,
-            sequence_fps,
-            sequence_dir,
+        total_windows = (
+            len(rgb_signals) // frames_per_window
         )
 
-        # 6. Format fixed-length signal.
+        if total_windows == 0:
+            raise VideoQualityError(
+                f"Video is shorter than "
+                f"{self.window_seconds} seconds: {sequence_dir}"
+            )
 
-        rppg_wave = self._format_signal(
-            rppg_wave,
-            sequence_fps,
-            sequence_dir,
+        print(f"[FPS] {sequence_fps:.3f}")
+        print(f"[WINDOW] Duration: {self.window_seconds:.2f}s")
+        print(f"[WINDOW] Frames: {frames_per_window}")
+        print(f"[WINDOW] Available complete windows: {total_windows}")
+
+        # ----------------------------------------------
+        # E. Process each window independently
+        # ----------------------------------------------
+
+        formatted_windows = []
+
+        rejected_windows = 0
+
+        for window_index in range(total_windows):
+
+            start = window_index * frames_per_window
+            end = start + frames_per_window
+
+            rgb_window = rgb_signals[start:end]
+
+            print(
+                f"\n[WINDOW {window_index + 1}/{total_windows}] "
+                f"Frames {start}-{end - 1}"
+            )
+
+            try:
+
+                formatted_signal = self._process_window(
+                    rgb_window=rgb_window,
+                    sequence_fps=sequence_fps,
+                    sequence_dir=sequence_dir,
+                    window_index=window_index,
+                )
+
+                formatted_windows.append(
+                    formatted_signal
+                )
+
+                print(
+                    f"[WINDOW ACCEPTED] "
+                    f"{len(formatted_signal)} samples"
+                )
+
+            except VideoQualityError as exc:
+
+                rejected_windows += 1
+
+                print(
+                    f"[WINDOW REJECTED] {exc}"
+                )
+
+            except Exception as exc:
+
+                rejected_windows += 1
+
+                print(
+                    f"[WINDOW ERROR] {exc}"
+                )
+
+        # ----------------------------------------------
+        # F. Ensure at least one valid window
+        # ----------------------------------------------
+
+        if not formatted_windows:
+            raise VideoQualityError(
+                f"No valid 10-second windows were produced: "
+                f"{sequence_dir}. "
+                f"Rejected windows: {rejected_windows}."
+            )
+
+        # ----------------------------------------------
+        # G. Stack accepted signals
+        # ----------------------------------------------
+
+        signals_array = np.stack(
+            formatted_windows,
+            axis=0,
+        ).astype(np.float32)
+
+        labels_array = np.full(
+            len(formatted_windows),
+            fill_value=label,
+            dtype=np.float32,
         )
-
-        # 7. Create PyTorch tensors.
 
         x_tensor = torch.from_numpy(
-            rppg_wave
-        ).to(dtype=torch.float32)
-
-        y_tensor = torch.tensor(
-            label,
-            dtype=torch.float32,
+            signals_array
         )
 
-        if self.debug:
+        y_tensor = torch.from_numpy(
+            labels_array
+        )
 
-            print("\n========== SEQUENCE RESULT ==========")
+        # ----------------------------------------------
+        # H. Final validation
+        # ----------------------------------------------
 
-            print(f"Sequence: {sequence_dir.name}")
-            print(f"FPS: {sequence_fps:.3f}")
-            print(
-                f"Valid RGB fraction: {valid_fraction:.2%}"
+        if x_tensor.ndim != 2:
+            raise RuntimeError(
+                f"Unexpected signal tensor shape: {x_tensor.shape}"
             )
-            print(
-                f"POS waveform length: {len(rppg_wave)}"
-            )
-            print(
-                f"Tensor shape: {tuple(x_tensor.shape)}"
-            )
-            print(f"Label: {label}")
 
-            print("=====================================")
+        if x_tensor.shape[1] != self.target_length:
+            raise RuntimeError(
+                f"Expected signal length {self.target_length}, "
+                f"got {x_tensor.shape[1]}."
+            )
+
+        if not torch.isfinite(x_tensor).all():
+            raise RuntimeError(
+                "Processed signals contain invalid values."
+            )
+
+        if len(x_tensor) != len(y_tensor):
+            raise RuntimeError(
+                "Signal and label counts do not match."
+            )
+
+        print("\n========== VIDEO PROCESSING RESULT ==========")
+
+        print(f"Video: {sequence_dir.name}")
+        print(f"FPS: {sequence_fps:.3f}")
+
+        print(f"Complete windows: {total_windows}")
+        print(f"Accepted windows: {len(formatted_windows)}")
+        print(f"Rejected windows: {rejected_windows}")
+
+        print(f"Signals shape: {tuple(x_tensor.shape)}")
+        print(f"Labels shape: {tuple(y_tensor.shape)}")
+
+        print(f"Label: {label}")
+
+        print("==============================================")
 
         return x_tensor, y_tensor
 
     # ======================================================
-    # STEP 14: LOAD ONE DATASET SAMPLE
+    # 16. LOAD ONE VIDEO
     # ======================================================
 
     def __getitem__(self, idx):
-        """
-        Return one source-video sequence.
-
-        Returns:
-            x_tensor:
-                Float32 POS waveform.
-                Shape: (target_length,)
-
-            y_tensor:
-                Float32 label.
-
-                Real = 0
-                Fake = 1
-        """
 
         if (
             isinstance(idx, bool)
@@ -1201,7 +1203,7 @@ class RPPGDataset(Dataset):
         except Exception as exc:
 
             raise RuntimeError(
-                "Sequence processing failed.\n"
+                f"Video processing failed.\n"
                 f"Sequence: {sequence_dir}\n"
                 f"Label: {label}\n"
                 f"Reason: {exc}"

@@ -12,8 +12,8 @@ from collections import Counter
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-INPUT_DIR = PROJECT_ROOT / "dataset"
-OUTPUT_DIR = PROJECT_ROOT / "dataset_split"
+INPUT_DIR = PROJECT_ROOT / "raw_dataset"
+OUTPUT_DIR = PROJECT_ROOT / "dataset"
 
 SPLIT_RATIOS = {
     "train": 0.70,

@@ -1,15 +1,18 @@
 import os
+import json
 import time
 import random
 import tempfile
 import argparse
 
+from pathlib import Path
+
 import numpy as np
 import torch
 import torch.nn as nn
 
-from pathlib import Path
 from torch.utils.data import DataLoader
+from tqdm import tqdm
 
 from sklearn.metrics import (
     accuracy_score,
@@ -24,13 +27,23 @@ from training.dataset import RPPGDataset
 
 
 # ==========================================================
+# CONFIGURATION
+# ==========================================================
+
+TARGET_LENGTH = 300
+REAL_LABEL = 0
+FAKE_LABEL = 1
+
+CHECKPOINT_NAME = "best_rppg_model.pt"
+HISTORY_NAME = "training_history.json"
+
+
+# ==========================================================
 # REPRODUCIBILITY
 # ==========================================================
 
 def set_seed(seed=42):
-
     random.seed(seed)
-
     np.random.seed(seed)
 
     torch.manual_seed(seed)
@@ -38,12 +51,35 @@ def set_seed(seed=42):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
-    print(f"[i] Random seed: {seed}")
+    print(f"[INFO] Random seed: {seed}")
 
 
 # ==========================================================
 # DEVICE INFORMATION
 # ==========================================================
+
+def select_device(device_name="auto"):
+
+    if device_name == "auto":
+        device = torch.device(
+            "cuda:0" if torch.cuda.is_available() else "cpu"
+        )
+
+    elif device_name == "cuda":
+
+        if not torch.cuda.is_available():
+            raise RuntimeError(
+                "CUDA was requested but is unavailable. "
+                "Check your PyTorch CUDA installation."
+            )
+
+        device = torch.device("cuda:0")
+
+    else:
+        device = torch.device("cpu")
+
+    return device
+
 
 def print_device_information(device):
 
@@ -53,30 +89,24 @@ def print_device_information(device):
 
     if device.type == "cuda":
 
-        print(
-            f"GPU: {torch.cuda.get_device_name(device)}"
-        )
-
-        print(
-            f"CUDA version: {torch.version.cuda}"
-        )
+        print(f"GPU: {torch.cuda.get_device_name(device)}")
+        print(f"CUDA version: {torch.version.cuda}")
 
         memory = (
-            torch.cuda.get_device_properties(device)
-            .total_memory / (1024 ** 3)
+            torch.cuda.get_device_properties(device).total_memory
+            / (1024 ** 3)
         )
 
         print(f"GPU memory: {memory:.2f} GB")
 
     else:
-
         print("Running on CPU.")
 
     print("========================================\n")
 
 
 # ==========================================================
-# SAFE CHECKPOINT SAVING
+# CHECKPOINT SAVING
 # ==========================================================
 
 def save_checkpoint(
@@ -94,14 +124,14 @@ def save_checkpoint(
         exist_ok=True,
     )
 
-    temporary_path = None
-
     checkpoint = {
         "epoch": epoch,
         "best_val_loss": best_val_loss,
         "model_state_dict": model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
     }
+
+    temporary_path = None
 
     try:
 
@@ -113,10 +143,7 @@ def save_checkpoint(
 
             temporary_path = temporary_file.name
 
-        torch.save(
-            checkpoint,
-            temporary_path,
-        )
+        torch.save(checkpoint, temporary_path)
 
         os.replace(
             temporary_path,
@@ -124,7 +151,7 @@ def save_checkpoint(
         )
 
         print(
-            f"[CHECKPOINT] Saved: {checkpoint_path}",
+            f"[CHECKPOINT] Saved best model: {checkpoint_path}",
             flush=True,
         )
 
@@ -135,6 +162,45 @@ def save_checkpoint(
             and os.path.exists(temporary_path)
         ):
             os.remove(temporary_path)
+
+
+def load_checkpoint(model, checkpoint_path, device):
+
+    checkpoint_path = Path(checkpoint_path)
+
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(
+            f"Checkpoint not found: {checkpoint_path}"
+        )
+
+    checkpoint = torch.load(
+        checkpoint_path,
+        map_location=device,
+        weights_only=True,
+    )
+
+    if (
+        isinstance(checkpoint, dict)
+        and "model_state_dict" in checkpoint
+    ):
+
+        model.load_state_dict(
+            checkpoint["model_state_dict"]
+        )
+
+        print(
+            f"[INFO] Loaded best checkpoint from epoch "
+            f"{checkpoint.get('epoch', 'unknown')}"
+        )
+
+    else:
+
+        # Support older checkpoints containing only state_dict.
+        model.load_state_dict(checkpoint)
+
+        print("[INFO] Loaded legacy model checkpoint.")
+
+    return model
 
 
 # ==========================================================
@@ -148,54 +214,63 @@ def create_datasets(data_dir):
     print("\n========== LOADING DATASETS ==========")
 
     train_path = data_dir / "train"
-
     val_path = data_dir / "val"
-
-    # Support older directory naming.
-    if not val_path.is_dir():
-
-        val_path = data_dir / "validation"
-
     test_path = data_dir / "test"
 
-    for path in (
-        train_path,
-        val_path,
-        test_path,
-    ):
+    # Support both val and validation folder names.
+    if not val_path.is_dir():
+        val_path = data_dir / "validation"
+
+    required_paths = {
+        "training": train_path,
+        "validation": val_path,
+        "testing": test_path,
+    }
+
+    for name, path in required_paths.items():
 
         if not path.is_dir():
-
             raise FileNotFoundError(
-                f"Dataset directory not found: {path}"
+                f"{name.capitalize()} dataset directory not found: {path}"
             )
 
     print("\n[1/3] Loading training dataset...")
 
     train_dataset = RPPGDataset(
         root_dir=str(train_path),
-        target_length=300,
+        target_length=TARGET_LENGTH,
     )
 
     print("\n[2/3] Loading validation dataset...")
 
     val_dataset = RPPGDataset(
         root_dir=str(val_path),
-        target_length=300,
+        target_length=TARGET_LENGTH,
     )
 
     print("\n[3/3] Loading testing dataset...")
 
     test_dataset = RPPGDataset(
         root_dir=str(test_path),
-        target_length=300,
+        target_length=TARGET_LENGTH,
     )
+
+    datasets = {
+        "Training": train_dataset,
+        "Validation": val_dataset,
+        "Testing": test_dataset,
+    }
 
     print("\n========== DATASET SUMMARY ==========")
 
-    print(f"Training samples:   {len(train_dataset)}")
-    print(f"Validation samples: {len(val_dataset)}")
-    print(f"Testing samples:    {len(test_dataset)}")
+    for name, dataset in datasets.items():
+
+        if len(dataset) == 0:
+            raise ValueError(
+                f"{name} dataset contains no samples."
+            )
+
+        print(f"{name} samples: {len(dataset)}")
 
     print("=====================================\n")
 
@@ -204,6 +279,53 @@ def create_datasets(data_dir):
         val_dataset,
         test_dataset,
     )
+
+
+# ==========================================================
+# CLASS DISTRIBUTION
+# ==========================================================
+
+def print_class_distribution(dataset, name):
+
+    real_count = 0
+    fake_count = 0
+
+    # The current RPPGDataset stores samples as (path, label).
+    if hasattr(dataset, "samples"):
+
+        for _, label in dataset.samples:
+
+            if int(label) == REAL_LABEL:
+                real_count += 1
+
+            elif int(label) == FAKE_LABEL:
+                fake_count += 1
+
+    else:
+
+        # Fallback for datasets without a samples attribute.
+        for index in range(len(dataset)):
+
+            _, label = dataset[index]
+
+            label = int(label)
+
+            if label == REAL_LABEL:
+                real_count += 1
+
+            elif label == FAKE_LABEL:
+                fake_count += 1
+
+    print(f"\n{name.upper()} CLASS DISTRIBUTION")
+    print(f"Real: {real_count}")
+    print(f"Fake: {fake_count}")
+    print(f"Total: {real_count + fake_count}")
+
+    if real_count == 0 or fake_count == 0:
+        print(
+            f"[WARNING] {name} dataset does not contain "
+            "both classes."
+        )
 
 
 # ==========================================================
@@ -247,7 +369,7 @@ def create_dataloaders(
         drop_last=False,
     )
 
-    print("========== DATALOADERS ==========")
+    print("\n========== DATALOADERS ==========")
 
     print(f"Training batches:   {len(train_loader)}")
     print(f"Validation batches: {len(val_loader)}")
@@ -282,22 +404,23 @@ def prepare_batch(x, y, device):
             f"Expected input shape (B,T), got {tuple(x.shape)}"
         )
 
-    if x.size(1) != 300:
+    if x.size(1) != TARGET_LENGTH:
         raise ValueError(
-            f"Expected 300 temporal samples, got {x.size(1)}"
+            f"Expected {TARGET_LENGTH} temporal samples, "
+            f"got {x.size(1)}"
         )
 
-    if not torch.isfinite(x).all():
+    if not torch.isfinite(x).all().item():
         raise ValueError(
             "Input contains NaN or infinite values."
         )
 
-    if not torch.isfinite(y).all():
+    if not torch.isfinite(y).all().item():
         raise ValueError(
             "Labels contain NaN or infinite values."
         )
 
-    if not torch.all((y == 0) | (y == 1)):
+    if not torch.all((y == REAL_LABEL) | (y == FAKE_LABEL)).item():
         raise ValueError(
             "Labels must contain only 0 or 1."
         )
@@ -318,7 +441,7 @@ def prepare_batch(x, y, device):
 
 
 # ==========================================================
-# CALCULATE CLASSIFICATION METRICS
+# CLASSIFICATION METRICS
 # ==========================================================
 
 def calculate_metrics(all_labels, all_predictions):
@@ -359,9 +482,9 @@ def run_epoch(
     criterion,
     device,
     optimizer=None,
+    phase="Validation",
     epoch=None,
     total_epochs=None,
-    phase="validation",
 ):
 
     is_training = optimizer is not None
@@ -372,23 +495,36 @@ def run_epoch(
         model.eval()
 
     total_loss = 0.0
-
     total_samples = 0
 
     all_labels = []
-
     all_predictions = []
 
     start_time = time.time()
 
-    context = torch.enable_grad if is_training else torch.inference_mode
+    progress_description = phase
 
-    with context():
+    if epoch is not None and total_epochs is not None:
+        progress_description = (
+            f"Epoch {epoch}/{total_epochs} - {phase}"
+        )
 
-        for batch_idx, (x, y) in enumerate(
+    context = (
+        torch.enable_grad()
+        if is_training
+        else torch.inference_mode()
+    )
+
+    with context:
+
+        progress_bar = tqdm(
             loader,
-            start=1,
-        ):
+            desc=progress_description,
+            unit="batch",
+            leave=True,
+        )
+
+        for x, y in progress_bar:
 
             x, y = prepare_batch(
                 x,
@@ -399,7 +535,7 @@ def run_epoch(
             if is_training:
 
                 optimizer.zero_grad(
-                    set_to_none=True,
+                    set_to_none=True
                 )
 
             logits = model(x).view(-1)
@@ -415,7 +551,7 @@ def run_epoch(
                 y,
             )
 
-            if not torch.isfinite(loss):
+            if not torch.isfinite(loss).item():
                 raise ValueError(
                     f"{phase} loss became NaN or infinite."
                 )
@@ -423,15 +559,11 @@ def run_epoch(
             if is_training:
 
                 loss.backward()
-
                 optimizer.step()
 
             batch_count = y.size(0)
 
-            total_loss += (
-                loss.item() * batch_count
-            )
-
+            total_loss += loss.item() * batch_count
             total_samples += batch_count
 
             probabilities = torch.sigmoid(logits)
@@ -448,10 +580,10 @@ def run_epoch(
                 y.detach().long().cpu().tolist()
             )
 
-            print(
-                f"[{phase.upper()}] "
-                f"Batch {batch_idx}/{len(loader)}",
-                flush=True,
+            current_loss = total_loss / total_samples
+
+            progress_bar.set_postfix(
+                loss=f"{current_loss:.4f}"
             )
 
     if total_samples == 0:
@@ -481,49 +613,64 @@ def run_epoch(
 
     print("============================================\n")
 
-    return average_loss, metrics
+    return {
+        "loss": average_loss,
+        **metrics,
+        "labels": all_labels,
+        "predictions": all_predictions,
+        "time": elapsed,
+    }
 
 
 # ==========================================================
-# LOAD BEST CHECKPOINT
+# SAVE TRAINING HISTORY
 # ==========================================================
 
-def load_checkpoint(model, checkpoint_path, device):
+def save_training_history(history, history_path):
 
-    if not os.path.isfile(checkpoint_path):
-        raise FileNotFoundError(
-            f"Checkpoint not found: {checkpoint_path}"
-        )
+    history_path = Path(history_path)
 
-    checkpoint = torch.load(
-        checkpoint_path,
-        map_location=device,
-        weights_only=True,
+    history_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
     )
 
-    # Support both the new checkpoint format
-    # and older checkpoints containing only state_dict.
-    if (
-        isinstance(checkpoint, dict)
-        and "model_state_dict" in checkpoint
-    ):
+    temporary_path = None
 
-        model.load_state_dict(
-            checkpoint["model_state_dict"]
+    try:
+
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=history_path.parent,
+            suffix=".tmp",
+            delete=False,
+        ) as temporary_file:
+
+            temporary_path = temporary_file.name
+
+            json.dump(
+                history,
+                temporary_file,
+                indent=4,
+            )
+
+        os.replace(
+            temporary_path,
+            history_path,
         )
 
         print(
-            f"[i] Loaded best checkpoint from epoch "
-            f"{checkpoint['epoch']}"
+            f"[HISTORY] Saved: {history_path}"
         )
 
-    else:
+    finally:
 
-        model.load_state_dict(checkpoint)
-
-        print("[i] Loaded legacy model checkpoint.")
-
-    return model
+        if (
+            temporary_path is not None
+            and os.path.exists(temporary_path)
+        ):
+            os.remove(temporary_path)
 
 
 # ==========================================================
@@ -540,60 +687,34 @@ def test_model(
 
     print("\n========== FINAL TESTING ==========")
 
+    # Always evaluate the best validation checkpoint.
     model = load_checkpoint(
         model,
         checkpoint_path,
         device,
     )
 
-    test_loss, metrics = run_epoch(
+    # One pass through the test dataset.
+    test_results = run_epoch(
         model=model,
         loader=loader,
         criterion=criterion,
         device=device,
-        phase="test",
+        phase="Testing",
     )
 
-    # Collect predictions for confusion matrix.
-    all_labels = []
-    all_predictions = []
-
-    model.eval()
-
-    with torch.inference_mode():
-
-        for x, y in loader:
-
-            x, y = prepare_batch(
-                x,
-                y,
-                device,
-            )
-
-            logits = model(x).view(-1)
-
-            predictions = (
-                torch.sigmoid(logits) >= 0.5
-            ).long()
-
-            all_predictions.extend(
-                predictions.cpu().tolist()
-            )
-
-            all_labels.extend(
-                y.long().cpu().tolist()
-            )
+    all_labels = test_results["labels"]
+    all_predictions = test_results["predictions"]
 
     matrix = confusion_matrix(
         all_labels,
         all_predictions,
-        labels=[0, 1],
+        labels=[REAL_LABEL, FAKE_LABEL],
     )
 
     print("\n========== CONFUSION MATRIX ==========")
 
     print("                 Predicted")
-
     print("                 Real   Fake")
 
     print(
@@ -610,17 +731,20 @@ def test_model(
 
     print("========== FINAL TEST RESULTS ==========")
 
-    print(f"Test loss:      {test_loss:.4f}")
-    print(f"Test accuracy:  {metrics['accuracy']:.4f}")
-    print(f"Test precision: {metrics['precision']:.4f}")
-    print(f"Test recall:    {metrics['recall']:.4f}")
-    print(f"Test F1-score:  {metrics['f1']:.4f}")
+    print(f"Test loss:      {test_results['loss']:.4f}")
+    print(f"Test accuracy:  {test_results['accuracy']:.4f}")
+    print(f"Test precision: {test_results['precision']:.4f}")
+    print(f"Test recall:    {test_results['recall']:.4f}")
+    print(f"Test F1-score:  {test_results['f1']:.4f}")
 
     print("=========================================\n")
 
     return {
-        "loss": test_loss,
-        **metrics,
+        "loss": test_results["loss"],
+        "accuracy": test_results["accuracy"],
+        "precision": test_results["precision"],
+        "recall": test_results["recall"],
+        "f1": test_results["f1"],
         "confusion_matrix": matrix.tolist(),
     }
 
@@ -632,16 +756,16 @@ def test_model(
 def train_model(
     data_dir,
     epochs=20,
-    batch_size=2,
+    batch_size=4,
     lr=1e-3,
     save_dir="model/checkpoints",
     device_name="auto",
     seed=42,
 ):
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # VALIDATE CONFIGURATION
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     if epochs < 1:
         raise ValueError("epochs must be at least 1.")
@@ -649,61 +773,42 @@ def train_model(
     if batch_size < 1:
         raise ValueError("batch_size must be at least 1.")
 
-    if lr <= 0:
-        raise ValueError("Learning rate must be positive.")
+    if not np.isfinite(lr) or lr <= 0:
+        raise ValueError("Learning rate must be finite and positive.")
 
     set_seed(seed)
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # SELECT DEVICE
-    # ------------------------------------------
+    # ------------------------------------------------------
 
-    if device_name == "auto":
-
-        device = torch.device(
-            "cuda:0"
-            if torch.cuda.is_available()
-            else "cpu"
-        )
-
-    elif device_name == "cuda":
-
-        if not torch.cuda.is_available():
-            raise RuntimeError(
-                "CUDA requested but unavailable."
-            )
-
-        device = torch.device("cuda:0")
-
-    else:
-
-        device = torch.device("cpu")
+    device = select_device(device_name)
 
     print_device_information(device)
 
-    # ------------------------------------------
-    # CONFIGURATION
-    # ------------------------------------------
+    # ------------------------------------------------------
+    # TRAINING CONFIGURATION
+    # ------------------------------------------------------
 
     print("========== TRAINING CONFIGURATION ==========")
 
-    print(f"Epochs:       {epochs}")
-    print(f"Batch size:   {batch_size}")
+    print(f"Epochs:        {epochs}")
+    print(f"Batch size:    {batch_size}")
     print(f"Learning rate: {lr}")
     print(f"Data directory: {data_dir}")
-    print(f"Device:       {device}")
+    print(f"Device:        {device}")
 
     print("Model: RPPG1DCNN")
     print("Input channels: 1")
-    print("Signal length: 300")
+    print(f"Signal length: {TARGET_LENGTH}")
     print("Real label: 0")
     print("Fake label: 1")
 
     print("=============================================\n")
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # LOAD DATASETS
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     (
         train_dataset,
@@ -711,9 +816,25 @@ def train_model(
         test_dataset,
     ) = create_datasets(data_dir)
 
-    # ------------------------------------------
+    # Print class distributions.
+    print_class_distribution(
+        train_dataset,
+        "Training",
+    )
+
+    print_class_distribution(
+        val_dataset,
+        "Validation",
+    )
+
+    print_class_distribution(
+        test_dataset,
+        "Testing",
+    )
+
+    # ------------------------------------------------------
     # CREATE DATALOADERS
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     (
         train_loader,
@@ -727,11 +848,11 @@ def train_model(
         device,
     )
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # INITIALIZE MODEL
-    # ------------------------------------------
+    # ------------------------------------------------------
 
-    print("[i] Initializing RPPG1DCNN...")
+    print("[INFO] Initializing RPPG1DCNN...")
 
     model = RPPG1DCNN().to(device)
 
@@ -742,95 +863,139 @@ def train_model(
         lr=lr,
     )
 
-    print("[i] Model initialized successfully.")
+    print("[INFO] Model initialized successfully.")
 
-    # ------------------------------------------
-    # CHECKPOINT CONFIGURATION
-    # ------------------------------------------
+    # ------------------------------------------------------
+    # CHECKPOINT AND HISTORY PATHS
+    # ------------------------------------------------------
 
-    os.makedirs(
-        save_dir,
+    save_dir = Path(save_dir)
+
+    save_dir.mkdir(
+        parents=True,
         exist_ok=True,
     )
 
-    checkpoint_path = os.path.join(
-        save_dir,
-        "best_rppg_model.pt",
-    )
+    checkpoint_path = save_dir / CHECKPOINT_NAME
+    history_path = save_dir / HISTORY_NAME
 
     best_val_loss = float("inf")
+    best_epoch = 0
 
-    # ------------------------------------------
+    history = {
+        "configuration": {
+            "epochs": epochs,
+            "batch_size": batch_size,
+            "learning_rate": lr,
+            "target_length": TARGET_LENGTH,
+            "device": str(device),
+            "seed": seed,
+            "model": "RPPG1DCNN",
+        },
+        "epochs": [],
+    }
+
+    # ------------------------------------------------------
     # TRAINING
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     training_start = time.time()
 
+    print("\n========== STARTING TRAINING ==========\n")
+
     for epoch in range(1, epochs + 1):
 
-        print("\n" + "=" * 55)
-
-        print(f"TRAINING EPOCH {epoch}/{epochs}")
-
-        print("=" * 55)
+        print("\n" + "=" * 60)
+        print(f"EPOCH {epoch}/{epochs}")
+        print("=" * 60)
 
         if device.type == "cuda":
             torch.cuda.reset_peak_memory_stats(device)
 
+        # --------------------------------------------------
         # TRAIN
-        train_loss, train_metrics = run_epoch(
+        # --------------------------------------------------
+
+        train_results = run_epoch(
             model=model,
             loader=train_loader,
             criterion=criterion,
             device=device,
             optimizer=optimizer,
+            phase="Training",
             epoch=epoch,
             total_epochs=epochs,
-            phase="training",
         )
 
+        # --------------------------------------------------
         # VALIDATE
-        val_loss, val_metrics = run_epoch(
+        # --------------------------------------------------
+
+        val_results = run_epoch(
             model=model,
             loader=val_loader,
             criterion=criterion,
             device=device,
+            phase="Validation",
             epoch=epoch,
             total_epochs=epochs,
-            phase="validation",
         )
 
-        # --------------------------------------
+        # --------------------------------------------------
         # EPOCH SUMMARY
-        # --------------------------------------
+        # --------------------------------------------------
 
         print("\n========== EPOCH RESULTS ==========")
 
         print(f"Epoch: {epoch}/{epochs}")
 
-        print(f"Train loss: {train_loss:.4f}")
+        print(f"Train loss:      {train_results['loss']:.4f}")
+        print(f"Train accuracy:  {train_results['accuracy']:.4f}")
+        print(f"Train precision: {train_results['precision']:.4f}")
+        print(f"Train recall:    {train_results['recall']:.4f}")
+        print(f"Train F1-score:  {train_results['f1']:.4f}")
 
-        print(
-            f"Train accuracy: "
-            f"{train_metrics['accuracy']:.4f}"
-        )
-
-        print(f"Validation loss: {val_loss:.4f}")
-
-        print(
-            f"Validation accuracy: "
-            f"{val_metrics['accuracy']:.4f}"
-        )
+        print(f"Validation loss:      {val_results['loss']:.4f}")
+        print(f"Validation accuracy:  {val_results['accuracy']:.4f}")
+        print(f"Validation precision: {val_results['precision']:.4f}")
+        print(f"Validation recall:    {val_results['recall']:.4f}")
+        print(f"Validation F1-score:  {val_results['f1']:.4f}")
 
         print("===================================\n")
 
-        # --------------------------------------
+        # --------------------------------------------------
+        # SAVE HISTORY
+        # --------------------------------------------------
+
+        epoch_record = {
+            "epoch": epoch,
+
+            "train_loss": train_results["loss"],
+            "train_accuracy": train_results["accuracy"],
+            "train_precision": train_results["precision"],
+            "train_recall": train_results["recall"],
+            "train_f1": train_results["f1"],
+
+            "validation_loss": val_results["loss"],
+            "validation_accuracy": val_results["accuracy"],
+            "validation_precision": val_results["precision"],
+            "validation_recall": val_results["recall"],
+            "validation_f1": val_results["f1"],
+
+            "train_time_seconds": train_results["time"],
+            "validation_time_seconds": val_results["time"],
+        }
+
+        history["epochs"].append(epoch_record)
+
+        # --------------------------------------------------
         # SAVE BEST MODEL
-        # --------------------------------------
+        # --------------------------------------------------
 
-        if val_loss < best_val_loss:
+        if val_results["loss"] < best_val_loss:
 
-            best_val_loss = val_loss
+            best_val_loss = val_results["loss"]
+            best_epoch = epoch
 
             save_checkpoint(
                 model=model,
@@ -840,9 +1005,20 @@ def train_model(
                 checkpoint_path=checkpoint_path,
             )
 
-        # --------------------------------------
+            print(
+                f"[INFO] New best validation loss: "
+                f"{best_val_loss:.4f}"
+            )
+
+        # Save history after every epoch.
+        save_training_history(
+            history,
+            history_path,
+        )
+
+        # --------------------------------------------------
         # GPU MEMORY
-        # --------------------------------------
+        # --------------------------------------------------
 
         if device.type == "cuda":
 
@@ -862,27 +1038,35 @@ def train_model(
                 f"Peak: {peak:.2f} GB"
             )
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # TRAINING COMPLETE
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     elapsed = time.time() - training_start
 
-    print("\n========== TRAINING COMPLETE ==========")
+    history["best_epoch"] = best_epoch
+    history["best_validation_loss"] = best_val_loss
+    history["total_training_time_seconds"] = elapsed
 
-    print(
-        f"Training time: {elapsed / 60:.2f} minutes"
+    save_training_history(
+        history,
+        history_path,
     )
 
+    print("\n========== TRAINING COMPLETE ==========")
+
+    print(f"Training time: {elapsed / 60:.2f} minutes")
+    print(f"Best epoch: {best_epoch}")
     print(f"Best validation loss: {best_val_loss:.4f}")
 
     print(f"Best checkpoint: {checkpoint_path}")
+    print(f"Training history: {history_path}")
 
     print("========================================\n")
 
-    # ------------------------------------------
+    # ------------------------------------------------------
     # FINAL TESTING
-    # ------------------------------------------
+    # ------------------------------------------------------
 
     test_results = test_model(
         model=model,
@@ -892,7 +1076,7 @@ def train_model(
         checkpoint_path=checkpoint_path,
     )
 
-    print("[i] FALSEFACET rPPG training finished.")
+    print("[INFO] FALSEFACET rPPG training finished.")
 
     return test_results
 
@@ -965,8 +1149,8 @@ if __name__ == "__main__":
     if args.batch_size < 1:
         parser.error("--batch_size must be at least 1.")
 
-    if args.lr <= 0:
-        parser.error("--lr must be positive.")
+    if not np.isfinite(args.lr) or args.lr <= 0:
+        parser.error("--lr must be positive and finite.")
 
     train_model(
         data_dir=args.data_dir,
