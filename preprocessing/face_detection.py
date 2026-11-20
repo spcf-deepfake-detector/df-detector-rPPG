@@ -1,64 +1,126 @@
-import os
+
+"""
+FALSEFACET - Face Detection
+===========================
+
+PURPOSE:
+    Detect faces in extracted video frames and return their
+    bounding-box coordinates in the original image dimensions.
+
+PIPELINE POSITION:
+    extract_frame.py
+        |
+        v
+    face_detection.py
+        |
+        v
+    face_tracking.py
+        |
+        v
+    roi.py
+        |
+        v
+    rgb_extraction.py
+        |
+        v
+    rppg.py
+
+RESPONSIBILITIES:
+    1. Detect multiple faces in an image.
+    2. Support MediaPipe short-range and full-range models.
+    3. Support optional multi-scale detection.
+    4. Filter detections by confidence and minimum face size.
+    5. Remove duplicate detections using Intersection over Union.
+    6. Return bounding boxes in original-image coordinates.
+    7. Sort faces from largest to smallest.
+    8. Save optional detection results and statistics.
+
+IMPORTANT:
+    This class only detects faces.
+
+    It does NOT track face identities across frames.
+    FaceTracker handles target selection and tracking.
+
+DETECTION OUTPUT:
+    [
+        {
+            "bbox": [x, y, width, height],
+            "confidence": 0.95,
+            "detected": True
+        }
+    ]
+"""
+
 import cv2
+import json
+import math
+import os
+import re
+import tempfile
 import numpy as np
 import mediapipe as mp
 
-from typing import List, Dict, Any, Optional
+from pathlib import Path
+from numbers import Real
+from typing import List, Dict, Any, Optional, Tuple
 
 
 class FaceDetector:
     """
-    Multi-scale, multi-face detector for the FalseFacet rPPG pipeline.
+    Multi-face MediaPipe detector for FALSEFACET.
 
-    Features:
-    - Uses MediaPipe short-range and full-range models.
-    - Detects multiple faces in each frame.
-    - Supports small and large faces.
-    - Supports optional frame upscaling.
-    - Merges detections from both models.
-    - Removes duplicate bounding boxes.
-    - Sorts faces by bounding-box area.
-    - Selects the largest face for the legacy single-face output.
-    - Preserves all detections when multi_face=True.
-    - Returns bounding boxes in original frame coordinates.
-    - Records detection statistics.
+    The detector can use one or both MediaPipe face-detection
+    models and optionally process frames at different scales.
 
-    IMPORTANT:
-    This class detects faces, but does not track identity.
+    Bounding boxes are always returned in the original image
+    coordinate system:
 
-    FaceTracker is responsible for following the same person
-    across consecutive frames.
+        [x, y, width, height]
+
+    Face tracking and identity selection are handled by
+    FaceTracker, not by this class.
     """
 
     def __init__(
         self,
         min_detection_confidence: float = 0.3,
-        model_selection: int = 1,
-        frame_scale: float = 1.5,
+        model_selection: int = 0,
+        frame_scale: float = 1.0,
         max_faces: Optional[int] = None,
-        use_dual_model: bool = False, #for testing, set to False
+        use_dual_model: bool = False,
         duplicate_iou_threshold: float = 0.5,
+        multi_scale_factors: Tuple[float, ...] = (1.0,),
+        min_face_size: int = 12,
     ):
 
-        # ---------------------------------------------------------
-        # 1. Validate configuration
-        # ---------------------------------------------------------
+        # =================================================
+        # 1. VALIDATE CONFIGURATION
+        # =================================================
 
         if (
-            not np.isfinite(min_detection_confidence)
+            isinstance(min_detection_confidence, bool)
+            or not isinstance(min_detection_confidence, Real)
+            or not math.isfinite(min_detection_confidence)
             or not 0.0 < min_detection_confidence <= 1.0
         ):
             raise ValueError(
-                "min_detection_confidence must be between 0 and 1."
+                "min_detection_confidence must be finite "
+                "and between 0 and 1."
             )
 
-        if model_selection not in (0, 1):
+        if (
+            isinstance(model_selection, bool)
+            or not isinstance(model_selection, int)
+            or model_selection not in (0, 1)
+        ):
             raise ValueError(
                 "model_selection must be 0 or 1."
             )
 
         if (
-            not np.isfinite(frame_scale)
+            isinstance(frame_scale, bool)
+            or not isinstance(frame_scale, Real)
+            or not math.isfinite(frame_scale)
             or frame_scale < 1.0
         ):
             raise ValueError(
@@ -66,7 +128,9 @@ class FaceDetector:
             )
 
         if (
-            not np.isfinite(duplicate_iou_threshold)
+            isinstance(duplicate_iou_threshold, bool)
+            or not isinstance(duplicate_iou_threshold, Real)
+            or not math.isfinite(duplicate_iou_threshold)
             or not 0.0 <= duplicate_iou_threshold <= 1.0
         ):
             raise ValueError(
@@ -84,139 +148,232 @@ class FaceDetector:
                     "max_faces must be a positive integer or None."
                 )
 
-        self.min_confidence = float(min_detection_confidence)
-        self.model_selection = int(model_selection)
+        if not isinstance(use_dual_model, bool):
+
+            raise TypeError(
+                "use_dual_model must be a boolean."
+            )
+
+        if (
+            isinstance(min_face_size, bool)
+            or not isinstance(min_face_size, int)
+            or min_face_size < 1
+        ):
+            raise ValueError(
+                "min_face_size must be a positive integer."
+            )
+
+        if (
+            not isinstance(multi_scale_factors, (list, tuple))
+            or not multi_scale_factors
+        ):
+            raise ValueError(
+                "multi_scale_factors must be a non-empty "
+                "list or tuple."
+            )
+
+        validated_scales = []
+
+        for scale in multi_scale_factors:
+
+            if (
+                isinstance(scale, bool)
+                or not isinstance(scale, Real)
+                or not math.isfinite(scale)
+                or scale <= 0
+            ):
+                raise ValueError(
+                    "Every multi-scale factor must be finite and > 0."
+                )
+
+            scale = float(scale)
+
+            if scale not in validated_scales:
+                validated_scales.append(scale)
+
+        # =================================================
+        # 2. SAVE CONFIGURATION
+        # =================================================
+
+        self.min_confidence = float(
+            min_detection_confidence
+        )
+
+        self.model_selection = model_selection
+
         self.frame_scale = float(frame_scale)
+
         self.max_faces = max_faces
-        self.use_dual_model = bool(use_dual_model)
+
+        self.use_dual_model = use_dual_model
 
         self.duplicate_iou_threshold = float(
             duplicate_iou_threshold
         )
 
+        self.multi_scale_factors = tuple(
+            validated_scales
+        )
+
+        self.min_face_size = min_face_size
+
         self.closed = False
 
+        # Store initialized MediaPipe detectors here.
         self.detectors = {}
 
+        self.image_extensions = {
+            ".jpg",
+            ".jpeg",
+            ".png",
+        }
 
-        # ---------------------------------------------------------
-        # 2. Initialize MediaPipe
-        # ---------------------------------------------------------
+        self.stats = self._new_stats()
+
+        # =================================================
+        # 3. INITIALIZE MEDIAPIPE
+        # =================================================
 
         try:
 
-            self.mp_face_detection = mp.solutions.face_detection
-
-            
-            # Always initialize the requested model.
-            self.detectors[self.model_selection] = (
-                self.mp_face_detection.FaceDetection(
-                    min_detection_confidence=self.min_confidence,
-                    model_selection=self.model_selection,
-                )
+            self.mp_face_detection = (
+                mp.solutions.face_detection
             )
 
-            # Initialize the other model for additional detections.
+            model_selections = [
+                self.model_selection
+            ]
+
             if self.use_dual_model:
 
                 other_model = 1 - self.model_selection
 
-                self.detectors[other_model] = (
+                model_selections.append(
+                    other_model
+                )
+
+            for model in model_selections:
+
+                self.detectors[model] = (
                     self.mp_face_detection.FaceDetection(
                         min_detection_confidence=self.min_confidence,
-                        model_selection=other_model,
+                        model_selection=model,
                     )
                 )
 
-        except AttributeError as exc:
-
-            raise RuntimeError(
-                "MediaPipe's mp.solutions.face_detection API "
-                "is unavailable. Check your MediaPipe installation."
-            ) from exc
-
         except Exception:
 
+            # Close any models that were initialized
+            # successfully before an initialization failure.
+
             self.close()
+
             raise
 
-        # ---------------------------------------------------------
-        # 3. Initialize statistics
-        # ---------------------------------------------------------
-
-        self.stats = self._new_stats()
-
-    # =============================================================
-    # STATISTICS
-    # =============================================================
+    # =====================================================
+    # 4. STATISTICS
+    # =====================================================
 
     @staticmethod
     def _new_stats() -> Dict[str, int]:
+        """
+        Create a fresh statistics dictionary.
+
+        Statistics are updated when process_image() is used.
+        """
 
         return {
-            "frames_attempted": 0,
-            "valid_frames": 0,
-            "invalid_frames": 0,
-            "frames_with_faces": 0,
-            "frames_without_faces": 0,
+            "images_attempted": 0,
+            "valid_images": 0,
+            "invalid_images": 0,
+            "images_with_faces": 0,
+            "images_without_faces": 0,
             "total_faces_detected": 0,
             "duplicate_faces_removed": 0,
         }
 
-    # =============================================================
-    # FRAME VALIDATION
-    # =============================================================
+    # =====================================================
+    # 5. VALIDATE IMAGE
+    # =====================================================
 
     @staticmethod
-    def _is_valid_frame(frame: Any) -> bool:
+    def _is_valid_image(image: Any) -> bool:
+        """
+        Check whether an image is suitable for MediaPipe.
+
+        Expected input:
+            NumPy array
+            Three color channels
+            uint8 image data
+            Positive width and height
+        """
 
         return (
-            isinstance(frame, np.ndarray)
-            and frame.ndim == 3
-            and frame.shape[2] == 3
-            and frame.shape[0] > 0
-            and frame.shape[1] > 0
-            and frame.size > 0
+            isinstance(image, np.ndarray)
+            and image.ndim == 3
+            and image.shape[2] == 3
+            and image.shape[0] > 0
+            and image.shape[1] > 0
+            and image.size > 0
+            and image.dtype == np.uint8
         )
 
-    # =============================================================
-    # FACE AREA
-    # =============================================================
+    # =====================================================
+    # 6. NATURAL FRAME SORTING
+    # =====================================================
+
+    @staticmethod
+    def _natural_sort_key(path: Path):
+        """
+        Sort numbered frame filenames naturally.
+
+        Example:
+
+            frame_1.jpg
+            frame_2.jpg
+            frame_10.jpg
+
+        Instead of:
+
+            frame_1.jpg
+            frame_10.jpg
+            frame_2.jpg
+        """
+
+        parts = re.split(
+            r"(\d+)",
+            path.name,
+        )
+
+        return [
+            int(part) if part.isdigit() else part.lower()
+            for part in parts
+        ]
+
+    # =====================================================
+    # 7. FACE GEOMETRY
+    # =====================================================
 
     @staticmethod
     def _get_face_area(face: Dict[str, Any]) -> int:
+        """
+        Calculate the area of a detected face bounding box.
+        """
 
         x, y, width, height = face["bbox"]
 
-        return max(0, width) * max(0, height)
-
-    # =============================================================
-    # FACE SELECTION
-    # =============================================================
-
-    @classmethod
-    def _select_largest_face(
-        cls,
-        faces: List[Dict[str, Any]],
-    ) -> Optional[Dict[str, Any]]:
-
-        if not faces:
-            return None
-
-        return max(
-            faces,
-            key=cls._get_face_area,
-        )
-
-    # =============================================================
-    # SORT FACES
-    # =============================================================
+        return width * height
 
     @classmethod
     def _sort_faces_by_area(
         cls,
         faces: List[Dict[str, Any]],
     ) -> List[Dict[str, Any]]:
+        """
+        Sort faces from largest to smallest.
+
+        The largest face is returned first.
+        """
 
         return sorted(
             faces,
@@ -224,52 +381,55 @@ class FaceDetector:
             reverse=True,
         )
 
-    # =============================================================
-    # BOUNDING BOX IOU
-    # =============================================================
-
     @staticmethod
     def _calculate_iou(
         bbox_a: List[int],
         bbox_b: List[int],
     ) -> float:
         """
-        Calculate Intersection over Union.
+        Calculate Intersection over Union (IoU).
 
-        bbox format:
-            [x, y, width, height]
+        IoU measures the overlap between two bounding boxes.
+
+        Range:
+            0.0 = no overlap
+            1.0 = identical boxes
         """
 
         ax, ay, aw, ah = bbox_a
+
         bx, by, bw, bh = bbox_b
 
-        a_x2 = ax + aw
-        a_y2 = ay + ah
+        x1 = max(ax, bx)
 
-        b_x2 = bx + bw
-        b_y2 = by + bh
+        y1 = max(ay, by)
 
-        intersection_x1 = max(ax, bx)
-        intersection_y1 = max(ay, by)
-
-        intersection_x2 = min(a_x2, b_x2)
-        intersection_y2 = min(a_y2, b_y2)
-
-        intersection_w = max(
-            0,
-            intersection_x2 - intersection_x1,
+        x2 = min(
+            ax + aw,
+            bx + bw,
         )
 
-        intersection_h = max(
+        y2 = min(
+            ay + ah,
+            by + bh,
+        )
+
+        intersection_width = max(
             0,
-            intersection_y2 - intersection_y1,
+            x2 - x1,
+        )
+
+        intersection_height = max(
+            0,
+            y2 - y1,
         )
 
         intersection_area = (
-            intersection_w * intersection_h
+            intersection_width * intersection_height
         )
 
         area_a = aw * ah
+
         area_b = bw * bh
 
         union_area = (
@@ -281,24 +441,32 @@ class FaceDetector:
 
         return intersection_area / union_area
 
-    # =============================================================
-    # REMOVE DUPLICATE DETECTIONS
-    # =============================================================
+    # =====================================================
+    # 8. REMOVE DUPLICATE DETECTIONS
+    # =====================================================
 
     def _remove_duplicate_faces(
         self,
         faces: List[Dict[str, Any]],
     ) -> List[Dict[str, Any]]:
         """
-        Remove overlapping detections from the two MediaPipe models.
+        Remove overlapping detections.
 
-        The higher-confidence detection is kept.
+        The detection with the highest confidence is kept.
+
+        This is important when:
+            - Both MediaPipe models are enabled.
+            - Multiple image scales are enabled.
+
+        The same physical face may be detected more than once.
+
+        A zero IoU threshold must not classify non-overlapping
+        boxes as duplicates.
         """
 
         if not faces:
             return []
 
-        # Process highest-confidence detections first.
         ordered = sorted(
             faces,
             key=lambda face: face["confidence"],
@@ -318,35 +486,47 @@ class FaceDetector:
                     existing["bbox"],
                 )
 
-                if iou >= self.duplicate_iou_threshold:
+                # Require actual overlap.
+                # This prevents IoU=0 from removing
+                # completely separate faces.
+
+                if (
+                    iou > 0.0
+                    and iou >= self.duplicate_iou_threshold
+                ):
 
                     duplicate = True
 
-                    self.stats["duplicate_faces_removed"] += 1
+                    self.stats[
+                        "duplicate_faces_removed"
+                    ] += 1
 
                     break
 
             if not duplicate:
+
                 unique_faces.append(candidate)
 
         return unique_faces
 
-    # =============================================================
-    # RUN ONE MEDIAPIPE MODEL
-    # =============================================================
+    # =====================================================
+    # 9. RUN ONE MEDIAPIPE MODEL
+    # =====================================================
 
     def _run_model(
         self,
-        detector: Any,
+        detector,
         rgb_frame: np.ndarray,
         original_width: int,
         original_height: int,
-        detection_width: int,
-        detection_height: int,
     ) -> List[Dict[str, Any]]:
         """
-        Run one MediaPipe detector and convert its boxes
-        into original-frame coordinates.
+        Run one MediaPipe model on an RGB image.
+
+        MediaPipe returns normalized bounding boxes.
+
+        This function converts them into pixel coordinates
+        relative to the original image.
         """
 
         result = detector.process(rgb_frame)
@@ -354,44 +534,58 @@ class FaceDetector:
         if not result.detections:
             return []
 
-        scale_x = detection_width / original_width
-        scale_y = detection_height / original_height
+        detection_height, detection_width = (
+            rgb_frame.shape[:2]
+        )
+
+        scale_x = (
+            detection_width / original_width
+        )
+
+        scale_y = (
+            detection_height / original_height
+        )
 
         faces = []
 
         for detection in result.detections:
 
-            # -----------------------------------------------------
-            # Confidence
-            # -----------------------------------------------------
+            # ---------------------------------------------
+            # 9.1 CONFIDENCE
+            # ---------------------------------------------
 
             if not detection.score:
                 continue
 
-            confidence = float(detection.score[0])
+            confidence = float(
+                detection.score[0]
+            )
 
             if (
-                not np.isfinite(confidence)
+                not math.isfinite(confidence)
                 or confidence < self.min_confidence
             ):
                 continue
 
-            # -----------------------------------------------------
-            # Normalized bounding box
-            # -----------------------------------------------------
+            # ---------------------------------------------
+            # 9.2 NORMALIZED BOUNDING BOX
+            # ---------------------------------------------
 
             relative_bbox = (
                 detection.location_data.relative_bounding_box
             )
 
-            values = [
-                relative_bbox.xmin,
-                relative_bbox.ymin,
-                relative_bbox.width,
-                relative_bbox.height,
-            ]
+            values = np.asarray(
+                [
+                    relative_bbox.xmin,
+                    relative_bbox.ymin,
+                    relative_bbox.width,
+                    relative_bbox.height,
+                ],
+                dtype=np.float64,
+            )
 
-            if not np.all(np.isfinite(values)):
+            if not np.isfinite(values).all():
                 continue
 
             if (
@@ -400,104 +594,141 @@ class FaceDetector:
             ):
                 continue
 
-            # -----------------------------------------------------
-            # Convert normalized coordinates to resized pixels
-            # -----------------------------------------------------
+            # ---------------------------------------------
+            # 9.3 CONVERT TO DETECTION IMAGE COORDINATES
+            # ---------------------------------------------
 
-            x1 = int(
-                round(relative_bbox.xmin * detection_width)
+            x1 = int(round(
+                relative_bbox.xmin * detection_width
+            ))
+
+            y1 = int(round(
+                relative_bbox.ymin * detection_height
+            ))
+
+            x2 = int(round(
+                (
+                    relative_bbox.xmin
+                    + relative_bbox.width
+                ) * detection_width
+            ))
+
+            y2 = int(round(
+                (
+                    relative_bbox.ymin
+                    + relative_bbox.height
+                ) * detection_height
+            ))
+
+            # Clamp to resized image boundaries.
+
+            x1 = max(
+                0,
+                min(detection_width, x1),
             )
 
-            y1 = int(
-                round(relative_bbox.ymin * detection_height)
+            y1 = max(
+                0,
+                min(detection_height, y1),
             )
 
-            x2 = int(
-                round(
-                    (
-                        relative_bbox.xmin
-                        + relative_bbox.width
-                    ) * detection_width
-                )
+            x2 = max(
+                0,
+                min(detection_width, x2),
             )
 
-            y2 = int(
-                round(
-                    (
-                        relative_bbox.ymin
-                        + relative_bbox.height
-                    ) * detection_height
-                )
+            y2 = max(
+                0,
+                min(detection_height, y2),
             )
 
-            # -----------------------------------------------------
-            # Clamp to resized frame
-            # -----------------------------------------------------
-
-            x1 = max(0, min(detection_width, x1))
-            y1 = max(0, min(detection_height, y1))
-
-            x2 = max(0, min(detection_width, x2))
-            y2 = max(0, min(detection_height, y2))
-
-            # -----------------------------------------------------
-            # Convert to original frame coordinates
-            # -----------------------------------------------------
+            # ---------------------------------------------
+            # 9.4 CONVERT TO ORIGINAL IMAGE COORDINATES
+            # ---------------------------------------------
 
             x1 = int(round(x1 / scale_x))
+
             y1 = int(round(y1 / scale_y))
 
             x2 = int(round(x2 / scale_x))
+
             y2 = int(round(y2 / scale_y))
 
-            # -----------------------------------------------------
-            # Clamp to original frame
-            # -----------------------------------------------------
+            # Clamp to original image boundaries.
 
-            x1 = max(0, min(original_width, x1))
-            y1 = max(0, min(original_height, y1))
+            x1 = max(
+                0,
+                min(original_width, x1),
+            )
 
-            x2 = max(0, min(original_width, x2))
-            y2 = max(0, min(original_height, y2))
+            y1 = max(
+                0,
+                min(original_height, y1),
+            )
+
+            x2 = max(
+                0,
+                min(original_width, x2),
+            )
+
+            y2 = max(
+                0,
+                min(original_height, y2),
+            )
 
             width = x2 - x1
+
             height = y2 - y1
 
             if width <= 0 or height <= 0:
                 continue
 
-            faces.append({
+            # ---------------------------------------------
+            # 9.5 MINIMUM FACE SIZE
+            # ---------------------------------------------
 
+            if (
+                width < self.min_face_size
+                or height < self.min_face_size
+            ):
+                continue
+
+            # ---------------------------------------------
+            # 9.6 SAVE DETECTION
+            # ---------------------------------------------
+
+            faces.append({
                 "bbox": [
                     x1,
                     y1,
                     width,
                     height,
                 ],
-
                 "confidence": confidence,
-
                 "detected": True,
             })
 
         return faces
 
-    # =============================================================
-    # DETECT FACES IN ONE FRAME
-    # =============================================================
+    # =====================================================
+    # 10. DETECT FACES IN ONE FRAME
+    # =====================================================
 
     def detect_frame(
         self,
-        frame: np.ndarray,
+        image: np.ndarray,
     ) -> List[Dict[str, Any]]:
         """
-        Detect faces using both MediaPipe models.
+        Detect all valid faces in one BGR image.
 
-        The frame is optionally enlarged before detection.
+        This is the main method used by face_extraction.py.
 
-        Returns all unique faces sorted from largest to smallest.
+        Returns:
+            A list of face detections sorted by area.
 
-        Bounding boxes use ORIGINAL frame coordinates.
+        Invalid images return an empty list.
+
+        This method does not update process_image statistics.
         """
 
         if self.closed:
@@ -506,115 +737,151 @@ class FaceDetector:
                 "FaceDetector has been closed."
             )
 
-        if not self._is_valid_frame(frame):
+        if not self._is_valid_image(image):
             return []
 
-        original_height, original_width = frame.shape[:2]
-
-        # ---------------------------------------------------------
-        # 1. Upscale frame if configured
-        # ---------------------------------------------------------
-
-        if self.frame_scale > 1.0:
-
-            detection_frame = cv2.resize(
-                frame,
-                None,
-                fx=self.frame_scale,
-                fy=self.frame_scale,
-                interpolation=cv2.INTER_CUBIC,
-            )
-
-        else:
-
-            detection_frame = frame
-
-        detection_height, detection_width = (
-            detection_frame.shape[:2]
+        original_height, original_width = (
+            image.shape[:2]
         )
-
-        # ---------------------------------------------------------
-        # 2. Convert BGR to RGB
-        # ---------------------------------------------------------
-
-        rgb_frame = cv2.cvtColor(
-            detection_frame,
-            cv2.COLOR_BGR2RGB,
-        )
-
-        # ---------------------------------------------------------
-        # 3. Run the configured MediaPipe models
-        # ---------------------------------------------------------
 
         all_faces = []
 
-        for model_id, detector in self.detectors.items():
+        # ---------------------------------------------
+        # 10.1 MULTI-SCALE DETECTION
+        # ---------------------------------------------
 
-            model_faces = self._run_model(
-                detector=detector,
-                rgb_frame=rgb_frame,
-                original_width=original_width,
-                original_height=original_height,
-                detection_width=detection_width,
-                detection_height=detection_height,
+        for scale_factor in self.multi_scale_factors:
+
+            effective_scale = (
+                self.frame_scale * scale_factor
             )
 
-            all_faces.extend(model_faces)
+            if not math.isfinite(effective_scale):
 
-        # ---------------------------------------------------------
-        # 4. Remove duplicate detections
-        # ---------------------------------------------------------
+                raise ValueError(
+                    "Combined image scale is not finite."
+                )
+
+            if effective_scale <= 0:
+
+                raise ValueError(
+                    "Combined image scale must be positive."
+                )
+
+            if effective_scale == 1.0:
+
+                detection_image = image
+
+            else:
+
+                new_width = max(
+                    1,
+                    int(round(
+                        original_width * effective_scale
+                    )),
+                )
+
+                new_height = max(
+                    1,
+                    int(round(
+                        original_height * effective_scale
+                    )),
+                )
+
+                # Use area interpolation for downscaling.
+                # Use cubic interpolation for upscaling.
+
+                interpolation = (
+                    cv2.INTER_AREA
+                    if effective_scale < 1.0
+                    else cv2.INTER_CUBIC
+                )
+
+                detection_image = cv2.resize(
+                    image,
+                    (new_width, new_height),
+                    interpolation=interpolation,
+                )
+
+            # -----------------------------------------
+            # BGR -> RGB
+            # -----------------------------------------
+
+            rgb_image = cv2.cvtColor(
+                detection_image,
+                cv2.COLOR_BGR2RGB,
+            )
+
+            rgb_image = np.ascontiguousarray(
+                rgb_image
+            )
+
+            # -----------------------------------------
+            # 10.2 RUN AVAILABLE MEDIAPIPE MODELS
+            # -----------------------------------------
+
+            for detector in self.detectors.values():
+
+                faces = self._run_model(
+                    detector=detector,
+                    rgb_frame=rgb_image,
+                    original_width=original_width,
+                    original_height=original_height,
+                )
+
+                all_faces.extend(faces)
+
+        # ---------------------------------------------
+        # 10.3 REMOVE DUPLICATES
+        # ---------------------------------------------
 
         unique_faces = self._remove_duplicate_faces(
             all_faces
         )
 
-        # ---------------------------------------------------------
-        # 5. Sort from largest to smallest
-        # ---------------------------------------------------------
+        # ---------------------------------------------
+        # 10.4 LARGEST FACE FIRST
+        # ---------------------------------------------
 
         unique_faces = self._sort_faces_by_area(
             unique_faces
         )
 
-        # ---------------------------------------------------------
-        # 6. Apply optional face limit
-        # ---------------------------------------------------------
+        # ---------------------------------------------
+        # 10.5 OPTIONAL FACE LIMIT
+        # ---------------------------------------------
 
-        if (
-            self.max_faces is not None
-            and len(unique_faces) > self.max_faces
-        ):
+        if self.max_faces is not None:
 
-            unique_faces = unique_faces[:self.max_faces]
+            unique_faces = unique_faces[
+                :self.max_faces
+            ]
 
         return unique_faces
 
-    # =============================================================
-    # PROCESS VIDEO
-    # =============================================================
+    # =====================================================
+    # 11. PROCESS ONE IMAGE FILE
+    # =====================================================
 
-    def process_video(
+    def process_image(
         self,
-        video_path: str,
-        multi_face: bool = False,
-        verbose: bool = True,
+        image_path: str,
     ) -> Dict[str, Any]:
         """
-        Process every decoded video frame.
+        Read and process one image file.
 
-        Each frame receives one record.
+        Returns:
+            {
+                "image": "...",
+                "detected": True,
+                "bbox": [x, y, width, height],
+                "confidence": 0.95,
+                "faces": [...],
+                "error": None
+            }
 
-        Legacy fields:
-            frame_idx
-            bbox
-            confidence
-            detected
-
-        When multi_face=True, also returns:
-            faces
-
-        The legacy bbox is always the largest detected face.
+        The bbox field contains the largest detected face.
+        The faces field contains all returned detections.
         """
 
         if self.closed:
@@ -623,187 +890,351 @@ class FaceDetector:
                 "FaceDetector has been closed."
             )
 
-        if not os.path.isfile(video_path):
+        image_path = Path(image_path)
 
-            raise FileNotFoundError(
-                f"Video file not found: {video_path}"
-            )
+        self.stats["images_attempted"] += 1
 
-        cap = cv2.VideoCapture(video_path)
-
-        if not cap.isOpened():
-
-            cap.release()
-
-            raise ValueError(
-                f"Could not open video: {video_path}"
-            )
-
-        # ---------------------------------------------------------
-        # Video metadata
-        # ---------------------------------------------------------
-
-        cap.set(
-            cv2.CAP_PROP_ORIENTATION_AUTO,
-            1,
+        image = cv2.imread(
+            str(image_path),
+            cv2.IMREAD_COLOR,
         )
 
-        fps = cap.get(cv2.CAP_PROP_FPS)
+        if (
+            image is None
+            or not self._is_valid_image(image)
+        ):
 
-        if not np.isfinite(fps) or fps <= 0:
-            fps = 30.0
+            self.stats["invalid_images"] += 1
 
-        # Reset per-video statistics.
-        self.stats = self._new_stats()
+            return {
+                "image": str(image_path),
+                "detected": False,
+                "bbox": None,
+                "confidence": 0.0,
+                "faces": [],
+                "error": "Image could not be read or is invalid.",
+            }
 
-        frame_records = []
+        self.stats["valid_images"] += 1
 
-        frame_idx = 0
+        faces = self.detect_frame(image)
+
+        if faces:
+
+            self.stats["images_with_faces"] += 1
+
+            self.stats["total_faces_detected"] += len(
+                faces
+            )
+
+            largest_face = faces[0]
+
+            return {
+                "image": str(image_path),
+                "detected": True,
+                "bbox": largest_face["bbox"],
+                "confidence": largest_face["confidence"],
+                "faces": faces,
+                "error": None,
+            }
+
+        self.stats["images_without_faces"] += 1
+
+        return {
+            "image": str(image_path),
+            "detected": False,
+            "bbox": None,
+            "confidence": 0.0,
+            "faces": [],
+            "error": None,
+        }
+
+    # =====================================================
+    # 12. SAVE JSON ATOMICALLY
+    # =====================================================
+
+    @staticmethod
+    def _save_json_atomic(
+        data: Any,
+        output_path: Path,
+    ) -> None:
+        """
+        Save JSON through a temporary file.
+
+        os.replace() replaces the destination only after
+        the temporary JSON file has been written successfully.
+
+        This reduces the risk of incomplete JSON files if
+        the process is interrupted during writing.
+        """
+
+        output_path.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        temporary_path = None
 
         try:
 
-            while True:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                dir=output_path.parent,
+                suffix=".tmp",
+                delete=False,
+            ) as file:
 
-                ret, frame = cap.read()
+                temporary_path = Path(
+                    file.name
+                )
 
-                if not ret:
-                    break
+                json.dump(
+                    data,
+                    file,
+                    indent=4,
+                    allow_nan=False,
+                )
 
-                self.stats["frames_attempted"] += 1
+                file.flush()
 
-                # -------------------------------------------------
-                # 1. Invalid frame
-                # -------------------------------------------------
+                os.fsync(
+                    file.fileno()
+                )
 
-                if not self._is_valid_frame(frame):
-
-                    self.stats["invalid_frames"] += 1
-
-                    record = {
-
-                        "frame_idx": frame_idx,
-
-                        "bbox": [0, 0, 0, 0],
-
-                        "confidence": 0.0,
-
-                        "detected": False,
-                    }
-
-                    if multi_face:
-                        record["faces"] = []
-
-                    frame_records.append(record)
-
-                    frame_idx += 1
-
-                    continue
-
-                self.stats["valid_frames"] += 1
-
-                # -------------------------------------------------
-                # 2. Detect all faces
-                # -------------------------------------------------
-
-                faces = self.detect_frame(frame)
-
-                # -------------------------------------------------
-                # 3. Select largest face for legacy output
-                # -------------------------------------------------
-
-                if faces:
-
-                    self.stats["frames_with_faces"] += 1
-
-                    self.stats["total_faces_detected"] += len(faces)
-
-                    largest_face = self._select_largest_face(
-                        faces
-                    )
-
-                    record = {
-
-                        "frame_idx": frame_idx,
-
-                        "bbox": largest_face["bbox"].copy(),
-
-                        "confidence": largest_face["confidence"],
-
-                        "detected": True,
-                    }
-
-                    if multi_face:
-
-                        # Preserve all detected faces.
-                        record["faces"] = faces
-
-                else:
-
-                    self.stats["frames_without_faces"] += 1
-
-                    record = {
-
-                        "frame_idx": frame_idx,
-
-                        "bbox": [0, 0, 0, 0],
-
-                        "confidence": 0.0,
-
-                        "detected": False,
-                    }
-
-                    if multi_face:
-                        record["faces"] = []
-
-                frame_records.append(record)
-
-                frame_idx += 1
+            os.replace(
+                temporary_path,
+                output_path,
+            )
 
         finally:
 
-            cap.release()
+            if (
+                temporary_path is not None
+                and temporary_path.exists()
+            ):
 
-        # ---------------------------------------------------------
-        # 4. Calculate statistics
-        # ---------------------------------------------------------
+                temporary_path.unlink(
+                    missing_ok=True
+                )
 
-        total_frames = len(frame_records)
+    # =====================================================
+    # 13. PROCESS EXTRACTED IMAGE DIRECTORY
+    # =====================================================
 
-        detected_frames = self.stats["frames_with_faces"]
+    def process_directory(
+        self,
+        image_dir: str = "extracted_frames",
+        output_filename: str = "detection_results.json",
+        recursive: bool = True,
+        verbose: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Process extracted frames inside a directory.
 
-        detection_rate = (
+        Each sequence directory receives its own JSON file.
 
-            detected_frames / total_frames * 100.0
+        Example:
 
-            if total_frames > 0
+            extracted_frames/
+                train/
+                    real/
+                        video_001/
+                            frame_000001.jpg
+                            frame_000002.jpg
+                            detection_results.json
 
-            else 0.0
+        This method is primarily useful for standalone
+        detection testing and debugging.
+
+        The main face_extraction.py pipeline can call
+        detect_frame() directly instead.
+        """
+
+        if self.closed:
+
+            raise RuntimeError(
+                "FaceDetector has been closed."
+            )
+
+        root = Path(image_dir)
+
+        if not root.exists():
+
+            raise FileNotFoundError(
+                f"Directory not found: {root}"
+            )
+
+        if not root.is_dir():
+
+            raise NotADirectoryError(
+                f"Not a directory: {root}"
+            )
+
+        if (
+            not isinstance(output_filename, str)
+            or not output_filename.strip()
+        ):
+
+            raise ValueError(
+                "output_filename must be a non-empty string."
+            )
+
+        # Reset statistics for this directory run.
+
+        self.stats = self._new_stats()
+
+        # ---------------------------------------------
+        # 13.1 FIND IMAGE FILES
+        # ---------------------------------------------
+
+        if recursive:
+
+            image_files = [
+                path
+                for path in root.rglob("*")
+                if (
+                    path.is_file()
+                    and path.suffix.lower()
+                    in self.image_extensions
+                )
+            ]
+
+        else:
+
+            image_files = [
+                path
+                for path in root.iterdir()
+                if (
+                    path.is_file()
+                    and path.suffix.lower()
+                    in self.image_extensions
+                )
+            ]
+
+        # Sort files naturally.
+
+        image_files.sort(
+            key=self._natural_sort_key
         )
 
-        # ---------------------------------------------------------
-        # 5. Prepare output
-        # ---------------------------------------------------------
+        if not image_files:
 
-        summary = {
+            if verbose:
 
-            "fps": float(fps),
+                print(
+                    f"No extracted images found in: {root}"
+                )
 
-            "total_frames": total_frames,
+            return []
 
-            "detections": frame_records,
+        # ---------------------------------------------
+        # 13.2 GROUP IMAGES BY SEQUENCE DIRECTORY
+        # ---------------------------------------------
 
-            "detection_rate": detection_rate,
+        sequence_groups = {}
 
-            "total_faces_detected": (
-                self.stats["total_faces_detected"]
-            ),
+        for image_path in image_files:
 
-            "stats": self.stats.copy(),
-        }
+            sequence_groups.setdefault(
+                image_path.parent,
+                [],
+            ).append(image_path)
 
-        # ---------------------------------------------------------
-        # 6. Print summary
-        # ---------------------------------------------------------
+        all_results = []
+
+        # ---------------------------------------------
+        # 13.3 PROCESS EACH SEQUENCE
+        # ---------------------------------------------
+
+        for sequence_dir, sequence_images in sorted(
+            sequence_groups.items(),
+            key=lambda item: str(item[0]),
+        ):
+
+            if verbose:
+
+                print(
+                    f"\nProcessing sequence: {sequence_dir}"
+                )
+
+                print(
+                    f"Images found: {len(sequence_images)}"
+                )
+
+            sequence_results = []
+
+            for index, image_path in enumerate(
+                sequence_images,
+                start=1,
+            ):
+
+                result = self.process_image(
+                    image_path
+                )
+
+                sequence_results.append(
+                    result
+                )
+
+                all_results.append(
+                    result
+                )
+
+                if verbose and (
+                    index % 100 == 0
+                    or index == len(sequence_images)
+                ):
+
+                    print(
+                        f"Processed {index}/"
+                        f"{len(sequence_images)} images"
+                    )
+
+            # -----------------------------------------
+            # SAVE SEQUENCE RESULTS
+            # -----------------------------------------
+
+            output_path = (
+                sequence_dir / output_filename
+            )
+
+            self._save_json_atomic(
+                sequence_results,
+                output_path,
+            )
+
+            if verbose:
+
+                detected = sum(
+                    result["detected"]
+                    for result in sequence_results
+                )
+
+                print(
+                    f"Faces detected: {detected}/"
+                    f"{len(sequence_results)}"
+                )
+
+                print(
+                    f"Saved: {output_path}"
+                )
+
+        # ---------------------------------------------
+        # 13.4 SUMMARY
+        # ---------------------------------------------
+
+        total_images = self.stats["valid_images"]
+
+        detected_images = (
+            self.stats["images_with_faces"]
+        )
+
+        detection_rate = (
+            detected_images / total_images * 100.0
+            if total_images > 0
+            else 0.0
+        )
 
         if verbose:
 
@@ -811,102 +1242,71 @@ class FaceDetector:
                 "\n========== FACE DETECTION SUMMARY =========="
             )
 
-            print(f"Video: {video_path}")
+            for key, value in self.stats.items():
+
+                print(
+                    f"{key}: {value}"
+                )
 
             print(
-                f"Confidence threshold: {self.min_confidence:.2f}"
+                f"Detection rate: {detection_rate:.2f}%"
             )
 
             print(
-                f"Primary model: {self.model_selection}"
+                "============================================="
             )
 
-            # print(
-            #     f"Dual model enabled: {self.use_dual_model}"
-            # )
+        return all_results
 
-            print(
-                f"Frame scale: {self.frame_scale:.2f}"
-            )
+    # =====================================================
+    # 14. CLOSE MEDIAPIPE RESOURCES
+    # =====================================================
 
-            print(
-                f"Maximum faces: {self.max_faces}"
-            )
-
-            print(
-                "Face selection: Largest bounding-box area"
-            )
-
-            print(f"FPS: {fps:.2f}")
-
-            print(f"Total decoded frames: {total_frames}")
-
-            print(
-                f"Valid frames: {self.stats['valid_frames']}"
-            )
-
-            print(
-                f"Invalid frames: {self.stats['invalid_frames']}"
-            )
-
-            print(
-                f"Frames with faces: {detected_frames}"
-            )
-
-            print(
-                "Frames without faces: "
-                f"{self.stats['frames_without_faces']}"
-            )
-
-            print(
-                "Total unique face detections: "
-                f"{self.stats['total_faces_detected']}"
-            )
-
-            print(
-                "Duplicate detections removed: "
-                f"{self.stats['duplicate_faces_removed']}"
-            )
-
-            print(
-                f"Frame detection rate: {detection_rate:.2f}%"
-            )
-
-            print(
-                "============================================"
-            )
-
-        return summary
-
-    # =============================================================
-    # RESOURCE MANAGEMENT
-    # =============================================================
-
-    def close(self):
+    def close(self) -> None:
         """
-        Close all initialized MediaPipe detectors safely.
+        Release all initialized MediaPipe detectors.
+
+        Safe to call more than once.
         """
 
-        if not self.closed:
+        if self.closed:
+            return
 
-            for detector in self.detectors.values():
+        for detector in list(
+            self.detectors.values()
+        ):
 
-                try:
-                    detector.close()
+            try:
 
-                except Exception:
-                    pass
+                detector.close()
 
-            self.detectors.clear()
+            except Exception:
 
-            self.closed = True
+                # Continue closing other detectors even
+                # if one detector fails during cleanup.
+
+                pass
+
+        self.detectors.clear()
+
+        self.closed = True
+
+    # =====================================================
+    # 15. CONTEXT MANAGER
+    # =====================================================
 
     def __enter__(self):
+        """
+        Allow usage with:
+
+            with FaceDetector() as detector:
+                ...
+        """
 
         if self.closed:
 
             raise RuntimeError(
-                "This FaceDetector has already been closed."
+                "FaceDetector has already been closed."
             )
 
         return self
@@ -919,3 +1319,35 @@ class FaceDetector:
     ):
 
         self.close()
+
+        return False
+
+
+# =========================================================
+# 16. STANDALONE EXECUTION
+# =========================================================
+
+if __name__ == "__main__":
+
+    # Start with one model and one image scale.
+    #
+    # This is the recommended starting configuration
+    # for the current FALSEFACET preprocessing tests.
+
+    with FaceDetector(
+        min_detection_confidence=0.3,
+        model_selection=0,
+        frame_scale=1.0,
+        max_faces=None,
+        use_dual_model=False,
+        duplicate_iou_threshold=0.5,
+        multi_scale_factors=(1.0,),
+        min_face_size=12,
+    ) as detector:
+
+        detector.process_directory(
+            image_dir="extracted_frames",
+            output_filename="detection_results.json",
+            recursive=True,
+            verbose=True,
+        )

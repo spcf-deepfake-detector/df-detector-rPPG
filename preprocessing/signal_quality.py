@@ -5,9 +5,11 @@ import numpy as np
 # CONFIGURATION
 # ============================================================
 
+# Expected physiological frequency range.
 LOW_HZ = 0.7
 HIGH_HZ = 2.5
 
+# Minimum recording duration for quality evaluation.
 MIN_SIGNAL_SECONDS = 3.0
 
 # Frequency tolerance around the estimated pulse frequency.
@@ -19,33 +21,22 @@ CONCENTRATION_TOLERANCE_HZ = 0.1
 # Numerical stability threshold.
 EPSILON = 1e-12
 
+# Overall quality score weights.
+SNR_WEIGHT = 0.60
+CONCENTRATION_WEIGHT = 0.40
+
 
 # ============================================================
-# 1. VALIDATE THE SIGNAL
+# 1. VALIDATE FPS
 # ============================================================
 
-def _prepare_signal(
-    rppg_signal: np.ndarray,
-    fps: float
-) -> np.ndarray:
+def _validate_fps(fps: float) -> float:
     """
-    Validate an rPPG signal before frequency analysis.
+    Validate and convert the sampling rate.
 
-    Parameters
-    ----------
-    rppg_signal:
-        One-dimensional extracted rPPG signal.
-
-    fps:
-        Sampling rate in frames per second.
-
-    Returns
-    -------
-    np.ndarray
-        Validated signal represented as float64.
+    Returns:
+        Validated FPS as a float.
     """
-
-    # Validate FPS.
     try:
         fps = float(fps)
     except (TypeError, ValueError) as exc:
@@ -58,7 +49,6 @@ def _prepare_signal(
             "fps must be a finite positive number."
         )
 
-    # The upper frequency must be below the Nyquist frequency.
     nyquist = fps / 2.0
 
     if HIGH_HZ >= nyquist:
@@ -68,6 +58,34 @@ def _prepare_signal(
             f"The upper frequency must be below the "
             f"Nyquist frequency ({nyquist:.3f} Hz)."
         )
+
+    return fps
+
+
+# ============================================================
+# 2. VALIDATE THE SIGNAL
+# ============================================================
+
+def _prepare_signal(
+    rppg_signal: np.ndarray,
+    fps: float
+) -> np.ndarray:
+    """
+    Validate an rPPG signal before frequency analysis.
+
+    Parameters:
+        rppg_signal:
+            One-dimensional extracted rPPG signal.
+
+        fps:
+            Sampling rate in frames per second.
+
+    Returns:
+        Validated signal represented as float64.
+    """
+
+    # Validate FPS.
+    _validate_fps(fps)
 
     # Convert the input to a numerical array.
     try:
@@ -95,7 +113,7 @@ def _prepare_signal(
 
 
 # ============================================================
-# 2. CHECK RECORDING DURATION
+# 3. CHECK RECORDING DURATION
 # ============================================================
 
 def _has_sufficient_duration(
@@ -117,7 +135,7 @@ def _has_sufficient_duration(
 
 
 # ============================================================
-# 3. CALCULATE THE POWER SPECTRUM
+# 4. CALCULATE THE POWER SPECTRUM
 # ============================================================
 
 def _get_power_spectrum(
@@ -127,13 +145,12 @@ def _get_power_spectrum(
     """
     Calculate a Hann-windowed power spectrum.
 
-    Returns
-    -------
-    frequencies:
-        Frequencies corresponding to the FFT bins.
+    Returns:
+        frequencies:
+            Frequencies corresponding to FFT bins.
 
-    power:
-        Squared magnitude of the FFT.
+        power:
+            Squared magnitude of the FFT.
     """
 
     if len(s) == 0:
@@ -165,7 +182,7 @@ def _get_power_spectrum(
 
 
 # ============================================================
-# 4. CALCULATE SIGNAL-TO-NOISE RATIO
+# 5. CALCULATE SIGNAL-TO-NOISE RATIO
 # ============================================================
 
 def calculate_snr(
@@ -178,22 +195,24 @@ def calculate_snr(
 
     Signal power is measured around:
         - The estimated fundamental frequency.
-        - Its first harmonic, when it falls inside the
-          configured physiological frequency band.
+        - Its first harmonic, when inside the configured
+          physiological frequency range.
 
     Noise power is measured in the remaining part of the
-    physiological frequency band.
+    physiological frequency range.
 
-    Returns
-    -------
-    float
+    Returns:
         Estimated SNR in decibels.
 
-    Notes
-    -----
-    This is a heuristic spectral SNR estimate, not a
-    direct measurement of physiological accuracy.
+    Notes:
+        This is a heuristic spectral SNR estimate.
+        It is not a direct measurement of physiological accuracy.
+
+        A short recording or invalid estimated frequency returns
+        -20 dB as a low-quality fallback.
     """
+
+    fps = _validate_fps(fps)
 
     s = _prepare_signal(
         rppg_signal,
@@ -223,7 +242,7 @@ def calculate_snr(
         fps
     )
 
-    # Restrict evaluation to the configured physiological band.
+    # Restrict evaluation to the physiological frequency range.
     physiological_mask = (
         (frequencies >= LOW_HZ)
         & (frequencies <= HIGH_HZ)
@@ -246,7 +265,7 @@ def calculate_snr(
         & (frequencies <= harmonic_hz + FUNDAMENTAL_TOLERANCE_HZ)
     )
 
-    # Only count frequencies inside the configured band.
+    # Only count frequencies inside the physiological range.
     signal_mask = (
         (fundamental_mask | harmonic_mask)
         & physiological_mask
@@ -279,7 +298,7 @@ def calculate_snr(
         return -20.0
 
     # Avoid division by zero.
-    # This value is a capped estimate, not proof of a perfect signal.
+    # This is a capped estimate, not proof of a perfect signal.
     if noise_power <= EPSILON:
         return 20.0
 
@@ -294,7 +313,7 @@ def calculate_snr(
 
 
 # ============================================================
-# 5. CALCULATE SPECTRAL CONCENTRATION
+# 6. CALCULATE SPECTRAL CONCENTRATION
 # ============================================================
 
 def calculate_spectral_concentration(
@@ -303,21 +322,21 @@ def calculate_spectral_concentration(
 ) -> float:
     """
     Calculate the proportion of physiological-band power
-    concentrated within +/- 0.1 Hz of the strongest frequency.
+    concentrated within +/- CONCENTRATION_TOLERANCE_HZ of
+    the strongest frequency.
 
-    Returns
-    -------
-    float
+    Returns:
         Score between 0.0 and 1.0.
 
-    Interpretation
-    --------------
-    A higher score means more power is concentrated near
-    one dominant frequency.
+    Interpretation:
+        A higher score means more power is concentrated near
+        one dominant frequency.
 
-    It does not prove that the frequency originates from
-    a genuine heartbeat.
+        It does not prove that the frequency originates from
+        a genuine heartbeat.
     """
+
+    fps = _validate_fps(fps)
 
     s = _prepare_signal(
         rppg_signal,
@@ -362,7 +381,7 @@ def calculate_spectral_concentration(
     ):
         return 0.0
 
-    # Find the strongest frequency within the physiological band.
+    # Find the strongest frequency within the physiological range.
     peak_index = int(
         np.argmax(physiological_power)
     )
@@ -373,8 +392,14 @@ def calculate_spectral_concentration(
 
     # Select the bins near the strongest frequency.
     peak_mask = (
-        (frequencies >= peak_frequency - CONCENTRATION_TOLERANCE_HZ)
-        & (frequencies <= peak_frequency + CONCENTRATION_TOLERANCE_HZ)
+        (
+            frequencies
+            >= peak_frequency - CONCENTRATION_TOLERANCE_HZ
+        )
+        & (
+            frequencies
+            <= peak_frequency + CONCENTRATION_TOLERANCE_HZ
+        )
         & physiological_mask
     )
 
@@ -393,7 +418,7 @@ def calculate_spectral_concentration(
 
 
 # ============================================================
-# 6. EVALUATE OVERALL SIGNAL QUALITY
+# 7. EVALUATE OVERALL SIGNAL QUALITY
 # ============================================================
 
 def evaluate_signal_quality(
@@ -403,25 +428,23 @@ def evaluate_signal_quality(
     """
     Calculate a heuristic rPPG signal-quality score.
 
-    Returns
-    -------
-    float
+    Returns:
         Composite quality score between 0.0 and 1.0.
 
-    Formula
-    -------
-    60% normalized SNR
-    40% spectral concentration
+    Formula:
+        60% normalized SNR
+        40% spectral concentration
 
-    Important
-    ---------
-    This score estimates spectral signal quality only.
+    Important:
+        This score estimates spectral signal quality only.
 
-    It is not:
-        - A probability that a video is real.
-        - A probability that a video is fake.
-        - Proof that a physiological signal is genuine.
+        It is NOT:
+            - A probability that a video is real.
+            - A probability that a video is fake.
+            - Proof that a physiological signal is genuine.
     """
+
+    fps = _validate_fps(fps)
 
     s = _prepare_signal(
         rppg_signal,
@@ -463,7 +486,7 @@ def evaluate_signal_quality(
     ):
         return 0.0
 
-    # Estimate the dominant frequency in the physiological band.
+    # Estimate the dominant frequency in the physiological range.
     physiological_frequencies = frequencies[
         physiological_mask
     ]
@@ -497,8 +520,8 @@ def evaluate_signal_quality(
 
     # Preserve the original weighting.
     quality_score = (
-        0.6 * snr_normalized
-        + 0.4 * spectral_concentration
+        SNR_WEIGHT * snr_normalized
+        + CONCENTRATION_WEIGHT * spectral_concentration
     )
 
     return float(

@@ -1,60 +1,79 @@
+
 import numpy as np
 import torch
 from scipy import signal
 
 
 # ============================================================
-# 1. DEVICE MANAGEMENT
+# 1. DEVICE MANAGEMENT AND VALIDATION
 # ============================================================
 
 def _get_device(device=None):
     """
     Select the processing device.
 
-    CUDA is preferred when available.
+    CUDA is used when available if device is None or 'auto'.
+    Explicit CUDA requests raise an error if CUDA is unavailable.
     """
+    if device is None or str(device).lower() == "auto":
+        return torch.device(
+            "cuda" if torch.cuda.is_available() else "cpu"
+        )
 
-    if device is None:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+    try:
+        selected = torch.device(device)
+    except (TypeError, RuntimeError) as exc:
+        raise ValueError(
+            "device must be 'auto', 'cuda', or 'cpu'."
+        ) from exc
 
-    device = torch.device(device)
-
-    if device.type == "cuda" and not torch.cuda.is_available():
+    if selected.type == "cuda" and not torch.cuda.is_available():
         raise RuntimeError(
             "CUDA was requested, but CUDA is not available."
         )
 
-    return device
+    return selected
 
 
 def _to_tensor(s, device=None):
     """
     Convert NumPy arrays or PyTorch tensors to float64 tensors.
-    """
 
+    Returns:
+        tensor
+        was_tensor: whether the original input was a PyTorch tensor.
+    """
     device = _get_device(device)
 
-    if isinstance(s, torch.Tensor):
-        return s.to(
-            device=device,
-            dtype=torch.float64
-        ), True
+    was_tensor = isinstance(s, torch.Tensor)
 
-    return torch.as_tensor(
-        np.asarray(s, dtype=np.float64),
-        dtype=torch.float64,
-        device=device
-    ), False
+    try:
+        if was_tensor:
+            tensor = s.to(
+                device=device,
+                dtype=torch.float64
+            )
+        else:
+            tensor = torch.as_tensor(
+                np.asarray(s, dtype=np.float64),
+                dtype=torch.float64,
+                device=device
+            )
+    except (TypeError, ValueError, RuntimeError) as exc:
+        raise ValueError(
+            "Input must contain valid numeric values."
+        ) from exc
+
+    return tensor, was_tensor
 
 
 def _restore_type(tensor, was_tensor):
     """
-    Preserve the input type.
+    Preserve the original input type.
 
     PyTorch input -> PyTorch output.
     NumPy input   -> NumPy output.
     """
-
     if was_tensor:
         return tensor
 
@@ -62,6 +81,7 @@ def _restore_type(tensor, was_tensor):
 
 
 def _validate_signal(s):
+    """Validate a one-dimensional finite signal."""
     if s.ndim != 1:
         raise ValueError(
             "Signal must be one-dimensional."
@@ -73,6 +93,23 @@ def _validate_signal(s):
         )
 
 
+def _validate_fps(fps):
+    """Validate a finite positive sampling rate."""
+    try:
+        fps = float(fps)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            "fps must be a finite positive number."
+        ) from exc
+
+    if not np.isfinite(fps) or fps <= 0:
+        raise ValueError(
+            "fps must be a finite positive number."
+        )
+
+    return fps
+
+
 # ============================================================
 # 2. NORMALIZE SIGNAL
 # ============================================================
@@ -81,11 +118,11 @@ def normalize_signal(s, device=None):
     """
     Normalize a one-dimensional signal using PyTorch.
 
-    Runs on CUDA when CUDA is available.
+    Formula:
+        normalized = (signal - mean) / standard_deviation
 
-    Constant signals return zeros.
+    A constant signal returns zeros.
     """
-
     s, was_tensor = _to_tensor(s, device)
 
     _validate_signal(s)
@@ -128,14 +165,13 @@ def normalize_signal(s, device=None):
 
 def detrend_signal(s, device=None):
     """
-    Remove a linear trend using PyTorch.
+    Remove a linear trend using least-squares regression.
 
     Fits:
         y = slope * x + intercept
 
-    Then subtracts the fitted trend.
+    Then subtracts the fitted trend from the original signal.
     """
-
     s, was_tensor = _to_tensor(s, device)
 
     _validate_signal(s)
@@ -170,7 +206,6 @@ def detrend_signal(s, device=None):
     ) / denominator
 
     trend = slope * centered_x + y_mean
-
     detrended = s - trend
 
     if not torch.isfinite(detrended).all().item():
@@ -182,7 +217,7 @@ def detrend_signal(s, device=None):
 
 
 # ============================================================
-# 4. CUDA BUTTERWORTH BANDPASS FILTER
+# 4. BUTTERWORTH FFT BANDPASS FILTER
 # ============================================================
 
 def _butterworth_fft_filter(
@@ -195,36 +230,40 @@ def _butterworth_fft_filter(
     """
     Apply a Butterworth bandpass response using PyTorch FFT.
 
-    Filter design:
-        SciPy Butterworth SOS coefficients.
+    SciPy:
+        Designs the Butterworth SOS coefficients.
 
-    Signal filtering:
-        PyTorch FFT on the selected device.
+    PyTorch:
+        Calculates the frequency response and filters the signal
+        on the selected device.
 
-    The forward-backward equivalent response is approximated
-    using the squared magnitude of the Butterworth response.
+    The squared magnitude response approximates forward-backward
+    filtering with zero phase.
 
-    Reflection padding reduces edge artifacts.
+    Reflection padding reduces boundary artifacts.
+
+    Note:
+        This is an FFT-domain approximation of forward-backward
+        filtering, not an exact replacement for scipy.signal.sosfiltfilt.
     """
-
     n = s.numel()
 
     if n < 2:
         return s.clone()
 
-    # --------------------------------------------------------
-    # Design Butterworth filter on CPU
-    # --------------------------------------------------------
-
-    # SciPy is used only to calculate the filter coefficients.
-    # The actual signal filtering happens using PyTorch.
-    sos = signal.butter(
-        order,
-        [low_hz, high_hz],
-        btype="bandpass",
-        fs=fps,
-        output="sos"
-    )
+    # Design the Butterworth filter on CPU.
+    try:
+        sos = signal.butter(
+            order,
+            [low_hz, high_hz],
+            btype="bandpass",
+            fs=fps,
+            output="sos"
+        )
+    except ValueError as exc:
+        raise ValueError(
+            f"Could not design Butterworth filter: {exc}"
+        ) from exc
 
     sos = torch.as_tensor(
         sos,
@@ -232,10 +271,7 @@ def _butterworth_fft_filter(
         device=s.device
     )
 
-    # --------------------------------------------------------
-    # Reflection padding
-    # --------------------------------------------------------
-
+    # Reflection padding.
     pad_length = min(
         3 * (2 * len(sos) + 1),
         n - 1
@@ -252,10 +288,7 @@ def _butterworth_fft_filter(
 
     padded_length = padded.numel()
 
-    # --------------------------------------------------------
-    # FFT
-    # --------------------------------------------------------
-
+    # FFT.
     spectrum = torch.fft.rfft(padded)
 
     frequencies = torch.fft.rfftfreq(
@@ -265,18 +298,11 @@ def _butterworth_fft_filter(
         dtype=s.dtype
     )
 
-    omega = (
-        2.0 * torch.pi * frequencies / fps
-    )
+    omega = 2.0 * torch.pi * frequencies / fps
 
-    z1 = torch.exp(
-        -1j * omega
-    )
+    z1 = torch.exp(-1j * omega)
 
-    # --------------------------------------------------------
-    # Calculate Butterworth frequency response
-    # --------------------------------------------------------
-
+    # Calculate the Butterworth frequency response.
     response = torch.ones(
         frequencies.shape,
         dtype=torch.complex128,
@@ -284,7 +310,6 @@ def _butterworth_fft_filter(
     )
 
     for section in sos:
-
         b0, b1, b2, a0, a1, a2 = section
 
         numerator = (
@@ -299,22 +324,21 @@ def _butterworth_fft_filter(
             + a2 * z1 ** 2
         )
 
+        if torch.any(torch.abs(denominator) < 1e-12).item():
+            raise ValueError(
+                "Invalid Butterworth filter denominator."
+            )
+
         response = response * (
             numerator / denominator
         )
 
-    # Forward-backward filtering has approximately |H|^2
-    # magnitude response and zero phase.
+    # Approximate forward-backward response.
     magnitude_squared = torch.abs(response) ** 2
 
-    filtered_spectrum = (
-        spectrum * magnitude_squared
-    )
+    filtered_spectrum = spectrum * magnitude_squared
 
-    # --------------------------------------------------------
-    # Inverse FFT
-    # --------------------------------------------------------
-
+    # Inverse FFT.
     filtered = torch.fft.irfft(
         filtered_spectrum,
         n=padded_length
@@ -343,41 +367,22 @@ def bandpass_filter(
     device=None
 ):
     """
-    Butterworth bandpass filtering using PyTorch.
+    Apply Butterworth bandpass filtering using PyTorch FFT.
 
     Default frequency range:
-        0.7 - 2.5 Hz
-        Approximately 42 - 150 BPM.
+        0.7–2.5 Hz
+        Approximately 42–150 BPM.
 
-    CUDA is used when available.
+    The result preserves the original input type.
     """
-
     s, was_tensor = _to_tensor(s, device)
 
     _validate_signal(s)
 
-    if s.numel() == 0:
+    if s.numel() < 2:
         return _restore_type(s.clone(), was_tensor)
 
-    # --------------------------------------------------------
-    # Validate FPS
-    # --------------------------------------------------------
-
-    try:
-        fps = float(fps)
-    except (TypeError, ValueError) as exc:
-        raise ValueError(
-            "fps must be a finite positive number."
-        ) from exc
-
-    if not np.isfinite(fps) or fps <= 0:
-        raise ValueError(
-            "fps must be a finite positive number."
-        )
-
-    # --------------------------------------------------------
-    # Validate cutoff frequencies
-    # --------------------------------------------------------
+    fps = _validate_fps(fps)
 
     try:
         low_hz = float(low_hz)
@@ -387,39 +392,30 @@ def bandpass_filter(
             "Cutoff frequencies must be finite numbers."
         ) from exc
 
-    if not np.isfinite(low_hz) or not np.isfinite(high_hz):
+    if (
+        not np.isfinite(low_hz)
+        or not np.isfinite(high_hz)
+    ):
         raise ValueError(
             "Cutoff frequencies must be finite."
         )
 
-    if low_hz <= 0 or high_hz <= low_hz:
-        raise ValueError(
-            "Require 0 < low_hz < high_hz."
-        )
-
     nyquist = fps / 2.0
 
-    if high_hz >= nyquist:
+    if not (0.0 < low_hz < high_hz < nyquist):
         raise ValueError(
-            f"High cutoff ({high_hz} Hz) must be below "
-            f"Nyquist frequency ({nyquist} Hz)."
+            "Require 0 < low_hz < high_hz < Nyquist "
+            f"({nyquist:.3f} Hz)."
         )
 
-    # --------------------------------------------------------
-    # Validate filter order
-    # --------------------------------------------------------
-
     if (
-        not isinstance(order, (int, np.integer))
-        or isinstance(order, (bool, np.bool_))
+        isinstance(order, (bool, np.bool_))
+        or not isinstance(order, (int, np.integer))
         or order < 1
     ):
         raise ValueError(
             "Filter order must be a positive integer."
         )
-
-    if s.numel() < 2:
-        return _restore_type(s.clone(), was_tensor)
 
     filtered = _butterworth_fft_filter(
         s,
@@ -442,22 +438,27 @@ def process_raw_rgb(
     device=None
 ):
     """
-    Process RGB signals using PyTorch.
+    Process raw RGB measurements channel by channel.
 
     Input:
-        (number_of_frames, 3)
+        Shape: (number_of_frames, 3)
 
     Channel order:
-        R = column 0
-        G = column 1
-        B = column 2
+        Column 0 = Red
+        Column 1 = Green
+        Column 2 = Blue
 
-    All channels are processed on the selected device.
+    Processing for each channel:
+        1. Detrend.
+        2. Normalize.
+        3. Apply bandpass filter.
 
-    For NumPy input, the final result is returned as NumPy.
-    For PyTorch input, the result remains a PyTorch tensor.
+    This function processes RGB channels independently.
+    It does NOT calculate a POS pulse signal.
+
+    Do not use this function as an additional processing step
+    after pos_method() in rppg.py.
     """
-
     rgb, was_tensor = _to_tensor(
         rgb_signal,
         device
@@ -483,42 +484,32 @@ def process_raw_rgb(
 
         return _restore_type(empty, was_tensor)
 
-    try:
-        fps = float(fps)
-    except (TypeError, ValueError) as exc:
-        raise ValueError(
-            "fps must be a finite positive number."
-        ) from exc
-
-    if not np.isfinite(fps) or fps <= 0:
-        raise ValueError(
-            "fps must be a finite positive number."
-        )
-
-    # --------------------------------------------------------
-    # Process all RGB channels
-    # --------------------------------------------------------
+    fps = _validate_fps(fps)
 
     processed_channels = []
 
     for channel in range(3):
-
         raw_channel = rgb[:, channel]
 
         detrended = detrend_signal(
-            raw_channel
+            raw_channel,
+            device=rgb.device
         )
 
         normalized = normalize_signal(
-            detrended
+            detrended,
+            device=rgb.device
         )
 
         filtered = bandpass_filter(
             normalized,
-            fps=fps
+            fps=fps,
+            device=rgb.device
         )
 
-        processed_channels.append(filtered)
+        processed_channels.append(
+            filtered
+        )
 
     processed = torch.stack(
         processed_channels,
